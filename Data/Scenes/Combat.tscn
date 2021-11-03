@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/PlayerBlock.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Fortress.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Entity.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/monKobold.gd" type="Script" id=4]
 
 [node name="Combat" type="Node"]
 
@@ -30,13 +32,14 @@ alignment = 1
 [node name="PlayerBlock" parent="GUI/PlayerStatsGUI" instance=ExtResource( 1 )]
 margin_left = 847.0
 margin_right = 972.0
-CharacterName = null
 
 [node name="Entity" type="Node" parent="."]
+script = ExtResource( 3 )
 
-[node name="Player" type="Node" parent="Entity"]
+[node name="Fortress" type="Node" parent="Entity"]
 script = ExtResource( 2 )
 
-[node name="Enemy" type="Node" parent="Entity"]
+[node name="monKobold" type="Node" parent="Entity"]
+script = ExtResource( 4 )
 
-[connection signal="HPUpdate" from="Entity/Player" to="GUI/PlayerStatsGUI/PlayerBlock" method="_on_Player_HPUpdate"]
+[connection signal="display_stats" from="Entity/Fortress" to="GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_display_stats"]

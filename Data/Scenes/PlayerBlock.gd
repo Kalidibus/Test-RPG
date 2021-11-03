@@ -1,23 +1,12 @@
 extends HBoxContainer
 
-export var CharacterName = ""
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-
-	$Stats/Name.text = str("Lephantis")
-
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
-func _on_Player_HPUpdate():
-#	$Stats/HP.text 
+func _on_Fortress_display_stats(charname, HP, MP, MaxHP, MaxMP):
+	$Stats/Name.text = charname
+	$Stats/Name.text = str(HP) + "/" + str(MaxHP)
+	$Stats/Name.text = str(MP) + "/" + str(MaxMP)
