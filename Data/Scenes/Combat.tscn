@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/PlayerBlock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Player.gd" type="Script" id=2]
+
+[node name="Combat" type="Node"]
+
+[node name="GUI" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -168.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerStatsGUI" type="HBoxContainer" parent="GUI"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 1870.0
+margin_bottom = 118.0
+custom_constants/separation = 23
+alignment = 1
+
+[node name="PlayerBlock" parent="GUI/PlayerStatsGUI" instance=ExtResource( 1 )]
+margin_left = 847.0
+margin_right = 972.0
+CharacterName = null
+
+[node name="Entity" type="Node" parent="."]
+
+[node name="Player" type="Node" parent="Entity"]
+script = ExtResource( 2 )
+
+[node name="Enemy" type="Node" parent="Entity"]
+
+[connection signal="HPUpdate" from="Entity/Player" to="GUI/PlayerStatsGUI/PlayerBlock" method="_on_Player_HPUpdate"]
