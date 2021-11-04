@@ -21,17 +21,13 @@ signal HP_change(HP, MaxHP)
 signal MP_change(MP)
 signal display_stats(charname,HP,MP,MaxHP,MaxMP, position)
 
+
 func _ready():
 	pass
-
-func play_turn():
-	return "complete"
 
 func take_damage (damage):
 	HP -= damage
 	HP = max(0, HP)
-	print(damage)
-	print(HP)
 	emit_signal("HP_change", HP, MaxHP)
 	if HP == 0: dies()
 
@@ -46,5 +42,6 @@ func defend():
 	pass #WIP
 
 func dies():
-	pass #WIP
+	pass
+
 

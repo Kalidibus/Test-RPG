@@ -10,7 +10,3 @@ func _ready():
 	DEF = 10
 	position = "Front"
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, position)
-
-func play_turn():
-	return "completed"
-
