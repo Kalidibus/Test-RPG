@@ -1,45 +1,114 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/PlayerBlock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Fortress.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Entity.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/TurnQueue.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/monKobold.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Combat.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/EnemyBlock.tscn" type="PackedScene" id=6]
 
 [node name="Combat" type="Node"]
+script = ExtResource( 5 )
 
-[node name="GUI" type="MarginContainer" parent="."]
-anchor_top = 1.0
+[node name="Screen" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -168.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen"]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="EnemyLabels" type="MarginContainer" parent="Screen/VBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
 custom_constants/margin_right = 50
 custom_constants/margin_top = 50
 custom_constants/margin_left = 50
 custom_constants/margin_bottom = 50
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerStatsGUI" type="HBoxContainer" parent="GUI"]
+[node name="EnemyStatsGUI" type="HBoxContainer" parent="Screen/VBoxContainer/EnemyLabels"]
 margin_left = 50.0
 margin_top = 50.0
-margin_right = 1870.0
-margin_bottom = 118.0
+margin_right = 1230.0
+margin_bottom = 150.0
+alignment = 1
+
+[node name="EnemyBlock" parent="Screen/VBoxContainer/EnemyLabels/EnemyStatsGUI" instance=ExtResource( 6 )]
+margin_left = 556.0
+margin_right = 623.0
+
+[node name="CenterContainer" type="MarginContainer" parent="Screen/VBoxContainer"]
+margin_top = 204.0
+margin_right = 1280.0
+margin_bottom = 516.0
+size_flags_vertical = 3
+custom_constants/margin_left = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/VBoxContainer/CenterContainer"]
+margin_left = 50.0
+margin_right = 1280.0
+margin_bottom = 312.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_right = 58.0
+margin_bottom = 312.0
+alignment = 1
+
+[node name="Attack" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+margin_top = 134.0
+margin_right = 58.0
+margin_bottom = 154.0
+text = "Attack"
+
+[node name="Defend" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+margin_top = 158.0
+margin_right = 58.0
+margin_bottom = 178.0
+text = "Defend"
+
+[node name="GUI" type="MarginContainer" parent="Screen/VBoxContainer"]
+margin_top = 520.0
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 0, 200 )
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerStatsGUI" type="HBoxContainer" parent="Screen/VBoxContainer/GUI"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 1230.0
+margin_bottom = 150.0
 custom_constants/separation = 23
 alignment = 1
 
-[node name="PlayerBlock" parent="GUI/PlayerStatsGUI" instance=ExtResource( 1 )]
-margin_left = 847.0
-margin_right = 972.0
+[node name="PlayerBlock" parent="Screen/VBoxContainer/GUI/PlayerStatsGUI" instance=ExtResource( 1 )]
+margin_left = 556.0
+margin_right = 623.0
+margin_bottom = 100.0
 
-[node name="Entity" type="Node" parent="."]
+[node name="TurnQueue" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="Fortress" type="Node" parent="Entity"]
+[node name="Fortress" type="Node" parent="TurnQueue"]
 script = ExtResource( 2 )
 
-[node name="monKobold" type="Node" parent="Entity"]
+[node name="monKobold" type="Node" parent="TurnQueue"]
 script = ExtResource( 4 )
 
-[connection signal="display_stats" from="Entity/Fortress" to="GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_display_stats"]
+[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/Attack" to="TurnQueue/Fortress" method="_on_Attack_pressed"]
+[connection signal="display_stats" from="TurnQueue/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_display_stats"]
+[connection signal="ready" from="TurnQueue/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_ready"]
+[connection signal="display_stats" from="TurnQueue/monKobold" to="Screen/VBoxContainer/EnemyLabels/EnemyStatsGUI/EnemyBlock" method="_on_monKobold_display_stats"]

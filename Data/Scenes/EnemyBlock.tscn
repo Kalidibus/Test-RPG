@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/PlayerBlock.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/EnemyBlock.gd" type="Script" id=1]
 
-[node name="PlayerBlock" type="HBoxContainer"]
-margin_right = 114.0
-margin_bottom = 68.0
+[node name="EnemyBlock" type="HBoxContainer"]
+margin_right = 56.0
+margin_bottom = 100.0
 custom_constants/separation = 15
 script = ExtResource( 1 )
 __meta__ = {
@@ -13,7 +13,7 @@ __meta__ = {
 
 [node name="StatLabels" type="VBoxContainer" parent="."]
 margin_right = 52.0
-margin_bottom = 68.0
+margin_bottom = 100.0
 
 [node name="NameLabel" type="Label" parent="StatLabels"]
 margin_right = 52.0
@@ -41,7 +41,7 @@ text = "Position"
 [node name="Stats" type="VBoxContainer" parent="."]
 margin_left = 67.0
 margin_right = 67.0
-margin_bottom = 68.0
+margin_bottom = 100.0
 
 [node name="Name" type="Label" parent="Stats"]
 margin_bottom = 14.0

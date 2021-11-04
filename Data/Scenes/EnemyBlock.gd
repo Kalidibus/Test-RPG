@@ -6,7 +6,7 @@ func _ready():
 
 
 
-func _on_Fortress_display_stats(charname,HP,MP,MaxHP,MaxMP, position):
+func _on_monKobold_display_stats(charname,HP,MP,MaxHP,MaxMP, position):
 	$Stats/Name.text = charname
 	$Stats/HP.text = str(HP) + "/" + str(MaxHP)
 	$Stats/MP.text = str(MP) + "/" + str(MaxMP)

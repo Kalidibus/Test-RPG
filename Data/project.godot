@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Entity",
 "language": "GDScript",
 "path": "res://Scenes/Entity.gd"
+}, {
+"base": "Node",
+"class": "TurnQueue",
+"language": "GDScript",
+"path": "res://Scenes/TurnQueue.gd"
 } ]
 _global_script_class_icons={
-"Entity": ""
+"Entity": "",
+"TurnQueue": ""
 }
 
 [application]
@@ -26,9 +32,8 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/size/borderless=true
+window/size/width=1280
+window/size/height=720
 
 [physics]
 
