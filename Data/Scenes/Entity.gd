@@ -17,7 +17,7 @@ var XP
 var XP_to_level
 var position
 
-signal HP_change(HP)
+signal HP_change(HP, MaxHP)
 signal MP_change(MP)
 signal display_stats(charname,HP,MP,MaxHP,MaxMP, position)
 
@@ -25,20 +25,22 @@ func _ready():
 	pass
 
 func play_turn():
-	pass
+	return "complete"
 
-func take_damage (damage:int):
+func take_damage (damage):
 	HP -= damage
 	HP = max(0, HP)
-	emit_signal("HP_change")
+	print(damage)
+	print(HP)
+	emit_signal("HP_change", HP, MaxHP)
 	if HP == 0: dies()
 
 func get_healed (heal_amount:int):
 	HP += heal_amount
 	HP = min(MaxHP, HP)
 
-func attack(var attacker, var target):
-	target.HP -= attacker.STR 
+func attack(attackerSTR, target):
+	pass
 
 func defend():
 	pass #WIP

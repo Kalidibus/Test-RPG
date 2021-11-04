@@ -11,7 +11,6 @@ func _ready():
 	position = "Front"
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, position)
 
+func play_turn():
+	return "completed"
 
-
-func _on_Attack_pressed():
-	attack(self, $monKobold)

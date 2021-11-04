@@ -26,7 +26,7 @@ __meta__ = {
 margin_left = 60.0
 margin_top = 60.0
 margin_right = 168.0
-margin_bottom = 242.0
+margin_bottom = 277.0
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 margin_right = 108.0
@@ -78,5 +78,5 @@ __meta__ = {
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
