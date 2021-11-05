@@ -1,13 +1,13 @@
 extends Entity
 
 func _ready():
-	charname = "Fortress"
-	MaxHP = 88
-	HP = 56
-	MaxMP = 67
-	MP = 34
-	STR = 20
-	DEF = 10
-	SPD = 5
+	charname = "Sorcerer"
+	MaxHP = 40
+	HP = 40
+	MaxMP = 167
+	MP = 134
+	STR = 5
+	DEF = 5
+	SPD = 12
 	position = "Front"
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, position)

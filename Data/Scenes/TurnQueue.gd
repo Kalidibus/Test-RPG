@@ -5,9 +5,29 @@ var active_character
 var target
 var attacker
 var damage : int
+var battlers = []
 
-func _ready(): #identifies first child item to start turn order
-	active_character = get_child(0)
+func _ready():
+	SelectCharacter()
+
+
+func SelectCharacter():
+	var partybattlers = $Party.get_children()
+	var enemybattlers = $EnemyParty.get_children()
+	battlers = partybattlers + enemybattlers
+	battlers.sort_custom(self, "SortbySpeed")
+	
+	
+	
+	active_character = battlers[0]
+	print(active_character.charname)
+	print(battlers)
+
+
+
+func SortbySpeed(a, b):
+	if a.SPD > b.SPD:
+		return a > b
 
 func play_turn():
 	var new_index : int = (active_character.get_index() + 1) % get_child_count() #gets next cihld item and changes active character to them
@@ -15,7 +35,7 @@ func play_turn():
 	
 	if new_index == 1: # WIP - if active character is the second child (currently Kobold) then use enemy attack code
 		get_node("../Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer").visible = false
-		target = $Fortress
+		target = $Party/Fortress
 		attacker = active_character
 		calcdamage(attacker, target)
 		target.take_damage(damage)
@@ -26,7 +46,7 @@ func play_turn():
 		get_node("../Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer").visible = true
 
 func _on_Attack_pressed(): #when the attack button is pressed, fortress will do damage to the Kobold
-	target = $monKobold
+	target = $EnemyParty/monKobold
 	attacker = active_character
 	calcdamage(attacker, target)
 	target.take_damage(damage)

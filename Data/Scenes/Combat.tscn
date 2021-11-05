@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/PlayerBlock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Fortress.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Combat.gd" type="Script" id=5]
 [ext_resource path="res://Assets/icon.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/EnemyLabel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Sorcerer.gd" type="Script" id=8]
 
 [node name="Combat" type="Node"]
 script = ExtResource( 5 )
@@ -137,17 +138,24 @@ margin_bottom = 100.0
 [node name="TurnQueue" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="Fortress" type="Node" parent="TurnQueue"]
+[node name="Party" type="Node" parent="TurnQueue"]
+
+[node name="Fortress" type="Node" parent="TurnQueue/Party"]
 script = ExtResource( 2 )
 
-[node name="monKobold" type="Node" parent="TurnQueue"]
+[node name="Sorcerer" type="Node" parent="TurnQueue/Party"]
+script = ExtResource( 8 )
+
+[node name="EnemyParty" type="Node" parent="TurnQueue"]
+
+[node name="monKobold" type="Node" parent="TurnQueue/EnemyParty"]
 script = ExtResource( 4 )
 
 [connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/Attack" to="TurnQueue" method="_on_Attack_pressed"]
 [connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/Defend" to="TurnQueue" method="_on_Defend_pressed"]
 [connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/Exit" to="TurnQueue" method="_on_Exit_pressed"]
-[connection signal="HP_change" from="TurnQueue/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_HP_change"]
-[connection signal="display_stats" from="TurnQueue/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_display_stats"]
-[connection signal="ready" from="TurnQueue/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_ready"]
-[connection signal="HP_change" from="TurnQueue/monKobold" to="Screen/VBoxContainer/EnemyLabels/EnemyLabel" method="_on_monKobold_HP_change"]
-[connection signal="display_stats" from="TurnQueue/monKobold" to="Screen/VBoxContainer/EnemyLabels/EnemyLabel" method="_on_monKobold_display_stats"]
+[connection signal="HP_change" from="TurnQueue/Party/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_HP_change"]
+[connection signal="display_stats" from="TurnQueue/Party/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_display_stats"]
+[connection signal="ready" from="TurnQueue/Party/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_ready"]
+[connection signal="HP_change" from="TurnQueue/EnemyParty/monKobold" to="Screen/VBoxContainer/EnemyLabels/EnemyLabel" method="_on_monKobold_HP_change"]
+[connection signal="display_stats" from="TurnQueue/EnemyParty/monKobold" to="Screen/VBoxContainer/EnemyLabels/EnemyLabel" method="_on_monKobold_display_stats"]
