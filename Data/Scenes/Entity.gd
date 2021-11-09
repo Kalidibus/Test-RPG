@@ -15,7 +15,8 @@ var MaxHP
 var MaxMP
 var XP
 var XP_to_level
-var position
+var row
+var enemy
 
 signal HP_change(HP, MaxHP)
 signal MP_change(MP)

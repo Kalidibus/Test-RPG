@@ -1,4 +1,5 @@
 extends Entity
+class_name Kobold
 
 func _ready():
 	charname = "Kobold"
@@ -9,5 +10,6 @@ func _ready():
 	STR = 5
 	DEF = 5
 	SPD = 8
-	position = "Front"
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, position)
+	row = "Front"
+	enemy = true
+	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)

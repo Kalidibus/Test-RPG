@@ -1,13 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/PlayerBlock.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Fortress.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Party.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/TurnQueue.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/monKobold.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Combat.gd" type="Script" id=5]
-[ext_resource path="res://Assets/icon.png" type="Texture" id=6]
-[ext_resource path="res://Scenes/EnemyLabel.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Sorcerer.gd" type="Script" id=8]
 
 [node name="Combat" type="Node"]
 script = ExtResource( 5 )
@@ -18,6 +13,7 @@ anchor_bottom = 1.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,74 +22,46 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1260.0
-margin_bottom = 720.0
+margin_bottom = 700.0
 
-[node name="EnemyLabels" type="HBoxContainer" parent="Screen/VBoxContainer"]
+[node name="EnemyGUI" type="HBoxContainer" parent="Screen/VBoxContainer"]
 margin_right = 1240.0
-margin_bottom = 56.0
 custom_constants/separation = 50
 alignment = 1
 
-[node name="EnemyLabel" parent="Screen/VBoxContainer/EnemyLabels" instance=ExtResource( 7 )]
-margin_left = 345.0
-margin_right = 495.0
-margin_bottom = 56.0
-
-[node name="Sprite" type="Sprite" parent="Screen/VBoxContainer/EnemyLabels/EnemyLabel"]
-texture = ExtResource( 6 )
-offset = Vector2( 75, 150 )
-
-[node name="EnemyLabel2" parent="Screen/VBoxContainer/EnemyLabels" instance=ExtResource( 7 )]
-margin_left = 545.0
-margin_right = 695.0
-margin_bottom = 56.0
-
-[node name="Sprite" type="Sprite" parent="Screen/VBoxContainer/EnemyLabels/EnemyLabel2"]
-texture = ExtResource( 6 )
-offset = Vector2( 75, 150 )
-
-[node name="EnemyLabel3" parent="Screen/VBoxContainer/EnemyLabels" instance=ExtResource( 7 )]
-margin_left = 745.0
-margin_right = 895.0
-margin_bottom = 56.0
-
-[node name="Sprite" type="Sprite" parent="Screen/VBoxContainer/EnemyLabels/EnemyLabel3"]
-texture = ExtResource( 6 )
-offset = Vector2( 75, 150 )
-
 [node name="CenterContainer" type="MarginContainer" parent="Screen/VBoxContainer"]
-margin_top = 60.0
+margin_top = 4.0
 margin_right = 1240.0
-margin_bottom = 496.0
+margin_bottom = 676.0
 size_flags_vertical = 3
 custom_constants/margin_left = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Screen/VBoxContainer/CenterContainer"]
 margin_left = 50.0
 margin_right = 1240.0
-margin_bottom = 436.0
+margin_bottom = 672.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Menu" type="VBoxContainer" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_right = 58.0
-margin_bottom = 436.0
+margin_bottom = 672.0
 alignment = 1
 
-[node name="Attack" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer"]
-margin_top = 184.0
+[node name="Attack" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+margin_top = 302.0
 margin_right = 58.0
-margin_bottom = 204.0
+margin_bottom = 322.0
 text = "Attack"
 
-[node name="Defend" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer"]
-margin_top = 208.0
+[node name="Defend" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+margin_top = 326.0
 margin_right = 58.0
-margin_bottom = 228.0
+margin_bottom = 346.0
 text = "Defend"
 
-[node name="Exit" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer"]
-margin_top = 232.0
+[node name="Exit" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+margin_top = 350.0
 margin_right = 58.0
-margin_bottom = 252.0
+margin_bottom = 370.0
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -101,61 +69,31 @@ __meta__ = {
 
 [node name="BattleLog" type="Label" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 62.0
-margin_top = 202.0
+margin_top = 320.0
 margin_right = 1190.0
-margin_bottom = 233.0
+margin_bottom = 351.0
 size_flags_horizontal = 3
 text = "Battle Log:
 "
 align = 2
 
-[node name="GUI" type="MarginContainer" parent="Screen/VBoxContainer"]
-margin_top = 500.0
+[node name="PlayerGUI" type="HBoxContainer" parent="Screen/VBoxContainer"]
+margin_top = 680.0
 margin_right = 1240.0
-margin_bottom = 700.0
-rect_min_size = Vector2( 0, 200 )
-custom_constants/margin_right = 50
-custom_constants/margin_top = 50
-custom_constants/margin_left = 50
-custom_constants/margin_bottom = 50
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PlayerStatsGUI" type="HBoxContainer" parent="Screen/VBoxContainer/GUI"]
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 1190.0
-margin_bottom = 150.0
+margin_bottom = 680.0
 custom_constants/separation = 23
 alignment = 1
-
-[node name="PlayerBlock" parent="Screen/VBoxContainer/GUI/PlayerStatsGUI" instance=ExtResource( 1 )]
-margin_left = 536.0
-margin_right = 603.0
-margin_bottom = 100.0
 
 [node name="TurnQueue" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="Party" type="Node" parent="TurnQueue"]
+[node name="Battlers" type="Node" parent="TurnQueue"]
 
-[node name="Fortress" type="Node" parent="TurnQueue/Party"]
-script = ExtResource( 2 )
+[node name="Party" type="Node" parent="."]
+script = ExtResource( 1 )
 
-[node name="Sorcerer" type="Node" parent="TurnQueue/Party"]
-script = ExtResource( 8 )
-
-[node name="EnemyParty" type="Node" parent="TurnQueue"]
-
-[node name="monKobold" type="Node" parent="TurnQueue/EnemyParty"]
-script = ExtResource( 4 )
-
-[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/Attack" to="TurnQueue" method="_on_Attack_pressed"]
-[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/Defend" to="TurnQueue" method="_on_Defend_pressed"]
-[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/VBoxContainer/Exit" to="TurnQueue" method="_on_Exit_pressed"]
-[connection signal="HP_change" from="TurnQueue/Party/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_HP_change"]
-[connection signal="display_stats" from="TurnQueue/Party/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_display_stats"]
-[connection signal="ready" from="TurnQueue/Party/Fortress" to="Screen/VBoxContainer/GUI/PlayerStatsGUI/PlayerBlock" method="_on_Fortress_ready"]
-[connection signal="HP_change" from="TurnQueue/EnemyParty/monKobold" to="Screen/VBoxContainer/EnemyLabels/EnemyLabel" method="_on_monKobold_HP_change"]
-[connection signal="display_stats" from="TurnQueue/EnemyParty/monKobold" to="Screen/VBoxContainer/EnemyLabels/EnemyLabel" method="_on_monKobold_display_stats"]
+[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="TurnQueue" method="_on_Attack_pressed"]
+[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu/Defend" to="TurnQueue" method="_on_Defend_pressed"]
+[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu/Exit" to="TurnQueue" method="_on_Exit_pressed"]
+[connection signal="menuhide" from="TurnQueue" to="." method="_on_TurnQueue_menuhide"]
+[connection signal="menuvis" from="TurnQueue" to="." method="_on_TurnQueue_menuvis"]

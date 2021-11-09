@@ -9,5 +9,6 @@ func _ready():
 	STR = 20
 	DEF = 10
 	SPD = 5
-	position = "Front"
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, position)
+	row = "Front"
+	enemy = false
+	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
