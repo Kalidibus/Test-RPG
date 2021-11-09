@@ -13,6 +13,7 @@ var new_index = 0
 
 signal menuhide
 signal menuvis
+signal AttackList
 
 #at ready calls the Select Character method.
 func _ready():
@@ -58,12 +59,31 @@ func Enemy_Attack():
 
 #when the attack button is pressed, active character will do damage to the Kobold
 func _on_Attack_pressed(): 
+#this is all the selection stuff
+	var count = $Battlers.get_child_count()
+	var node = get_node("../Screen/VBoxContainer/CenterContainer/HBoxContainer/SecondMenu")
+	var label = Label.new()
+	label.text = "TARGET"
+	node.add_child(label)
+	
+	while count > 0:
+		var check = $Battlers.get_child(count-1)
+		print(check)
+		if check.enemy == true:
+			var button = Button.new()
+			button.text = check.charname
+			node.add_child(button)
+		count -= 1
+	
+	
+	
 	target = $Battlers.get_child(0) #temporary
 	attacker = active_character
 	calcdamage(attacker, target)
 	target.take_damage(damage)
 	
 	BattleLog(str(active_character.charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
+	
 	play_turn()
 
 #when the defend button is pressed, active character will get 50% extra DEF. 
