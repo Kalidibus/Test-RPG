@@ -1,5 +1,5 @@
 extends Node
-class_name TurnQueue
+class_name CombatController
 
 var active_character
 var target
@@ -61,7 +61,7 @@ func Enemy_Attack():
 func _on_Attack_pressed(): 
 #this is all the selection stuff
 	var count = $Battlers.get_child_count()
-	var node = get_node("../Screen/VBoxContainer/CenterContainer/HBoxContainer/SecondMenu")
+	var node = get_node("../CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/SecondMenu")
 	var label = Label.new()
 	label.text = "TARGET"
 	node.add_child(label)
@@ -95,7 +95,7 @@ func _on_Defend_pressed():
 
 #prints to the Battle Log
 func BattleLog(battletext): 
-	get_node("../Screen/VBoxContainer/CenterContainer/HBoxContainer/BattleLog").text = "Battle Log:\n" + str(battletext)
+	get_node("../CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/BattleLog").text = "Battle Log:\n" + str(battletext)
 
 #quits the game
 func _on_Exit_pressed(): 

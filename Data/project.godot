@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "CombatController",
+"language": "GDScript",
+"path": "res://Scenes/CombatController.gd"
+}, {
+"base": "Node",
 "class": "Entity",
 "language": "GDScript",
 "path": "res://Scenes/Entity.gd"
@@ -23,17 +28,12 @@ _global_script_classes=[ {
 "class": "Ratkin",
 "language": "GDScript",
 "path": "res://Scenes/monRatkin.gd"
-}, {
-"base": "Node",
-"class": "TurnQueue",
-"language": "GDScript",
-"path": "res://Scenes/TurnQueue.gd"
 } ]
 _global_script_class_icons={
+"CombatController": "",
 "Entity": "",
 "Kobold": "",
-"Ratkin": "",
-"TurnQueue": ""
+"Ratkin": ""
 }
 
 [application]

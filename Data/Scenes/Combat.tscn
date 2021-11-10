@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Party.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/TurnQueue.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Combat.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/CombatController.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/CombatEventHandler.gd" type="Script" id=5]
 
-[node name="Combat" type="Node"]
+[node name="CombatEventHandler" type="Node"]
 script = ExtResource( 5 )
 
-[node name="Screen" type="MarginContainer" parent="."]
+[node name="CombatGUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 20
@@ -18,54 +18,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Screen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CombatGUI"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1260.0
 margin_bottom = 700.0
 
-[node name="EnemyGUI" type="HBoxContainer" parent="Screen/VBoxContainer"]
+[node name="EnemyGUI" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
 margin_right = 1240.0
 custom_constants/separation = 50
 alignment = 1
 
-[node name="CenterContainer" type="MarginContainer" parent="Screen/VBoxContainer"]
+[node name="CenterContainer" type="MarginContainer" parent="CombatGUI/VBoxContainer"]
 margin_top = 4.0
 margin_right = 1240.0
 margin_bottom = 676.0
 size_flags_vertical = 3
 custom_constants/margin_left = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Screen/VBoxContainer/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer"]
 margin_left = 50.0
 margin_right = 1240.0
 margin_bottom = 672.0
 
-[node name="Menu" type="VBoxContainer" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Menu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_right = 58.0
 margin_bottom = 672.0
 alignment = 1
 
-[node name="Attack" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+[node name="Attack" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 margin_top = 290.0
 margin_right = 58.0
 margin_bottom = 310.0
 text = "Attack"
 
-[node name="Skills" type="MenuButton" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+[node name="Skills" type="MenuButton" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 margin_top = 314.0
 margin_right = 58.0
 margin_bottom = 334.0
 text = "Skills"
 flat = false
 
-[node name="Defend" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+[node name="Defend" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 margin_top = 338.0
 margin_right = 58.0
 margin_bottom = 358.0
 text = "Defend"
 
-[node name="Exit" type="Button" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+[node name="Exit" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 margin_top = 362.0
 margin_right = 58.0
 margin_bottom = 382.0
@@ -74,7 +74,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SecondMenu" type="VBoxContainer" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 62.0
 margin_top = 336.0
 margin_right = 132.0
@@ -82,7 +82,7 @@ margin_bottom = 336.0
 rect_min_size = Vector2( 70, 0 )
 size_flags_vertical = 4
 
-[node name="BattleLog" type="Label" parent="Screen/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="BattleLog" type="Label" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 136.0
 margin_top = 320.0
 margin_right = 1190.0
@@ -92,24 +92,23 @@ text = "Battle Log:
 "
 align = 2
 
-[node name="PlayerGUI" type="HBoxContainer" parent="Screen/VBoxContainer"]
+[node name="PlayerGUI" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
 margin_top = 680.0
 margin_right = 1240.0
 margin_bottom = 680.0
 custom_constants/separation = 23
 alignment = 1
 
-[node name="TurnQueue" type="Node" parent="."]
+[node name="CombatController" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="Battlers" type="Node" parent="TurnQueue"]
+[node name="Battlers" type="Node" parent="CombatController"]
 
 [node name="Party" type="Node" parent="."]
 script = ExtResource( 1 )
 
-[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="TurnQueue" method="_on_Attack_pressed"]
-[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu/Defend" to="TurnQueue" method="_on_Defend_pressed"]
-[connection signal="pressed" from="Screen/VBoxContainer/CenterContainer/HBoxContainer/Menu/Exit" to="TurnQueue" method="_on_Exit_pressed"]
-[connection signal="AttackList" from="TurnQueue" to="Screen/VBoxContainer/CenterContainer/HBoxContainer/SecondMenu" method="_on_TurnQueue_AttackList"]
-[connection signal="menuhide" from="TurnQueue" to="." method="_on_TurnQueue_menuhide"]
-[connection signal="menuvis" from="TurnQueue" to="." method="_on_TurnQueue_menuvis"]
+[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatController" method="_on_Attack_pressed"]
+[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Defend" to="CombatController" method="_on_Defend_pressed"]
+[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Exit" to="CombatController" method="_on_Exit_pressed"]
+[connection signal="menuhide" from="CombatController" to="." method="_on_CombatController_menuhide"]
+[connection signal="menuvis" from="CombatController" to="." method="_on_CombatController_menuvis"]
