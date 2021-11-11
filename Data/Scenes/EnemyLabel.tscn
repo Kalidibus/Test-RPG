@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/EnemyBlock.gd" type="Script" id=1]
 [ext_resource path="res://Assets/lifebar_fill.png" type="Texture" id=2]
 [ext_resource path="res://Assets/lifebar_bg.png" type="Texture" id=3]
 [ext_resource path="res://Assets/rpgcritters2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/mp_bar_fill.png" type="Texture" id=5]
 
 [node name="EnemyLabel" type="HBoxContainer"]
 margin_right = 56.0
@@ -13,34 +14,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="StatLabels" type="VBoxContainer" parent="."]
-visible = false
-margin_right = 52.0
-margin_bottom = 125.0
-
-[node name="NameLabel" type="Label" parent="StatLabels"]
-margin_right = 52.0
-margin_bottom = 14.0
-text = "Name"
-
-[node name="HPLabel" type="Label" parent="StatLabels"]
-margin_top = 18.0
-margin_right = 52.0
-margin_bottom = 32.0
-text = "HP"
-
-[node name="MPLabel" type="Label" parent="StatLabels"]
-margin_top = 36.0
-margin_right = 52.0
-margin_bottom = 50.0
-text = "MP"
-
-[node name="PositionLabel" type="Label" parent="StatLabels"]
-margin_top = 54.0
-margin_right = 52.0
-margin_bottom = 68.0
-text = "Position"
 
 [node name="Stats" type="VBoxContainer" parent="."]
 margin_right = 150.0
@@ -66,22 +39,23 @@ nine_patch_stretch = true
 stretch_margin_left = 150
 stretch_margin_top = 20
 
-[node name="HP" type="Label" parent="Stats"]
-visible = false
-margin_top = 75.0
-margin_right = 396.0
-margin_bottom = 89.0
-
-[node name="MP" type="Label" parent="Stats"]
-visible = false
-margin_top = 75.0
-margin_right = 396.0
-margin_bottom = 89.0
-
-[node name="Position" type="Label" parent="Stats"]
+[node name="MPbar" type="TextureProgress" parent="Stats"]
 margin_top = 42.0
 margin_right = 150.0
-margin_bottom = 56.0
+margin_bottom = 62.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 5 )
+nine_patch_stretch = true
+stretch_margin_left = 150
+stretch_margin_top = 20
+
+[node name="Position" type="Label" parent="Stats"]
+margin_top = 66.0
+margin_right = 150.0
+margin_bottom = 80.0
 align = 1
 
 [node name="Sprite" type="Sprite" parent="."]

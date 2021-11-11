@@ -5,8 +5,9 @@ var active_character
 var target
 var attacker
 var damage : int
-var party
-var enemies
+var party = PartyStats
+var partylist = []
+var enemies = []
 var battlers = []
 
 var new_index = 0
@@ -18,6 +19,33 @@ signal AttackList
 #at ready calls the Select Character method.
 func _ready():
 	pass
+
+func GetEnemies(currentzone):
+	currentzone.GetEnemies()
+
+# Reads the dictinary in the Party node to get the info needed
+func GetParty():	
+	var slot1name = party.slot1.get("name")
+	var slot1class = party.slot1.get("class")
+	
+	var slot1 = load("res://Classes/" + slot1class + ".tscn")
+	$Battlers.add_child(slot1.instance())
+	
+	var slot2name = party.slot2.get("name")
+	var slot2class = party.slot2.get("class")
+	
+	var slot2 = load("res://Classes/" + slot2class + ".tscn")
+	$Battlers.add_child(slot2.instance())
+
+func SortSides():
+	var lads = $Battlers.get_children()
+	for n in lads:
+		if n.enemy == true:
+			enemies.append(n)
+		else: 
+			partylist.append(n)
+	print(enemies)
+	print(partylist)
 
 #gets the child nodes from the Party and Enemy Party section. Sorts them by SPD
 #sets the active_character to the first unit in the list. 
@@ -33,9 +61,7 @@ func SelectCharacter():
 func SortbySpeed(a, b):
 	return a.SPD > b.SPD
 
-
-func play_turn():
-	yield(get_tree().create_timer(1.0), "timeout")
+func play_turn():	
 	active_character = battlers[new_index]
 	new_index += 1
 	if new_index == $Battlers.get_child_count():
@@ -46,43 +72,24 @@ func play_turn():
 		play_turn()
 	if active_character.enemy == false:
 		emit_signal("menuvis")
+	yield(get_tree().create_timer(2.0), "timeout")
 
 
 func Enemy_Attack():
-		target = $Battlers.get_child(0) #temporary 
-		attacker = active_character
-		calcdamage(attacker, target)
-		target.take_damage(damage)
-		
-		BattleLog(str(active_character.charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
-		
+	attacker = active_character
+	attacker.Turn(partylist)
+	target = attacker.target
+	get_parent().UpdateStats(target, target.HP, target.MP)
+
 
 #when the attack button is pressed, active character will do damage to the Kobold
 func _on_Attack_pressed(): 
-#this is all the selection stuff
-	var count = $Battlers.get_child_count()
-	var node = get_node("../CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/SecondMenu")
-	var label = Label.new()
-	label.text = "TARGET"
-	node.add_child(label)
-	
-	while count > 0:
-		var check = $Battlers.get_child(count-1)
-		print(check)
-		if check.enemy == true:
-			var button = Button.new()
-			button.text = check.charname
-			node.add_child(button)
-		count -= 1
-	
-	
-	
-	target = $Battlers.get_child(0) #temporary
-	attacker = active_character
-	calcdamage(attacker, target)
+	target = active_character.DecideTarget(enemies) #temporary
+	calcdamage(active_character, target)
 	target.take_damage(damage)
+	get_parent().UpdateStats(target, target.HP, target.MP)
 	
-	BattleLog(str(active_character.charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
+	get_parent().BattleLog(str(active_character.charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
 	
 	play_turn()
 
@@ -90,12 +97,8 @@ func _on_Attack_pressed():
 func _on_Defend_pressed(): 
 	active_character.DEF = active_character.DEF*1.50
 	
-	BattleLog(str(active_character.charname) + " defends herself!")
+	get_parent().BattleLog(str(active_character.charname) + " defends herself!")
 	play_turn()
-
-#prints to the Battle Log
-func BattleLog(battletext): 
-	get_node("../CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/BattleLog").text = "Battle Log:\n" + str(battletext)
 
 #quits the game
 func _on_Exit_pressed(): 

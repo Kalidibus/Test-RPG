@@ -42,6 +42,10 @@ config/name="Test-RPG"
 run/main_scene="res://Scenes/Start.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PartyStats="*res://Scenes/Party.tscn"
+
 [display]
 
 window/size/width=1280
