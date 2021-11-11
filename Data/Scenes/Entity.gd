@@ -29,10 +29,6 @@ var target
 
 var DEFbonus = 1
 
-signal HP_change(HP, MaxHP)
-signal MP_change(MP)
-signal display_stats(charname,HP,MP,MaxHP,MaxMP, position)
-
 
 func _ready():
 	pass
@@ -44,7 +40,11 @@ func calcdamage(attacker, target):
 func take_damage (damage):
 	HP -= damage
 	HP = max(0, HP)
-	if HP == 0: dies()
+	
+	EventHandler.UpdateStats(self, HP, MP)
+	
+	if HP <= 0: 
+		dies()
 
 func get_healed (heal_amount:int):
 	HP += heal_amount
@@ -56,6 +56,12 @@ func DecideTarget(targetlist):
 	return target
 
 func dies():
-	pass
+	if enemy == true:
+		EventHandler.BattleLog("The " + charname + "has fallen...")
+		yield(get_tree().create_timer(2.0), "timeout")
+		node.queue_free()
+		queue_free()
+	else:
+		print(charname + "something not an emnemy has died")
 
 

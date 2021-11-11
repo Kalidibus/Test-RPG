@@ -3,8 +3,8 @@ class_name Kobold
 
 func _ready():
 	charname = "Kobold"
-	MaxHP = 120
-	HP = 120
+	MaxHP = 40
+	HP = 40
 	MaxMP = 5
 	MP = 5
 	STR = 5
@@ -12,7 +12,6 @@ func _ready():
 	SPD = 8
 	row = "Front"
 	enemy = true
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 
 func Turn(targetlist):
 	if DEF != 5:

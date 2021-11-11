@@ -44,8 +44,6 @@ func SortSides():
 			enemies.append(n)
 		else: 
 			partylist.append(n)
-	print(enemies)
-	print(partylist)
 
 #gets the child nodes from the Party and Enemy Party section. Sorts them by SPD
 #sets the active_character to the first unit in the list. 
@@ -62,36 +60,48 @@ func SortbySpeed(a, b):
 	return a.SPD > b.SPD
 
 func play_turn():	
+	
+	yield(get_tree().create_timer(1.5), "timeout")
+	if enemies.size() == 0:
+		win()
+	if partylist.size() == 0:
+		lose()
+	
 	active_character = battlers[new_index]
 	new_index += 1
 	if new_index == $Battlers.get_child_count():
 		new_index = 0
-	if active_character.enemy == true: 
+	if active_character.enemy == true: #also causing a crash
 		emit_signal("menuhide")
 		Enemy_Attack()
 		play_turn()
 	if active_character.enemy == false:
 		emit_signal("menuvis")
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
 
 
 func Enemy_Attack():
 	attacker = active_character
 	attacker.Turn(partylist)
 	target = attacker.target
-	get_parent().UpdateStats(target, target.HP, target.MP)
+	#get_parent().UpdateStats(target, target.HP, target.MP)
 
 
 #when the attack button is pressed, active character will do damage to the Kobold
 func _on_Attack_pressed(): 
 	target = active_character.DecideTarget(enemies) #temporary
 	calcdamage(active_character, target)
-	target.take_damage(damage)
-	get_parent().UpdateStats(target, target.HP, target.MP)
+	target.take_damage(damage) #this is causing a crash, figure this shit out 
+	#get_parent().UpdateStats(target, target.HP, target.MP)
 	
 	get_parent().BattleLog(str(active_character.charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
 	
-	play_turn()
+	if enemies.size() == 0:
+		win()
+	if partylist.size() == 0:
+		lose()
+	else: 
+		play_turn()
 
 #when the defend button is pressed, active character will get 50% extra DEF. 
 func _on_Defend_pressed(): 
@@ -106,4 +116,12 @@ func _on_Exit_pressed():
 
 #calculates the amount of damage. Minimum 1 damage.
 func calcdamage(attacker, target): 
-	damage = max(1, attacker.STR - target.DEF*0.5)
+	damage = max(1, attacker.STR - target.DEF*0.4)
+
+func win():
+	get_parent().BattleLog("You have prevailed on this fine day. Congratulations")
+	pass
+
+func lose():
+	get_parent().BattleLog("Evil has managed to triumph. The Sea of Revalations overflows upon this earth unchecked")
+	pass

@@ -33,13 +33,15 @@ size_flags_vertical = 4
 value = 100.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 2 )
-tint_under = Color( 0.392157, 0.392157, 0.392157, 1 )
-tint_progress = Color( 0.25098, 0.694118, 0.0901961, 1 )
 nine_patch_stretch = true
 stretch_margin_left = 150
 stretch_margin_top = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MPbar" type="TextureProgress" parent="Stats"]
+visible = false
 margin_top = 42.0
 margin_right = 150.0
 margin_bottom = 62.0
@@ -52,15 +54,9 @@ nine_patch_stretch = true
 stretch_margin_left = 150
 stretch_margin_top = 20
 
-[node name="Position" type="Label" parent="Stats"]
-margin_top = 66.0
-margin_right = 150.0
-margin_bottom = 80.0
-align = 1
-
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
-offset = Vector2( 20, 50 )
+offset = Vector2( 20, 30 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 50, 50 )

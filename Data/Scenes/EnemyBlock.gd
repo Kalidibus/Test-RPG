@@ -9,7 +9,6 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
 	$Stats/HPbar.value = HP
 	$Stats/MPbar.max_value = MaxMP
 	$Stats/MPbar.value = MP
-	$Stats/Position.text = row
 	
 	if row == "Front":
 		$Sprite.set_offset(Vector2(20,80))
