@@ -7,7 +7,7 @@ func _ready():
 	HP = 40
 	MaxMP = 5
 	MP = 5
-	STR = 5
+	STR = 15
 	DEF = 5
 	SPD = 8
 	row = "Front"
@@ -20,12 +20,12 @@ func Turn(targetlist):
 	target = DecideTarget(targetlist)
 	
 	var num = RandomNumberGenerator.new()
-	num.randomize()
+	randomize()
 	var rng = num.randi_range(1, 100)
 	
-	if rng <= 30:
+	if rng <= 80:
 		Attack(target)
-	if rng >= 30 && rng <= 70:
+	if rng >= 81 && rng <= 98:
 		Bludgeon(target)
 	else:
 		Defend()

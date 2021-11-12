@@ -2,5 +2,7 @@
 
 [ext_resource path="res://Scenes/monKobold.gd" type="Script" id=1]
 
-[node name="monKobold" type="Node"]
+[node name="monKobold" type="Node" groups=[
+"enemies",
+]]
 script = ExtResource( 1 )

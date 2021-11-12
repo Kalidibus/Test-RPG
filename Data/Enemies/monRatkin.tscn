@@ -2,5 +2,7 @@
 
 [ext_resource path="res://Scenes/monRatkin.gd" type="Script" id=1]
 
-[node name="monRatkin" type="Node"]
+[node name="monRatkin" type="Node" groups=[
+"enemies",
+]]
 script = ExtResource( 1 )

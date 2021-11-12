@@ -23,6 +23,7 @@ var row
 var enemy
 var eqpSTR
 var eqpDEF
+var dead = false
 
 var node
 var target
@@ -59,9 +60,9 @@ func dies():
 	if enemy == true:
 		EventHandler.BattleLog("The " + charname + "has fallen...")
 		node.queue_free()
-		yield(get_tree().create_timer(2.0), "timeout")
 		queue_free()
+		print("The " + charname + " has fallen...")
 	else:
-		print(charname + "something not an emnemy has died")
+		dead = true
 
 

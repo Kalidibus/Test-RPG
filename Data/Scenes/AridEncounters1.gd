@@ -10,6 +10,7 @@ onready var battlers = get_node("../Battlers")
 
 
 func GetEnemies():
+	
 	var num = RandomNumberGenerator.new()
 	num.randomize()
 	var rng = num.randi_range(1, 5)

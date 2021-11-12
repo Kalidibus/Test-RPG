@@ -2,12 +2,12 @@ extends Node
 
 onready var battlers = get_node("CombatController/Battlers") 
 
+#this should change depending on the level entered. Can have this as an input.
 onready var currentzone = $CombatController/AridEncounters1
 
 func _ready():
 	$CombatController.GetEnemies(currentzone)
 	$CombatController.GetParty()
-	$CombatController.SortSides()
 	$CombatGUI.CreateLabels(battlers)
 	
 	$CombatGUI.battlers = $CombatController/Battlers.get_children()
@@ -29,3 +29,6 @@ func _on_CombatController_menuhide():
 
 func ConfirmTarget(target):
 	$CombatController.AttackButton(target)
+
+func _on_CombatController_update_players():
+	$CombatGUI.enemies = $CombatController.enemies

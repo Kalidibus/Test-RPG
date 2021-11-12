@@ -2,5 +2,7 @@
 
 [ext_resource path="res://Scenes/Fortress.gd" type="Script" id=1]
 
-[node name="Fortress" type="Node"]
+[node name="Fortress" type="Node" groups=[
+"partymembers",
+]]
 script = ExtResource( 1 )

@@ -44,6 +44,7 @@ margin_right = 1240.0
 margin_bottom = 672.0
 
 [node name="Menu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
+visible = false
 margin_right = 58.0
 margin_bottom = 672.0
 alignment = 1
@@ -77,15 +78,14 @@ __meta__ = {
 }
 
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 62.0
 margin_top = 336.0
-margin_right = 132.0
+margin_right = 70.0
 margin_bottom = 336.0
 rect_min_size = Vector2( 70, 0 )
 size_flags_vertical = 4
 
 [node name="BattleLog" type="Label" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 136.0
+margin_left = 74.0
 margin_top = 320.0
 margin_right = 1190.0
 margin_bottom = 351.0
@@ -115,3 +115,4 @@ script = ExtResource( 4 )
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Exit" to="CombatController" method="_on_Exit_pressed"]
 [connection signal="menuhide" from="CombatController" to="." method="_on_CombatController_menuhide"]
 [connection signal="menuvis" from="CombatController" to="." method="_on_CombatController_menuvis"]
+[connection signal="update_players" from="CombatController" to="." method="_on_CombatController_update_players"]
