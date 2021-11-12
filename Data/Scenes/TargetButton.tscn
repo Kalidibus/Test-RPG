@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/TargetButton.gd" type="Script" id=1]
+
+[node name="TargetButton" type="Button"]
+margin_right = 70.0
+margin_bottom = 20.0
+script = ExtResource( 1 )

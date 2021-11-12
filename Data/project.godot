@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Ratkin",
 "language": "GDScript",
 "path": "res://Scenes/monRatkin.gd"
+}, {
+"base": "Button",
+"class": "TargetButton",
+"language": "GDScript",
+"path": "res://Scenes/TargetButton.gd"
 } ]
 _global_script_class_icons={
 "CombatController": "",
 "Entity": "",
 "Kobold": "",
-"Ratkin": ""
+"Ratkin": "",
+"TargetButton": ""
 }
 
 [application]

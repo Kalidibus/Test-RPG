@@ -84,15 +84,13 @@ func Enemy_Attack():
 	attacker = active_character
 	attacker.Turn(partylist)
 	target = attacker.target
-	#get_parent().UpdateStats(target, target.HP, target.MP)
 
 
-#when the attack button is pressed, active character will do damage to the Kobold
-func _on_Attack_pressed(): 
-	target = active_character.DecideTarget(enemies) #temporary
+
+func AttackButton(t): 
+	target = t
 	calcdamage(active_character, target)
-	target.take_damage(damage) #this is causing a crash, figure this shit out 
-	#get_parent().UpdateStats(target, target.HP, target.MP)
+	target.take_damage(damage) #this is causing a crash, figure this shit out /// should be ok now I think 
 	
 	get_parent().BattleLog(str(active_character.charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
 	

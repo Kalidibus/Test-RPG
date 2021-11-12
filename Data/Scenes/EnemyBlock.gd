@@ -15,4 +15,4 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
 
 func UpdateStats(HP, MP):
 	$Stats/HPbar.value = HP
-	$Stats/HPbar.value = MP
+	$Stats/MPbar.value = MP

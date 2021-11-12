@@ -26,3 +26,6 @@ func _on_CombatController_menuvis():
 
 func _on_CombatController_menuhide():
 	$CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu.visible = false
+
+func ConfirmTarget(target):
+	$CombatController.AttackButton(target)

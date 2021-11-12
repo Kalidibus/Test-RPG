@@ -4,25 +4,28 @@ extends MarginContainer
 onready var enemylabels = preload("res://Scenes/EnemyLabel.tscn")
 onready var partylabels = preload("res://Scenes/PlayerBlock.tscn")
 onready var secondmenu = $VBoxContainer/CenterContainer/HBoxContainer/SecondMenu
+onready var EventHandler = get_node("/root/CombatEventHandler")
 
 var battlerscount
 var battlers
+var enemies = []
 
-#this is the next thing to figure out, how to pick the target manually. 
-"""
 func _on_Attack_pressed(): 
 	var label = Label.new()
 	label.text = "TARGET"
 	secondmenu.add_child(label)
 	
-	while battlerscount > 0:
-		var check = battlers[battlerscount-1]
-		if check.enemy == true:
-			var button = Button.new()
-			button.text = check.charname
-			secondmenu.add_child(button)
-		battlerscount -= 1
-"""
+	for n in enemies:
+		var button = TargetButton.new()
+		button.text = n.charname
+		button.target = n
+		secondmenu.add_child(button)
+
+func ConfirmTarget(target):
+	EventHandler.ConfirmTarget(target)
+	for n in secondmenu.get_children():
+		n.queue_free()
+
 
 func CreateLabels(battlecat):
 	
@@ -40,6 +43,7 @@ func CreateLabels(battlecat):
 			var i = childitems[fighters-1]
 			box.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			box.set_name(i.charname + "Block")
+			enemies.append(i)
 			i.node = box
 			enemylblcount += 1
 			

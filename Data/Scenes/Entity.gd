@@ -58,8 +58,8 @@ func DecideTarget(targetlist):
 func dies():
 	if enemy == true:
 		EventHandler.BattleLog("The " + charname + "has fallen...")
-		yield(get_tree().create_timer(2.0), "timeout")
 		node.queue_free()
+		yield(get_tree().create_timer(2.0), "timeout")
 		queue_free()
 	else:
 		print(charname + "something not an emnemy has died")
