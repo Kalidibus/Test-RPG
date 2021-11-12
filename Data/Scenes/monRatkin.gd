@@ -24,22 +24,25 @@ func Turn(targetlist):
 	num.randomize()
 	var rng = num.randi_range(1, 100)
 	
-	if rng <= 30:
+	AttackList(target, rng)
+
+func AttackList(target, rng):
+	if rng <= 50:
 		Attack(target)
-	if rng >= 30 && rng <= 70:
+	elif rng <= 80:
 		Scratch(target)
-	else:
+	elif rng <= 100:
 		Defend()
 
 func Attack(target):
-	var damage:int = max(1, STR - target.DEF*0.5) 
+	var damage:int = calcdamage(self, target)
 	
 	EventHandler.BattleLog("The " + str(charname) + " unveils a twisted dagger and stabs into " + str(target.charname) + " for " + str(damage) + " damage!")
 	
 	target.take_damage(damage)
 
 func Scratch(target):
-	var damage:int = max(1, 3*STR - target.DEF*0.5) 
+	var damage:int = 2*calcdamage(self, target)
 	EventHandler.BattleLog("The " + str(charname) + " salivates while raking " + str(target.charname) + " wildly with claws for " + str(damage) + " damage!!!")
 	
 	target.take_damage(damage)

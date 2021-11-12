@@ -26,7 +26,7 @@ func ConfirmTarget(target):
 	for n in secondmenu.get_children():
 		n.queue_free()
 
-
+# creates labels and ties them to the appropriate battler in the combat tree
 func CreateLabels(battlecat):
 	
 	var fighters = battlecat.get_child_count()
@@ -45,6 +45,7 @@ func CreateLabels(battlecat):
 			box.set_name(i.charname + "Block")
 			enemies.append(i)
 			i.node = box
+			i.selectionBG = box.get_child(0)
 			enemylblcount += 1
 			
 		if childitems[fighters-1].enemy == false:
@@ -54,7 +55,8 @@ func CreateLabels(battlecat):
 			var i = childitems[fighters-1]
 			pbox.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			pbox.set_name(i.charname + "Block")
-			i.node = pbox
+			i.node = pbox #so the overall node can be referred to
+			i.selectionBG = pbox.get_child(0) #for the selection
 			partycount += 1
 			
 		fighters -= 1

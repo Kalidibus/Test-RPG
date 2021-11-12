@@ -79,19 +79,20 @@ func play_turn():
 	
 	print(new_index)
 	
+	active_character.selectionBG.set_self_modulate("ffffff")
 	active_character = battlers[new_index]
 	new_index += 1
 	
 	if active_character.enemy == true:
+		active_character.selectionBG.set_self_modulate("4bff0a")
 		Enemy_Attack()
 		play_turn()
 	if active_character.dead == true:
 		play_turn()
 		return
 	if active_character.enemy == false:
+		active_character.selectionBG.set_self_modulate("4bff0a")
 		emit_signal("menuvis")
-	yield(get_tree().create_timer(1.5), "timeout")
-
 
 func Enemy_Attack():
 	attacker = active_character
@@ -105,7 +106,7 @@ func Enemy_Attack():
 func AttackButton(t): 
 	emit_signal("menuhide")
 	target = t
-	calcdamage(active_character, target)
+	damage = active_character.calcdamage(active_character, target)
 	target.take_damage(damage)
 	
 	get_parent().BattleLog(str(active_character.charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
@@ -123,10 +124,6 @@ func _on_Defend_pressed():
 #quits the game
 func _on_Exit_pressed(): 
 	get_tree().quit()
-
-#calculates the amount of damage. Minimum 1 damage.
-func calcdamage(attacker, target): 
-	damage = max(1, attacker.STR - target.DEF*0.4)
 
 func win():
 	get_parent().BattleLog("You have prevailed on this fine day. Congratulations")

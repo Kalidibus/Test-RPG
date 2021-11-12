@@ -27,6 +27,7 @@ var dead = false
 
 var node
 var target
+var selectionBG
 
 var DEFbonus = 1
 
@@ -35,7 +36,7 @@ func _ready():
 	pass
 
 func calcdamage(attacker, target): 
-	var damage = max(1, attacker.STR - target.DEF*0.5)
+	var damage = max(1, attacker.STR - target.DEF)
 	return damage
 
 func take_damage (damage):
@@ -64,5 +65,4 @@ func dies():
 		print("The " + charname + " has fallen...")
 	else:
 		dead = true
-
 

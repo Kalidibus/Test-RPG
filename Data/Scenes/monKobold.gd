@@ -20,25 +20,29 @@ func Turn(targetlist):
 	target = DecideTarget(targetlist)
 	
 	var num = RandomNumberGenerator.new()
-	randomize()
+	num.randomize()
 	var rng = num.randi_range(1, 100)
 	
-	if rng <= 80:
+	AttackList(target, rng)
+
+func AttackList(target, rng):
+	if rng <= 75:
 		Attack(target)
-	if rng >= 81 && rng <= 98:
+	elif rng <= 90:
 		Bludgeon(target)
-	else:
+	elif rng <= 100:
 		Defend()
 
 func Attack(target):
-	var damage:int = max(1, STR - target.DEF*0.5) 
+	var damage:int = calcdamage(self, target)
 	
 	EventHandler.BattleLog("The " + str(charname) + " draws its rusty axe and strikes " + str(target.charname) + " for " + str(damage) + " damage!")
 	
 	target.take_damage(damage)
 
 func Bludgeon(target):
-	var damage:int = max(1, 3*STR - target.DEF*0.5) 
+	var damage:int = 2*calcdamage(self, target)
+	
 	EventHandler.BattleLog("The " + str(charname) + " emits a bloodcurdling shriek and bludgeons " + str(target.charname) + " fiercly for " + str(damage) + " damage!!!")
 	
 	target.take_damage(damage)

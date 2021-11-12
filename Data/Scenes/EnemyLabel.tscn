@@ -1,31 +1,41 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/EnemyBlock.gd" type="Script" id=1]
 [ext_resource path="res://Assets/lifebar_fill.png" type="Texture" id=2]
 [ext_resource path="res://Assets/lifebar_bg.png" type="Texture" id=3]
 [ext_resource path="res://Assets/rpgcritters2.png" type="Texture" id=4]
 [ext_resource path="res://Assets/mp_bar_fill.png" type="Texture" id=5]
+[ext_resource path="res://Assets/label_HP_bg.png" type="Texture" id=6]
 
 [node name="EnemyLabel" type="HBoxContainer"]
-margin_right = 56.0
-margin_bottom = 100.0
+margin_right = 200.0
+margin_bottom = 120.0
 custom_constants/separation = 15
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Stats" type="VBoxContainer" parent="."]
-margin_right = 150.0
-margin_bottom = 100.0
+[node name="BG" type="NinePatchRect" parent="."]
+margin_right = 200.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 200, 40 )
+texture = ExtResource( 6 )
 
-[node name="Name" type="Label" parent="Stats"]
+[node name="Stats" type="VBoxContainer" parent="BG"]
+margin_left = 15.0
+margin_right = 165.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="BG/Stats"]
 margin_right = 150.0
 margin_bottom = 14.0
 align = 1
 
-[node name="HPbar" type="TextureProgress" parent="Stats"]
+[node name="HPbar" type="TextureProgress" parent="BG/Stats"]
 margin_top = 18.0
 margin_right = 150.0
 margin_bottom = 28.0
@@ -40,7 +50,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MPbar" type="TextureProgress" parent="Stats"]
+[node name="MPbar" type="TextureProgress" parent="BG/Stats"]
 visible = false
 margin_top = 42.0
 margin_right = 150.0
