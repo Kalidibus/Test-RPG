@@ -17,7 +17,6 @@ func _ready():
 func Turn(targetlist):
 	if DEF != 5:
 		DEF = 5
-	
 	target = DecideTarget(targetlist)
 	
 	var num = RandomNumberGenerator.new()

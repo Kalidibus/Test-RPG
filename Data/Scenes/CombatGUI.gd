@@ -9,8 +9,13 @@ onready var EventHandler = get_node("/root/CombatEventHandler")
 var battlerscount
 var battlers
 var enemies = []
+var skilllist
+
+signal skillpress
+
 
 func _on_Attack_pressed(): 
+	delete_children(secondmenu)
 	var label = Label.new()
 	label.text = "TARGET"
 	secondmenu.add_child(label)
@@ -66,3 +71,22 @@ func UpdateStats(target, HP, MP):
 
 func BattleLog(string):
 	$VBoxContainer/CenterContainer/HBoxContainer/BattleLog.text = "Battle Log:\n" + str(string)
+
+
+func _on_Skills_pressed():
+	delete_children(secondmenu)
+	get_parent().GetSkills()
+	
+	for i in skilllist:
+		var skillname =  i
+		var skilldesc = skilllist[i]
+		
+		var skillnode = load("res://Scenes/SkillNode.tscn").instance()
+		secondmenu.add_child(skillnode)
+		skillnode.SetSkill(skillname, skilldesc)
+		#include a link to the target ability to be tied to the button.
+
+func delete_children(node):
+	for n in node.get_children():
+		node.remove_child(n)
+		n.queue_free()

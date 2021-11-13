@@ -38,6 +38,11 @@ func GetParty():
 	var slot2 = load("res://Classes/" + slot2class + ".tscn")
 	$Battlers.add_child(slot2.instance())
 
+func SetSelector():
+	partylist = get_tree().get_nodes_in_group("partymembers")
+	for n in partylist:
+		n.Selector = get_node("../Selector")
+
 func SelectCharacter(): 
 	battlers = $Battlers.get_children()
 	battlers.sort_custom(self, "SortbySpeed")
@@ -76,8 +81,6 @@ func play_turn():
 	#currently the turn order is wrong, so deal with this. At least doesn't crash now.
 	if new_index >= battlers.size():
 		new_index = 0
-	
-	print(new_index)
 	
 	active_character.selectionBG.set_self_modulate("ffffff")
 	active_character = battlers[new_index]

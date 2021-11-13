@@ -8,6 +8,7 @@ onready var currentzone = $CombatController/AridEncounters1
 func _ready():
 	$CombatController.GetEnemies(currentzone)
 	$CombatController.GetParty()
+	$CombatController.SetSelector()
 	$CombatGUI.CreateLabels(battlers)
 	
 	$CombatGUI.battlers = $CombatController/Battlers.get_children()
@@ -32,3 +33,6 @@ func ConfirmTarget(target):
 
 func _on_CombatController_update_players():
 	$CombatGUI.enemies = $CombatController.enemies
+	
+func GetSkills():
+	$CombatGUI.skilllist = $CombatController.active_character.skilllist

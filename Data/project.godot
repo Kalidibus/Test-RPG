@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/monRatkin.gd"
 }, {
+"base": "MarginContainer",
+"class": "SkillNode",
+"language": "GDScript",
+"path": "res://Scenes/SkillNode.gd"
+}, {
 "base": "Button",
 "class": "TargetButton",
 "language": "GDScript",
@@ -39,13 +44,14 @@ _global_script_class_icons={
 "Entity": "",
 "Kobold": "",
 "Ratkin": "",
+"SkillNode": "",
 "TargetButton": ""
 }
 
 [application]
 
 config/name="Test-RPG"
-run/main_scene="res://Scenes/Combat.tscn"
+run/main_scene="res://Scenes/Start.tscn"
 config/icon="res://icon.png"
 
 [autoload]

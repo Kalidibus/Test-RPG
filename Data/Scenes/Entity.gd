@@ -24,10 +24,13 @@ var enemy
 var eqpSTR
 var eqpDEF
 var dead = false
+var HATE
 
 var node
 var target
 var selectionBG
+var Selector
+var skilllist
 
 var DEFbonus = 1
 
@@ -53,16 +56,31 @@ func get_healed (heal_amount:int):
 	HP = min(MaxHP, HP)
 
 func DecideTarget(targetlist):
-	#currently this is totally random, but should use probability eventually. 
-	var target = targetlist[randi() % targetlist.size()]
+	targetlist.sort_custom(self, "SortbyAggro")
+	
+	var num = RandomNumberGenerator.new()
+	num.randomize()
+	var rng = num.randi_range(1, 100)
+	
+	var target
+	
+	if targetlist.size() > 1: 
+		if rng <= 80:
+			target = targetlist[0]
+		elif rng <= 100:
+			target = targetlist[1]
+	else: target = targetlist[0]
+	
 	return target
+
+func SortbyAggro(a, b):
+	return a.HATE > b.HATE
 
 func dies():
 	if enemy == true:
 		EventHandler.BattleLog("The " + charname + "has fallen...")
 		node.queue_free()
 		queue_free()
-		print("The " + charname + " has fallen...")
 	else:
 		dead = true
 
