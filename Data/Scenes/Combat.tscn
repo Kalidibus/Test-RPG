@@ -78,14 +78,12 @@ __meta__ = {
 }
 
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_right = 593.0
+margin_right = 70.0
 margin_bottom = 592.0
 rect_min_size = Vector2( 70, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 5
 
 [node name="BattleLog" type="Label" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 597.0
+margin_left = 74.0
 margin_top = 280.0
 margin_right = 1190.0
 margin_bottom = 311.0

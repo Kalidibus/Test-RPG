@@ -9,27 +9,41 @@ onready var EventHandler = get_node("/root/CombatEventHandler")
 var battlerscount
 var battlers
 var enemies = []
+var partylist = []
 var skilllist
 
 signal skillpress
 
 
-func _on_Attack_pressed(): 
-	delete_children(secondmenu)
+func TargetList(function):
+	ClearSecondMenu()
 	var label = Label.new()
 	label.text = "TARGET"
 	secondmenu.add_child(label)
+	
+	var active_character = get_parent().GetSkills()
 	
 	for n in enemies:
 		var button = TargetButton.new()
 		button.text = n.charname
 		button.target = n
+		button.connect("pressed", active_character, function, [n])
 		secondmenu.add_child(button)
 
-func ConfirmTarget(target):
-	EventHandler.ConfirmTarget(target)
-	for n in secondmenu.get_children():
-		n.queue_free()
+func AllyTargetList(function):
+	ClearSecondMenu()
+	var label = Label.new()
+	label.text = "TARGET"
+	secondmenu.add_child(label)
+	
+	var active_character = get_parent().GetSkills()
+	
+	for n in partylist:
+		var button = TargetButton.new()
+		button.text = n.charname
+		button.target = n
+		button.connect("pressed", active_character, function, [n])
+		secondmenu.add_child(button)
 
 # creates labels and ties them to the appropriate battler in the combat tree
 func CreateLabels(battlecat):
@@ -74,8 +88,8 @@ func BattleLog(string):
 
 
 func _on_Skills_pressed():
-	delete_children(secondmenu)
-	get_parent().GetSkills()
+	ClearSecondMenu()
+	var active_character = get_parent().GetSkills()
 	
 	for i in skilllist:
 		var skillname =  i
@@ -84,7 +98,10 @@ func _on_Skills_pressed():
 		var skillnode = load("res://Scenes/SkillNode.tscn").instance()
 		secondmenu.add_child(skillnode)
 		skillnode.SetSkill(skillname, skilldesc)
-		#include a link to the target ability to be tied to the button.
+		skillnode.get_child(0).connect("pressed", active_character, i)
+
+func ClearSecondMenu():
+	delete_children(secondmenu)
 
 func delete_children(node):
 	for n in node.get_children():

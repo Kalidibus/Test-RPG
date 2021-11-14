@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/icon.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/Start.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/EnemyStatList.gd" type="Script" id=3]
 
 [node name="Start" type="MarginContainer"]
 anchor_left = 0.5
@@ -81,7 +82,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EnemyStatList" type="Node" parent="."]
+script = ExtResource( 3 )
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

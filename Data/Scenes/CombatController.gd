@@ -57,7 +57,7 @@ func play_turn():
 	# recalculates based on last turn, and updates GUI with information on the current enemies and battler list
 	enemies = get_tree().get_nodes_in_group("enemies")
 	partylist = get_tree().get_nodes_in_group("partymembers")
-	battlers = enemies + partylist
+	#battlers = enemies + partylist
 	emit_signal("update_players")
 	
 	# checks if you've defeated all the enemies, and calls the win() function
@@ -107,14 +107,9 @@ func Enemy_Attack():
 	target = attacker.target
 
 func AttackButton(t): 
-	emit_signal("menuhide")
-	target = t
-	damage = active_character.calcdamage(active_character, target)
-	target.take_damage(damage)
+	active_character.Attack(t)
 	
-	get_parent().BattleLog(str(active_character.charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
-	yield(get_tree().create_timer(0.5), "timeout")
-	play_turn()
+
 
 #when the defend button is pressed, active character will get 50% extra DEF. 
 func _on_Defend_pressed(): 

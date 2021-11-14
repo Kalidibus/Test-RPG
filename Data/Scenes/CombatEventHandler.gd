@@ -29,10 +29,13 @@ func _on_CombatController_menuhide():
 	$CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu.visible = false
 
 func ConfirmTarget(target):
-	$CombatController.AttackButton(target)
+	$CombatController.target = target
 
 func _on_CombatController_update_players():
 	$CombatGUI.enemies = $CombatController.enemies
+	$CombatGUI.partylist = $CombatController.partylist	
 	
+# On a characters turn, this will pull up their abilities and copy them to the GUI controller
 func GetSkills():
 	$CombatGUI.skilllist = $CombatController.active_character.skilllist
+	return $CombatController.active_character

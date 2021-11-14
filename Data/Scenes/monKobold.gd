@@ -10,6 +10,7 @@ func _ready():
 	STR = 15
 	DEF = 5
 	SPD = 8
+	RES = 4
 	row = "Front"
 	enemy = true
 
@@ -27,13 +28,13 @@ func Turn(targetlist):
 
 func AttackList(target, rng):
 	if rng <= 75:
-		Attack(target)
+		mAttack(target)
 	elif rng <= 90:
 		Bludgeon(target)
 	elif rng <= 100:
 		Defend()
 
-func Attack(target):
+func mAttack(target):
 	var damage:int = calcdamage(self, target)
 	
 	EventHandler.BattleLog("The " + str(charname) + " draws its rusty axe and strikes " + str(target.charname) + " for " + str(damage) + " damage!")
