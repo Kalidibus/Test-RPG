@@ -143,6 +143,7 @@ script = ExtResource( 1 )
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatController" method="_on_Attack_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Skills" to="CombatGUI" method="_on_Skills_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Defend" to="CombatController" method="_on_Defend_pressed"]
+[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Items" to="CombatGUI" method="_on_Items_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Flee" to="CombatController" method="_on_Flee_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Exit" to="CombatController" method="_on_Exit_pressed"]
 [connection signal="menuhide" from="CombatController" to="." method="_on_CombatController_menuhide"]

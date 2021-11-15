@@ -106,6 +106,17 @@ func _on_Skills_pressed():
 		skillnode.SetSkill(skillname, skilldesc)
 		skillnode.get_child(0).connect("pressed", active_character, i)
 
+func _on_Items_pressed():
+	ClearSecondMenu()
+	for n in Items.inventory:
+		var item = n
+		var itemdesc = Items.items[n]
+		
+		var skillnode = load("res://Scenes/SkillNode.tscn").instance()
+		secondmenu.add_child(skillnode)
+		skillnode.SetSkill(item, itemdesc)
+		skillnode.get_child(0).connect("pressed", Items, n)
+
 func ClearSecondMenu():
 	delete_children(secondmenu)
 
