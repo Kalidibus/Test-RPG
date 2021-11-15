@@ -15,7 +15,7 @@ func _ready():
 	enemy = true
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 
-func Turn(targetlist):
+func mTurn(targetlist):
 	if DEF != 5:
 		DEF = 5
 	target = DecideTarget(targetlist)
@@ -32,7 +32,7 @@ func AttackList(target, rng):
 	elif rng <= 80:
 		Scratch(target)
 	elif rng <= 100:
-		Defend()
+		mDefend()
 
 func mAttack(target):
 	var damage:int = calcdamage(self, target)
@@ -47,7 +47,7 @@ func Scratch(target):
 	
 	target.take_damage(damage)
 
-func Defend():
+func mDefend():
 	DEF = DEF*1.5 
 
 	EventHandler.BattleLog("The " + str(charname) + " scampers behind nearby rubble...")

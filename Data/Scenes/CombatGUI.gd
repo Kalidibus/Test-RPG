@@ -17,9 +17,6 @@ signal skillpress
 
 func TargetList(function):
 	ClearSecondMenu()
-	var label = Label.new()
-	label.text = "TARGET"
-	secondmenu.add_child(label)
 	
 	var active_character = get_parent().GetSkills()
 	
@@ -29,13 +26,15 @@ func TargetList(function):
 		button.target = n
 		button.connect("pressed", active_character, function, [n])
 		secondmenu.add_child(button)
+		secondmenu.move_child(button, 0)
 
-func AllyTargetList(function):
-	ClearSecondMenu()
 	var label = Label.new()
 	label.text = "TARGET"
 	secondmenu.add_child(label)
-	
+	secondmenu.move_child(label, 0)
+
+func AllyTargetList(function):
+	ClearSecondMenu()
 	var active_character = get_parent().GetSkills()
 	
 	for n in partylist:
@@ -44,9 +43,16 @@ func AllyTargetList(function):
 		button.target = n
 		button.connect("pressed", active_character, function, [n])
 		secondmenu.add_child(button)
+		secondmenu.move_child(button, 0)	
+	
+	var label = Label.new()
+	label.text = "TARGET"
+	secondmenu.add_child(label)
+	secondmenu.move_child(label, 0)
 
 # creates labels and ties them to the appropriate battler in the combat tree
 func CreateLabels(battlecat):
+	ClearSecondMenu()
 	
 	var fighters = battlecat.get_child_count()
 	var childitems = battlecat.get_children()
@@ -84,7 +90,7 @@ func UpdateStats(target, HP, MP):
 	target.node.UpdateStats(HP, MP)
 
 func BattleLog(string):
-	$VBoxContainer/CenterContainer/HBoxContainer/BattleLog.text = "Battle Log:\n" + str(string)
+	$VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer/BattleLog.text += "\n" + str(string)
 
 
 func _on_Skills_pressed():
@@ -107,3 +113,8 @@ func delete_children(node):
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
+
+
+func _on_Attack_pressed():
+	ClearSecondMenu()
+	TargetList("Attack")

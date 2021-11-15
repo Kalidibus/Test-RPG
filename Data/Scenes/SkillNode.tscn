@@ -20,13 +20,17 @@ margin_top = 10.0
 margin_right = 22.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 40 )
-size_flags_horizontal = 3
+custom_constants/hseparation = 0
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Button"]
+margin_left = 13.0
+margin_top = 6.0
+margin_right = 421.0
+margin_bottom = 37.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -38,9 +42,16 @@ margin_right = 42.0
 margin_bottom = 22.0
 text = "Heal - "
 
-[node name="SkillDesc" type="Label" parent="Button/HBoxContainer"]
+[node name="Label" type="Label" parent="Button/HBoxContainer"]
 margin_left = 46.0
-margin_right = 403.0
+margin_top = 8.0
+margin_right = 54.0
+margin_bottom = 22.0
+text = ": "
+
+[node name="SkillDesc" type="Label" parent="Button/HBoxContainer"]
+margin_left = 58.0
+margin_right = 415.0
 margin_bottom = 31.0
 text = "Uses aetherial conjuration to restore 25% of targets HP.
 Further upgrades could result in more potent heals"

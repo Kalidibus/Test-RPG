@@ -14,7 +14,7 @@ func _ready():
 	row = "Front"
 	enemy = true
 
-func Turn(targetlist):
+func mTurn(targetlist):
 	if DEF != 5:
 		DEF = 5
 	
@@ -32,7 +32,7 @@ func AttackList(target, rng):
 	elif rng <= 90:
 		Bludgeon(target)
 	elif rng <= 100:
-		Defend()
+		mDefend()
 
 func mAttack(target):
 	var damage:int = calcdamage(self, target)
@@ -48,7 +48,7 @@ func Bludgeon(target):
 	
 	target.take_damage(damage)
 
-func Defend():
+func mDefend():
 	DEF = DEF*1.5 
 
 	EventHandler.BattleLog("The " + str(charname) + " hides behind a tattered shield...")

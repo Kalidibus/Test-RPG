@@ -4,9 +4,9 @@ func _ready():
 	charname = "Fortress"
 	MaxHP = 88
 	HP = 56
-	MaxMP = 67
-	MP = 34
-	STR = 120
+	MaxMP = 80
+	MP = 80
+	STR = 30
 	DEF = 20
 	SPD = 5
 	HATE = 50
@@ -16,27 +16,40 @@ func _ready():
 	
 	skilllist = {
 		"Vanguard" : "Hits the enemy with BOTH shields at once. Scales with DEF",
-		"Bastion" : "Provides a DEF based heal to target party member"
+		"Bastion" : "Provides a DEF based heal to target party member",
+		"Embolden" : "boost DEF for 3 turns"
 	}
 
 func Vanguard():
-	CombatGUI.TargetList("Vanguard2")
+	if MPCheck(40) == "fail": return
+	else: CombatGUI.TargetList("Vanguard2")
 
 func Vanguard2(target):
 	var damage = DEF/10*calcdamage(self, target)
 	target.take_damage(damage)
 	
-	EventHandler.BattleLog(str(charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
-	yield(get_tree().create_timer(0.5), "timeout")
-	CombatController.play_turn()
+	MPCost(40)
+	
+	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
 
 func Bastion():
-	CombatGUI.AllyTargetList("Bastion2")
+	if MPCheck(40) == "fail": return
+	else: CombatGUI.AllyTargetList("Bastion2")
+
 func Bastion2(target):
 	var heal = 2*DEF
 	target.get_healed(heal)
 	
-	EventHandler.BattleLog(str(charname) + " provides shelter behind her shields to " + str(target.charname) + ", healing her for " + str(heal) + " HP!")
-	yield(get_tree().create_timer(0.5), "timeout")
-	CombatController.play_turn()
+	MPCost(40)
+
+	CloseTurn(str(charname) + " provides shelter behind her shields to " + str(target.charname) + ", healing her for " + str(heal) + " HP!")
+
+func Embolden():
+	if MPCheck(20) == "fail": return
+	
+	MPCost(20)
+	
+	StatMod("DEF", 1.25, 2)
+	
+	CloseTurn(str(charname) + " takes on a defensive stances! DEF Increased.")
 

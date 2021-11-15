@@ -53,8 +53,7 @@ var stats =  {
 	"SPD": 1
 }
 
-
-
+var statmodtimer = {}
 
 var node
 var target
@@ -68,18 +67,35 @@ var DEFbonus = 1
 func _ready():
 	pass
 
+func Turn():
+	#this function below checks how many turns a statmod has left
+	#if the amount of turns was 0 (meaning expires on next turn) reset the stat bonus
+	for n in statmods:
+		if statmods[n] != 1:
+			var statint = statmodtimer[n]
+			if statint == 0:
+				statmods[n] = 1
+				statmodtimer.erase(n)
+			else:
+				statmodtimer[n] -= 1
+
+
 func Attack(target):
 	CombatController.emit_signal("menuhide")
 	var damage = calcdamage(self, target)
 	target.take_damage(damage)
-	EventHandler.BattleLog(str(charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
-	yield(get_tree().create_timer(0.5), "timeout")
-	CombatController.play_turn()
+	
+	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
+
+func Defend():
+	StatMod("DEF", 1.5, 0)
+	
+	EventHandler.BattleLog(str(charname) + " defends herself!")
 
 func calcdamage(attacker, target): 
-	var damage = max(1, attacker.STR - target.DEF)
+	var damage = max(1, attacker.STR*attacker.statmods["STR"] - target.DEF*target.statmods["DEF"])
 	return damage
-	
+
 func calcmagicdamage(attacker, target): 
 	var damage = max(1, attacker.INT - target.RES)
 	return damage
@@ -120,6 +136,25 @@ func DecideTarget(targetlist):
 func SortbyAggro(a, b):
 	return a.HATE > b.HATE
 
+func StatMod(stat, amount, timer):
+	statmods[stat] = amount
+	statmodtimer = {stat: timer}
+
+func MPCheck(MPcost):
+	if MP < MPcost: 
+		EventHandler.BattleLog("Not enough MP!")
+		return "fail"
+
+func MPCost(MPcost):
+	MP -= MPcost
+	EventHandler.UpdateStats(self, HP, MP)
+
+func CloseTurn(string):
+	CombatGUI.ClearSecondMenu()
+	EventHandler.BattleLog(string)
+	yield(get_tree().create_timer(0.5), "timeout")
+	CombatController.play_turn()
+
 func dies():
 	if enemy == true:
 		CombatController.battlers.erase(self)
@@ -128,4 +163,3 @@ func dies():
 		queue_free()
 	else:
 		dead = true
-

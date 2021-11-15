@@ -68,6 +68,16 @@ margin_right = 58.0
 margin_bottom = 358.0
 text = "Defend"
 
+[node name="Items" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Items"
+
+[node name="Flee" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+margin_right = 39.0
+margin_bottom = 20.0
+text = "Flee"
+
 [node name="Exit" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 margin_top = 362.0
 margin_right = 58.0
@@ -78,19 +88,37 @@ __meta__ = {
 }
 
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_right = 70.0
-margin_bottom = 592.0
-rect_min_size = Vector2( 70, 0 )
-
-[node name="BattleLog" type="Label" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 74.0
-margin_top = 280.0
-margin_right = 1190.0
-margin_bottom = 311.0
+margin_top = 296.0
+margin_right = 525.0
+margin_bottom = 296.0
 size_flags_horizontal = 3
-text = "Battle Log:
-"
+size_flags_vertical = 4
+
+[node name="Container" type="Container" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 529.0
+margin_right = 1054.0
+margin_bottom = 592.0
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 1058.0
+margin_top = 171.0
+margin_right = 1190.0
+margin_bottom = 421.0
+rect_min_size = Vector2( 0, 250 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.25
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="BattleLog" type="Label" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer"]
+margin_right = 132.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Battle Log:"
 align = 2
+valign = 2
 
 [node name="PlayerGUI" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
 margin_top = 600.0
@@ -115,6 +143,7 @@ script = ExtResource( 1 )
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatController" method="_on_Attack_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Skills" to="CombatGUI" method="_on_Skills_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Defend" to="CombatController" method="_on_Defend_pressed"]
+[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Flee" to="CombatController" method="_on_Flee_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Exit" to="CombatController" method="_on_Exit_pressed"]
 [connection signal="menuhide" from="CombatController" to="." method="_on_CombatController_menuhide"]
 [connection signal="menuvis" from="CombatController" to="." method="_on_CombatController_menuvis"]

@@ -25,18 +25,27 @@ func GetEnemies(currentzone):
 	currentzone.GetEnemies()
 
 # Reads the dictinary in the Party node to get the info needed
-func GetParty():	
-	var slot1name = party.slot1.get("name")
-	var slot1class = party.slot1.get("class")
-	
-	var slot1 = load("res://Classes/" + slot1class + ".tscn")
-	$Battlers.add_child(slot1.instance())
-	
-	var slot2name = party.slot2.get("name")
-	var slot2class = party.slot2.get("class")
-	
-	var slot2 = load("res://Classes/" + slot2class + ".tscn")
-	$Battlers.add_child(slot2.instance())
+func GetParty():
+	if party.slot1.empty() != true:
+		var slot1class = party.slot1.get("class")	
+		var slot1 = load("res://Classes/" + slot1class + ".tscn")
+		$Battlers.add_child(slot1.instance())
+	if party.slot2.empty() != true:
+		var slot2class = party.slot2.get("class")	
+		var slot2 = load("res://Classes/" + slot2class + ".tscn")
+		$Battlers.add_child(slot2.instance())
+	if party.slot3.empty() != true:
+		var slot3class = party.slot3.get("class")	
+		var slot3 = load("res://Classes/" + slot3class + ".tscn")
+		$Battlers.add_child(slot3.instance())
+	if party.slot4.empty() != true:
+		var slot4class = party.slot4.get("class")	
+		var slot4 = load("res://Classes/" + slot4class + ".tscn")
+		$Battlers.add_child(slot4.instance())
+	if party.slot5.empty() != true:
+		var slot5class = party.slot5.get("class")	
+		var slot5 = load("res://Classes/" + slot5class + ".tscn")
+		$Battlers.add_child(slot5.instance())
 
 func SetSelector():
 	partylist = get_tree().get_nodes_in_group("partymembers")
@@ -55,6 +64,7 @@ func SortbySpeed(a, b):
 
 func play_turn():
 	# recalculates based on last turn, and updates GUI with information on the current enemies and battler list
+	
 	enemies = get_tree().get_nodes_in_group("enemies")
 	partylist = get_tree().get_nodes_in_group("partymembers")
 	#battlers = enemies + partylist
@@ -73,12 +83,9 @@ func play_turn():
 		if count == partylist.size(): 
 			lose()
 			return
-
 	
 	yield(get_tree().create_timer(1.5), "timeout")
 	
-	
-	#currently the turn order is wrong, so deal with this. At least doesn't crash now.
 	if new_index >= battlers.size():
 		new_index = 0
 	
@@ -88,6 +95,7 @@ func play_turn():
 	
 	if active_character.enemy == true:
 		active_character.selectionBG.set_self_modulate("4bff0a")
+		active_character.Turn()
 		Enemy_Attack()
 		play_turn()
 	if active_character.dead == true:
@@ -95,6 +103,7 @@ func play_turn():
 		return
 	if active_character.enemy == false:
 		active_character.selectionBG.set_self_modulate("4bff0a")
+		active_character.Turn()
 		emit_signal("menuvis")
 
 func Enemy_Attack():
@@ -103,20 +112,15 @@ func Enemy_Attack():
 	for n in partylist:
 		if n.HP != 0:
 			targetlist.append(n)
-	attacker.Turn(targetlist)
+	attacker.mTurn(targetlist)
 	target = attacker.target
-
-func AttackButton(t): 
-	active_character.Attack(t)
-	
-
 
 #when the defend button is pressed, active character will get 50% extra DEF. 
 func _on_Defend_pressed(): 
+	get_parent().get_child(0).ClearSecondMenu()
 	emit_signal("menuhide")
-	active_character.DEF = active_character.DEF*1.50
+	active_character.Defend()
 	
-	get_parent().BattleLog(str(active_character.charname) + " defends herself!")
 	play_turn()
 
 #quits the game
@@ -132,3 +136,6 @@ func lose():
 	get_parent().BattleLog("Evil has managed to triumph. The Sea of Revalations overflows upon this earth unchecked")
 	emit_signal("menuhide")
 	pass
+
+func _on_Flee_pressed():
+	get_tree().change_scene("res://Scenes/Start.tscn")
