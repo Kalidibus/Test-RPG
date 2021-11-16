@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Forest Healer.gd" type="Script" id=1]
+[ext_resource path="res://Classes/Forest Healer.gd" type="Script" id=1]
 
 [node name="Forest Healer" type="Node2D" groups=[
 "partymembers",
