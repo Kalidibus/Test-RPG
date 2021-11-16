@@ -37,7 +37,9 @@ var statmods =  {
 	"INT": 1,
 	"FTH": 1,
 	"RES": 1,
-	"SPD": 1
+	"SPD": 1,
+	"ACC": 1,
+	"EVD": 1
 }
 
 var stats =  {
@@ -50,16 +52,26 @@ var stats =  {
 	"INT": 1,
 	"FTH": 1,
 	"RES": 1,
-	"SPD": 1
+	"SPD": 1,
+	"ACC": 1,
+	"EVD": 1
 }
 
 var statmodtimer = {}
+
+var statres = {
+	"poison": 1,
+	"stun": 1,
+	"burn": 1,
+	"blind": 1
+}
 
 var node
 var target
 var selectionBG
 var Selector
 var skilllist
+var status
 
 var DEFbonus = 1
 
@@ -68,6 +80,10 @@ func _ready():
 	pass
 
 func Turn():
+	StatModCountDown()
+	StatusEffects()
+
+func StatModCountDown()
 	#this function below checks how many turns a statmod has left
 	#if the amount of turns was 0 (meaning expires on next turn) reset the stat bonus
 	for n in statmods:
@@ -79,6 +95,39 @@ func Turn():
 			else:
 				statmodtimer[n] -= 1
 
+func StatusEffects():
+	if "stun" in status:
+		return "skip" # not sure how to do this yet, but basically cancel out the turn.
+		status.erase("stun")
+		stunres = stunres * 1.5
+	if "poison" in status:
+		take_damage(poison)
+		poisoncount -= 1
+		if poisoncount == 0
+			status.erase("poison")
+			statres["poison"] = statres["poison"] * 1.5
+	if "burn" in status:
+		take_damage(burn)
+		burncount -= 1
+		if burncount == 0
+			status.erase("burn")
+			statres["burn"] = statres["burn"] * 1.5
+	if "blind" in status:
+		statmod["ACC"] = 0.3
+		blindcount -=`1
+		if blindcount == 0:
+			status.erase("blind")
+			statres["blind"] = statres["blind"] * 1.5
+
+func DamageOverTime(type, amount, time):
+	if type == "poison":
+		status.append("poison")
+		poison = amount
+		poisoncount = time
+	if type == "burn":
+		status.append("burn")
+		burn = amount
+		burncount = time
 
 func Attack(target):
 	CombatController.emit_signal("menuhide")
