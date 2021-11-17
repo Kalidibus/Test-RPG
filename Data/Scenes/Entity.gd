@@ -27,22 +27,14 @@ var eqpDEF
 var dead = false
 var HATE
 
-var statmods =  {
-	"MaxHP": 1,
-	"HP": 1, 
-	"MaxMP": 1,
-	"MP": 1,
-	"STR": 1,
-	"DEF": 1,
-	"INT": 1,
-	"FTH": 1,
-	"RES": 1,
-	"SPD": 1,
-	"ACC": 1,
-	"EVD": 1
-}
+var poison
+var poisoncount
+var burn
+var burncount
+var blindcount
+var sealcount
 
-var stats =  {
+var statmods =  {
 	"MaxHP": 1,
 	"HP": 1, 
 	"MaxMP": 1,
@@ -60,10 +52,11 @@ var stats =  {
 var statmodtimer = {}
 
 var statres = {
-	"poison": 1,
-	"stun": 1,
-	"burn": 1,
-	"blind": 1
+	"poison": 40,
+	"stun": 40,
+	"burn": 40,
+	"blind": 40,
+	"seal": 40
 }
 
 var node
@@ -71,7 +64,8 @@ var target
 var selectionBG
 var Selector
 var skilllist
-var status
+var sealedskilllist
+var status:Array
 
 var DEFbonus = 1
 
@@ -83,7 +77,7 @@ func Turn():
 	StatModCountDown()
 	StatusEffects()
 
-func StatModCountDown()
+func StatModCountDown():
 	#this function below checks how many turns a statmod has left
 	#if the amount of turns was 0 (meaning expires on next turn) reset the stat bonus
 	for n in statmods:
@@ -97,27 +91,40 @@ func StatModCountDown()
 
 func StatusEffects():
 	if "stun" in status:
+		EventHandler.BattleLog(charname + " is stunned!")
 		return "skip" # not sure how to do this yet, but basically cancel out the turn.
 		status.erase("stun")
-		stunres = stunres * 1.5
+		statres["stun"] = statres["stun"] * 1.5
 	if "poison" in status:
+		EventHandler.BattleLog(charname + " takes damage from poison!")
 		take_damage(poison)
 		poisoncount -= 1
-		if poisoncount == 0
+		if poisoncount == 0:
 			status.erase("poison")
 			statres["poison"] = statres["poison"] * 1.5
 	if "burn" in status:
+		EventHandler.BattleLog(charname + " takes burn damage!")
 		take_damage(burn)
 		burncount -= 1
-		if burncount == 0
+		if burncount == 0:
 			status.erase("burn")
 			statres["burn"] = statres["burn"] * 1.5
 	if "blind" in status:
-		statmod["ACC"] = 0.3
-		blindcount -=`1
+		EventHandler.BattleLog(charname + " is blinded!")
+		statmods["ACC"] = 0.3
+		blindcount -= 1
 		if blindcount == 0:
+			statmods["ACC"] = 1
 			status.erase("blind")
 			statres["blind"] = statres["blind"] * 1.5
+	if "seal" in status:
+		EventHandler.BattleLog(charname + "'s Skills are sealed!")
+		sealedskilllist = skilllist
+		skilllist = {}
+		sealcount -= 1
+		if sealcount == 0:
+			status.erase("seal")
+			statres["seal"] = statres["seal"] * 1.5
 
 func DamageOverTime(type, amount, time):
 	if type == "poison":
@@ -132,9 +139,9 @@ func DamageOverTime(type, amount, time):
 func Attack(target):
 	CombatController.emit_signal("menuhide")
 	var damage = calcdamage(self, target)
-	target.take_damage(damage)
+	var adjusteddamage = target.take_damage(damage)
 	
-	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
+	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
 func Defend():
 	StatMod("DEF", 1.5, 0)
@@ -142,21 +149,23 @@ func Defend():
 	EventHandler.BattleLog(str(charname) + " defends herself!")
 
 func calcdamage(attacker, target): 
-	var damage = max(1, attacker.STR*attacker.statmods["STR"] - target.DEF*target.statmods["DEF"])
+	var damage = attacker.STR*attacker.statmods["STR"]
 	return damage
 
 func calcmagicdamage(attacker, target): 
-	var damage = max(1, attacker.INT - target.RES)
+	var damage = attacker.INT*attacker.statmods["INT"]
 	return damage
 
 func take_damage (damage):
-	HP -= damage
+	var adjusteddamage = damage * (100 / (100+(float(DEF)*statmods["DEF"])))
+	HP -= int(adjusteddamage)
 	HP = max(0, HP)
 	
 	EventHandler.UpdateStats(self, HP, MP)
 	
 	if HP <= 0: 
 		dies()
+	return int(adjusteddamage)
 
 func get_healed (heal_amount:int):
 	HP += heal_amount
@@ -164,13 +173,20 @@ func get_healed (heal_amount:int):
 	
 	EventHandler.UpdateStats(self, HP, MP)
 
+func AttemptStatusAilment(type, amount, time):
+	var rng = RNG()
+	
+	if rng > statres[type]: 
+		if type == "poison" or "burn":
+			DamageOverTime(type, amount, time)
+		else: 
+			status.append(type)
+		EventHandler.BattleLog(charname + " has been inflicted with " + type + "!")
+
 func DecideTarget(targetlist):
 	targetlist.sort_custom(self, "SortbyAggro")
 	
-	var num = RandomNumberGenerator.new()
-	num.randomize()
-	var rng = num.randi_range(1, 100)
-	
+	var rng = RNG()
 	var target
 	
 	if targetlist.size() > 1: 
@@ -182,12 +198,18 @@ func DecideTarget(targetlist):
 	
 	return target
 
+func RNG():
+	var num = RandomNumberGenerator.new()
+	num.randomize()
+	var rng = num.randi_range(1, 100)
+	return rng
+
 func SortbyAggro(a, b):
 	return a.HATE > b.HATE
 
 func StatMod(stat, amount, timer):
 	statmods[stat] = amount
-	statmodtimer = {stat: timer}
+	statmodtimer[stat] = timer
 
 func MPCheck(MPcost):
 	if MP < MPcost: 

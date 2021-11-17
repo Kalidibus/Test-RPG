@@ -2,12 +2,12 @@ extends Entity
 
 func _ready():
 	charname = "Fortress"
-	MaxHP = 88
-	HP = 56
+	MaxHP = 188
+	HP = 188
 	MaxMP = 80
 	MP = 80
 	STR = 30
-	DEF = 20
+	DEF = 30
 	SPD = 5
 	HATE = 50
 	row = "Front"
