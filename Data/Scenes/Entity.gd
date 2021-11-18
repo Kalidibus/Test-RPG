@@ -26,6 +26,7 @@ var eqpSTR
 var eqpDEF
 var dead = false
 var HATE
+var ref_hate
 
 var poison
 var poisoncount
@@ -76,6 +77,15 @@ func _ready():
 func Turn():
 	StatModCountDown()
 	StatusEffects()
+	
+func SwitchRows():
+	if row == "Front":
+		row = "Back"
+		HATE = HATE*0.5
+	elif row == "Back":
+		row = "Front"
+		HATE = HATE*2
+	
 
 func StatModCountDown():
 	#this function below checks how many turns a statmod has left
