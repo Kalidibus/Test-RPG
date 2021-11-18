@@ -184,28 +184,29 @@ func AttemptStatusAilment(type, amount, time):
 		EventHandler.BattleLog(charname + " has been inflicted with " + type + "!")
 
 func DecideTarget(targetlist):
-	targetlist.sort_custom(self, "SortbyAggro")
+	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
+	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
+	for n in targetlist:
+		if n.status.has("marked"):
+			if rng <= n.markedamount: return n
 	
-	var rng = RNG()
-	var target
-	
-	if targetlist.size() > 1: 
-		if rng <= 80:
-			target = targetlist[0]
-		elif rng <= 100:
-			target = targetlist[1]
-	else: target = targetlist[0]
-	
-	return target
+	var total_hate = 0
+   
+   	for n in targetlist:
+      		total_hate += n.HATE
+		n.ref_hate = total_hate
+
+	var rng = rand_range(0, total_hate)
+   
+	for n in targetlist:
+		if (n.ref_hate > rng):
+			return n
 
 func RNG():
 	var num = RandomNumberGenerator.new()
 	num.randomize()
 	var rng = num.randi_range(1, 100)
 	return rng
-
-func SortbyAggro(a, b):
-	return a.HATE > b.HATE
 
 func StatMod(stat, amount, timer):
 	statmods[stat] = amount
