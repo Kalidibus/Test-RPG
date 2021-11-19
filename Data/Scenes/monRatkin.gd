@@ -7,22 +7,18 @@ func _ready():
 	HP = 80
 	MaxMP = 5
 	MP = 5
-	STR = 5
-	DEF = 5
+	STR = 40
+	DEF = 20
 	RES = 3
-	SPD = 20
+	SPD = 30
 	row = "Back"
 	enemy = true
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 
 func mTurn(targetlist):
-	if DEF != 5:
-		DEF = 5
 	target = DecideTarget(targetlist)
 	
-	var num = RandomNumberGenerator.new()
-	num.randomize()
-	var rng = num.randi_range(1, 100)
+	rng = RNG()
 	
 	AttackList(target, rng)
 
@@ -48,6 +44,6 @@ func Scratch(target):
 	target.take_damage(damage)
 
 func mDefend():
-	DEF = DEF*1.5 
+	StatMod("DEF", 1.5, 0)
 
 	EventHandler.BattleLog("The " + str(charname) + " scampers behind nearby rubble...")
