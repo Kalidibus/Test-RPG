@@ -65,7 +65,7 @@ var statres = {
 var damageres = {
 	"impact": 20,
 	"slash": 20,
-	"pierce"" 20,
+	"pierce": 20,
 	"fel": 20,
 	"inferno": 20,
 	"levin": 20,
