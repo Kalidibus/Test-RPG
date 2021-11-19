@@ -63,15 +63,15 @@ var statres = {
 }
 
 var damageres = {
-	"impact" = 20,
-	"slash" = 20,
-	"pierce" = 20,
-	"fel" = 20,
-	"inferno" = 20,
-	"levin" = 20,
-	"deep" = 20,
-	"erde" = 20,
-	"virtuos" = 20
+	"impact": 20,
+	"slash": 20,
+	"pierce"" 20,
+	"fel": 20,
+	"inferno": 20,
+	"levin": 20,
+	"deep": 20,
+	"erde": 20,
+	"virtuos": 20
 }
 	
 
@@ -168,7 +168,7 @@ func DamageOverTime(type, amount, time):
 
 func Attack(target):
 	CombatController.emit_signal("menuhide")
-	var damage = attacker.STR*attacker.statmods["STR"]
+	var damage = STR * statmods["STR"]
 	var adjusteddamage = target.take_damage(damage, "impact") #fix this later. Will need to be an input from the character depending on class or weapon type. 
 	
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
