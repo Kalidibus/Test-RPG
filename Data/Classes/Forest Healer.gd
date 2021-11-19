@@ -22,6 +22,7 @@ func _ready():
 		"Full Blessing" : "Heals the party",
 		"Divine Bolt" : "A modest bolt of light, damages enemies and restores MP",
 		"Resurrect" : "Raises one ally from the dead"
+		"Refresh" : "Recovers some MP"
 	}
 
 func Bounty():
@@ -56,12 +57,12 @@ func DivineBolt():
 	CombatGUI.TargetList("DivineBolt2")
 
 func DivineBolt2(target):
-	var damage = INT
-	target.take_damage(damage) #change to take magic damage?
+	var damage = INT * statmods["INT"]
+	target.take_damage(damage, "virtuos")
 	
 	MPCost(-20)
 	
-	CloseTurn(str(charname) + " launches an divine bolt of cleansing magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage! MP restored!")
+	CloseTurn(str(charname) + " launches an divine bolt of cleansing magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
 
 func Resurrect():
 	if MPCheck(50) == "fail": return
@@ -78,3 +79,8 @@ func Resurrect2(target):
 	MPCost(50)
 
 	CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
+	
+func Refresh():
+	MPCost(-20)
+	
+	CloseTurn(str(charname) + " restores some MP!")
