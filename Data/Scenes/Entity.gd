@@ -184,9 +184,9 @@ func take_damage (damage, type):
 	if HP == 0: return #to prevent multi-attacks from triggering die() multiple times
 	
 	if type == "impact" or "slash" or "pierce":
-		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"] * damageres[type])))
+		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"] * (1 - damageres[type] / 100))))
 	elif type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
-		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"] * damageres[type])))
+		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"] * (1 - damageres[type] / 100))))
 	else:
 		adjusteddamage = damage
 
