@@ -142,20 +142,26 @@ func _on_Attack_pressed():
 
 
 func _on_Switch_pressed():
+	var frontrow = $VBoxContainer/PlayerGUIFront
+	var backrow = $VBoxContainer/PlayerGUIBack
 	var active_character = EventHandler.GetActiveChar()
-	print(active_character.charname)
-	print(active_character.HATE)
-	print(active_character.row)
+	var parentnode = active_character.node.get_parent().name
+	var index = active_character.node.get_index()
 	
 	active_character.SwitchRows()
-	var parentnode = active_character.node.get_parent().name
-	print(parentnode)
+	
 	if parentnode == "PlayerGUIFront":
-		$VBoxContainer/PlayerGUIFront.remove_child(active_character.node)
-		$VBoxContainer/PlayerGUIBack.add_child(active_character.node)
+		frontrow.remove_child(active_character.node)
+		backrow.add_child(active_character.node)
+		
+		if index < backrow.get_child_count():
+			backrow.move_child(active_character.node, index)
+		
 	else:
-		$VBoxContainer/PlayerGUIBack.remove_child(active_character.node)
-		$VBoxContainer/PlayerGUIFront.add_child(active_character.node)
+		backrow.remove_child(active_character.node)
+		frontrow.add_child(active_character.node)
+		if index < frontrow.get_child_count():
+			frontrow.move_child(active_character.node, index)
 	
 
 	print(active_character.HATE)
