@@ -45,8 +45,8 @@ func Vanguard():
 	else: CombatGUI.TargetList("Vanguard2")
 
 func Vanguard2(target):
-	var damage = DEF/10*calcdamage(self, target)
-	target.take_damage(damage)
+	var damage = DEF * statmods["DEF"]
+	target.take_damage(damage, "impact")
 	
 	MPCost(40)
 	
