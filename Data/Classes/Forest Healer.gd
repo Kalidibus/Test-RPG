@@ -21,7 +21,7 @@ func _ready():
 		"Bounty" : "Heals an allied unit",
 		"Full Blessing" : "Heals the party",
 		"Divine Bolt" : "A modest bolt of light, damages enemies and restores MP",
-		"Resurrect" : "Raises one ally from the dead"
+		"Resurrect" : "Raises one ally from the dead",
 		"Refresh" : "Recovers some MP"
 	}
 
