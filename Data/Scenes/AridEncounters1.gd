@@ -16,8 +16,6 @@ func GetEnemies():
 	num.randomize()
 	var rng = num.randi_range(1, 6)
 	
-	rng = 6 #erase after status testing.
-	
 	match rng:
 		1:
 			battlers.add_child(enemy1.instance())
@@ -37,7 +35,7 @@ func GetEnemies():
 			battlers.add_child(enemy1.instance())
 			battlers.add_child(enemy2.instance())
 			battlers.add_child(enemy2.instance())
-			battlers.add_child(enemy1.instance())
+			battlers.add_child(enemy3.instance())
 		6: 
 			battlers.add_child(enemy3.instance())
 			battlers.add_child(enemy3.instance())
