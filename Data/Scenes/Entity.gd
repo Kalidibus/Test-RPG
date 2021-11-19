@@ -122,14 +122,14 @@ func StatusEffects():
 		statres["stun"] = statres["stun"] * 1.5
 	if "poison" in status:
 		EventHandler.BattleLog(charname + " takes damage from poison!")
-		take_damage(poison)
+		take_damage(poison, "")
 		poisoncount -= 1
 		if poisoncount == 0:
 			status.erase("poison")
 			statres["poison"] = statres["poison"] * 1.5
 	if "burn" in status:
 		EventHandler.BattleLog(charname + " takes burn damage!")
-		take_damage(burn)
+		take_damage(burn, "")
 		burncount -= 1
 		if burncount == 0:
 			status.erase("burn")
@@ -168,8 +168,8 @@ func DamageOverTime(type, amount, time):
 
 func Attack(target):
 	CombatController.emit_signal("menuhide")
-	var damage = calcdamage(self, target)
-	var adjusteddamage = target.take_damage(damage)
+	var damage = attacker.STR*attacker.statmods["STR"]
+	var adjusteddamage = target.take_damage(damage, "impact") #fix this later. Will need to be an input from the character depending on class or weapon type. 
 	
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
@@ -181,10 +181,14 @@ func Defend():
 func take_damage (damage, type):
 	var adjusteddamage	
 	
+	if HP == 0: return #to prevent multi-attacks from triggering die() multiple times
+	
 	if type == "impact" or "slash" or "pierce":
 		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"] * damageres[type])))
 	elif type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
 		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"] * damageres[type])))
+	else:
+		adjusteddamage = damage
 
 	HP -= int(adjusteddamage)
 	HP = max(0, HP)
