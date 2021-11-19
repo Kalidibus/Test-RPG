@@ -19,9 +19,7 @@ func mTurn(targetlist):
 	
 	target = DecideTarget(targetlist)
 	
-	var num = RandomNumberGenerator.new()
-	num.randomize()
-	var rng = num.randi_range(1, 100)
+	var rng = RNG()
 	
 	AttackList(target, rng)
 
@@ -30,9 +28,9 @@ func AttackList(target, rng):
 		mAttack(target)
 
 func mAttack(target):
-	var damage:int = calcdamage(self, target)
+	var damage:int = STR * statmods["STR"]
 	
-	var adjusteddamage = target.take_damage(damage)
+	var adjusteddamage = target.take_damage(damage, "pierce")
 	
 	EventHandler.BattleLog("The " + str(charname) + " bites " + str(target.charname) + " with venomous fangs for " + str(adjusteddamage) + " damage!")
 	target.AttemptStatusAilment("poison", 20, 3)
