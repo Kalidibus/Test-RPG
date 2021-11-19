@@ -34,6 +34,8 @@ var burn
 var burncount
 var blindcount
 var sealcount
+var markedamount
+var markedcount
 
 var statmods =  {
 	"MaxHP": 1,
@@ -135,6 +137,11 @@ func StatusEffects():
 		if sealcount == 0:
 			status.erase("seal")
 			statres["seal"] = statres["seal"] * 1.5
+	if "marked" in status:
+		EventHandler.BattleLog(charname + " has drawn the enemies ire!")
+		markedcount -= 1
+		if markedcount == 0:
+			status.erase("marked")
 
 func DamageOverTime(type, amount, time):
 	if type == "poison":
@@ -196,20 +203,22 @@ func AttemptStatusAilment(type, amount, time):
 func DecideTarget(targetlist):
 	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
 	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
+	var rng = RNG()
+	
 	for n in targetlist:
 		if n.status.has("marked"):
 			if rng <= n.markedamount: return n
 	
 	var total_hate = 0
-   
-   	for n in targetlist:
-      		total_hate += n.HATE
-		n.ref_hate = total_hate
-
-	var rng = rand_range(0, total_hate)
-   
+	
 	for n in targetlist:
-		if (n.ref_hate > rng):
+		total_hate += n.HATE
+		n.ref_hate = total_hate
+		
+	rng = rand_range(0, total_hate)
+	
+	for n in targetlist:
+		if (n.ref_hate > rng) and n.HP != 0:
 			return n
 
 func RNG():

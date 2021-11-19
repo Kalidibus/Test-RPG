@@ -2,23 +2,43 @@ extends Entity
 
 func _ready():
 	charname = "Fortress"
-	MaxHP = 188
-	HP = 188
+	MaxHP = 125
+	HP = 125
 	MaxMP = 80
 	MP = 80
-	STR = 30
-	DEF = 30
-	SPD = 5
-	HATE = 50
+	STR = 50
+	DEF = 75
+	INT = 25
+	FTH = 50
+	RES = 50
+	SPD = 25
+	HATE = 100
 	row = "Front"
 	enemy = false
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {
+		"Taunt" : "Increase chances of enemies targetting you",
 		"Vanguard" : "Hits the enemy with BOTH shields at once. Scales with DEF",
 		"Bastion" : "Provides a DEF based heal to target party member",
 		"Embolden" : "boost DEF for 3 turns"
 	}
+
+func Taunt():
+	if MPCheck(10) == "fail": return
+	
+	if not status.has("marked"): status.append("marked")
+	markedamount = 50
+	markedcount = 2
+	
+	HATE += 20
+	
+	MPCost(10)
+	
+	print(status)
+	print(HATE)
+	
+	CloseTurn(str(charname) + " draws enemy attention!")
 
 func Vanguard():
 	if MPCheck(40) == "fail": return

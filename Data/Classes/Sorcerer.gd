@@ -1,8 +1,5 @@
 extends Entity
 
-
-
-
 func _ready():
 	charname = "Fel Mage"
 	MaxHP = 40
@@ -19,19 +16,20 @@ func _ready():
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 
 	skilllist = {
-		"Fel_Bolt" : "A Dark aspected attack, dealing moderate damage",
-		"Fumeturgey" : "Great gusts of smoke engulf enemies, reducing their accuracy",
-		"Pyrotica" : "Gouts of eldrich flame that raze enemy lines",
-		"Inferno Bolt" : "A Fire aspected attack, dealing moderate damage"
+		"Fel_Bolt" : "A Dark aspected attack, dealing moderate damage"
+	#	"Fumeturgey" : "Great gusts of smoke engulf enemies, reducing their accuracy",
+	#	"Pyrotica" : "Gouts of eldrich flame that raze enemy lines",
+	#	"Inferno Bolt" : "A Fire aspected attack, dealing moderate damage"
 	}
 
 func Fel_Bolt():
+	if MPCheck(10) == "fail": return
 	CombatGUI.TargetList("Fel_Bolt2")
 
 func Fel_Bolt2(target):
-	var damage = 2*calcmagicdamage(self, target)
-	target.take_damage(damage)
+	var damage = INT
+	target.take_damage(damage) #change to take magic damage?
 	
-	EventHandler.BattleLog(str(charname) + " launches an eldritch bolt of ink black magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
-	yield(get_tree().create_timer(0.5), "timeout")
-	CombatController.play_turn()
+	MPCost(10)
+	
+	CloseTurn(str(charname) + " launches an eldritch bolt of ink black magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
