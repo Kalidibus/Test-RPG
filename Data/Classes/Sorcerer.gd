@@ -16,7 +16,9 @@ func _ready():
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 
 	skilllist = {
-		"Fel Bolt" : "A Dark aspected attack, dealing moderate damage"
+		"Fel Bolt" : "A Fel aspected attack, dealing moderate damage",
+		"Deep Bolt" : "A Deep aspected attack, dealing moderate damage",
+		"Levin Bolt" : "A Deep aspected attack, dealing moderate damage"
 	#	"Fumeturgey" : "Great gusts of smoke engulf enemies, reducing their accuracy",
 	#	"Pyrotica" : "Gouts of eldrich flame that raze enemy lines",
 	#	"Inferno Bolt" : "A Fire aspected attack, dealing moderate damage"
@@ -27,9 +29,33 @@ func FelBolt():
 	CombatGUI.TargetList("FelBolt2")
 
 func FelBolt2(target):
-	var damage = INT
-	target.take_damage(damage) #change to take magic damage?
+	var damage = INT * statmods["INT"]
+	target.take_damage(damage, "fel") 
 	
 	MPCost(10)
 	
-	CloseTurn(str(charname) + " launches an eldritch bolt of ink black magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
+	CloseTurn(str(charname) + " launches an eldritch bolt of ink black Fel magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
+
+func DeepBolt():
+	if MPCheck(10) == "fail": return
+	CombatGUI.TargetList("DeepBolt2")
+
+func DeepBolt2(target):
+	var damage = INT * statmods["INT"]
+	target.take_damage(damage, "deep") 
+	
+	MPCost(10)
+	
+	CloseTurn(str(charname) + " launches a bolt of icey Deep magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
+
+func LevinBolt():
+	if MPCheck(10) == "fail": return
+	CombatGUI.TargetList("LevinBolt2")
+
+func LevinBolt2(target):
+	var damage = INT * statmods["INT"]
+	target.take_damage(damage, "levin") 
+	
+	MPCost(10)
+	
+	CloseTurn(str(charname) + " launches a bolt of electric Levin magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
