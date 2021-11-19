@@ -113,8 +113,8 @@ func _on_Skills_pressed():
 		
 		var skillnode = load("res://Scenes/SkillNode.tscn").instance()
 		secondmenu.add_child(skillnode)
-		skillnode.SetSkill(skillname, skilldesc)
-		skillnode.get_child(0).connect("pressed", active_character, i)
+		skillnode.SetSkill(i, skilldesc)
+		skillnode.get_child(0).connect("pressed", active_character, skillname)
 
 func _on_Items_pressed():
 	ClearSecondMenu()
