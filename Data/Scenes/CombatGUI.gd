@@ -58,7 +58,8 @@ func CreateLabels(battlecat):
 	var childitems = battlecat.get_children()
 	
 	var enemylblcount = 0
-	var partycount = 0
+	var partycountfront = 0
+	var partycountback = 0
 	
 	while fighters > 0:
 		if childitems[fighters-1].enemy == true:
@@ -74,15 +75,24 @@ func CreateLabels(battlecat):
 			enemylblcount += 1
 			
 		if childitems[fighters-1].enemy == false:
-			var party = partylabels.instance()
-			$VBoxContainer/PlayerGUI.add_child(party)
-			var pbox = $VBoxContainer/PlayerGUI.get_child(partycount)
 			var i = childitems[fighters-1]
+			var party = partylabels.instance()
+			var pbox
+			
+			if i.row == "Front":
+				$VBoxContainer/PlayerGUIFront.add_child(party)
+				pbox = $VBoxContainer/PlayerGUIFront.get_child(partycountfront)
+				partycountfront += 1
+			else:
+				$VBoxContainer/PlayerGUIBack.add_child(party)
+				pbox = $VBoxContainer/PlayerGUIBack.get_child(partycountback)
+				partycountback += 1
+			
 			pbox.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			pbox.set_name(i.charname + "Block")
 			i.node = pbox #so the overall node can be referred to
 			i.selectionBG = pbox.get_child(0) #for the selection
-			partycount += 1
+			
 			
 		fighters -= 1
 
@@ -129,3 +139,24 @@ func delete_children(node):
 func _on_Attack_pressed():
 	ClearSecondMenu()
 	TargetList("Attack")
+
+
+func _on_Switch_pressed():
+	var active_character = EventHandler.GetActiveChar()
+	print(active_character.charname)
+	print(active_character.HATE)
+	print(active_character.row)
+	
+	active_character.SwitchRows()
+	var parentnode = active_character.node.get_parent().name
+	print(parentnode)
+	if parentnode == "PlayerGUIFront":
+		$VBoxContainer/PlayerGUIFront.remove_child(active_character.node)
+		$VBoxContainer/PlayerGUIBack.add_child(active_character.node)
+	else:
+		$VBoxContainer/PlayerGUIBack.remove_child(active_character.node)
+		$VBoxContainer/PlayerGUIFront.add_child(active_character.node)
+	
+
+	print(active_character.HATE)
+	print(active_character.row)	

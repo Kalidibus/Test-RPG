@@ -185,6 +185,7 @@ func take_damage (damage):
 	return int(adjusteddamage)
 
 func get_healed (heal_amount:int):
+	
 	HP += heal_amount
 	HP = min(MaxHP, HP)
 	
@@ -238,6 +239,8 @@ func MPCheck(MPcost):
 
 func MPCost(MPcost):
 	MP -= MPcost
+	MP = max(0, MP)
+	MP = min(MaxMP, MP)
 	EventHandler.UpdateStats(self, HP, MP)
 
 func CloseTurn(string):

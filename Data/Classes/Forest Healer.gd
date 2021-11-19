@@ -20,7 +20,8 @@ func _ready():
 	skilllist = {
 		"Bounty" : "Heals an allied unit",
 		"Full_Blessing" : "Heals the party",
-		"Divine_Bolt" : "A modest bolt of light, damages enemies and restores MP"
+		"Divine_Bolt" : "A modest bolt of light, damages enemies and restores MP",
+		"Resurrect" : "Raises one ally from the dead"
 	}
 
 func Bounty():
@@ -28,6 +29,10 @@ func Bounty():
 	else: CombatGUI.AllyTargetList("Bounty2")
 
 func Bounty2(target):
+	if target.HP == 0:
+		EventHandler.BattleLog("This target must be raised from the dead first")
+		return
+	
 	var heal = FTH
 	target.get_healed(heal)
 	
@@ -57,3 +62,19 @@ func Divine_Bolt2(target):
 	MPCost(-20)
 	
 	CloseTurn(str(charname) + " launches an divine bolt of cleansing magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage! MP restored!")
+
+func Resurrect():
+	if MPCheck(50) == "fail": return
+	else: CombatGUI.AllyTargetList("Resurrect2")
+
+func Resurrect2(target):
+	if target.HP != 0:
+		EventHandler.BattleLog("This target is not dead!")
+		return
+	
+	var heal = FTH
+	target.get_healed(heal)
+	
+	MPCost(50)
+
+	CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")

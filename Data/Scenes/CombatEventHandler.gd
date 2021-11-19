@@ -39,3 +39,6 @@ func _on_CombatController_update_players():
 func GetSkills():
 	$CombatGUI.skilllist = $CombatController.active_character.skilllist
 	return $CombatController.active_character
+
+func GetActiveChar():
+	return $CombatController.active_character
