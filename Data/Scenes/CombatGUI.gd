@@ -108,7 +108,7 @@ func _on_Skills_pressed():
 	var active_character = get_parent().GetSkills()
 	
 	for i in skilllist:
-		var skillname =  i
+		var skillname =  i.replace(" ","")
 		var skilldesc = skilllist[i]
 		
 		var skillnode = load("res://Scenes/SkillNode.tscn").instance()
