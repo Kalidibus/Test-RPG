@@ -3,26 +3,21 @@ class_name Kobold
 
 func _ready():
 	charname = "Kobold"
-	MaxHP = 40
-	HP = 40
+	MaxHP = 150
+	HP = 150
 	MaxMP = 5
 	MP = 5
 	STR = 15
-	DEF = 5
+	DEF = 50
 	SPD = 8
-	RES = 4
+	RES = 20
 	row = "Front"
 	enemy = true
 
 func mTurn(targetlist):
 	Turn()
-	
 	target = DecideTarget(targetlist)
-	
-	var num = RandomNumberGenerator.new()
-	num.randomize()
-	var rng = num.randi_range(1, 100)
-	
+	var rng = RNG()
 	AttackList(target, rng)
 
 func AttackList(target, rng):
@@ -43,9 +38,12 @@ func mAttack(target):
 func Bludgeon(target):
 	var damage:int = 2*calcdamage(self, target)
 	
+
+	
 	EventHandler.BattleLog("The " + str(charname) + " emits a bloodcurdling shriek and bludgeons " + str(target.charname) + " fiercly for " + str(damage) + " damage!!!")
 	
 	target.take_damage(damage)
+	target.AttemptStatusAilment("stun", 0, 0)
 
 func mDefend():
 	StatMod("DEF", 1.5, 0)
