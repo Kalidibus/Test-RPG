@@ -19,8 +19,8 @@ func _ready():
 	
 	skilllist = {
 		"Bounty" : "Heals an allied unit",
-		"Full_Blessing" : "Heals the party",
-		"Divine_Bolt" : "A modest bolt of light, damages enemies and restores MP",
+		"Full Blessing" : "Heals the party",
+		"Divine Bolt" : "A modest bolt of light, damages enemies and restores MP",
 		"Resurrect" : "Raises one ally from the dead"
 	}
 
@@ -40,7 +40,7 @@ func Bounty2(target):
 
 	CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
 
-func Full_Blessing():
+func FullBlessing():
 	if MPCheck(50) == "fail": return
 	var partylist = get_tree().get_nodes_in_group("partymembers")
 	
@@ -51,11 +51,11 @@ func Full_Blessing():
 			n.get_healed(FTH)
 	CloseTurn(str(charname) + " Restores the parties health for " + str(FTH) + "!")
 
-func Divine_Bolt():
+func DivineBolt():
 	if MPCheck(10) == "fail": return
-	CombatGUI.TargetList("Divine_Bolt2")
+	CombatGUI.TargetList("DivineBolt2")
 
-func Divine_Bolt2(target):
+func DivineBolt2(target):
 	var damage = INT
 	target.take_damage(damage) #change to take magic damage?
 	
