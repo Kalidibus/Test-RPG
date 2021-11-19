@@ -25,7 +25,7 @@ func PoisonArrow():
 
 func PoisonArrow2(target):
 	var damage = 0.5*STR + 0.5*SPD
-	target.take_damage(damage)
+	target.take_damage(damage, "pierce")
 	
 	target.AttemptStatusAilment("poison", 30, 2)
 	
@@ -39,7 +39,7 @@ func BurningArrow():
 
 func BurningArrow2(target):
 	var damage = 0.5*STR + 0.5*SPD
-	target.take_damage(damage)
+	target.take_damage(damage, "pierce")
 	
 	target.AttemptStatusAilment("burn", 30, 2)
 	
