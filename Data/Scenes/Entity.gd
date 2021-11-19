@@ -62,6 +62,19 @@ var statres = {
 	"seal": 40
 }
 
+var damageres = {
+	"impact" = 20,
+	"slash" = 20,
+	"pierce" = 20,
+	"fel" = 20,
+	"inferno" = 20,
+	"levin" = 20,
+	"deep" = 20,
+	"erde" = 20,
+	"virtuos" = 20
+}
+	
+
 var node
 var target
 var selectionBG
@@ -165,16 +178,14 @@ func Defend():
 	
 	EventHandler.BattleLog(str(charname) + " defends herself!")
 
-func calcdamage(attacker, target): 
-	var damage = attacker.STR*attacker.statmods["STR"]
-	return damage
+func take_damage (damage, type):
+	var adjusteddamage	
+	
+	if type == "impact" or "slash" or "pierce":
+		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"] * damageres[type])))
+	elif type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
+		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"] * damageres[type])))
 
-func calcmagicdamage(attacker, target): 
-	var damage = attacker.INT*attacker.statmods["INT"]
-	return damage
-
-func take_damage (damage):
-	var adjusteddamage = damage * (100 / (100+(float(DEF)*statmods["DEF"])))
 	HP -= int(adjusteddamage)
 	HP = max(0, HP)
 	
