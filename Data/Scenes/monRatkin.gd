@@ -18,7 +18,7 @@ func _ready():
 func mTurn(targetlist):
 	target = DecideTarget(targetlist)
 	
-	rng = RNG()
+	var rng = RNG()
 	
 	AttackList(target, rng)
 

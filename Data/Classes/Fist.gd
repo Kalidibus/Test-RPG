@@ -25,10 +25,10 @@ func VioletFist():
 	else: CombatGUI.TargetList("VioletFist2")
 
 func VioletFist2(target):
-	var damage = (STR/50+SPD/25)*calcdamage(self, target)
-	target.take_damage(damage)
-	target.take_damage(damage)
-	target.take_damage(damage)
+	var damage = (STR*0.5+SPD*0.5)/2
+	target.take_damage(damage, "impact")
+	target.take_damage(damage, "impact")
+	target.take_damage(damage, "impact")
 	
 	MPCost(40)
 	
