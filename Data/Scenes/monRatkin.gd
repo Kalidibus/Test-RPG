@@ -31,17 +31,17 @@ func AttackList(target, rng):
 		mDefend()
 
 func mAttack(target):
-	var damage:int = calcdamage(self, target)
+	var damage:int = STR * statmods["STR"]
 	
 	EventHandler.BattleLog("The " + str(charname) + " unveils a twisted dagger and stabs into " + str(target.charname) + " for " + str(damage) + " damage!")
 	
-	target.take_damage(damage)
+	target.take_damage(damage, "pierce")
 
 func Scratch(target):
-	var damage:int = 2*calcdamage(self, target)
+	var damage:int = 2 * STR*statmods["STR"]
 	EventHandler.BattleLog("The " + str(charname) + " salivates while raking " + str(target.charname) + " wildly with claws for " + str(damage) + " damage!!!")
 	
-	target.take_damage(damage)
+	target.take_damage(damage, "slash")
 
 func mDefend():
 	StatMod("DEF", 1.5, 0)
