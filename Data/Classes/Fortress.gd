@@ -28,10 +28,10 @@ func Taunt():
 	if MPCheck(10) == "fail": return
 	
 	if not status.has("marked"): status.append("marked")
-	markedamount = 50
+	markedamount = 80
 	markedcount = 2
 	
-	HATE += 20
+	HATE += 50
 	
 	MPCost(10)
 	

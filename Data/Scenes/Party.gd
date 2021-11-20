@@ -41,7 +41,7 @@ var slot3 = {
 
 var slot4 = {
 	"name":"Terra",
-	"class":"Fist",
+	"class":"Bastard Fist",
 	"HP":999,
 	"MaxHP":999,
 	"MP":999,

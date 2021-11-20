@@ -49,8 +49,7 @@ func Bomb():
 	GetEnemies() 
 
 	for n in enemies:
-		print(n.charname)
-		n.take_damage(35)
+		n.take_damage(35, "impact")
 		EventHandler.BattleLog("The " + str(n.charname) + " takes 35 damage from the explosion!")
 	Consume("Bomb")
 	CloseTurn("")

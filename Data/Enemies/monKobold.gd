@@ -1,5 +1,4 @@
 extends Entity
-class_name Kobold
 
 func _ready():
 	charname = "Kobold"
@@ -13,6 +12,27 @@ func _ready():
 	RES = 20
 	row = "Front"
 	enemy = true
+
+	statres = {
+		"poison": 10,
+		"stun": 50,
+		"burn": 20,
+		"blind": 80,
+		"seal": 10
+	}
+
+	damageres = {
+		"impact": 20,
+		"slash": 5,
+		"pierce": 20,
+		"fel": 20,
+		"inferno": 5,
+		"levin": 20,
+		"deep": 20,
+		"erde": 50,
+		"virtuos": 20,
+		"true": 0
+	}
 
 func mTurn(targetlist):
 	Turn()

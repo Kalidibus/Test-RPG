@@ -27,6 +27,7 @@ var eqpDEF
 var dead = false
 var HATE
 var ref_hate
+var combo
 
 var poison
 var poisoncount
@@ -71,7 +72,8 @@ var damageres = {
 	"levin": 20,
 	"deep": 20,
 	"erde": 20,
-	"virtuos": 20
+	"virtuos": 20,
+	"true": 0
 }
 	
 
@@ -115,21 +117,21 @@ func StatModCountDown():
 				statmodtimer[n] -= 1
 
 func StatusEffects():
-	if "stun" in status:
+	if "stun" in status: # does not work yet
 		EventHandler.BattleLog(charname + " is stunned!")
-		return "skip" # not sure how to do this yet, but basically cancel out the turn.
 		status.erase("stun")
 		statres["stun"] = statres["stun"] * 1.5
 	if "poison" in status:
-		EventHandler.BattleLog(charname + " takes damage from poison!")
-		take_damage(poison, "")
+		EventHandler.BattleLog(charname + " takes " + str(poison) + " damage from poison!")
+		take_damage(poison, "true")
+		print("reee")
 		poisoncount -= 1
 		if poisoncount == 0:
 			status.erase("poison")
 			statres["poison"] = statres["poison"] * 1.5
 	if "burn" in status:
-		EventHandler.BattleLog(charname + " takes burn damage!")
-		take_damage(burn, "")
+		EventHandler.BattleLog(charname + " takes " + str(burn) + " burn damage!")
+		take_damage(burn, "true")
 		burncount -= 1
 		if burncount == 0:
 			status.erase("burn")
@@ -184,10 +186,10 @@ func take_damage (damage, type):
 	if HP == 0: return #to prevent multi-attacks from triggering die() multiple times
 	
 	if type == "impact" or "slash" or "pierce":
-		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"] * (1 - damageres[type] / 100))))
+		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"]) * (1 - damageres[type] / 100)))
 	elif type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
-		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"] * (1 - damageres[type] / 100))))
-	else:
+		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"]) * (1 - damageres[type] / 100)))
+	elif type == "true":
 		adjusteddamage = damage
 
 	HP -= int(adjusteddamage)
@@ -267,7 +269,6 @@ func CloseTurn(string):
 func dies():
 	if enemy == true:
 		CombatController.battlers.erase(self)
-		EventHandler.BattleLog("The " + charname + "has fallen...")
 		node.queue_free()
 		queue_free()
 	else:

@@ -13,6 +13,28 @@ func _ready():
 	RES = 4
 	row = "Front"
 	enemy = true
+	
+	statres = {
+		"poison": 90,
+		"stun": 20,
+		"burn": 5,
+		"blind": 20,
+		"seal": 10
+	}
+
+	damageres = {
+		"impact": 5,
+		"slash": 20,
+		"pierce": 20,
+		"fel": 20,
+		"inferno": 5,
+		"levin": 20,
+		"deep": 20,
+		"erde": 20,
+		"virtuos": 20,
+		"true": 0
+	}
+
 
 func mTurn(targetlist):
 	Turn()

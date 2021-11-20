@@ -1,5 +1,4 @@
 extends Entity
-class_name Ratkin
 
 func _ready():
 	charname = "Ratkin"
@@ -14,7 +13,27 @@ func _ready():
 	row = "Back"
 	enemy = true
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
+	
+	statres = {
+		"poison": 10,
+		"stun": 5,
+		"burn": 20,
+		"blind": 80,
+		"seal": 10
+	}
 
+	damageres = {
+		"impact": 30,
+		"slash": 5,
+		"pierce": 10,
+		"fel": 40,
+		"inferno": 5,
+		"levin": 5,
+		"deep": 30,
+		"erde": 50,
+		"virtuos": 5,
+		"true": 0
+	}
 func mTurn(targetlist):
 	target = DecideTarget(targetlist)
 	

@@ -65,6 +65,8 @@ func SortbySpeed(a, b):
 func play_turn():
 	# recalculates based on last turn, and updates GUI with information on the current enemies and battler list
 	
+	yield(get_tree().create_timer(0.5), "timeout")
+	
 	enemies = get_tree().get_nodes_in_group("enemies")
 	partylist = get_tree().get_nodes_in_group("partymembers")
 	#battlers = enemies + partylist
@@ -84,21 +86,22 @@ func play_turn():
 			lose()
 			return
 	
-	yield(get_tree().create_timer(1.5), "timeout")
 	
 	if new_index >= battlers.size():
 		new_index = 0
-	
-	active_character.selectionBG.set_self_modulate("ffffff")
+	#this check prevents a crash if something dies during it's turn from poison etc
+	if is_instance_valid(active_character): 
+		active_character.selectionBG.set_self_modulate("ffffff") #this is sometimes causing a crash. caused by enemy dying from poison?
 	active_character = battlers[new_index]
 	new_index += 1
 	
 	if active_character.enemy == true:
 		active_character.selectionBG.set_self_modulate("4bff0a")
 		active_character.Turn()
-		Enemy_Attack()
+		if active_character.HP != 0: #prevents attacking after dying of poison etc
+			Enemy_Attack()
 		play_turn()
-	if active_character.dead == true:
+	if active_character.dead == true: #for player characters only
 		play_turn()
 		return
 	if active_character.enemy == false:
