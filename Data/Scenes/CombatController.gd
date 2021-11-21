@@ -97,9 +97,7 @@ func play_turn():
 	
 	if active_character.enemy == true:
 		active_character.selectionBG.set_self_modulate("4bff0a")
-		active_character.Turn()
-		if active_character.HP != 0: #prevents attacking after dying of poison etc
-			Enemy_Attack()
+		Enemy_Attack()
 		play_turn()
 	if active_character.dead == true: #for player characters only
 		play_turn()

@@ -94,6 +94,13 @@ func _ready():
 func Turn():
 	StatModCountDown()
 	StatusEffects()
+	#this check is to stop the turn if the player dies from DoT damage
+	if HP == 0:
+		CloseTurn("")
+	#skip turn if stunned
+	if status.has("stun"):
+		status.erase("stun")
+		CloseTurn(charname + "misses their turn...")
 	
 func SwitchRows():
 	if row == "Front":
@@ -119,12 +126,11 @@ func StatModCountDown():
 func StatusEffects():
 	if "stun" in status: # does not work yet
 		EventHandler.BattleLog(charname + " is stunned!")
-		status.erase("stun")
+		# status.erase("stun") Handled in Turn() to skip turn.
 		statres["stun"] = statres["stun"] * 1.5
 	if "poison" in status:
 		EventHandler.BattleLog(charname + " takes " + str(poison) + " damage from poison!")
 		take_damage(poison, "true")
-		print("reee")
 		poisoncount -= 1
 		if poisoncount == 0:
 			status.erase("poison")

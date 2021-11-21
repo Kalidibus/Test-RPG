@@ -21,8 +21,7 @@ func _ready():
 		"Bounty" : "Heals an allied unit",
 		"Full Blessing" : "Heals the party",
 		"Divine Bolt" : "A modest bolt of light, damages enemies and restores MP",
-		"Resurrect" : "Raises one ally from the dead",
-		"Refresh" : "Recovers some MP"
+		"Resurrect" : "Raises one ally from the dead"
 	}
 
 func Bounty():
@@ -79,8 +78,3 @@ func Resurrect2(target):
 	MPCost(50)
 
 	CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
-	
-func Refresh():
-	MPCost(-20)
-	
-	CloseTurn(str(charname) + " restores some MP!")
