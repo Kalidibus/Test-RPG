@@ -21,7 +21,8 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
 	animated_MP = MP
 	
 	if row == "Front":
-		$Sprite.set_offset(Vector2(20,80))
-
+		$Sprite.set_offset(Vector2(0,25))
+		$Sprite.set_scale(Vector2(8,8))
+		$Sprite.set_z_index(-2)
 func UpdateStats(HP, MP):
 	pass #now handled by the GUI controller Tweening.
