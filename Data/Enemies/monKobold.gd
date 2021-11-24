@@ -25,12 +25,12 @@ func _ready():
 		"impact": 20,
 		"slash": 5,
 		"pierce": 20,
-		"fel": 20,
-		"inferno": 5,
-		"levin": 20,
-		"deep": 20,
+		"fel": 10,
+		"inferno": 10,
+		"levin": -20,
+		"deep": 10,
 		"erde": 50,
-		"virtuos": 20,
+		"virtuos": -5,
 		"true": 0
 	}
 

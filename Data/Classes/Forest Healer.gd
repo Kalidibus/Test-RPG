@@ -20,7 +20,7 @@ func _ready():
 	skilllist = {
 		"Bounty" : "Heals an allied unit",
 		"Full Blessing" : "Heals the party",
-		"Divine Bolt" : "A modest bolt of light, damages enemies and restores MP",
+		"Divine Bolt" : "A modest bolt of light, damages a single enemy",
 		"Resurrect" : "Raises one ally from the dead"
 	}
 
@@ -59,7 +59,7 @@ func DivineBolt2(target):
 	var damage = INT * statmods["INT"]
 	target.take_damage(damage, "virtuos")
 	
-	MPCost(-20)
+	MPCost(10)
 	
 	CloseTurn(str(charname) + " launches an divine bolt of cleansing magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
 

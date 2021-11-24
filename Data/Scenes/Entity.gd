@@ -97,11 +97,11 @@ func Turn():
 	#this check is to stop the turn if the player dies from DoT damage
 	if HP == 0:
 		CloseTurn("")
-	#skip turn if stunned
+	#skip turn if stunned - NOT WORKING
 	if status.has("stun"):
 		status.erase("stun")
 		CloseTurn(charname + "misses their turn...")
-	
+
 func SwitchRows():
 	if row == "Front":
 		row = "Back"
@@ -109,7 +109,6 @@ func SwitchRows():
 	elif row == "Back":
 		row = "Front"
 		HATE = HATE*2
-	
 
 func StatModCountDown():
 	#this function below checks how many turns a statmod has left
@@ -188,14 +187,17 @@ func Defend():
 
 func take_damage (damage, type):
 	var adjusteddamage	
-	
+
 	if HP == 0: return #to prevent multi-attacks from triggering die() multiple times
 	
 	if type == "impact" or "slash" or "pierce":
-		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"]) * (1 - damageres[type] / 100)))
-	elif type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
-		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"]) * (1 - damageres[type] / 100)))
-	elif type == "true":
+		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"])))
+		adjusteddamage = adjusteddamage * (1 - (float(damageres[type]) / 100.00))
+	if type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
+		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"])))
+		adjusteddamage = adjusteddamage * (1 - (float(damageres[type]) / 100.00))
+
+	if type == "true":
 		adjusteddamage = damage
 
 	HP -= int(adjusteddamage)

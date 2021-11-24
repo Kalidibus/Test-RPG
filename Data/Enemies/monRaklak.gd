@@ -27,7 +27,7 @@ func _ready():
 		"slash": 20,
 		"pierce": 20,
 		"fel": 20,
-		"inferno": 5,
+		"inferno": -25,
 		"levin": 20,
 		"deep": 20,
 		"erde": 20,

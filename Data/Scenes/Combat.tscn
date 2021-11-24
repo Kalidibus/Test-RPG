@@ -96,19 +96,18 @@ __meta__ = {
 
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_top = 364.0
-margin_right = 913.0
+margin_right = 809.0
 margin_bottom = 364.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="Container" type="Container" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 917.0
-margin_right = 1830.0
+margin_left = 813.0
+margin_right = 1623.0
 margin_bottom = 728.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-visible = false
 margin_left = 1627.0
 margin_top = 239.0
 margin_right = 1830.0

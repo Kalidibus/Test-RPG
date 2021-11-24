@@ -28,8 +28,8 @@ func _ready():
 		"pierce": 10,
 		"fel": 40,
 		"inferno": 5,
-		"levin": 5,
-		"deep": 30,
+		"levin": 10,
+		"deep": -30,
 		"erde": 50,
 		"virtuos": 5,
 		"true": 0
