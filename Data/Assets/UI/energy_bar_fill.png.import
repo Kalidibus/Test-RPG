@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/label_HP_bg.png-4bff749d09f5d7c7a07914e1364f0adc.stex"
+path="res://.import/energy_bar_fill.png-cfb12f8ff5246d28409c04df1a0056a9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/label_HP_bg.png"
-dest_files=[ "res://.import/label_HP_bg.png-4bff749d09f5d7c7a07914e1364f0adc.stex" ]
+source_file="res://Assets/UI/energy_bar_fill.png"
+dest_files=[ "res://.import/energy_bar_fill.png-cfb12f8ff5246d28409c04df1a0056a9.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

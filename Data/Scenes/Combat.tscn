@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Selector.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/CombatGUI.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/CombatController.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/AridEncounters1.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/CombatEventHandler.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Classes/Fortress-Splash.png" type="Texture" id=6]
+[ext_resource path="res://Assets/backgrounds/RWYZIs.jpg" type="Texture" id=7]
 
 [node name="CombatEventHandler" type="Node"]
 script = ExtResource( 5 )
@@ -24,25 +26,25 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CombatGUI"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1260.0
-margin_bottom = 700.0
+margin_right = 1900.0
+margin_bottom = 1060.0
 
 [node name="EnemyGUI" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
-margin_right = 1240.0
+margin_right = 1880.0
 custom_constants/separation = 50
 alignment = 1
 
 [node name="CenterContainer" type="MarginContainer" parent="CombatGUI/VBoxContainer"]
 margin_top = 4.0
-margin_right = 1240.0
-margin_bottom = 512.0
+margin_right = 1880.0
+margin_bottom = 732.0
 size_flags_vertical = 3
 custom_constants/margin_left = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer"]
 margin_left = 50.0
-margin_right = 1240.0
-margin_bottom = 508.0
+margin_right = 1880.0
+margin_bottom = 728.0
 
 [node name="Menu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 visible = false
@@ -93,32 +95,36 @@ __meta__ = {
 }
 
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_top = 254.0
-margin_right = 525.0
-margin_bottom = 254.0
+margin_top = 364.0
+margin_right = 913.0
+margin_bottom = 364.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="Container" type="Container" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 529.0
-margin_right = 1054.0
-margin_bottom = 508.0
+margin_left = 917.0
+margin_right = 1830.0
+margin_bottom = 728.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 1058.0
-margin_top = 129.0
-margin_right = 1190.0
-margin_bottom = 379.0
+visible = false
+margin_left = 1627.0
+margin_top = 239.0
+margin_right = 1830.0
+margin_bottom = 489.0
 rect_min_size = Vector2( 0, 250 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.25
 follow_focus = true
 scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BattleLog" type="Label" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer"]
-margin_right = 132.0
+margin_right = 203.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Battle Log:"
@@ -126,20 +132,31 @@ align = 2
 valign = 2
 
 [node name="PlayerGUIFront" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
-margin_top = 516.0
-margin_right = 1240.0
-margin_bottom = 596.0
-rect_min_size = Vector2( 0, 80 )
-custom_constants/separation = 23
+margin_top = 736.0
+margin_right = 1880.0
+margin_bottom = 886.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 150 )
+custom_constants/separation = 380
 alignment = 1
 
 [node name="PlayerGUIBack" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
-margin_top = 600.0
-margin_right = 1240.0
-margin_bottom = 680.0
-rect_min_size = Vector2( 0, 80 )
-custom_constants/separation = 23
+margin_top = 890.0
+margin_right = 1880.0
+margin_bottom = 1040.0
+rect_min_size = Vector2( 0, 150 )
+custom_constants/separation = 380
 alignment = 1
+
+[node name="CharaSplash" type="Sprite" parent="CombatGUI"]
+visible = false
+position = Vector2( 1596, 511 )
+scale = Vector2( 0.295152, 0.295152 )
+z_index = -1
+texture = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="CombatGUI"]
 
 [node name="CombatController" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -151,6 +168,17 @@ script = ExtResource( 4 )
 
 [node name="Selector" type="Node2D" parent="."]
 script = ExtResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Rwyzis" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 935, 476 )
+scale = Vector2( 1.39398, 1.39398 )
+z_as_relative = false
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatGUI" method="_on_Attack_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatController" method="_on_Attack_pressed"]

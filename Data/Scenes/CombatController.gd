@@ -71,6 +71,8 @@ func play_turn():
 	partylist = get_tree().get_nodes_in_group("partymembers")
 	#battlers = enemies + partylist
 	emit_signal("update_players")
+	get_parent().get_child(0).ClearCharaSplash()
+	
 	
 	# checks if you've defeated all the enemies, and calls the win() function
 	if enemies.size() == 0:
@@ -104,6 +106,7 @@ func play_turn():
 		return
 	if active_character.enemy == false:
 		active_character.selectionBG.set_self_modulate("4bff0a")
+		get_parent().get_child(0).SetCharaSplash(active_character)
 		active_character.Turn()
 		emit_signal("menuvis")
 

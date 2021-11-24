@@ -90,6 +90,7 @@ func CreateLabels(battlecat):
 			
 			pbox.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			pbox.set_name(i.charname + "Block")
+			pbox.SetImage("res://Assets/Classes/" + i.charname + "-profile.png" )
 			i.node = pbox #so the overall node can be referred to
 			i.selectionBG = pbox.get_child(0) #for the selection
 			
@@ -98,6 +99,10 @@ func CreateLabels(battlecat):
 
 func UpdateStats(target, HP, MP):
 	target.node.UpdateStats(HP, MP)
+	$Tween.interpolate_property(target.node, "animated_HP", target.node.HPbar.value, HP, 0.4)
+	if not target.enemy: $Tween.interpolate_property(target.node, "animated_MP", target.node.MPbar.value, MP, 0.4)
+	if not $Tween.is_active():
+		$Tween.start()	
 
 func BattleLog(string):
 	$VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer/BattleLog.text += "\n" + str(string)
@@ -166,3 +171,10 @@ func _on_Switch_pressed():
 
 	print(active_character.HATE)
 	print(active_character.row)	
+
+func SetCharaSplash(active_character):
+	$CharaSplash.set_texture(load("res://Assets/Classes/" + active_character.charname + "-splash.png"))
+	$CharaSplash.visible = true
+
+func ClearCharaSplash():
+	$CharaSplash.visible = false

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/EnemyBlock.gd" type="Script" id=1]
-[ext_resource path="res://Assets/lifebar_fill.png" type="Texture" id=2]
-[ext_resource path="res://Assets/lifebar_bg.png" type="Texture" id=3]
-[ext_resource path="res://Assets/rpgcritters2.png" type="Texture" id=4]
-[ext_resource path="res://Assets/mp_bar_fill.png" type="Texture" id=5]
-[ext_resource path="res://Assets/label_HP_bg.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/bar_under.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/HP_bar_progress.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Enemies/rpgcritters2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/label_HP_bg.png" type="Texture" id=6]
 
 [node name="EnemyLabel" type="HBoxContainer"]
 margin_right = 200.0
@@ -43,26 +42,12 @@ rect_min_size = Vector2( 150, 10 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 value = 100.0
-texture_under = ExtResource( 3 )
-texture_progress = ExtResource( 2 )
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
 nine_patch_stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="MPbar" type="TextureProgress" parent="BG/Stats"]
-visible = false
-margin_top = 42.0
-margin_right = 150.0
-margin_bottom = 62.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-value = 100.0
-texture_under = ExtResource( 3 )
-texture_progress = ExtResource( 5 )
-nine_patch_stretch = true
-stretch_margin_left = 150
-stretch_margin_top = 20
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )

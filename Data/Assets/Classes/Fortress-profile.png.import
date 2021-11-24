@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mp_bar_fill.png-37c09d013470c64b2177f1538f9a1d20.stex"
+path="res://.import/Fortress-profile.png-11cc7ba31633d701063efacc5946a006.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/mp_bar_fill.png"
-dest_files=[ "res://.import/mp_bar_fill.png-37c09d013470c64b2177f1538f9a1d20.stex" ]
+source_file="res://Assets/Classes/Fortress-profile.png"
+dest_files=[ "res://.import/Fortress-profile.png-11cc7ba31633d701063efacc5946a006.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
