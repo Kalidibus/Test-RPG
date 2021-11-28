@@ -17,6 +17,8 @@ signal menuvis
 signal AttackList
 signal update_players
 
+onready var CombatGUI = get_node("/root/CombatEventHandler/CombatGUI")
+
 #at ready calls the Select Character method.
 func _ready():
 	pass
@@ -85,9 +87,11 @@ func play_turn():
 		return
 	if active_character.enemy == false:
 		active_character.selectionBG.set_self_modulate("4bff0a")
-		get_parent().get_child(0).SetCharaSplash(active_character)
+		CombatGUI.SetCharaSplash(active_character)
 		active_character.Turn()
 		emit_signal("menuvis")
+		CombatGUI.AttackFocus()
+		
 
 func CheckWin(): #seperating this out into a seperate function allows the turn order to proceed quickly without any yields
 	yield(get_tree().create_timer(0.2), "timeout")

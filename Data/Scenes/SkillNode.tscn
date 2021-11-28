@@ -5,20 +5,14 @@
 [node name="SkillNode" type="MarginContainer"]
 margin_right = 32.0
 margin_bottom = 40.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 22.0
-margin_bottom = 50.0
+margin_right = 32.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 custom_constants/hseparation = 0
 align = 0

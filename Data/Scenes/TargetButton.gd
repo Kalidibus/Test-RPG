@@ -3,6 +3,8 @@ class_name TargetButton
 
 var target
 var function
+onready var button = $Button
+
 
 func ready():
 	pass

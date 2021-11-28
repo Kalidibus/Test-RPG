@@ -34,6 +34,7 @@ func TargetList(function):
 	label.text = "TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
+	secondmenu.get_child(1).grab_focus()
 
 func AllyTargetList(function):
 	ClearSecondMenu()
@@ -51,6 +52,7 @@ func AllyTargetList(function):
 	label.text = "TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
+	secondmenu.get_child(1).grab_focus()
 
 # creates labels and ties them to the appropriate battler in the combat tree
 func CreateLabels(battlecat):
@@ -124,6 +126,8 @@ func _on_Skills_pressed():
 		secondmenu.add_child(skillnode)
 		skillnode.SetSkill(i, skilldesc)
 		skillnode.get_child(0).connect("pressed", active_character, skillname)
+	
+	secondmenu.get_child(0).button.grab_focus()
 
 func _on_Items_pressed():
 	ClearSecondMenu()
@@ -135,6 +139,14 @@ func _on_Items_pressed():
 		secondmenu.add_child(skillnode)
 		skillnode.SetSkill(item, itemdesc)
 		skillnode.get_child(0).connect("pressed", Items, n)
+	
+	
+	var label = Label.new()
+	label.text = "ITEMS"
+	secondmenu.add_child(label)
+	secondmenu.move_child(label, 0)
+	secondmenu.get_child(1).get_child(0).grab_focus()
+	print(secondmenu.get_child(1).get_child(0))
 
 func ClearSecondMenu():
 	delete_children(secondmenu)
@@ -190,3 +202,6 @@ func ClearCharaSplash():
 	tween.start()
 	yield(get_tree().create_timer(0.2), "timeout")
 	$CharaSplash.visible = false
+
+func AttackFocus():
+	$VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack.grab_focus()

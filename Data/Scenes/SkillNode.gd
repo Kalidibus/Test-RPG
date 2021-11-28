@@ -1,6 +1,8 @@
 extends MarginContainer
 class_name SkillNode
 
+onready var button = $Button
+
 func _ready():
 	pass
 

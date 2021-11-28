@@ -203,7 +203,7 @@ func take_damage (damage, type):
 	HP -= int(adjusteddamage)
 	HP = max(0, HP)
 	
-	if enemy == false:Globals.camera.shake(80)
+	if enemy == false:Globals.camera.shake(160)
 	EventHandler.UpdateStats(self, HP, MP)
 	
 	if HP <= 0: 
