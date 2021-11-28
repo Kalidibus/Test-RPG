@@ -21,12 +21,14 @@ func TargetList(function):
 	var active_character = get_parent().GetSkills()
 	
 	for n in enemies:
-		var button = TargetButton.new()
-		button.text = n.charname
-		button.target = n
-		button.connect("pressed", active_character, function, [n])
-		secondmenu.add_child(button)
-		secondmenu.move_child(button, 0)
+		if is_instance_valid(n) == false: pass #try to fix a crash
+		else:
+			var button = TargetButton.new()
+			button.text = n.charname
+			button.target = n
+			button.connect("pressed", active_character, function, [n])
+			secondmenu.add_child(button)
+			secondmenu.move_child(button, 0)
 
 	var label = Label.new()
 	label.text = "TARGET"
@@ -106,7 +108,9 @@ func UpdateStats(target, HP, MP):
 
 func BattleLog(string):
 	$VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer/BattleLog.text += "\n" + str(string)
-
+	var scroll = $VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer
+	yield(get_tree(), "idle_frame")
+	scroll.scroll_vertical = scroll.get_v_scrollbar().max_value
 
 func _on_Skills_pressed():
 	ClearSecondMenu()
@@ -140,11 +144,9 @@ func delete_children(node):
 		node.remove_child(n)
 		n.queue_free()
 
-
 func _on_Attack_pressed():
 	ClearSecondMenu()
 	TargetList("Attack")
-
 
 func _on_Switch_pressed():
 	var frontrow = $VBoxContainer/PlayerGUIFront
@@ -167,14 +169,24 @@ func _on_Switch_pressed():
 		frontrow.add_child(active_character.node)
 		if index < frontrow.get_child_count():
 			frontrow.move_child(active_character.node, index)
-	
 
-	print(active_character.HATE)
-	print(active_character.row)	
 
 func SetCharaSplash(active_character):
+	
+	yield(get_tree().create_timer(0.2), "timeout")
 	$CharaSplash.set_texture(load("res://Assets/Classes/" + active_character.charname + "-splash.png"))
+	var tween = get_node("Tween")
+	tween.interpolate_property($CharaSplash, "position",
+		Vector2(3596, 511), Vector2(1596, 511), 0.2,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
 	$CharaSplash.visible = true
 
 func ClearCharaSplash():
+	var tween = get_node("Tween")
+	tween.interpolate_property($CharaSplash, "position",
+		Vector2(1596, 511), Vector2(3596, 511), 0.2,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	yield(get_tree().create_timer(0.2), "timeout")
 	$CharaSplash.visible = false

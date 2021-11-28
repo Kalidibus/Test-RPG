@@ -53,6 +53,7 @@ config/icon="res://Assets/Classes/Fortress-profile.png"
 
 PartyStats="*res://Scenes/Party.tscn"
 Items="*res://Scenes/Items.tscn"
+Globals="*res://Globals.gd"
 
 [display]
 

@@ -203,6 +203,7 @@ func take_damage (damage, type):
 	HP -= int(adjusteddamage)
 	HP = max(0, HP)
 	
+	if enemy == false:Globals.camera.shake(80)
 	EventHandler.UpdateStats(self, HP, MP)
 	
 	if HP <= 0: 
@@ -225,6 +226,8 @@ func AttemptStatusAilment(type, amount, time):
 		else: 
 			status.append(type)
 		EventHandler.BattleLog(charname + " has been inflicted with " + type + "!")
+		var statsprite
+		node.add_child(Sprite.new())
 
 func DecideTarget(targetlist):
 	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
@@ -271,7 +274,6 @@ func MPCost(MPcost):
 func CloseTurn(string):
 	CombatGUI.ClearSecondMenu()
 	EventHandler.BattleLog(string)
-	yield(get_tree().create_timer(0.5), "timeout")
 	CombatController.play_turn()
 
 func dies():

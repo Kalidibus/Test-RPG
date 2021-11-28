@@ -74,6 +74,7 @@ func Resurrect2(target):
 	
 	var heal = FTH
 	target.get_healed(heal)
+	target.dead = false
 	
 	MPCost(50)
 

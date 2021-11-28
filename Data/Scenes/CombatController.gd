@@ -63,37 +63,16 @@ func SortbySpeed(a, b):
 	return a.SPD > b.SPD
 
 func play_turn():
-	# recalculates based on last turn, and updates GUI with information on the current enemies and battler list
+	CheckWin()
 	
-	yield(get_tree().create_timer(0.5), "timeout")
 	
-	enemies = get_tree().get_nodes_in_group("enemies")
-	partylist = get_tree().get_nodes_in_group("partymembers")
-	#battlers = enemies + partylist
-	emit_signal("update_players")
 	get_parent().get_child(0).ClearCharaSplash()
-	
-	
-	# checks if you've defeated all the enemies, and calls the win() function
-	if enemies.size() == 0:
-		win()
-		return
-	
-	# checks if all your units are at 0 HP, and calls the lose() function
-	var count = 0
-	for n in partylist:
-		if n.HP == 0:
-			count += 1
-		if count == partylist.size(): 
-			lose()
-			return
-	
-	
+
 	if new_index >= battlers.size():
 		new_index = 0
 	#this check prevents a crash if something dies during it's turn from poison etc
 	if is_instance_valid(active_character): 
-		active_character.selectionBG.set_self_modulate("ffffff") #this is sometimes causing a crash. caused by enemy dying from poison?
+		active_character.selectionBG.set_self_modulate("ffffff") 
 	active_character = battlers[new_index]
 	new_index += 1
 	
@@ -109,6 +88,26 @@ func play_turn():
 		get_parent().get_child(0).SetCharaSplash(active_character)
 		active_character.Turn()
 		emit_signal("menuvis")
+
+func CheckWin(): #seperating this out into a seperate function allows the turn order to proceed quickly without any yields
+	yield(get_tree().create_timer(0.2), "timeout")
+	enemies = get_tree().get_nodes_in_group("enemies")
+	partylist = get_tree().get_nodes_in_group("partymembers")
+	emit_signal("update_players")
+	
+	# checks if you've defeated all the enemies, and calls the win() function
+	if enemies.size() == 0:
+		win()
+		return
+	
+	# checks if all your units are at 0 HP, and calls the lose() function
+	var count = 0
+	for n in partylist:
+		if n.HP == 0:
+			count += 1
+		if count == partylist.size(): 
+			lose()
+			return
 
 func Enemy_Attack():
 	attacker = active_character
