@@ -146,7 +146,6 @@ func _on_Items_pressed():
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
 	secondmenu.get_child(1).get_child(0).grab_focus()
-	print(secondmenu.get_child(1).get_child(0))
 
 func ClearSecondMenu():
 	delete_children(secondmenu)
@@ -205,3 +204,15 @@ func ClearCharaSplash():
 
 func AttackFocus():
 	$VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack.grab_focus()
+
+func TakeDamageGUI(target):
+	if target.enemy == false:Globals.camera.shake(160)
+	var count = 2
+	while count > 0:
+		if is_instance_valid(target):
+			target.selectionBG.set_self_modulate("ff0000")
+			yield(get_tree().create_timer(0.1), "timeout")
+		if is_instance_valid(target):
+			target.selectionBG.set_self_modulate("ffffff")
+			yield(get_tree().create_timer(0.1), "timeout")
+		count -= 1
