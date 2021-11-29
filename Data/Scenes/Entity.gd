@@ -37,6 +37,8 @@ var blindcount
 var sealcount
 var markedamount
 var markedcount
+var regen
+var regencount
 
 var statmods =  {
 	"MaxHP": 1,
@@ -60,7 +62,9 @@ var statres = {
 	"stun": 40,
 	"burn": 40,
 	"blind": 40,
-	"seal": 40
+	"seal": 40,
+	"regen": 0,
+	"marked": 40
 }
 
 var damageres = {
@@ -162,6 +166,12 @@ func StatusEffects():
 		markedcount -= 1
 		if markedcount == 0:
 			status.erase("marked")
+	if "regen" in status:
+		get_healed(regen)
+		EventHandler.BattleLog("Regen restores " + charname + "'s health!")
+		regencount -= 1
+		if regencount == 0:
+			status.erase("regen")
 
 func DamageOverTime(type, amount, time):
 	if type == "poison":
@@ -172,6 +182,10 @@ func DamageOverTime(type, amount, time):
 		status.append("burn")
 		burn = amount
 		burncount = time
+	if type == "regen":
+		status.append("regen")
+		regen = amount
+		regencount = time
 
 func Attack(target):
 	CombatController.emit_signal("menuhide")
@@ -222,7 +236,7 @@ func AttemptStatusAilment(type, amount, time):
 	var rng = RNG()
 	
 	if rng > statres[type]: 
-		if type == "poison" or "burn":
+		if type == "poison" or "regen" or "burn":
 			DamageOverTime(type, amount, time)
 		else: 
 			status.append(type)
