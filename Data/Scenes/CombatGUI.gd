@@ -11,9 +11,15 @@ var battlers
 var enemies = []
 var partylist = []
 var skilllist
+var lastpushed = "Attack"
 
 signal skillpress
 
+func _process(delta):
+	if (Input.is_action_just_pressed("ui_cancel")):
+		ClearSecondMenu()
+		get_node("VBoxContainer/CenterContainer/HBoxContainer/Menu/" + lastpushed).grab_focus()
+		
 
 func TargetList(function):
 	ClearSecondMenu()
@@ -49,7 +55,7 @@ func AllyTargetList(function):
 		secondmenu.move_child(button, 0)	
 	
 	var label = Label.new()
-	label.text = "TARGET"
+	label.text = "ALLY TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
 	secondmenu.get_child(1).grab_focus()
@@ -115,6 +121,7 @@ func BattleLog(string):
 	scroll.scroll_vertical = scroll.get_v_scrollbar().max_value
 
 func _on_Skills_pressed():
+	lastpushed = "Skills"
 	ClearSecondMenu()
 	var active_character = get_parent().GetSkills()
 	
@@ -127,9 +134,14 @@ func _on_Skills_pressed():
 		skillnode.SetSkill(i, skilldesc)
 		skillnode.get_child(0).connect("pressed", active_character, skillname)
 	
-	secondmenu.get_child(0).button.grab_focus()
+	var label = Label.new()
+	label.text = "SKILLS"
+	secondmenu.add_child(label)
+	secondmenu.move_child(label, 0)
+	secondmenu.get_child(1).button.grab_focus()
 
 func _on_Items_pressed():
+	lastpushed = "Items"
 	ClearSecondMenu()
 	for n in Items.inventory:
 		var item = n
@@ -156,6 +168,7 @@ func delete_children(node):
 		n.queue_free()
 
 func _on_Attack_pressed():
+	lastpushed = "Attack"
 	ClearSecondMenu()
 	TargetList("Attack")
 

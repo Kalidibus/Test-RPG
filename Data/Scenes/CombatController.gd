@@ -78,6 +78,8 @@ func play_turn():
 	active_character = battlers[new_index]
 	new_index += 1
 	
+	print(active_character.charname)
+	
 	if active_character.enemy == true:
 		active_character.selectionBG.set_self_modulate("4bff0a")
 		Enemy_Attack()
