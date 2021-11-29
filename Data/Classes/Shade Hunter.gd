@@ -29,7 +29,7 @@ func PoisonArrow2(target):
 	var damage = (SPD * statmods["SPD"])*0.5
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	MPCost(10)
-	CloseTurn(str(charname) + " fires a poison drenched arrow at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
+	CloseTurn(str(charname) + " fires a poison drenched arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 	target.AttemptStatusAilment("poison", 40, 3)
 
 func BurningArrow():
