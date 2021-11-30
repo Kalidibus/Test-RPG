@@ -102,7 +102,7 @@ func CreateLabels(battlecat):
 			
 			pbox.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			pbox.set_name(i.charname + "Block")
-			pbox.SetImage("res://Assets/Classes/" + i.charname + "-profile.png" )
+			pbox.SetImage("res://Assets/PartyLabels/" + i.charname + "-PartyLabel.png" )
 			i.node = pbox #so the overall node can be referred to
 			i.selectionBG = pbox.get_child(0) #for the selection
 			

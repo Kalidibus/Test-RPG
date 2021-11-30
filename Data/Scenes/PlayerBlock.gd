@@ -39,5 +39,4 @@ func UpdateStats(HP, MP):
 	#path.get_child(4).value = MP
 
 func SetImage(string):
-	print(string)
-	$BG/TextureRect.set_texture(load(string))
+	$BG.set_texture(load(string))
