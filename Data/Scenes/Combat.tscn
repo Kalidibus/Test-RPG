@@ -18,6 +18,7 @@ anchor_bottom = 1.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -27,7 +28,7 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1900.0
-margin_bottom = 1080.0
+margin_bottom = 1060.0
 
 [node name="EnemyGUI" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
 margin_right = 1880.0
@@ -37,14 +38,14 @@ alignment = 1
 [node name="CenterContainer" type="MarginContainer" parent="CombatGUI/VBoxContainer"]
 margin_top = 4.0
 margin_right = 1880.0
-margin_bottom = 802.0
+margin_bottom = 732.0
 size_flags_vertical = 3
 custom_constants/margin_left = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer"]
 margin_left = 50.0
 margin_right = 1880.0
-margin_bottom = 798.0
+margin_bottom = 728.0
 
 [node name="Menu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 visible = false
@@ -95,23 +96,23 @@ __meta__ = {
 }
 
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_top = 399.0
+margin_top = 364.0
 margin_right = 809.0
-margin_bottom = 399.0
+margin_bottom = 364.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="Container" type="Container" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 813.0
 margin_right = 1623.0
-margin_bottom = 798.0
+margin_bottom = 728.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 1627.0
-margin_top = 274.0
+margin_top = 239.0
 margin_right = 1830.0
-margin_bottom = 524.0
+margin_bottom = 489.0
 rect_min_size = Vector2( 0, 250 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -131,9 +132,9 @@ align = 2
 valign = 2
 
 [node name="PlayerGUIFront" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
-margin_top = 806.0
+margin_top = 736.0
 margin_right = 1880.0
-margin_bottom = 956.0
+margin_bottom = 886.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 0, 150 )
@@ -141,10 +142,10 @@ custom_constants/separation = 380
 alignment = 1
 
 [node name="PlayerGUIBack" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
-margin_top = 960.0
+margin_top = 890.0
 margin_right = 1880.0
-margin_bottom = 1060.0
-rect_min_size = Vector2( 0, 100 )
+margin_bottom = 1040.0
+rect_min_size = Vector2( 0, 150 )
 custom_constants/separation = 380
 alignment = 1
 
