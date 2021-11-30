@@ -146,6 +146,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 [node name="StatusContainer" type="HBoxContainer" parent="BG"]
 anchor_left = 0.278
@@ -160,5 +161,7 @@ custom_constants/separation = 44
 __meta__ = {
 "_edit_use_anchors_": false
 }
+=======
+>>>>>>> parent of 3848970 (Bug Fixes)
 =======
 >>>>>>> parent of 3848970 (Bug Fixes)
