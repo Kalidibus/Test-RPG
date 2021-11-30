@@ -19,8 +19,8 @@ func _ready():
 	
 	skilllist = {
 		"Raptor Samba" : "Increases Party-wide Strength",
-	"Soothing Waltz" : "Applies a regen effect to the whole party.",
-	"Invigorating Galliard" : "Increases Party-wide Speed"
+    "Soothing Waltz" : "Applies a regen effect to the whole party.",
+    "Invigorating Galliard" : "Increases Party-wide Speed"
 	}
 
 func RaptorSamba():
@@ -28,7 +28,7 @@ func RaptorSamba():
 	var partylist = get_tree().get_nodes_in_group("partymembers")
 	MPCost(30)
 	for n in partylist:
-	if n.HP != 0: StatMod("STR", 1.25, 2)
+    if n.HP != 0: StatMod("STR", 1.25, 2)
   CloseTurn(str(charname) + "'s Raptor Samba emboldens the party. Strength increased!")
   
 func SoothingWaltz():
@@ -36,7 +36,7 @@ func SoothingWaltz():
 	var partylist = get_tree().get_nodes_in_group("partymembers")
 	MPCost(30)
 	for n in partylist:
-	if n.HP != 0: AttemptStatusAilment("regen", 30, 2)
+    if n.HP != 0: AttemptStatusAilment("regen", 30, 2)
   CloseTurn(str(charname) + "'s Soothing Waltz begins healing the party!")
    
 func InvigoratingGalliard():
@@ -44,5 +44,5 @@ func InvigoratingGalliard():
 	var partylist = get_tree().get_nodes_in_group("partymembers")
 	MPCost(30)
 	for n in partylist:
-	if n.HP != 0: StatMod("SPD", 1.25, 2)
+    if n.HP != 0: StatMod("SPD", 1.25, 2)
   CloseTurn(str(charname) + "'s Invigorating Galliad motivates the party. Speed increased!")
