@@ -2,14 +2,14 @@ extends Entity
 
 func _ready():
 	charname = "Kobold"
-	MaxHP = 150
-	HP = 150
+	MaxHP = 300
+	HP = 300
 	MaxMP = 5
 	MP = 5
 	STR = 15
-	DEF = 50
+	DEF = 60
 	SPD = 8
-	RES = 20
+	RES = 30
 	row = "Front"
 	enemy = true
 
@@ -34,10 +34,9 @@ func _ready():
 		"true": 0
 	}
 
-func mTurn(targetlist):
-	Turn()
-	if HP == 0: return # stops enemies who died from DoTs from attacking
-	target = DecideTarget(targetlist)
+func Turn():
+	.Turn()
+	target = DecideTarget(enemytargetlist)
 	var rng = RNG()
 	AttackList(target, rng)
 

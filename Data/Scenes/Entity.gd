@@ -59,7 +59,7 @@ var statmodtimer = {}
 
 var statres = {
 	"poison": 40,
-	"stun": 40,
+	"stun": 0,
 	"burn": 40,
 	"blind": 40,
 	"seal": 40,
@@ -88,6 +88,7 @@ var Selector
 var skilllist
 var sealedskilllist
 var status:Array
+var enemytargetlist
 
 var DEFbonus = 1
 
@@ -98,13 +99,16 @@ func _ready():
 func Turn():
 	StatModCountDown()
 	StatusEffects()
+	# CombatGUI.StatusLabels(self) < this is almost working but really buggin so disabling for now. 
+
 	#this check is to stop the turn if the player dies from DoT damage
 	if HP == 0:
 		CloseTurn("")
 	#skip turn if stunned - NOT WORKING
-	if status.has("stun"):
+	if "stun" in status:
 		status.erase("stun")
-		CloseTurn(charname + "misses their turn...")
+		yield(get_tree().create_timer(0.1), "timeout")
+		CloseTurn(charname + " misses their turn...")
 
 func SwitchRows():
 	if row == "Front":
@@ -238,11 +242,10 @@ func AttemptStatusAilment(type, amount, time):
 	if rng > statres[type]: 
 		if type == "poison" or "regen" or "burn":
 			DamageOverTime(type, amount, time)
-		else: 
+		if type == "stun" or "seal" or "marked" or "blind":
 			status.append(type)
 		EventHandler.BattleLog(charname + " has been inflicted with " + type + "!")
-		var statsprite
-		node.add_child(Sprite.new())
+		#CombatGUI.StatusLabels(self) < disabling until less buggy
 
 func DecideTarget(targetlist):
 	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy

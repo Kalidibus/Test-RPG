@@ -14,7 +14,7 @@ func GetEnemies():
 	
 	var num = RandomNumberGenerator.new()
 	num.randomize()
-	var rng = num.randi_range(1, 6)
+	var rng = 4 #num.randi_range(1, 6)
 	
 	match rng:
 		1:
