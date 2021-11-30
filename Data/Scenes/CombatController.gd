@@ -65,7 +65,6 @@ func SortbySpeed(a, b):
 	return a.SPD > b.SPD
 
 func play_turn():
-	yield(get_tree().create_timer(0.1), "timeout")
 	CheckWin()
 	
 	
@@ -78,6 +77,8 @@ func play_turn():
 		active_character.selectionBG.set_self_modulate("ffffff") 
 	active_character = battlers[new_index]
 	new_index += 1
+	
+	print(active_character.charname)
 	
 	if active_character.enemy == true:
 		active_character.selectionBG.set_self_modulate("4bff0a")
@@ -92,9 +93,10 @@ func play_turn():
 		active_character.Turn()
 		emit_signal("menuvis")
 		CombatGUI.AttackFocus()
+		
 
 func CheckWin(): #seperating this out into a seperate function allows the turn order to proceed quickly without any yields
-
+	yield(get_tree().create_timer(0.2), "timeout")
 	enemies = get_tree().get_nodes_in_group("enemies")
 	partylist = get_tree().get_nodes_in_group("partymembers")
 	emit_signal("update_players")
@@ -119,10 +121,8 @@ func Enemy_Attack():
 	for n in partylist:
 		if n.HP != 0:
 			targetlist.append(n)
-	attacker.enemytargetlist = targetlist
-	attacker.Turn()
+	attacker.mTurn(targetlist)
 	target = attacker.target
-	
 
 #when the defend button is pressed, active character will get 50% extra DEF. 
 func _on_Defend_pressed(): 

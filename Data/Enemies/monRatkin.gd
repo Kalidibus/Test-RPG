@@ -2,13 +2,13 @@ extends Entity
 
 func _ready():
 	charname = "Ratkin"
-	MaxHP = 180
-	HP = 180
+	MaxHP = 80
+	HP = 80
 	MaxMP = 5
 	MP = 5
 	STR = 40
-	DEF = 30
-	RES = 20
+	DEF = 20
+	RES = 3
 	SPD = 30
 	row = "Back"
 	enemy = true
@@ -34,10 +34,11 @@ func _ready():
 		"virtuos": 5,
 		"true": 0
 	}
-func Turn():
-	.Turn()
-	target = DecideTarget(enemytargetlist)
+func mTurn(targetlist):
+	target = DecideTarget(targetlist)
+	
 	var rng = RNG()
+	
 	AttackList(target, rng)
 
 func AttackList(target, rng):
