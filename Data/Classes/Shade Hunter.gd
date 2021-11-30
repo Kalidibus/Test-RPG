@@ -44,12 +44,12 @@ func BurningArrow2(target):
 	
 func BladedVolley():
 	if MPCheck(30) == "fail": return
-	var damage = (SPD * statmods["SPD"])
+	var damage = (SPD * statmods["SPD"])*0.6
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " fires a Bladed Volley!")
 	for target in enemies:
-		if row == "Back":
+		if target.row == "Back":
 			var adjusteddamage = target.take_damage(damage, "slash")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 	CloseTurn("")
@@ -70,7 +70,7 @@ func IsolatePrey():
 	if MPCheck(20) == "fail": return
 	CombatGUI.TargetList("IsolatePrey2")
 func IsolatePrey2(target):
-	var damage = max((SPD * statmods["SPD"])*0.5, (SPD * statmods["SPD"]) * target.status.count())
+	var damage = max((SPD * statmods["SPD"])*0.5, (SPD * statmods["SPD"]) * target.status.size())
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	MPCost(20)
 	CloseTurn(str(charname) + " strikes at the vitals of the weakened " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")

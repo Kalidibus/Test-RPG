@@ -3,14 +3,14 @@ class_name Raklak
 
 func _ready():
 	charname = "Raklak"
-	MaxHP = 140
-	HP = 140
+	MaxHP = 180
+	HP = 180
 	MaxMP = 5
 	MP = 5
 	STR = 40
-	DEF = 15
+	DEF = 30
 	SPD = 18
-	RES = 4
+	RES = 20
 	row = "Front"
 	enemy = true
 	
@@ -36,13 +36,10 @@ func _ready():
 	}
 
 
-func mTurn(targetlist):
-	Turn()
-	
-	target = DecideTarget(targetlist)
-	
+func Turn():
+	.Turn()
+	target = DecideTarget(enemytargetlist)
 	var rng = RNG()
-	
 	AttackList(target, rng)
 
 func AttackList(target, rng):

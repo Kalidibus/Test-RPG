@@ -28,7 +28,7 @@ var slot2 = {
 
 var slot3 = { 
 	"name":"Haruka",
-	"class":"Forest Healer",
+	"class":"Dancer",
 	"HP":999,
 	"MaxHP":999,
 	"MP":999,

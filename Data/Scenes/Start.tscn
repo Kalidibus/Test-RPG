@@ -59,7 +59,6 @@ custom_constants/separation = 15
 [node name="StartButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 108.0
 margin_bottom = 20.0
-button_mask = 0
 text = "Start the Game"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -69,7 +68,6 @@ __meta__ = {
 margin_top = 35.0
 margin_right = 108.0
 margin_bottom = 55.0
-button_mask = 0
 text = "Options"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -79,7 +77,6 @@ __meta__ = {
 margin_top = 70.0
 margin_right = 108.0
 margin_bottom = 90.0
-button_mask = 0
 text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false

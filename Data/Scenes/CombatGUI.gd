@@ -3,8 +3,10 @@ extends MarginContainer
 # Get blocks ready to be generated for the UI
 onready var enemylabels = preload("res://Scenes/EnemyLabel.tscn")
 onready var partylabels = preload("res://Scenes/PlayerBlock.tscn")
+onready var statusicon = preload("res://Scenes/StatusIcon.tscn")
 onready var secondmenu = $VBoxContainer/CenterContainer/HBoxContainer/SecondMenu
 onready var EventHandler = get_node("/root/CombatEventHandler")
+onready var CombatController = get_node("/root/CombatEventHandler/CombatController")
 
 var battlerscount
 var battlers
@@ -14,12 +16,12 @@ var skilllist
 var lastpushed = "Attack"
 
 signal skillpress
+signal children_deleted
 
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_cancel")):
 		ClearSecondMenu()
 		get_node("VBoxContainer/CenterContainer/HBoxContainer/Menu/" + lastpushed).grab_focus()
-		
 
 func TargetList(function):
 	ClearSecondMenu()
@@ -40,7 +42,7 @@ func TargetList(function):
 	label.text = "TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
-	secondmenu.get_child(1).grab_focus()
+	secondmenu.get_child(1).grab_focus() 
 
 func AllyTargetList(function):
 	ClearSecondMenu()
@@ -166,6 +168,7 @@ func delete_children(node):
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
+	emit_signal("children_deleted")
 
 func _on_Attack_pressed():
 	lastpushed = "Attack"
@@ -193,7 +196,6 @@ func _on_Switch_pressed():
 		frontrow.add_child(active_character.node)
 		if index < frontrow.get_child_count():
 			frontrow.move_child(active_character.node, index)
-
 
 func SetCharaSplash(active_character):
 	
@@ -229,3 +231,29 @@ func TakeDamageGUI(target):
 			target.selectionBG.set_self_modulate("ffffff")
 			yield(get_tree().create_timer(0.1), "timeout")
 		count -= 1
+	if target == CombatController.active_character: target.selectionBG.set_self_modulate("4bff0a")
+
+func StatusLabels(target):
+	var count = 0
+	var statuscount
+	var statuscontainer 
+	
+	if target.enemy == true: 
+		statuscontainer = target.node.get_node("BG/Stats/StatusContainer")
+	else:
+		statuscontainer = target.node.get_node("BG/StatusContainer")
+	
+	for n in target.status:
+		if n == "burn": statuscount = target.burncount
+		if n == "poison": statuscount = target.poisoncount
+		if n == "marked": statuscount = target.markedcount
+		if n == "seal": statuscount = target.sealcount
+		if n == "blind": statuscount = target.blindcount
+		if n == "regen": statuscount = target.regencount
+		else: statuscount = ""
+		
+		delete_children(statuscontainer)
+		yield(get_tree(), "idle_frame")
+		statuscontainer.add_child(statusicon.instance())
+		statuscontainer.get_child(count).SetStatus(n, statuscount)
+		count +=1
