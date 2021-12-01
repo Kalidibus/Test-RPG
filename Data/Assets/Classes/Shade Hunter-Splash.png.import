@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Shade Hunter-Splash.png-25677b58a27e161a17cf662ebfdd5b48.stex"
+path="res://.import/Shade Hunter-splash.png-112c1c304e073a5a7133e816fcf12b45.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Classes/Shade Hunter-Splash.png"
-dest_files=[ "res://.import/Shade Hunter-Splash.png-25677b58a27e161a17cf662ebfdd5b48.stex" ]
+source_file="res://Assets/Classes/Shade Hunter-splash.png"
+dest_files=[ "res://.import/Shade Hunter-splash.png-112c1c304e073a5a7133e816fcf12b45.stex" ]
 
 [params]
 

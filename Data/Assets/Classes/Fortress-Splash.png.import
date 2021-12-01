@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Fortress-Splash.png-fdc5fece84693f7cde88b80c7140edcb.stex"
+path="res://.import/Fortress-splash.png-80b27ce479ac9c0392a9a156b73206da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Classes/Fortress-Splash.png"
-dest_files=[ "res://.import/Fortress-Splash.png-fdc5fece84693f7cde88b80c7140edcb.stex" ]
+source_file="res://Assets/Classes/Fortress-splash.png"
+dest_files=[ "res://.import/Fortress-splash.png-80b27ce479ac9c0392a9a156b73206da.stex" ]
 
 [params]
 

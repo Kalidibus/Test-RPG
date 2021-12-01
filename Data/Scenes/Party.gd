@@ -15,7 +15,7 @@ var slot1 = {
 
 var slot2 = { 
 	"name":"Megumin",
-	"class":"Sorcerer",
+	"class":"Fel Mage",
 	"HP":999,
 	"MaxHP":999,
 	"MP":999,
@@ -28,7 +28,7 @@ var slot2 = {
 
 var slot3 = { 
 	"name":"Haruka",
-	"class":"Cleric",
+	"class":"Dancer",
 	"HP":999,
 	"MaxHP":999,
 	"MP":999,

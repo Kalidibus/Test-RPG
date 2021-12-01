@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Fel Mage-Splash.png-0cb4bda09ee25985737b9e112f278cbe.stex"
+path="res://.import/Fel Mage-splash.png-bfcf47649f03aaa54c003e108807ca71.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Classes/Fel Mage-Splash.png"
-dest_files=[ "res://.import/Fel Mage-Splash.png-0cb4bda09ee25985737b9e112f278cbe.stex" ]
+source_file="res://Assets/Classes/Fel Mage-splash.png"
+dest_files=[ "res://.import/Fel Mage-splash.png-bfcf47649f03aaa54c003e108807ca71.stex" ]
 
 [params]
 

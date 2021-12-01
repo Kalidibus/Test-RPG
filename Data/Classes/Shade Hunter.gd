@@ -13,7 +13,6 @@ func _ready():
 	row = "Back"
 	enemy = false
 	weapontype = "pierce"
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {
 	"Poison Arrow" : "An arrow dipped in Raklak poison secretions. Can inflict Poison.",

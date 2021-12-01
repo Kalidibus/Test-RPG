@@ -14,7 +14,6 @@ func _ready():
 	row = "Back"
 	enemy = false
 	weapontype = "impact"
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 
 	skilllist = {
 		"Fel Bolt" : "A Fel aspected attack, dealing moderate damage.",

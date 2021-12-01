@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Forest Healer-Splash.png-ed7fe60a013b458dd91941e6596ca102.stex"
+path="res://.import/Forest Healer-splash.png-cb21dfa83ecefc1893bf040e4e5a83e4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Classes/Forest Healer-Splash.png"
-dest_files=[ "res://.import/Forest Healer-Splash.png-ed7fe60a013b458dd91941e6596ca102.stex" ]
+source_file="res://Assets/Classes/Forest Healer-splash.png"
+dest_files=[ "res://.import/Forest Healer-splash.png-cb21dfa83ecefc1893bf040e4e5a83e4.stex" ]
 
 [params]
 

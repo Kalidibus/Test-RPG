@@ -13,7 +13,6 @@ func _ready():
 	row = "Front"
 	enemy = false
 	weapontype = "impact"
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {
 		"Crimson Rush": "Strikes an opponent with a flurry of blows. Scales with SPD and STR",

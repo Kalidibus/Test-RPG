@@ -19,7 +19,6 @@ func _ready():
 	row = "Front"
 	enemy = false
 	weapontype = "impact"
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {
 		"Taunt" : "Marks self, increasing odds of enemies targetting Fortress. Also increases base aggro.",
@@ -40,16 +39,15 @@ func Defend():
 func take_damage(damage, type):
 	.take_damage(damage, type)
 	if PASSIVE_accumulate_ire == true: ire += 1
+	print(ire)
 
 func Taunt():
 	if MPCheck(10) == "fail": return
 	
 	var previousvalue = statres["marked"]
 	statres["marked"] = 0
-	print(statres)
 	if not status.has("marked"):
 		AttemptStatusAilment("marked", 80, 2)
-	print(statres)
 	statres["marked"] = previousvalue
 	HATE += 50
 	MPCost(10)

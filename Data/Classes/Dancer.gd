@@ -16,7 +16,6 @@ func _ready():
 	row = "Front"
 	enemy = false
 	weapontype = "slash"
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {
 		"Raptor Samba" : "Increases Party-wide Strength",

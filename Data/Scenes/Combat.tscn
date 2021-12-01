@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/CombatController.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/AridEncounters1.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/CombatEventHandler.gd" type="Script" id=5]
-[ext_resource path="res://Assets/Classes/Fortress-Splash.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Classes/Fortress-splash.png" type="Texture" id=6]
 [ext_resource path="res://Assets/backgrounds/RWYZIs.jpg" type="Texture" id=7]
 [ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=8]
 
