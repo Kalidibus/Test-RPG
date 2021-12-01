@@ -28,6 +28,7 @@ var dead = false
 var HATE
 var ref_hate
 var combo
+var weapontype
 
 var poison
 var poisoncount
@@ -59,7 +60,7 @@ var statmodtimer = {}
 
 var statres = {
 	"poison": 40,
-	"stun": 0,
+	"stun": 40,
 	"burn": 40,
 	"blind": 40,
 	"seal": 40,
@@ -99,12 +100,12 @@ func _ready():
 func Turn():
 	StatModCountDown()
 	StatusEffects()
-	# CombatGUI.StatusLabels(self) < this is almost working but really buggin so disabling for now. 
+	CombatGUI.StatusLabels(self)
 
 	#this check is to stop the turn if the player dies from DoT damage
 	if HP == 0:
 		CloseTurn("")
-	#skip turn if stunned - NOT WORKING
+	#skip turn if stunned
 	if "stun" in status:
 		status.erase("stun")
 		yield(get_tree().create_timer(0.1), "timeout")
@@ -177,24 +178,10 @@ func StatusEffects():
 		if regencount == 0:
 			status.erase("regen")
 
-func DamageOverTime(type, amount, time):
-	if type == "poison":
-		status.append("poison")
-		poison = amount
-		poisoncount = time
-	if type == "burn":
-		status.append("burn")
-		burn = amount
-		burncount = time
-	if type == "regen":
-		status.append("regen")
-		regen = amount
-		regencount = time
-
 func Attack(target):
 	CombatController.emit_signal("menuhide")
 	var damage = STR * statmods["STR"]
-	var adjusteddamage = target.take_damage(damage, "impact") #fix this later. Will need to be an input from the character depending on class or weapon type. 
+	var adjusteddamage = target.take_damage(damage, weapontype) 
 	
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
@@ -240,12 +227,22 @@ func AttemptStatusAilment(type, amount, time):
 	var rng = RNG()
 	
 	if rng > statres[type]: 
-		if type == "poison" or "regen" or "burn":
-			DamageOverTime(type, amount, time)
-		if type == "stun" or "seal" or "marked" or "blind":
-			status.append(type)
+		status.append(type)
+		if type == "poison":
+			poison = amount
+			poisoncount = time
+		elif type == "burn":
+			burn = amount
+			burncount = time
+		elif type == "regen":
+			regen = amount
+			regencount = time
+		elif type == "marked":
+			markedamount = amount
+			markedcount = time
+
 		EventHandler.BattleLog(charname + " has been inflicted with " + type + "!")
-		#CombatGUI.StatusLabels(self) < disabling until less buggy
+		CombatGUI.StatusLabels(self)# < disabling until less buggy
 
 func DecideTarget(targetlist):
 	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy

@@ -134,18 +134,19 @@ valign = 2
 [node name="PlayerGUIFront" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
 margin_top = 736.0
 margin_right = 1880.0
-margin_bottom = 886.0
+margin_bottom = 916.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 0, 150 )
+rect_min_size = Vector2( 0, 180 )
 custom_constants/separation = 380
 alignment = 1
 
 [node name="PlayerGUIBack" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
-margin_top = 890.0
+margin_top = 920.0
 margin_right = 1880.0
 margin_bottom = 1040.0
-rect_min_size = Vector2( 0, 150 )
+rect_min_size = Vector2( 0, 120 )
+size_flags_horizontal = 9
 custom_constants/separation = 380
 alignment = 1
 

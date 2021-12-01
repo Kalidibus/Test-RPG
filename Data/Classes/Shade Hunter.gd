@@ -12,6 +12,7 @@ func _ready():
 	HATE = 50
 	row = "Back"
 	enemy = false
+	weapontype = "pierce"
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {
@@ -62,7 +63,6 @@ func PlateCrusher2(target):
 	var adjusteddamage = target.take_damage(damage, "impact")
 	MPCost(20)
 	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment("burn", 70, 2)
 	var rng = RNG()
 	if rng >= 50: target.StatMod("DEF", 0.6, 2)
 

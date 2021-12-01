@@ -13,6 +13,7 @@ func _ready():
 	HATE = 30
 	row = "Back"
 	enemy = false
+	weapontype = "impact"
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 
 	skilllist = {

@@ -35,9 +35,6 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
 func UpdateStats(HP, MP):
 	path.get_child(1).text = "HP: " + str(HP) + "/" + str(baseMaxHP)
 	path.get_child(2).text = "MP: " + str(MP) + "/" + str(baseMaxMP)
-	#path.get_child(3).value = HP
-	#path.get_child(4).value = MP
 
 func SetImage(string):
-	print(string)
 	$BG/TextureRect.set_texture(load(string))

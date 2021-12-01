@@ -18,6 +18,7 @@ func _ready():
 	HATE = 100
 	row = "Front"
 	enemy = false
+	weapontype = "impact"
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {
@@ -42,9 +43,14 @@ func take_damage(damage, type):
 
 func Taunt():
 	if MPCheck(10) == "fail": return
-	if not status.has("marked"): status.append("marked")
-	markedamount = 80
-	markedcount = 2
+	
+	var previousvalue = statres["marked"]
+	statres["marked"] = 0
+	print(statres)
+	if not status.has("marked"):
+		AttemptStatusAilment("marked", 80, 2)
+	print(statres)
+	statres["marked"] = previousvalue
 	HATE += 50
 	MPCost(10)
 	CloseTurn(str(charname) + " draws enemy attention!")

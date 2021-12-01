@@ -1,7 +1,7 @@
 extends Entity
 
 func _ready():
-	charname = "Forest Healer"
+	charname = "Cleric"
 	MaxHP = 75
 	HP = 75
 	MaxMP = 125
@@ -15,6 +15,7 @@ func _ready():
 	HATE = 50
 	row = "Back"
 	enemy = false
+	weapontype = "impact"
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {

@@ -243,17 +243,25 @@ func StatusLabels(target):
 	else:
 		statuscontainer = target.node.get_node("BG/StatusContainer")
 	
+	delete_children(statuscontainer)
+	
 	for n in target.status:
-		if n == "burn": statuscount = target.burncount
-		if n == "poison": statuscount = target.poisoncount
-		if n == "marked": statuscount = target.markedcount
-		if n == "seal": statuscount = target.sealcount
-		if n == "blind": statuscount = target.blindcount
-		if n == "regen": statuscount = target.regencount
-		else: statuscount = ""
+		if n == "burn": 
+			statuscount = target.burncount
+		elif n == "poison": 
+			statuscount = target.poisoncount
+		elif n == "marked": 
+			statuscount = target.markedcount
+		elif n == "seal": 
+			statuscount = target.sealcount
+		elif n == "blind": 
+			statuscount = target.blindcount
+		elif n == "regen": 
+			statuscount = target.regencount
+		else: 
+			statuscount = 1
 		
-		delete_children(statuscontainer)
-		yield(get_tree(), "idle_frame")
 		statuscontainer.add_child(statusicon.instance())
+		yield(get_tree(), "idle_frame")
 		statuscontainer.get_child(count).SetStatus(n, statuscount)
 		count +=1

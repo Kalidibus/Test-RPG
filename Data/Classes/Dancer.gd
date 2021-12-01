@@ -15,6 +15,7 @@ func _ready():
 	HATE = 60
 	row = "Front"
 	enemy = false
+	weapontype = "slash"
 	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	skilllist = {
@@ -37,7 +38,7 @@ func SoothingWaltz():
 	var partylist = get_tree().get_nodes_in_group("partymembers")
 	MPCost(30)
 	for n in partylist:
-		if n.HP != 0: n.AttemptStatusAilment("regen", 30, 2)
+		if n.HP != 0: n.AttemptStatusAilment("regen", 30, 3)
 	CloseTurn(str(charname) + "'s Soothing Waltz begins healing the party!")
    
 func InvigoratingGalliard():
