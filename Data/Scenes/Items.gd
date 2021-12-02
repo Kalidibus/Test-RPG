@@ -37,24 +37,27 @@ func Consume(string):
 	if inventory[string] == 0:
 		inventory.erase(string)
 
-func CloseTurn(string):
-	CombatGUI.ClearSecondMenu()
-	EventHandler.BattleLog(string)
-	yield(get_tree().create_timer(0.5), "timeout")
-	CombatController.play_turn()
+func CloseTurn(active_character, string=""):
+	active_character.CloseTurn()
 
-
-func Bomb():
+func Bomb(active_character):
+	Globals.CombatGUI.QueueAction(active_character, "UseItem")
+	active_character.queueditem = funcref(self, "Bomb2")
+func Bomb2(active_character):
 	GetScenes()
 	GetEnemies() 
 
 	for n in enemies:
 		n.take_damage(35, "impact")
 		EventHandler.BattleLog("The " + str(n.charname) + " takes 35 damage from the explosion!")
+		yield(get_tree().create_timer(0.5), "timeout")
 	Consume("Bomb")
-	CloseTurn("")
+	CloseTurn(active_character)
 
-func Potion():
+func Potion(active_character):
+	Globals.CombatGUI.QueueAction(active_character, "UseItem")
+	active_character.queueditem = funcref(self, "Potion2")
+func Potion2(active_character):
 	GetScenes()
 	GetParty()
 
@@ -62,5 +65,6 @@ func Potion():
 		if n.HP != 0:
 			n.get_healed(35)
 			EventHandler.BattleLog("The potion restores " + str(n.charname) + " for 35 health!")
+			yield(get_tree().create_timer(0.5), "timeout")
 	Consume("Potion")
-	CloseTurn("")
+	CloseTurn(active_character)

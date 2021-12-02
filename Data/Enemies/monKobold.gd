@@ -36,9 +36,15 @@ func _ready():
 
 func Turn():
 	.Turn()
-	target = DecideTarget(enemytargetlist)
-	var rng = RNG()
-	AttackList(target, rng)
+	if dead: 
+		CloseTurn("")
+	elif status.has("stun"):
+		status.erase("stun")
+		CloseTurn(charname + " misses their turn...")
+	else:
+		target = DecideTarget()
+		var rng = RNG()
+		AttackList(target, rng)
 
 func AttackList(target, rng):
 	if rng <= 75:
@@ -50,15 +56,16 @@ func AttackList(target, rng):
 
 func mAttack(target):
 	var damage:int = STR * statmods["STR"]
-	EventHandler.BattleLog("The " + str(charname) + " draws its rusty axe and strikes " + str(target.charname) + " for " + str(damage) + " damage!")
-	target.take_damage(damage, "slash")
+	var adjusteddamage = target.take_damage(damage, "slash")
+	CloseTurn("The " + str(charname) + " draws its rusty axe and strikes " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
 func Bludgeon(target):
 	var damage:int = 2 * STR * statmods["STR"]
-	EventHandler.BattleLog("The " + str(charname) + " emits a bloodcurdling shriek and bludgeons " + str(target.charname) + " fiercly for " + str(damage) + " damage!!!")
-	target.take_damage(damage, "impact")
+	var adjusteddamage = target.take_damage(damage, "impact")
+	CloseTurn("The " + str(charname) + " emits a bloodcurdling shriek and bludgeons " + str(target.charname) + " fiercly for " + str(adjusteddamage) + " damage!!!")
 	target.AttemptStatusAilment("stun", 0, 0)
+	
 
 func mDefend():
 	StatMod("DEF", 1.5, 0)
-	EventHandler.BattleLog("The " + str(charname) + " hides behind a tattered shield...")
+	CloseTurn("The " + str(charname) + " hides behind a tattered shield...")

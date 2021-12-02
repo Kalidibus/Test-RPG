@@ -26,6 +26,8 @@ func _ready():
 
 func RaptorSamba():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "RaptorSamba2")
+func RaptorSamba2():
 	var partylist = get_tree().get_nodes_in_group("partymembers")
 	MPCost(30)
 	for n in partylist:
@@ -34,6 +36,8 @@ func RaptorSamba():
   
 func SoothingWaltz():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "SoothingWaltz2")
+func SoothingWaltz2():
 	var partylist = get_tree().get_nodes_in_group("partymembers")
 	MPCost(30)
 	for n in partylist:
@@ -42,6 +46,8 @@ func SoothingWaltz():
    
 func InvigoratingGalliard():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "InvigoratingGalliard2")
+func InvigoratingGalliard2():
 	var partylist = get_tree().get_nodes_in_group("partymembers")
 	MPCost(30)
 	for n in partylist:
@@ -50,12 +56,15 @@ func InvigoratingGalliard():
 
 func WhirlingBlades():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "WhirlingBlades2")
+func WhirlingBlades2():
 	var damage = (STR * statmods["STR"])*0.6
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " performs a whirling dance of blades!")
 	for target in enemies:
-		if target.row == "Front":
+		if target.row == "Front" and target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "slash")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			yield(get_tree().create_timer(0.5), "timeout")
 	CloseTurn("")

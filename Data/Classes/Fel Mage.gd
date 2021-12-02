@@ -64,50 +64,68 @@ func InfernoBolt2(target):
 	CloseTurn(str(charname) + " launches a bolt of molten Inferno at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
 func FelPact():
+	CombatGUI.QueueAction(self, "FelPact2")
+func FelPact2():
 	take_damage(20, "true")
 	MPCost(-20)
 	CloseTurn(str(charname) + " exchanges blood for power. MP restored!")
 	
 func FelStorm():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "FelStorm2")
+func FelStorm2():
 	var damage = (INT * statmods["INT"])/2
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " unleashes a Fel Storm!")
 	for target in enemies:
-		var adjusteddamage = target.take_damage(damage, "fel")
-		EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+		if target.HP != 0:
+			var adjusteddamage = target.take_damage(damage, "fel")
+			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			yield(get_tree().create_timer(0.5), "timeout")
 	CloseTurn("The storm abates...")
 
 func DeepStorm():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "DeepStorm2")
+func DeepStorm2():
 	var damage = (INT * statmods["INT"])/2
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " unleashes a Deep Storm!")
 	for target in enemies:
-		var adjusteddamage = target.take_damage(damage, "deep")
-		EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+		if target.HP != 0:
+			var adjusteddamage = target.take_damage(damage, "deep")
+			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			yield(get_tree().create_timer(0.5), "timeout")
 	CloseTurn("The storm abates...")
 
 func LevinStorm():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "LevinStorm2")
+func LevinStorm2():
 	var damage = (INT * statmods["INT"])/2
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " unleashes a Levin Storm!")
 	for target in enemies:
-		var adjusteddamage = target.take_damage(damage, "levin")
-		EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+		if target.HP != 0:
+			var adjusteddamage = target.take_damage(damage, "levin")
+			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			yield(get_tree().create_timer(0.5), "timeout")
 	CloseTurn("The storm abates...")
 
 func InfernoStorm():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "InfernoStorm2")
+func InfernoStorm2():
 	var damage = (INT * statmods["INT"])/2
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " unleashes an Inferno Storm!")
 	for target in enemies:
-		var adjusteddamage = target.take_damage(damage, "inferno")
-		EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+		if target.HP != 0:
+			var adjusteddamage = target.take_damage(damage, "inferno")
+			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			yield(get_tree().create_timer(0.5), "timeout")
 	CloseTurn("The storm abates...")

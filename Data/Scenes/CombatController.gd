@@ -2,6 +2,7 @@ extends Node
 class_name CombatController
 
 var active_character
+var active_enemy
 var target
 var attacker
 var damage : int
@@ -16,121 +17,90 @@ signal menuhide
 signal menuvis
 signal AttackList
 signal update_players
+signal player_turns_selected
+signal all_turns_selected
 
-onready var CombatGUI = get_node("/root/CombatEventHandler/CombatGUI")
 
-#at ready calls the Select Character method.
-func _ready():
-	pass
 
+# Gets enemy list from currently stated location which is randomly generated. 
 func GetEnemies(currentzone):
 	currentzone.GetEnemies()
 
-# Reads the dictinary in the Party node to get the info needed
+# Reads the dictinary in the Party node to get the info needed.
 func GetParty():
-	if party.slot1.empty() != true:
-		var slot1class = party.slot1.get("class")	
-		var slot1 = load("res://Classes/" + slot1class + ".tscn")
-		$Battlers.add_child(slot1.instance())
-	if party.slot2.empty() != true:
-		var slot2class = party.slot2.get("class")	
-		var slot2 = load("res://Classes/" + slot2class + ".tscn")
-		$Battlers.add_child(slot2.instance())
-	if party.slot3.empty() != true:
-		var slot3class = party.slot3.get("class")	
-		var slot3 = load("res://Classes/" + slot3class + ".tscn")
-		$Battlers.add_child(slot3.instance())
-	if party.slot4.empty() != true:
-		var slot4class = party.slot4.get("class")	
-		var slot4 = load("res://Classes/" + slot4class + ".tscn")
-		$Battlers.add_child(slot4.instance())
-	if party.slot5.empty() != true:
-		var slot5class = party.slot5.get("class")	
-		var slot5 = load("res://Classes/" + slot5class + ".tscn")
-		$Battlers.add_child(slot5.instance())
+	for n in party.party:
+			var charclass = party.party[n].get("class")
+			var slot = load("res://Classes/" + charclass + ".tscn")
+			var node = slot.instance()
+			$Battlers.add_child(node)
+			node.slot = n
 
-func SetSelector():
+func MainBattleLoop():
+	PartyTurnOrder()
+	EnemyTurnOrder()
+	yield(self, "all_turns_selected")
+	Globals.ActionQueue.PlayRound()
+
+func PartyTurnOrder():
 	partylist = get_tree().get_nodes_in_group("partymembers")
-	for n in partylist:
-		n.Selector = get_node("../Selector")
-
-func SelectCharacter(): 
-	battlers = $Battlers.get_children()
-	battlers.sort_custom(self, "SortbySpeed")
+	var count = 0
+	var combatover = false
 	
-	active_character = battlers[0]
-	play_turn()
+	while count < partylist.size():
+		active_character = partylist[count]
+		if CheckWin() == true: # for death from DoTs during player turn
+			combatover = true
+			break
+		elif active_character.HP == 0: 
+			count += 1
+		elif active_character.status.has("stun"):
+			active_character.Turn()
+			count += 1
+		else:
+			active_character.selectionBG.set_self_modulate("4bff0a")
+			Globals.CombatGUI.Selector()
+			Globals.CombatGUI.SetCharaSplash(active_character)
+			active_character.Turn()
+			emit_signal("menuvis")
+			Globals.CombatGUI.AttackFocus()
+			
+			count += 1
+			yield(Globals.CombatGUI, "turn_selected")
+			active_character.selectionBG.set_self_modulate("ffffff")
+			Globals.CombatGUI.ClearCharaSplash()
+			emit_signal("menuhide")
+	active_character = null #resetting to avoid visual errors
+	if combatover == false: emit_signal("player_turns_selected")
 
-func SortbySpeed(a, b):
-	return a.SPD > b.SPD
+func EnemyTurnOrder():
+	yield(self, "player_turns_selected")
+	enemies = get_tree().get_nodes_in_group("enemies")
+	for n in enemies:
+		Globals.CombatGUI.QueueAction(n, "Turn")
 
-func play_turn():
-	yield(get_tree().create_timer(0.1), "timeout")
-	CheckWin()
-	
-	
-	get_parent().get_child(0).ClearCharaSplash()
+	emit_signal("all_turns_selected")
 
-	if new_index >= battlers.size():
-		new_index = 0
-	#this check prevents a crash if something dies during it's turn from poison etc
-	if is_instance_valid(active_character): 
-		active_character.selectionBG.set_self_modulate("ffffff") 
-	active_character = battlers[new_index]
-	new_index += 1
-	
-	if active_character.enemy == true:
-		active_character.selectionBG.set_self_modulate("4bff0a")
-		Enemy_Attack()
-		play_turn()
-	if active_character.dead == true: #for player characters only
-		play_turn()
-		return
-	if active_character.enemy == false:
-		active_character.selectionBG.set_self_modulate("4bff0a")
-		CombatGUI.SetCharaSplash(active_character)
-		active_character.Turn()
-		emit_signal("menuvis")
-		CombatGUI.AttackFocus()
-
-func CheckWin(): #seperating this out into a seperate function allows the turn order to proceed quickly without any yields
-
+func CheckWin(): #checked each turn by the ActionQueue
 	enemies = get_tree().get_nodes_in_group("enemies")
 	partylist = get_tree().get_nodes_in_group("partymembers")
 	emit_signal("update_players")
-	
-	# checks if you've defeated all the enemies, and calls the win() function
-	if enemies.size() == 0:
-		win()
-		return
-	
-	# checks if all your units are at 0 HP, and calls the lose() function
+
+
 	var count = 0
 	for n in partylist:
 		if n.HP == 0:
 			count += 1
 		if count == partylist.size(): 
 			lose()
-			return
-
-func Enemy_Attack():
-	attacker = active_character
-	var targetlist = []
-	for n in partylist:
-		if n.HP != 0:
-			targetlist.append(n)
-	attacker.enemytargetlist = targetlist
-	attacker.Turn()
-	target = attacker.target
+			return true
 	
-
-#when the defend button is pressed, active character will get 50% extra DEF. 
-func _on_Defend_pressed(): 
-	get_parent().get_child(0).ClearSecondMenu()
-	emit_signal("menuhide")
-	active_character.Defend()
-	
-	play_turn()
+	var ecount = 0
+	for m in enemies:
+		if m.HP == 0:
+			ecount += 1
+		if ecount == enemies.size(): 
+			win()
+			return true
 
 #quits the game
 func _on_Exit_pressed(): 

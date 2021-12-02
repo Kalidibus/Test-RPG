@@ -44,14 +44,17 @@ func BurningArrow2(target):
 	
 func BladedVolley():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "BladedVolley2")
+func BladedVolley2():
 	var damage = (SPD * statmods["SPD"])*0.6
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " fires a Bladed Volley!")
 	for target in enemies:
-		if target.row == "Back":
+		if target.row == "Back" and target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "slash")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			yield(get_tree().create_timer(0.5), "timeout")
 	CloseTurn("")
 
 func PlateCrusher():

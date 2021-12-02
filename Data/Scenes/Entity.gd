@@ -29,6 +29,8 @@ var HATE
 var ref_hate
 var combo
 var weapontype
+var slot
+var queueditem
 
 var poison
 var poisoncount
@@ -93,6 +95,7 @@ var enemytargetlist
 
 var DEFbonus = 1
 
+signal turn_complete
 
 func _ready():
 	pass
@@ -103,13 +106,13 @@ func Turn():
 	CombatGUI.StatusLabels(self)
 
 	#this check is to stop the turn if the player dies from DoT damage
-	if HP == 0:
+	if dead:
 		CloseTurn("")
 	#skip turn if stunned
-	if "stun" in status:
+	if status.has("stun"):
 		status.erase("stun")
-		yield(get_tree().create_timer(0.1), "timeout")
 		CloseTurn(charname + " misses their turn...")
+
 
 func SwitchRows():
 	if row == "Front":
@@ -188,23 +191,21 @@ func Attack(target):
 func Defend():
 	StatMod("DEF", 1.5, 0)
 	
-	EventHandler.BattleLog(str(charname) + " defends herself!")
+	CloseTurn(str((charname) + " defends herself!"))
 
 func take_damage (damage, type):
-	var adjusteddamage	
-
+	var adjusteddamage
 	if HP == 0: return #to prevent multi-attacks from triggering die() multiple times
 	
 	if type == "impact" or "slash" or "pierce":
-		adjusteddamage = damage * (100 / (100+(float(DEF) * statmods["DEF"])))
-		adjusteddamage = adjusteddamage * (1 - (float(damageres[type]) / 100.00))
+		adjusteddamage = max(1, damage * (100 / (100+(float(DEF) * statmods["DEF"]))))
+		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 	if type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
-		adjusteddamage = damage * (100 / (100+(float(RES) * statmods["RES"])))
-		adjusteddamage = adjusteddamage * (1 - (float(damageres[type]) / 100.00))
+		adjusteddamage = max(1, damage * (100 / (100+(float(RES) * statmods["RES"]))))
+		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 
 	if type == "true":
 		adjusteddamage = damage
-
 	HP -= int(adjusteddamage)
 	HP = max(0, HP)
 	
@@ -231,23 +232,41 @@ func AttemptStatusAilment(type, amount, time):
 		if type == "poison":
 			poison = amount
 			poisoncount = time
+			EventHandler.BattleLog(charname + " has been inflicted with poison!")
 		elif type == "burn":
 			burn = amount
 			burncount = time
+			EventHandler.BattleLog(charname + " has been blinded!")
 		elif type == "regen":
 			regen = amount
 			regencount = time
 		elif type == "marked":
 			markedamount = amount
 			markedcount = time
+			EventHandler.BattleLog(charname + " has been marked!")
+		elif type == "blind":
+			EventHandler.BattleLog(charname + " has been blinded!")
+		elif type == "seal":
+			EventHandler.BattleLog(charname + "'s Skills are sealed!")
 
-		EventHandler.BattleLog(charname + " has been inflicted with " + type + "!")
-		CombatGUI.StatusLabels(self)# < disabling until less buggy
+		CombatGUI.StatusLabels(self)
 
-func DecideTarget(targetlist):
+func UseItem():
+	print("useitems" + str(queueditem))
+	print(charname)
+	queueditem.call_func(self)
+
+func DecideTarget():
 	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
 	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
 	var rng = RNG()
+	var partylist = get_tree().get_nodes_in_group("partymembers")
+	
+	var targetlist = []
+	
+	for n in partylist:
+		if n.HP != 0:
+			targetlist.append(n)
 	
 	for n in targetlist:
 		if n.status.has("marked"):
@@ -286,15 +305,22 @@ func MPCost(MPcost):
 	MP = min(MaxMP, MP)
 	EventHandler.UpdateStats(self, HP, MP)
 
-func CloseTurn(string):
+func CloseTurn(string=""):
 	CombatGUI.ClearSecondMenu()
 	EventHandler.BattleLog(string)
-	CombatController.play_turn()
+	yield(get_tree().create_timer(0.5), "timeout")
+	emit_signal("turn_complete")
 
 func dies():
 	if enemy == true:
-		CombatController.battlers.erase(self)
-		node.queue_free()
-		queue_free()
+		dead = true
+		#CombatController.battlers.erase(self)
+		node.visible = false
+		#queue_free()
 	else:
 		dead = true
+		status = []
+		for n in statmods:
+			if statmods[n] != 1:
+					statmods[n] = 1
+					statmodtimer.erase(n)

@@ -37,13 +37,13 @@ func Defend():
 	PASSIVE_accumulate_ire = true
 
 func take_damage(damage, type):
-	.take_damage(damage, type)
 	if PASSIVE_accumulate_ire == true: ire += 1
-	print(ire)
+	.take_damage(damage, type)
 
 func Taunt():
 	if MPCheck(10) == "fail": return
-	
+	else: CombatGUI.QueueAction(self, "Taunt2")
+func Taunt2():
 	var previousvalue = statres["marked"]
 	statres["marked"] = 0
 	if not status.has("marked"):
@@ -58,9 +58,9 @@ func Vanguard():
 	else: CombatGUI.TargetList("Vanguard2")
 func Vanguard2(target):
 	var damage = DEF * statmods["DEF"]
-	target.take_damage(damage, "impact")
+	var adjusteddamage = target.take_damage(damage, "impact")
 	MPCost(40)
-	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(damage) + " damage!")
+	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
 func Bastion():
 	if MPCheck(40) == "fail": return
@@ -73,6 +73,8 @@ func Bastion2(target):
 
 func Embolden():
 	if MPCheck(20) == "fail": return
+	else: CombatGUI.QueueAction(self, "Embolden2")
+func Embolden2():
 	MPCost(20)
 	StatMod("DEF", 1.25, 2)
 	CloseTurn(str(charname) + " takes on a defensive stances! DEF Increased.")
@@ -84,7 +86,7 @@ func SkullSplitter():
 	else: CombatGUI.TargetList("SkullSplitter2")
 func SkullSplitter2(target):
 	var damage = DEF * statmods["DEF"] + STR * statmods["STR"]
-	target.take_damage(damage, "impact")
+	var adjusteddamage = target.take_damage(damage, "impact")
 	ire -= 1
-	CloseTurn(str(charname) + " uses Ire to perform a crushing overhead blow! to " + str(target.charname) + "!")
+	CloseTurn(str(charname) + " uses Ire to perform a crushing overhead blow! to " + str(target.charname) + ", dealing" + str(adjusteddamage) + " damage!")
 	target.AttemptStatusAilment("stun", 0, 0)

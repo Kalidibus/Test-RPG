@@ -6,15 +6,12 @@ onready var battlers = get_node("CombatController/Battlers")
 onready var currentzone = $CombatController/AridEncounters1
 
 func _ready():
+	Globals.GetCombatGlobals()
 	$CombatController.GetEnemies(currentzone)
 	$CombatController.GetParty()
-	$CombatController.SetSelector()
 	$CombatGUI.CreateLabels(battlers)
 	
-	$CombatGUI.battlers = $CombatController/Battlers.get_children()
-	$CombatGUI.battlerscount = $CombatController/Battlers.get_child_count()
-	
-	$CombatController.SelectCharacter()
+	$CombatController.MainBattleLoop()
 
 func UpdateStats(target, HP, MP):
 	$CombatGUI.UpdateStats(target, HP, MP)

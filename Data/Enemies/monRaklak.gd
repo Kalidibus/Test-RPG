@@ -38,9 +38,15 @@ func _ready():
 
 func Turn():
 	.Turn()
-	target = DecideTarget(enemytargetlist)
-	var rng = RNG()
-	AttackList(target, rng)
+	if dead: 
+		CloseTurn("")
+	elif status.has("stun"):
+		status.erase("stun")
+		CloseTurn(charname + " misses their turn...")
+	else:
+		target = DecideTarget()
+		var rng = RNG()
+		AttackList(target, rng)
 
 func AttackList(target, rng):
 	if rng <= 100:
@@ -51,5 +57,5 @@ func mAttack(target):
 	
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	
-	EventHandler.BattleLog("The " + str(charname) + " bites " + str(target.charname) + " with venomous fangs for " + str(adjusteddamage) + " damage!")
+	CloseTurn("The " + str(charname) + " bites " + str(target.charname) + " with venomous fangs for " + str(adjusteddamage) + " damage!")
 	target.AttemptStatusAilment("poison", 20, 3)

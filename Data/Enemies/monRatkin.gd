@@ -36,9 +36,15 @@ func _ready():
 	}
 func Turn():
 	.Turn()
-	target = DecideTarget(enemytargetlist)
-	var rng = RNG()
-	AttackList(target, rng)
+	if dead: 
+		CloseTurn("")
+	elif status.has("stun"):
+		status.erase("stun")
+		CloseTurn(charname + " misses their turn...")
+	else:
+		target = DecideTarget()
+		var rng = RNG()
+		AttackList(target, rng)
 
 func AttackList(target, rng):
 	if rng <= 50:
@@ -50,18 +56,14 @@ func AttackList(target, rng):
 
 func mAttack(target):
 	var damage:int = STR * statmods["STR"]
-	
-	EventHandler.BattleLog("The " + str(charname) + " unveils a twisted dagger and stabs into " + str(target.charname) + " for " + str(damage) + " damage!")
-	
-	target.take_damage(damage, "pierce")
+	var adjusteddamage = target.take_damage(damage, "pierce")
+	CloseTurn("The " + str(charname) + " unveils a twisted dagger and stabs into " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
 func Scratch(target):
 	var damage:int = 2 * STR*statmods["STR"]
-	EventHandler.BattleLog("The " + str(charname) + " salivates while raking " + str(target.charname) + " wildly with claws for " + str(damage) + " damage!!!")
-	
-	target.take_damage(damage, "slash")
+	var adjusteddamage = target.take_damage(damage, "slash")
+	CloseTurn("The " + str(charname) + " salivates while raking " + str(target.charname) + " wildly with claws for " + str(damage) + " damage!!!")
 
 func mDefend():
 	StatMod("DEF", 1.5, 0)
-
-	EventHandler.BattleLog("The " + str(charname) + " scampers behind nearby rubble...")
+	CloseTurn("The " + str(charname) + " scampers behind nearby rubble...")

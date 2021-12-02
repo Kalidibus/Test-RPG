@@ -8,8 +8,6 @@ onready var secondmenu = $VBoxContainer/CenterContainer/HBoxContainer/SecondMenu
 onready var EventHandler = get_node("/root/CombatEventHandler")
 onready var CombatController = get_node("/root/CombatEventHandler/CombatController")
 
-var battlerscount
-var battlers
 var enemies = []
 var partylist = []
 var skilllist
@@ -17,6 +15,7 @@ var lastpushed = "Attack"
 
 signal skillpress
 signal children_deleted
+signal turn_selected
 
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_cancel")):
@@ -26,17 +25,16 @@ func _process(delta):
 func TargetList(function):
 	ClearSecondMenu()
 	
-	var active_character = get_parent().GetSkills()
+	var active_character = EventHandler.GetSkills()
 	
 	for n in enemies:
-		if is_instance_valid(n) == false: pass #try to fix a crash
+		if n.dead == true: pass 
 		else:
 			var button = TargetButton.new()
 			button.text = n.charname
 			button.target = n
-			button.connect("pressed", active_character, function, [n])
+			button.connect("pressed", self, "QueueAction", [active_character, function, n])
 			secondmenu.add_child(button)
-			secondmenu.move_child(button, 0)
 
 	var label = Label.new()
 	label.text = "TARGET"
@@ -46,13 +44,13 @@ func TargetList(function):
 
 func AllyTargetList(function):
 	ClearSecondMenu()
-	var active_character = get_parent().GetSkills()
+	var active_character = EventHandler.GetSkills()
 	
 	for n in partylist:
 		var button = TargetButton.new()
 		button.text = n.charname
 		button.target = n
-		button.connect("pressed", active_character, function, [n])
+		button.connect("pressed", self, "QueueAction", [active_character, function, n])
 		secondmenu.add_child(button)
 		secondmenu.move_child(button, 0)	
 	
@@ -72,13 +70,14 @@ func CreateLabels(battlecat):
 	var enemylblcount = 0
 	var partycountfront = 0
 	var partycountback = 0
+	var count = 0
 	
-	while fighters > 0:
-		if childitems[fighters-1].enemy == true:
+	while count < fighters:
+		if childitems[count].enemy == true:
 			var enemy = enemylabels.instance()
 			$VBoxContainer/EnemyGUI.add_child(enemy)
 			var box = $VBoxContainer/EnemyGUI.get_child(enemylblcount)
-			var i = childitems[fighters-1]
+			var i = childitems[count]
 			box.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			box.set_name(i.charname + "Block")
 			enemies.append(i)
@@ -86,14 +85,15 @@ func CreateLabels(battlecat):
 			i.selectionBG = box.get_child(0)
 			enemylblcount += 1
 			
-		if childitems[fighters-1].enemy == false:
-			var i = childitems[fighters-1]
+		if childitems[count].enemy == false:
+			var i = childitems[count]
 			var party = partylabels.instance()
 			var pbox
 			
 			if i.row == "Front":
 				$VBoxContainer/PlayerGUIFront.add_child(party)
 				pbox = $VBoxContainer/PlayerGUIFront.get_child(partycountfront)
+				
 				partycountfront += 1
 			else:
 				$VBoxContainer/PlayerGUIBack.add_child(party)
@@ -107,7 +107,7 @@ func CreateLabels(battlecat):
 			i.selectionBG = pbox.get_child(0) #for the selection
 			
 			
-		fighters -= 1
+		count += 1
 
 func UpdateStats(target, HP, MP):
 	target.node.UpdateStats(HP, MP)
@@ -117,7 +117,7 @@ func UpdateStats(target, HP, MP):
 		$Tween.start()	
 
 func BattleLog(string):
-	$VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer/BattleLog.text += "\n" + str(string)
+	if string != "": $VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer/BattleLog.text += "\n" + str(string)
 	var scroll = $VBoxContainer/CenterContainer/HBoxContainer/ScrollContainer
 	yield(get_tree(), "idle_frame")
 	scroll.scroll_vertical = scroll.get_v_scrollbar().max_value
@@ -145,21 +145,31 @@ func _on_Skills_pressed():
 func _on_Items_pressed():
 	lastpushed = "Items"
 	ClearSecondMenu()
-	for n in Items.inventory:
-		var item = n
-		var itemdesc = Items.items[n]
-		
-		var skillnode = load("res://Scenes/SkillNode.tscn").instance()
-		secondmenu.add_child(skillnode)
-		skillnode.SetSkill(item, itemdesc)
-		skillnode.get_child(0).connect("pressed", Items, n)
+	if Items.inventory.empty():
+		BattleLog("No Items")
+	else:
+		for n in Items.inventory:
+			var item = n
+			var itemdesc = Items.items[n]
+			var active_character = Globals.CombatController.active_character
+			
+			var skillnode = load("res://Scenes/SkillNode.tscn").instance()
+			secondmenu.add_child(skillnode)
+			skillnode.SetSkill(item, itemdesc)
+			skillnode.get_child(0).connect("pressed", Items, n, [active_character])
 	
 	
-	var label = Label.new()
-	label.text = "ITEMS"
-	secondmenu.add_child(label)
-	secondmenu.move_child(label, 0)
-	secondmenu.get_child(1).get_child(0).grab_focus()
+		var label = Label.new()
+		label.text = "ITEMS"
+		secondmenu.add_child(label)
+		secondmenu.move_child(label, 0)
+		secondmenu.get_child(1).get_child(0).grab_focus()
+
+#when the defend button is pressed, active character will get 50% extra DEF. 
+func _on_Defend_pressed(): 
+	ClearSecondMenu()
+	emit_signal("menuhide")
+	QueueAction(Globals.CombatController.active_character, "Defend")
 
 func ClearSecondMenu():
 	delete_children(secondmenu)
@@ -231,7 +241,8 @@ func TakeDamageGUI(target):
 			target.selectionBG.set_self_modulate("ffffff")
 			yield(get_tree().create_timer(0.1), "timeout")
 		count -= 1
-	if target == CombatController.active_character: target.selectionBG.set_self_modulate("4bff0a")
+	if target == Globals.CombatController.active_character: 
+		target.selectionBG.set_self_modulate("4bff0a")
 
 func StatusLabels(target):
 	var count = 0
@@ -265,3 +276,22 @@ func StatusLabels(target):
 		yield(get_tree(), "idle_frame")
 		statuscontainer.get_child(count).SetStatus(n, statuscount)
 		count +=1
+
+func QueueAction(active_character, action_string, target = null):
+	ClearSecondMenu()
+	
+	var function = funcref(active_character, action_string)
+	print("queued" + active_character.charname + action_string)
+	var action = {"name" : active_character, 
+		"action": function,
+		"target": target,
+		"speed" : active_character.SPD
+		}
+	Globals.ActionQueue.queuedactions.append(action)
+	emit_signal("turn_selected")
+
+func Selector():
+	pass
+	#print(Globals.CombatController.active_character)
+	#var location = Globals.CombatController.active_character.node.get_pos()
+	#Globals.Selector.set_pos(location)

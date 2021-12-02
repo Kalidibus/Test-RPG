@@ -30,21 +30,24 @@ func CrimsonRush2(target):
 	var damage = (STR+SPD)/4
 	combo = "CrimsonRush"
 	MPCost(15)
-	var adjusteddamage = target.take_damage(damage, "impact")
-	target.take_damage(damage, "impact")
-	target.take_damage(damage, "impact")
-	EventHandler.BattleLog(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")	
-	EventHandler.BattleLog(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
-	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
+	for number in range(3):
+		var adjusteddamage = target.take_damage(damage, "impact")
+		EventHandler.BattleLog(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
+		yield(get_tree().create_timer(0.5), "timeout")
+	CloseTurn("")
 
 func BastardSpirit():
 	if MPCheck(15) == "fail": return
+	else: CombatGUI.QueueAction(self, "BastardSpirit2")
+func BastardSpirit2():
 	MPCost(15)
 	StatMod("STR", 1.25, 2)
 	CloseTurn(str(charname) + " draws upon her Bastard Spirit. STR Increased.")
 
 func LunaticSpirit():
 	if MPCheck(20) == "fail": return
+	else: CombatGUI.QueueAction(self, "LunaticSpirit2")
+func LunaticSpirit2():
 	MPCost(20)
 	StatMod("STR", 1.5, 2)
 	StatMod("SPD", 1.5, 2)
@@ -69,18 +72,24 @@ func VermillionDance():
 		EventHandler.BattleLog("Combo not ready!")
 		return
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "VermillionDance2")
+func VermillionDance2():
 	MPCost(30)
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	var damage = STR+SPD * 1.3
 	EventHandler.BattleLog(str(charname) + " unleashes the Vermillion Dance!")
 	for target in enemies:
-		var adjusteddamage = target.take_damage(damage, "impact")
-		EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+		if target.HP != 0:
+			var adjusteddamage = target.take_damage(damage, "impact")
+			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			yield(get_tree().create_timer(0.5), "timeout")
 	combo = ""
 	CloseTurn("The dance ends...")
 
 func ShearGrit():
 	if MPCheck(30) == "fail": return
+	else: CombatGUI.QueueAction(self, "ShearGrit2")
+func ShearGrit2():
 	get_healed(MaxHP*0.5)
 	MPCost(30)
 	CloseTurn(str(charname) + " grits her teeth through the pain. HP recovered!")
