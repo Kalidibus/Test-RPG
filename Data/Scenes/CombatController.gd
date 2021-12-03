@@ -36,6 +36,7 @@ func GetParty():
 			node.slot = n
 
 func MainBattleLoop():
+	yield(get_tree().create_timer(0.1), "timeout")
 	PartyTurnOrder()
 	EnemyTurnOrder()
 	yield(self, "all_turns_selected")
@@ -49,7 +50,7 @@ func PartyTurnOrder():
 	while count < partylist.size():
 		active_character = partylist[count]
 		if CheckWin() == true: # for death from DoTs during player turn
-			combatover = true
+			combatover = true #used to stop combat when one side dead
 			break
 		elif active_character.HP == 0: 
 			count += 1
@@ -57,8 +58,8 @@ func PartyTurnOrder():
 			active_character.Turn()
 			count += 1
 		else:
-			active_character.selectionBG.set_self_modulate("4bff0a")
-			Globals.CombatGUI.Selector()
+			print(active_character.node.get_node("BG").rect_position)
+			Globals.CombatGUI.Selector(active_character.node.get_node("BG").rect_global_position)
 			Globals.CombatGUI.SetCharaSplash(active_character)
 			active_character.Turn()
 			emit_signal("menuvis")
@@ -66,11 +67,11 @@ func PartyTurnOrder():
 			
 			count += 1
 			yield(Globals.CombatGUI, "turn_selected")
-			active_character.selectionBG.set_self_modulate("ffffff")
 			Globals.CombatGUI.ClearCharaSplash()
 			emit_signal("menuhide")
 	active_character = null #resetting to avoid visual errors
-	if combatover == false: emit_signal("player_turns_selected")
+	Globals.Selector.visible = false
+	if combatover == false: emit_signal("player_turns_selected") #as long as combat hasn't been stopped, start the next turn
 
 func EnemyTurnOrder():
 	yield(self, "player_turns_selected")

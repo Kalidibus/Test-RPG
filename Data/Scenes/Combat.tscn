@@ -1,13 +1,18 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/ActionQueue.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/CombatGUI.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/CombatController.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/AridEncounters1.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/CombatEventHandler.gd" type="Script" id=5]
-[ext_resource path="res://Assets/icon.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/Selector.png" type="Texture" id=6]
 [ext_resource path="res://Assets/backgrounds/RWYZIs.jpg" type="Texture" id=7]
 [ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_hdr_threshold = 1.5
 
 [node name="CombatEventHandler" type="Node"]
 script = ExtResource( 5 )
@@ -38,14 +43,14 @@ alignment = 1
 [node name="CenterContainer" type="MarginContainer" parent="CombatGUI/VBoxContainer"]
 margin_top = 4.0
 margin_right = 1880.0
-margin_bottom = 732.0
+margin_bottom = 856.0
 size_flags_vertical = 3
 custom_constants/margin_left = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer"]
 margin_left = 50.0
 margin_right = 1880.0
-margin_bottom = 728.0
+margin_bottom = 852.0
 
 [node name="Menu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 visible = false
@@ -96,23 +101,23 @@ __meta__ = {
 }
 
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
-margin_top = 364.0
+margin_top = 426.0
 margin_right = 809.0
-margin_bottom = 364.0
+margin_bottom = 426.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
 [node name="Container" type="Container" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 813.0
 margin_right = 1623.0
-margin_bottom = 728.0
+margin_bottom = 852.0
 size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 1627.0
-margin_top = 239.0
+margin_top = 301.0
 margin_right = 1830.0
-margin_bottom = 489.0
+margin_bottom = 551.0
 rect_min_size = Vector2( 0, 250 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -131,23 +136,16 @@ text = "Battle Log:"
 align = 2
 valign = 2
 
-[node name="PlayerGUIFront" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
-margin_top = 736.0
+[node name="PlayerGUI" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
+margin_top = 860.0
 margin_right = 1880.0
-margin_bottom = 916.0
+margin_bottom = 1040.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 0, 180 )
-custom_constants/separation = 380
-alignment = 1
-
-[node name="PlayerGUIBack" type="HBoxContainer" parent="CombatGUI/VBoxContainer"]
-margin_top = 920.0
-margin_right = 1880.0
-margin_bottom = 1040.0
-rect_min_size = Vector2( 0, 120 )
-size_flags_horizontal = 9
-custom_constants/separation = 380
+size_flags_horizontal = 5
+size_flags_vertical = 5
+custom_constants/separation = -500
 alignment = 1
 
 [node name="CharaSplash" type="Sprite" parent="CombatGUI"]
@@ -176,6 +174,7 @@ margin_right = 2268.0
 margin_bottom = 1150.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -184,12 +183,18 @@ position = Vector2( 939, 224 )
 scale = Vector2( 1.39398, 1.39398 )
 z_as_relative = false
 texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ActionQueue" parent="." instance=ExtResource( 1 )]
 
 [node name="Selector" type="Sprite" parent="."]
-position = Vector2( 2186, 1037 )
+modulate = Color( 10.41, 0.01, 0.01, 0.8 )
 texture = ExtResource( 6 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
 
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatGUI" method="_on_Attack_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatController" method="_on_Attack_pressed"]

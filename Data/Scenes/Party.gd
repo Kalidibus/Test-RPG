@@ -15,7 +15,7 @@ var party = {
 },
 	2: { 
 	"name":"Haruka",
-	"class":"Dancer",
+	"class":"Cleric",
 	"HP":999,
 	"MaxHP":999,
 	"MP":999,

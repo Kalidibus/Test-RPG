@@ -1,49 +1,52 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/PlayerBlock.gd" type="Script" id=1]
-[ext_resource path="res://Assets/UI/PartyLabel.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Classes/Fortress-profile.png" type="Texture" id=3]
-[ext_resource path="res://Assets/UI/EightBitDragon-anqx.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Classes/Fortress-PartyLabel.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/Rearguard-label.png" type="Texture" id=3]
+[ext_resource path="res://Assets/UI/Fonts/M2PRegular-00xo.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/UI/bar_under.png" type="Texture" id=5]
 [ext_resource path="res://Assets/UI/MP_bar_progress.png" type="Texture" id=6]
 [ext_resource path="res://Assets/UI/HP_bar_progress.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/Vanguard-label.png" type="Texture" id=8]
 
 [sub_resource type="Theme" id=1]
 
 [sub_resource type="DynamicFont" id=2]
-size = 29
+size = 30
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 4 )
 
 [node name="PlayerBlock" type="Control"]
-anchor_left = 0.179
-anchor_top = 0.093
-anchor_right = 0.179
-anchor_bottom = 0.093
-margin_left = -229.12
-margin_top = -66.96
-margin_right = 1050.88
-margin_bottom = 653.04
+anchor_left = 0.062
+anchor_top = 0.138
+anchor_right = 0.062
+anchor_bottom = 0.138
+margin_left = -119.04
+margin_top = -149.04
+margin_right = 117.96
+margin_bottom = 149.96
 grow_horizontal = 2
 grow_vertical = 2
-rect_min_size = Vector2( 120, 40 )
-rect_scale = Vector2( 0.75, 0.75 )
+size_flags_horizontal = 7
+size_flags_vertical = 7
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_horizontal_guides_": [  ],
 "_edit_use_anchors_": true
 }
 
 [node name="BG" type="NinePatchRect" parent="."]
-anchor_left = 0.233
-anchor_top = 0.114
-anchor_right = 0.233
-anchor_bottom = 0.114
-margin_left = -306.24
-margin_top = -87.08
-margin_right = 305.76
-margin_bottom = 86.92
-rect_min_size = Vector2( 100, 20 )
-size_flags_horizontal = 6
-size_flags_vertical = 6
+anchor_left = 0.5
+anchor_top = 0.202341
+anchor_right = 0.5
+anchor_bottom = 0.202341
+margin_left = -118.5
+margin_top = -149.5
+margin_right = 118.5
+margin_bottom = 149.498
+size_flags_horizontal = 7
+size_flags_vertical = 7
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -61,31 +64,27 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="BG/Stats"]
-anchor_left = 0.592
-anchor_top = 0.117
-anchor_right = 0.592
-anchor_bottom = 0.117
+anchor_left = -1.94411
+anchor_top = -0.588557
+anchor_right = -1.94411
+anchor_bottom = -0.37189
 margin_left = -69.04
 margin_top = -15.02
 margin_right = 68.96
 margin_bottom = 14.98
-grow_horizontal = 2
-grow_vertical = 2
 theme = SubResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.803922, 0.803922, 0.803922, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "blahblah"
-align = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="HP" type="Label" parent="BG/Stats"]
-margin_left = -113.333
-margin_top = 51.6667
-margin_right = 6.6667
-margin_bottom = 65.6667
+margin_left = -316.333
+margin_top = 10.6667
+margin_right = -196.333
+margin_bottom = 24.6667
 text = "PH"
 align = 1
 __meta__ = {
@@ -93,10 +92,10 @@ __meta__ = {
 }
 
 [node name="MP" type="Label" parent="BG/Stats"]
-margin_left = -146.667
-margin_top = 80.3333
-margin_right = -26.6667
-margin_bottom = 94.3333
+margin_left = -206.333
+margin_top = 11.6667
+margin_right = -86.3327
+margin_bottom = 25.6667
 text = "blah"
 align = 1
 __meta__ = {
@@ -104,11 +103,13 @@ __meta__ = {
 }
 
 [node name="HPBar" type="TextureProgress" parent="BG/Stats"]
-margin_left = -51.3333
-margin_top = 38.6667
-margin_right = 337.667
-margin_bottom = 59.6667
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -303.333
+margin_top = 27.6667
+margin_right = 85.667
+margin_bottom = 48.6667
+rect_scale = Vector2( 0.25, 0.6 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 value = 70.0
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 7 )
@@ -117,11 +118,11 @@ __meta__ = {
 }
 
 [node name="MPBar" type="TextureProgress" parent="BG/Stats"]
-margin_left = -78.6666
-margin_top = 68.3333
-margin_right = 310.333
-margin_bottom = 89.3333
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -195.333
+margin_top = 27.6667
+margin_right = 211.667
+margin_bottom = 48.6667
+rect_scale = Vector2( 0.25, 0.6 )
 value = 60.0
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 6 )
@@ -129,14 +130,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="BG"]
-margin_left = 60.0
-margin_top = -19.0
-margin_right = 434.0
-margin_bottom = 415.0
-rect_scale = Vector2( 0.4, 0.4 )
+[node name="Vanguardlabel" type="TextureRect" parent="BG"]
+margin_left = 51.0
+margin_top = 296.0
+margin_right = 425.0
+margin_bottom = 730.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Readguardlabel" type="TextureRect" parent="BG"]
+margin_left = 54.0
+margin_top = -24.0
+margin_right = 428.0
+margin_bottom = 410.0
 texture = ExtResource( 3 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 

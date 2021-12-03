@@ -68,8 +68,7 @@ func CreateLabels(battlecat):
 	var childitems = battlecat.get_children()
 	
 	var enemylblcount = 0
-	var partycountfront = 0
-	var partycountback = 0
+	var partycount = 0
 	var count = 0
 	
 	while count < fighters:
@@ -90,19 +89,14 @@ func CreateLabels(battlecat):
 			var party = partylabels.instance()
 			var pbox
 			
-			if i.row == "Front":
-				$VBoxContainer/PlayerGUIFront.add_child(party)
-				pbox = $VBoxContainer/PlayerGUIFront.get_child(partycountfront)
-				
-				partycountfront += 1
-			else:
-				$VBoxContainer/PlayerGUIBack.add_child(party)
-				pbox = $VBoxContainer/PlayerGUIBack.get_child(partycountback)
-				partycountback += 1
+			$VBoxContainer/PlayerGUI.add_child(party)
+			pbox = $VBoxContainer/PlayerGUI.get_child(partycount)
+			partycount += 1
 			
 			pbox.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			pbox.set_name(i.charname + "Block")
-			pbox.SetImage("res://Assets/Classes/" + i.charname + "-profile.png" )
+			pbox.SetImage("res://Assets/Classes/" + i.charname + "-PartyLabel.png" )
+			pbox.SwitchRows(i)
 			i.node = pbox #so the overall node can be referred to
 			i.selectionBG = pbox.get_child(0) #for the selection
 			
@@ -185,27 +179,10 @@ func _on_Attack_pressed():
 	ClearSecondMenu()
 	TargetList("Attack")
 
-func _on_Switch_pressed():
-	var frontrow = $VBoxContainer/PlayerGUIFront
-	var backrow = $VBoxContainer/PlayerGUIBack
-	var active_character = EventHandler.GetActiveChar()
-	var parentnode = active_character.node.get_parent().name
-	var index = active_character.node.get_index()
-	
+func _on_Switch_pressed(): #needs to be fixed for new card style config
+	var active_character = Globals.CombatController.active_character
 	active_character.SwitchRows()
-	
-	if parentnode == "PlayerGUIFront":
-		frontrow.remove_child(active_character.node)
-		backrow.add_child(active_character.node)
-		
-		if index < backrow.get_child_count():
-			backrow.move_child(active_character.node, index)
-		
-	else:
-		backrow.remove_child(active_character.node)
-		frontrow.add_child(active_character.node)
-		if index < frontrow.get_child_count():
-			frontrow.move_child(active_character.node, index)
+	active_character.node.SwitchRows(active_character)
 
 func SetCharaSplash(active_character):
 	
@@ -241,8 +218,6 @@ func TakeDamageGUI(target):
 			target.selectionBG.set_self_modulate("ffffff")
 			yield(get_tree().create_timer(0.1), "timeout")
 		count -= 1
-	if target == Globals.CombatController.active_character: 
-		target.selectionBG.set_self_modulate("4bff0a")
 
 func StatusLabels(target):
 	var count = 0
@@ -290,8 +265,25 @@ func QueueAction(active_character, action_string, target = null):
 	Globals.ActionQueue.queuedactions.append(action)
 	emit_signal("turn_selected")
 
-func Selector():
-	pass
-	#print(Globals.CombatController.active_character)
-	#var location = Globals.CombatController.active_character.node.get_pos()
-	#Globals.Selector.set_pos(location)
+func Selector(pos):
+	Globals.Selector.visible = true
+	Globals.Selector.position = pos + Vector2(120, -85)
+	var position = Globals.Selector.position
+	var position2 = Globals.Selector.position + Vector2(0, -10) 
+	var ac = Globals.CombatController.active_character
+	
+	while ac == Globals.CombatController.active_character:
+		$Tween.interpolate_property(Globals.Selector, "position",
+			position, position2, 0.5,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		yield(get_tree().create_timer(0.5), "timeout")
+		if ac != Globals.CombatController.active_character: 
+			break
+		else:
+			$Tween.start()
+			$Tween.interpolate_property(Globals.Selector, "position",
+				position2, position, 0.5,
+				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			$Tween.start()
+			yield(get_tree().create_timer(0.5), "timeout")
+
