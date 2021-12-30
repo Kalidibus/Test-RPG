@@ -26,7 +26,7 @@ func PlayRound():
 			active_character.status.erase("stun")
 			Globals.CombatGUI.BattleLog(active_character.charname + " misses their turn...")
 			yield(get_tree().create_timer(0.5), "timeout")
-		elif target != null and target.dead == true:
+		elif target != null and target.dead == true and n["action_string"] != "Raise":
 			Globals.CombatGUI.BattleLog("Nothing to target...")
 			yield(get_tree().create_timer(0.5), "timeout")
 		else: 

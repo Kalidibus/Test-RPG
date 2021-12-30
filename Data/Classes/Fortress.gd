@@ -6,7 +6,7 @@ var ire = 0
 func _ready():
 	charname = "Fortress"
 	MaxHP = 125
-	HP = 125
+	HP = 1
 	MaxMP = 80
 	MP = 80
 	STR = 50
@@ -38,7 +38,9 @@ func Defend():
 
 func take_damage(damage, type):
 	if PASSIVE_accumulate_ire == true: ire += 1
-	.take_damage(damage, type)
+	var adjusteddamage = .take_damage(damage, type)
+	
+	return int(adjusteddamage)
 
 func Taunt():
 	if MPCheck(10) == "fail": return

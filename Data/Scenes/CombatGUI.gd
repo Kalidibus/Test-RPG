@@ -256,11 +256,11 @@ func QueueAction(active_character, action_string, target = null):
 	ClearSecondMenu()
 	
 	var function = funcref(active_character, action_string)
-	print("queued" + active_character.charname + action_string)
 	var action = {"name" : active_character, 
 		"action": function,
 		"target": target,
-		"speed" : active_character.SPD
+		"speed" : active_character.SPD,
+		"action_string" : action_string
 		}
 	Globals.ActionQueue.queuedactions.append(action)
 	emit_signal("turn_selected")

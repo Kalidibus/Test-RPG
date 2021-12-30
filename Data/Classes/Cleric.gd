@@ -58,13 +58,13 @@ func DivineBolt2(target):
 
 func Resurrect():
 	if MPCheck(50) == "fail": return
-	else: CombatGUI.AllyTargetList("Resurrect2")
-func Resurrect2(target):
+	else: CombatGUI.AllyTargetList("Raise")
+func Raise(target): #any function that revives needs to be called Raise so it doesn't get cancelled by the auto-queue
 	if target.HP != 0:
-		EventHandler.BattleLog("This target is not dead!")
-		return
-	var heal = FTH
-	target.get_healed(heal)
-	target.dead = false
-	MPCost(50)
-	CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
+		CloseTurn(str(target.charname) + " is not dead!")
+	else:
+		var heal = FTH
+		target.get_healed(heal)
+		target.dead = false
+		MPCost(50)
+		CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
