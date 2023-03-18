@@ -29,16 +29,16 @@ func _ready():
 	}
 
 func Turn():
-	.Turn() #calls the parent Turn function. 
+	super.Turn() #calls the parent Turn function. 
 	PASSIVE_accumulate_ire = false #reset ire accumulation
 
 func Defend():
-	.Defend()
+	super.Defend()
 	PASSIVE_accumulate_ire = true
 
 func take_damage(damage, type):
 	if PASSIVE_accumulate_ire == true: ire += 1
-	var adjusteddamage = .take_damage(damage, type)
+	var adjusteddamage = super.take_damage(damage, type)
 	
 	return int(adjusteddamage)
 

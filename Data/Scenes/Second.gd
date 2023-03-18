@@ -16,4 +16,4 @@ func _ready():
 #	pass
 
 func _on_ReturnButton_pressed():
-	get_tree().change_scene("res://Scenes/Start.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Start.tscn")

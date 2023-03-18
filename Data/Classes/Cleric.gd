@@ -59,7 +59,7 @@ func DivineBolt2(target):
 func Resurrect():
 	if MPCheck(50) == "fail": return
 	else: CombatGUI.AllyTargetList("Raise")
-func Raise(target): #any function that revives needs to be called Raise so it doesn't get cancelled by the auto-queue
+func Raise(target): #any function that revives needs to be called Raise so it doesn't get canceled by the auto-queue
 	if target.HP != 0:
 		CloseTurn(str(target.charname) + " is not dead!")
 	else:

@@ -33,7 +33,7 @@ func CrimsonRush2(target):
 	for number in range(3):
 		var adjusteddamage = target.take_damage(damage, "impact")
 		EventHandler.BattleLog(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 	CloseTurn("")
 
 func BastardSpirit():
@@ -82,7 +82,7 @@ func VermillionDance2():
 		if target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "impact")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 	combo = ""
 	CloseTurn("The dance ends...")
 

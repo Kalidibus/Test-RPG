@@ -35,7 +35,7 @@ func _ready():
 		"true": 0
 	}
 func Turn():
-	.Turn()
+	super.Turn()
 	if dead: 
 		CloseTurn("")
 	elif status.has("stun"):

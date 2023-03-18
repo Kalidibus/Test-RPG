@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgfj21p534fww"]
+
+[ext_resource type="Script" path="res://Scenes/Dungeon/Player.gd" id="1_mv5d6"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0.5)]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "Step"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0.5), Vector3(0.02, 1.02, 0.5), Vector3(0, 1, 0.5), Vector3(-0.02, 1.02, 0.5), Vector3(0, 1, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_mn8li"]
+resource_name = "Step_Collide"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0.5), Vector3(0.02, 1.02, 0.5), Vector3(0, 1, 0.5), Vector3(-0.02, 1.02, 0.5), Vector3(0, 1, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbg3q"]
+_data = {
+"RESET": SubResource("1"),
+"Step": SubResource("2"),
+"Step_Collide": SubResource("Animation_mn8li")
+}
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_mv5d6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1, 0.5)
+
+[node name="Light3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(1, 0.996078, 0.835294, 1)
+light_energy = 0.4
+shadow_enabled = true
+omni_range = 7.66
+omni_attenuation = 1.56917
+
+[node name="RayForward" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayBack" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, 2)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayRight" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(2, 0, 0)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayLeft" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(-2, 0, 0)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(1, 0.956863, 0.835294, 1)
+light_energy = 2.0
+spot_attenuation = 2.37841
+spot_angle = 64.36
+spot_angle_attenuation = 3.03143
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hbg3q")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

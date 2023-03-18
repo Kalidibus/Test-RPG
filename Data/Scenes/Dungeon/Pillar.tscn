@@ -1,0 +1,99 @@
+[gd_scene load_steps=17 format=3 uid="uid://bbe8380e2xo65"]
+
+[ext_resource type="Script" path="res://Scenes/Dungeon/Cell.gd" id="1_1og5q"]
+[ext_resource type="ArrayMesh" uid="uid://b5fkspr4e3sr" path="res://Scenes/Dungeon/Floor.obj" id="2_riwmk"]
+[ext_resource type="Texture2D" uid="uid://ctj2b4ckf00l4" path="res://Scenes/Dungeon/Floor.png" id="3_jnx57"]
+[ext_resource type="Texture2D" uid="uid://dymp4mnqcrqkt" path="res://Scenes/Dungeon/FloorNormals.png" id="4_7b3w7"]
+[ext_resource type="ArrayMesh" uid="uid://bktepnomnsamq" path="res://Scenes/Dungeon/Pillar.obj" id="5_uog6c"]
+[ext_resource type="Texture2D" uid="uid://bddvuqvm6iyxs" path="res://Scenes/Dungeon/Wall.png" id="6_dytf1"]
+[ext_resource type="ArrayMesh" uid="uid://bs6335gcykt40" path="res://Scenes/Dungeon/Wall.obj" id="7_akyxm"]
+[ext_resource type="Texture2D" uid="uid://ncn14uex701l" path="res://Scenes/Dungeon/WallNormals.png" id="8_ycnvp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltcnj"]
+albedo_texture = ExtResource("3_jnx57")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("4_7b3w7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj6hk"]
+albedo_texture = ExtResource("3_jnx57")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("4_7b3w7")
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6011k"]
+albedo_texture = ExtResource("6_dytf1")
+uv1_scale = Vector3(8, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rbne7"]
+albedo_texture = ExtResource("6_dytf1")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("8_ycnvp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmead"]
+albedo_texture = ExtResource("6_dytf1")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("8_ycnvp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4eah1"]
+albedo_texture = ExtResource("6_dytf1")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("8_ycnvp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18udm"]
+albedo_texture = ExtResource("6_dytf1")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("8_ycnvp")
+
+[node name="Cell" type="Area3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_1og5q")
+
+[node name="TopFace" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 2, 0)
+mesh = ExtResource("2_riwmk")
+surface_material_override/0 = SubResource("StandardMaterial3D_ltcnj")
+
+[node name="BottomFace" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_riwmk")
+surface_material_override/0 = SubResource("StandardMaterial3D_pj6hk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("2")
+
+[node name="Pillar" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_uog6c")
+surface_material_override/0 = SubResource("StandardMaterial3D_6011k")
+
+[node name="NorthFace" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 4.37114e-08, -4.37114e-08, -4.37114e-08, 4.37114e-08, 1, 4.37114e-08, 1, -4.37114e-08, 0, 1, -1)
+mesh = ExtResource("7_akyxm")
+skeleton = NodePath("../BottomFace")
+surface_material_override/0 = SubResource("StandardMaterial3D_rbne7")
+
+[node name="EastFace" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, 1, -1, 4.37114e-08, -4.37114e-08, 1, 1, 0)
+mesh = ExtResource("7_akyxm")
+skeleton = NodePath("../BottomFace")
+surface_material_override/0 = SubResource("StandardMaterial3D_rmead")
+
+[node name="SouthFace" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1.31134e-07, 1, -4.37114e-08, -1, 1.31134e-07, 0, 1, 1)
+mesh = ExtResource("7_akyxm")
+skeleton = NodePath("../BottomFace")
+surface_material_override/0 = SubResource("StandardMaterial3D_4eah1")
+
+[node name="WestFace" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, -4.37114e-08, 8.74228e-08, 1, 1, -4.37114e-08, 4.37114e-08, -1, 1, 0)
+mesh = ExtResource("7_akyxm")
+skeleton = NodePath("../BottomFace")
+surface_material_override/0 = SubResource("StandardMaterial3D_18udm")

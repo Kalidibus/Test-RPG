@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://rurfjmtlkk3"]
+
+[ext_resource type="Script" path="res://Scenes/Battle Scenes/PlayerBlock.gd" id="1_t78d7"]
+[ext_resource type="Texture2D" uid="uid://diwcq2vq3fbux" path="res://Assets/Classes/Fortress-PartyLabel.png" id="2_s1gq7"]
+[ext_resource type="Texture2D" uid="uid://drac0yxtmd00b" path="res://Assets/UI/bar_under.png" id="3_88ycv"]
+[ext_resource type="Texture2D" uid="uid://cnvglr0j77jl6" path="res://Assets/UI/HP_bar_progress.png" id="4_ha8tl"]
+[ext_resource type="Texture2D" uid="uid://daiq7i2a0xvoq" path="res://Assets/UI/MP_bar_progress.png" id="5_j2kek"]
+[ext_resource type="Texture2D" uid="uid://bt6h2tc03pfo7" path="res://Assets/UI/Vanguard-label.png" id="6_f7g7u"]
+[ext_resource type="Texture2D" uid="uid://snrt3cxg6j71" path="res://Assets/UI/Rearguard-label.png" id="7_1hj5l"]
+
+[sub_resource type="Theme" id="1"]
+
+[node name="PlayerBlock" type="Control"]
+layout_mode = 3
+anchor_left = 0.062
+anchor_top = 0.138
+anchor_right = 0.062
+anchor_bottom = 0.138
+offset_left = -119.04
+offset_top = -149.04
+offset_right = 117.96
+offset_bottom = 149.96
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 7
+size_flags_vertical = 7
+script = ExtResource("1_t78d7")
+
+[node name="BG" type="NinePatchRect" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.202341
+anchor_right = 0.5
+anchor_bottom = 0.202341
+offset_left = -118.5
+offset_top = -149.5
+offset_right = 118.5
+offset_bottom = 149.498
+size_flags_horizontal = 7
+size_flags_vertical = 7
+texture = ExtResource("2_s1gq7")
+
+[node name="Stats" type="Control" parent="BG"]
+anchors_preset = 0
+offset_left = 317.333
+offset_top = 62.3333
+offset_right = 437.333
+offset_bottom = 122.333
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Name" type="Label" parent="BG/Stats"]
+layout_mode = 0
+anchor_left = -1.94411
+anchor_top = -0.588557
+anchor_right = -1.94411
+anchor_bottom = -0.37189
+offset_left = -69.04
+offset_top = -15.02
+offset_right = 68.96
+offset_bottom = 14.98
+theme = SubResource("1")
+text = "blahblah"
+
+[node name="HP" type="Label" parent="BG/Stats"]
+layout_mode = 0
+offset_left = -316.333
+offset_top = 10.6667
+offset_right = -196.333
+offset_bottom = 24.6667
+text = "PH"
+
+[node name="MP" type="Label" parent="BG/Stats"]
+layout_mode = 0
+offset_left = -206.333
+offset_top = 11.6667
+offset_right = -86.3327
+offset_bottom = 25.6667
+text = "blah"
+
+[node name="HPBar" type="TextureProgressBar" parent="BG/Stats"]
+layout_mode = 0
+offset_left = -303.333
+offset_top = 27.6667
+offset_right = 85.667
+offset_bottom = 48.6667
+scale = Vector2(0.25, 0.6)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+value = 70.0
+texture_under = ExtResource("3_88ycv")
+texture_progress = ExtResource("4_ha8tl")
+
+[node name="MPBar" type="TextureProgressBar" parent="BG/Stats"]
+layout_mode = 0
+offset_left = -195.333
+offset_top = 27.6667
+offset_right = 211.667
+offset_bottom = 48.6667
+scale = Vector2(0.25, 0.6)
+value = 60.0
+texture_under = ExtResource("3_88ycv")
+texture_progress = ExtResource("5_j2kek")
+
+[node name="Vanguardlabel" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 297.0
+offset_right = 184.0
+offset_bottom = 323.0
+texture = ExtResource("6_f7g7u")
+
+[node name="Readguardlabel" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = -20.0
+offset_right = 186.0
+offset_bottom = 6.00004
+texture = ExtResource("7_1hj5l")
+
+[node name="StatusContainer" type="HBoxContainer" parent="BG"]
+layout_mode = 0
+anchor_left = 0.058
+anchor_top = 0.922
+anchor_right = 0.058
+anchor_bottom = 0.922
+offset_left = -0.242706
+offset_top = -0.0680237
+offset_right = 39.7573
+offset_bottom = 39.932

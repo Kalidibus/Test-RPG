@@ -82,7 +82,7 @@ func FelStorm2():
 		if target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "fel")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 	CloseTurn("The storm abates...")
 
 func DeepStorm():
@@ -97,7 +97,7 @@ func DeepStorm2():
 		if target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "deep")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 	CloseTurn("The storm abates...")
 
 func LevinStorm():
@@ -112,7 +112,7 @@ func LevinStorm2():
 		if target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "levin")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 	CloseTurn("The storm abates...")
 
 func InfernoStorm():
@@ -127,5 +127,5 @@ func InfernoStorm2():
 		if target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "inferno")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 	CloseTurn("The storm abates...")

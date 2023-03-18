@@ -66,5 +66,5 @@ func WhirlingBlades2():
 		if target.row == "Front" and target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "slash")
 			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
-			yield(get_tree().create_timer(0.5), "timeout")
+			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")

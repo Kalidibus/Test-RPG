@@ -7,6 +7,11 @@ var CombatGUI
 var ActionQueue
 var Selector
 
+const GRID_SIZE = 2
+const PLAY_SPEED = 0.3 #lower is faster
+
+var mappos
+var maprotation
 
 
 func GetCombatGlobals():
@@ -15,5 +20,4 @@ func GetCombatGlobals():
 	CombatController = get_node("/root/CombatEventHandler/CombatController")
 	CombatEventHandler = get_node("/root/CombatEventHandler")
 	Selector = get_node("/root/CombatEventHandler/Selector")
-	print(CombatGUI)
-	print(ActionQueue)
+
