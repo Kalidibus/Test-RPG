@@ -38,6 +38,7 @@ func _on_timer_timeout():
 	var GO_D := Input.is_action_pressed("ui_right")
 	var TURN_Q := Input.is_action_pressed("Turn_Left")
 	var TURN_E := Input.is_action_pressed("Turn_Right")
+	var Escape := Input.is_action_pressed("Escape")
 
 	var ray_dir
 	var turn_dir = int(TURN_Q) - int(TURN_E)
@@ -51,6 +52,8 @@ func _on_timer_timeout():
 		ray_dir = left
 	elif GO_D: 
 		ray_dir = right
+	elif Escape:
+		get_tree().change_scene_to_file("res://Scenes/Start.tscn")
 	elif turn_dir:
 		timerprocessor.stop()
 		await tween_rotation(PI/2 * turn_dir)

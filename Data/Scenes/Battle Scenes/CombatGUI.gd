@@ -141,10 +141,10 @@ func _on_Skills_pressed():
 func _on_Items_pressed():
 	lastpushed = "Items"
 	ClearSecondMenu()
-	if Items.inventory.is_empty():
+	if SaveandLoad.inventory.is_empty():
 		BattleLog("No Items")
 	else:
-		for n in Items.inventory:
+		for n in SaveandLoad.inventory:
 			var item = n
 			var itemdesc = Items.items[n]
 			var active_character = Globals.CombatController.active_character
@@ -260,13 +260,20 @@ func QueueAction(active_character, action_string, target = null):
 	emit_signal("turn_selected")
 
 func Selector(pos):
+	var ac = Globals.CombatController.active_character
+	var tween
+	
+	if tween != null: tween.kill()
+	
 	Globals.Selector.position = pos + Vector2(120, -85)
 	Globals.Selector.visible = true
-	var ac = Globals.CombatController.active_character
 
 	while ac == Globals.CombatController.active_character:
-		create_tween().tween_property(Globals.Selector, "position",pos + Vector2(120, -95), 0.5)
+		tween = create_tween().tween_property(Globals.Selector, "position",pos + Vector2(120, -95), 0.5)
 		await get_tree().create_timer(0.5).timeout
-		create_tween().tween_property(Globals.Selector, "position",pos + Vector2(120, -85), 0.5)
-		await get_tree().create_timer(0.5).timeout
+
+		if ac == Globals.CombatController.active_character:
+			tween = create_tween().tween_property(Globals.Selector, "position",pos + Vector2(120, -85), 0.5)
+			await get_tree().create_timer(0.5).timeout
+
 

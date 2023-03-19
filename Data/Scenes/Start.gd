@@ -19,9 +19,13 @@ func _on_OptionsButton_pressed():
 func _on_QuitButton_pressed():
 	get_tree().quit()
 
+func _on_save_button_pressed():
+	SaveandLoad.save_file()
 
 
+func _on_load_button_pressed():
+	SaveandLoad.load_file()
 
 
-
-
+func _on_bombs_pressed():
+		SaveandLoad.increment_bombs()

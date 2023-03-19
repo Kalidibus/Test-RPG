@@ -7,12 +7,6 @@ var EventHandler
 var CombatGUI
 var CombatController
 
-
-var inventory =  {
-	"Bomb" : 3,
-	"Potion" : 2
-}
-
 var items = {
 	"Bomb" : "Deals damage to all enemies",
 	"Potion" : "Heals all allies"
@@ -33,11 +27,11 @@ func GetScenes():
 	CombatController = get_node("/root/CombatEventHandler/CombatController")
 
 func Consume(string):
-	inventory[string] -= 1
-	if inventory[string] == 0:
-		inventory.erase(string)
+	SaveandLoad.inventory[string] -= 1
+	if SaveandLoad.inventory[string] == 0:
+		SaveandLoad.inventory.erase(string)
 
-func CloseTurn(active_character, string=""):
+func CloseTurn(active_character):
 	active_character.CloseTurn()
 
 func Bomb(active_character):
