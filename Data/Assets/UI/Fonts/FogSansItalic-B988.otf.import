@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/FogSansItalic-B988.otf-2eb85fe014b4deb194d01e
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

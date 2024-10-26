@@ -67,5 +67,5 @@ script = ExtResource("3_epfif")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]

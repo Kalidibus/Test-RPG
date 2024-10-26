@@ -1,16 +1,5 @@
 res://Scenes/Start.tscn
 res://Enemies/monKobold.gd
-res://Scenes/Battle Scenes/Combat.tscn
-res://Scenes/Battle Scenes/PlayerBlock.tscn
-res://Scenes/Battle Scenes/EnemyLabel.tscn
-res://Scenes/Dungeon/World.tscn
-res://Scenes/Dungeon/Player.tscn
-res://Scenes/Dungeon/Map.tscn
-res://Scenes/Dungeon/Cell.tscn
-res://Scenes/Second.tscn
-res://Scenes/Dungeon/Pillar.tscn
-res://Scenes/Battle Scenes/Items.gd
-res://Scenes/SaveandLoad.gd
 res://Scenes/Battle Scenes/CombatGUI.gd
-res://Scenes/Start.gd
-res://Scenes/Dungeon/Player.gd
+res://Scenes/Globals.gd
+res://Scenes/Screen.gd

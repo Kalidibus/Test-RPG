@@ -20,4 +20,3 @@ func GetCombatGlobals():
 	CombatController = get_node("/root/CombatEventHandler/CombatController")
 	CombatEventHandler = get_node("/root/CombatEventHandler")
 	Selector = get_node("/root/CombatEventHandler/Selector")
-

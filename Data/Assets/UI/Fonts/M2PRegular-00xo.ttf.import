@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/M2PRegular-00xo.ttf-934aa930513a8197255ad41d8
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

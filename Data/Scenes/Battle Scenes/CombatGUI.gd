@@ -275,5 +275,3 @@ func Selector(pos):
 		if ac == Globals.CombatController.active_character:
 			tween = create_tween().tween_property(Globals.Selector, "position",pos + Vector2(120, -85), 0.5)
 			await get_tree().create_timer(0.5).timeout
-
-
