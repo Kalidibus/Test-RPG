@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddrqovcnd87un"]
+[gd_scene load_steps=3 format=3 uid="uid://cxf0tjpf272mb"]
 
-[ext_resource type="Texture2D" uid="uid://b0qdu6k6i8f35" path="res://Assets/icon.png" id="1"]
-[ext_resource type="Script" path="res://Scenes/Second.gd" id="2"]
+[ext_resource type="Script" path="res://Scenes/Guild/CharacterCreate.gd" id="1_vmlei"]
+[ext_resource type="Texture2D" uid="uid://b0qdu6k6i8f35" path="res://Assets/icon.png" id="2_8dnlh"]
 
-[node name="Second" type="MarginContainer"]
+[node name="CharacterCreate" type="MarginContainer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -13,14 +13,14 @@ offset_left = -109.0
 offset_top = -130.5
 offset_right = 109.0
 offset_bottom = 130.5
-script = ExtResource("2")
+script = ExtResource("1_vmlei")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1")
+texture = ExtResource("2_8dnlh")
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -40,3 +40,4 @@ text = "Return to the Main Screen"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_RETURN_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

@@ -20,8 +20,6 @@ signal update_players
 signal player_turns_selected
 signal all_turns_selected
 
-
-
 # Gets enemy list from currently stated location which is randomly generated. 
 func GetEnemies(currentzone):
 	currentzone.GetEnemies()

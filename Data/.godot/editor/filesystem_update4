@@ -1,5 +1,11 @@
 res://Scenes/Start.tscn
 res://Enemies/monKobold.gd
-res://Scenes/Battle Scenes/CombatGUI.gd
-res://Scenes/Globals.gd
-res://Scenes/Screen.gd
+res://Scenes/Start.gd
+res://Classes/Bastard Fist.tscn
+res://Scenes/Battle Scenes/CombatController.gd
+res://Scenes/SaveandLoad.gd
+res://Scenes/Second.tscn
+res://Scenes/Battle Scenes/Combat.tscn
+res://Scenes/Battle Scenes/Party.tscn
+res://Scenes/Guild/CharacterCreate.tscn
+res://Scenes/Guild/CharacterCreate.gd
