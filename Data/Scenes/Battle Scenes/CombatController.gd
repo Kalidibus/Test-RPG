@@ -6,7 +6,9 @@ var active_enemy
 var target
 var attacker
 var damage : int
-var party = PartyStats
+
+
+var party = Globals.roster
 var partylist = []
 var enemies = []
 var battlers = []
@@ -25,9 +27,19 @@ func GetEnemies(currentzone):
 	currentzone.GetEnemies()
 
 # Reads the dictinary in the Party node to get the info needed.
+#func GetParty():
+#	print(party)
+#	for n in party.party:
+#			var charclass = party.party[n].get("class")
+#			var slot = load("res://Classes/" + charclass + ".tscn")
+#			var node = slot.instantiate()
+#			$Battlers.add_child(node)
+#			node.slot = n
+#this checks the Globals.roster variable currently, and dynamically adds to the party based on who is in there.
+#clunky implementation to pull the scene in by name. I can probably add it to the job dictionary.
 func GetParty():
-	for n in party.party:
-			var charclass = party.party[n].get("class")
+	for n in party:
+			var charclass = party[str(n)].get("job_name")
 			var slot = load("res://Classes/" + charclass + ".tscn")
 			var node = slot.instantiate()
 			$Battlers.add_child(node)
@@ -42,6 +54,7 @@ func MainBattleLoop():
 
 func PartyTurnOrder():
 	partylist = get_tree().get_nodes_in_group("partymembers")
+	print(partylist)
 	var count = 0
 	var combatover = false
 	
