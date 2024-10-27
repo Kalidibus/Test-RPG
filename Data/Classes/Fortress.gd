@@ -3,7 +3,20 @@ extends Entity
 var PASSIVE_accumulate_ire = true
 var ire = 0
 
+var starting_stats = {
+		"HP" = 125,
+		"MP" = 50,
+		"STR" = 50,
+		"DEF" = 75,
+		"INT" = 25,
+		"FTH" = 50,
+		"RES" = 50,
+		"SPD" = 25
+		}
+
 func _ready():
+	var classid = 0 
+	
 	charname = "Fortress"
 	MaxHP = 125
 	HP = 1

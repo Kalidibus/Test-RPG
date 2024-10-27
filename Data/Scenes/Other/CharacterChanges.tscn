@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://efw1x5wuue0"]
+
+[ext_resource type="Script" path="res://Scenes/Other/CharacterChanges.gd" id="1_js3m5"]
+
+[node name="PlayerData" type="Node"]
+script = ExtResource("1_js3m5")

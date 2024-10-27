@@ -1,3 +1,11 @@
+Node
+OptionButton
+LineEdit
+TextEdit
+Label
+HBoxContainer
+VBoxContainer
+MarginContainer
 Button
 TileMap
 MeshInstance3D

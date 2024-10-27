@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kugcqwt1o2fy"]
+
+[ext_resource type="Script" path="res://Classes/Samurai.gd" id="1_jvvme"]
+
+[node name="Samurai" type="Node" groups=["partymembers"]]
+script = ExtResource("1_jvvme")

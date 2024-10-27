@@ -1,5 +1,16 @@
 extends Entity
 
+var starting_stats = {
+		"HP" = 75,
+		"MP" = 125,
+		"STR" = 25,
+		"DEF" = 50,
+		"INT" = 75,
+		"FTH" = 125,
+		"RES" = 100,
+		"SPD" = 75
+		}
+
 func _ready():
 	charname = "Cleric"
 	MaxHP = 75

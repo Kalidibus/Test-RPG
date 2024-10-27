@@ -13,6 +13,9 @@ const PLAY_SPEED = 0.3 #lower is faster
 var mappos
 var maprotation
 
+var roster = {}
+var party = {}
+var inventory = {}
 
 func GetCombatGlobals():
 	CombatGUI = get_node("/root/CombatEventHandler/CombatGUI") 
@@ -20,3 +23,6 @@ func GetCombatGlobals():
 	CombatController = get_node("/root/CombatEventHandler/CombatController")
 	CombatEventHandler = get_node("/root/CombatEventHandler")
 	Selector = get_node("/root/CombatEventHandler/Selector")
+
+func PlayerData():
+	pass

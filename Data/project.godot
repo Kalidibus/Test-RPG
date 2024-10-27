@@ -22,6 +22,8 @@ PartyStats="*res://Scenes/Battle Scenes/Party.tscn"
 Items="*res://Scenes/Battle Scenes/Items.tscn"
 Globals="*res://Scenes/Globals.gd"
 SaveandLoad="*res://Scenes/SaveandLoad.gd"
+CharacterChanges="*res://Scenes/Other/CharacterChanges.gd"
+JobDictionary="*res://Classes/Classes.tscn"
 
 [display]
 
