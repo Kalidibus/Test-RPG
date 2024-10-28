@@ -36,7 +36,7 @@ func BlackMist():
 	if MPCheck(30) == "fail": return
 	else: CombatGUI.QueueAction(self, "RaptorSamba2")
 func BlackMist2():
-	var partylist = get_tree().get_nodes_in_group("partymembers")
+	var partylist = get_party_targets()
 	MPCost(30)
 	for n in partylist:
 		if n.HP != 0: n.StatMod("SPD", 1.25, 2)

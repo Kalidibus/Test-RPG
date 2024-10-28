@@ -1,6 +1,7 @@
 extends Node
 
-@onready var battlers = get_node("CombatController/Battlers") 
+@onready var party = get_node("CombatController/Party") 
+@onready var enemies = get_node("CombatController/Enemies") 
 
 #this should change depending on the level entered. Can have this as an input.
 @onready var currentzone = $CombatController/AridEncounters1
@@ -9,7 +10,7 @@ func _ready():
 	Globals.GetCombatGlobals()
 	$CombatController.GetEnemies(currentzone)
 	$CombatController.GetParty()
-	$CombatGUI.CreateLabels(battlers)
+	$CombatGUI.CreateLabels(party, enemies)
 	
 	$CombatController.MainBattleLoop()
 

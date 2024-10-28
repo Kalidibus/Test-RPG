@@ -2,8 +2,8 @@ extends Entity
 
 func _ready():
 	charname = "Kobold"
-	MaxHP = 300
-	HP = 300
+	MaxHP = 100
+	HP = 100
 	MaxMP = 5
 	MP = 5
 	STR = 15

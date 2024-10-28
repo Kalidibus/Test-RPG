@@ -58,7 +58,7 @@ func BladedVolley():
 	else: CombatGUI.QueueAction(self, "BladedVolley2")
 func BladedVolley2():
 	var damage = (SPD * statmods["SPD"])*0.6
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	var enemies = get_enemy_targets()
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " fires a Bladed Volley!")
 	for target in enemies:

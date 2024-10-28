@@ -3,8 +3,8 @@ class_name Raklak
 
 func _ready():
 	charname = "Raklak"
-	MaxHP = 180
-	HP = 180
+	MaxHP = 50
+	HP = 50
 	MaxMP = 5
 	MP = 5
 	STR = 40

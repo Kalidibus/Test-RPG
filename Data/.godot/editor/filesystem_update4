@@ -9,6 +9,18 @@ res://Classes/Classes.tscn
 res://Classes/Shade Hunter.tscn
 res://Classes/Dancer.tscn
 res://Classes/Cleric.tscn
-res://Scenes/Battle Scenes/CombatController.gd
-res://Scenes/Battle Scenes/Party.gd
+res://Scenes/Other/SystemNotification.tscn
+res://Scenes/Other/SystemNotification.gd
+res://Scenes/Guild/CharacterCreate.gd
 res://Classes/JobDictionary.gd
+res://Scenes/Battle Scenes/CombatController.gd
+res://Scenes/SaveandLoad.gd
+res://Scenes/Globals.gd
+res://Scenes/Start.gd
+res://Scenes/Battle Scenes/CombatGUI.gd
+res://Scenes/Battle Scenes/AridEncounters1.gd
+res://Scenes/Battle Scenes/CombatEventHandler.gd
+res://Scenes/Battle Scenes/Entity.gd
+res://Enemies/monRaklak.gd
+res://Enemies/monRatkin.gd
+res://Classes/Fortress.gd

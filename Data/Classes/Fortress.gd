@@ -19,7 +19,7 @@ func _ready():
 	
 	charname = "Fortress"
 	MaxHP = 125
-	HP = 1
+	HP = 125
 	MaxMP = 80
 	MP = 80
 	STR = 50

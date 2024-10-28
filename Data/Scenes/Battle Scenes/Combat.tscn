@@ -116,10 +116,12 @@ position = Vector2(1596, 511)
 [node name="CombatController" type="Node" parent="."]
 script = ExtResource("3")
 
-[node name="Battlers" type="Node" parent="CombatController"]
-
 [node name="AridEncounters1" type="Node" parent="CombatController"]
 script = ExtResource("4")
+
+[node name="Party" type="Node" parent="CombatController"]
+
+[node name="Enemies" type="Node" parent="CombatController"]
 
 [node name="Camera2D" parent="." instance=ExtResource("8")]
 

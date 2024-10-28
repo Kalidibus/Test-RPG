@@ -1,5 +1,7 @@
 extends Node
 
+@onready var popup = preload("res://Scenes/Other/SystemNotification.tscn")
+
 var camera = null
 var CombatEventHandler
 var CombatController
@@ -26,3 +28,11 @@ func GetCombatGlobals():
 
 func PlayerData():
 	pass
+
+func system_message(text):
+
+	var success_message = popup.instantiate()
+	success_message.set_text(text)
+	add_child(success_message)
+	await get_tree().create_timer(3).timeout
+	remove_child(success_message)

@@ -42,7 +42,7 @@ func GetParty():
 			var charclass = party[str(n)].get("job_name")
 			var slot = load("res://Classes/" + charclass + ".tscn")
 			var node = slot.instantiate()
-			$Battlers.add_child(node)
+			$Party.add_child(node)
 			node.slot = n
 
 func MainBattleLoop():
@@ -53,13 +53,19 @@ func MainBattleLoop():
 	Globals.ActionQueue.PlayRound()
 
 func PartyTurnOrder():
-	partylist = get_tree().get_nodes_in_group("partymembers")
-	print(partylist)
+	partylist = $Party.get_children()
+	print(get_tree_string_pretty())
+	print("this is the party list" + str(partylist))
 	var count = 0
 	var combatover = false
 	
 	while count < partylist.size():
 		active_character = partylist[count]
+		print(count)
+		print(partylist.size())
+		print(partylist)
+		print(active_character)
+		print(Globals.roster)
 		if CheckWin() == true: # for death from DoTs during player turn
 			combatover = true #used to stop combat when one side dead
 			break
@@ -69,7 +75,11 @@ func PartyTurnOrder():
 			active_character.Turn()
 			count += 1
 		else:
-			print(active_character.node.get_node("BG").position)
+			print(count)
+			print(partylist.size())
+			print(partylist)
+			print(active_character)
+			print(Globals.roster)
 			Globals.CombatGUI.Selector(active_character.node.get_node("BG").global_position)
 			Globals.CombatGUI.SetCharaSplash(active_character)
 			active_character.Turn()
@@ -86,15 +96,15 @@ func PartyTurnOrder():
 
 func EnemyTurnOrder():
 	await self.player_turns_selected
-	enemies = get_tree().get_nodes_in_group("enemies")
+	enemies = $Enemies.get_children()
 	for n in enemies:
 		Globals.CombatGUI.QueueAction(n, "Turn")
 
 	emit_signal("all_turns_selected")
 
 func CheckWin(): #checked each turn by the ActionQueue
-	enemies = get_tree().get_nodes_in_group("enemies")
-	partylist = get_tree().get_nodes_in_group("partymembers")
+	enemies = $Enemies.get_children()
+	partylist = $Party.get_children()
 	emit_signal("update_players")
 
 
@@ -124,7 +134,7 @@ func win():
 	pass
 
 func lose():
-	get_parent().BattleLog("Evil has managed to triumph. The Sea of Revalations overflows upon this earth unchecked")
+	Globals.system_message("Evil has managed to triumph. The Sea of Revalations overflows upon this earth unchecked")
 	emit_signal("menuhide")
 	pass
 

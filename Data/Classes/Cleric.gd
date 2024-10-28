@@ -51,7 +51,7 @@ func FullBlessing():
 	if MPCheck(50) == "fail": return
 	else: CombatGUI.QueueAction(self, "FullBlessing2")
 func FullBlessing2():
-	var partylist = get_tree().get_nodes_in_group("partymembers")
+	var partylist = get_party_targets()
 	MPCost(50)
 	for n in partylist:
 		if n.HP != 0:

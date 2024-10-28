@@ -61,11 +61,11 @@ func AllyTargetList(function):
 	secondmenu.get_child(1).grab_focus()
 
 # creates labels and ties them to the appropriate battler in the combat tree
-func CreateLabels(battlecat):
+func CreateLabels(notparty, notenemies):
 	ClearSecondMenu()
 	
-	var fighters = battlecat.get_child_count()
-	var childitems = battlecat.get_children()
+	var fighters = notparty.get_child_count() + notenemies.get_child_count()
+	var childitems = notparty.get_children() + notenemies.get_children()
 	
 	var enemylblcount = 0
 	var partycount = 0
@@ -80,6 +80,8 @@ func CreateLabels(battlecat):
 			box.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			box.set_name(i.charname + "Block")
 			enemies.append(i)
+			print(i.charname)
+			print(box)
 			i.node = box
 			i.selectionBG = box.get_child(0)
 			enemylblcount += 1
@@ -99,6 +101,8 @@ func CreateLabels(battlecat):
 			pbox.SwitchRows(i)
 			i.node = pbox #so the overall node can be referred to
 			i.selectionBG = pbox.get_child(0) #for the selection
+			print(i.charname)
+			print(pbox)
 			
 			
 		count += 1

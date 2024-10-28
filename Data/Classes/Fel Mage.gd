@@ -86,7 +86,7 @@ func FelStorm():
 	else: CombatGUI.QueueAction(self, "FelStorm2")
 func FelStorm2():
 	var damage = (INT * statmods["INT"])/2
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	var enemies = get_enemy_targets()
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " unleashes a Fel Storm!")
 	for target in enemies:
@@ -101,7 +101,7 @@ func DeepStorm():
 	else: CombatGUI.QueueAction(self, "DeepStorm2")
 func DeepStorm2():
 	var damage = (INT * statmods["INT"])/2
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	var enemies = get_enemy_targets()
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " unleashes a Deep Storm!")
 	for target in enemies:
@@ -116,7 +116,7 @@ func LevinStorm():
 	else: CombatGUI.QueueAction(self, "LevinStorm2")
 func LevinStorm2():
 	var damage = (INT * statmods["INT"])/2
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	var enemies = get_enemy_targets()
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " unleashes a Levin Storm!")
 	for target in enemies:
@@ -131,7 +131,7 @@ func InfernoStorm():
 	else: CombatGUI.QueueAction(self, "InfernoStorm2")
 func InfernoStorm2():
 	var damage = (INT * statmods["INT"])/2
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	var enemies = get_enemy_targets()
 	MPCost(30)
 	EventHandler.BattleLog(str(charname) + " unleashes an Inferno Storm!")
 	for target in enemies:

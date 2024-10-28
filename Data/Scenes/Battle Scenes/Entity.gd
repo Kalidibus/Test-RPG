@@ -1,9 +1,9 @@
 extends Node
 class_name Entity
 
-@onready var EventHandler = get_node("/root/CombatEventHandler")
-@onready var CombatGUI = get_node("/root/CombatEventHandler/CombatGUI")
-@onready var CombatController = get_node("/root/CombatEventHandler/CombatController")
+var EventHandler = Globals.CombatEventHandler
+var CombatGUI = Globals.CombatGUI
+var CombatController = Globals.CombatController
 
 
 var charname
@@ -113,6 +113,11 @@ func Turn():
 		status.erase("stun")
 		CloseTurn(charname + " misses their turn...")
 
+func get_enemy_targets():
+	return EventHandler.enemies.get_children()
+
+func get_party_targets():
+	return EventHandler.party.get_children()
 
 func SwitchRows():
 	if row == "Front":
@@ -260,8 +265,8 @@ func DecideTarget():
 	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
 	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
 	var rng = RNG()
-	var partylist = get_tree().get_nodes_in_group("partymembers")
-	
+	var partylist = get_party_targets()
+	print(partylist)
 	var targetlist = []
 	
 	for n in partylist:

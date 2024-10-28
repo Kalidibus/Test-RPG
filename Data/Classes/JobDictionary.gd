@@ -6,7 +6,7 @@ var job_dictionary
 func _ready() -> void:
 	job_dictionary = {
 		"0" = {"name" = "Fortress", "node" = $"Fortress"},
-		"1" = {"name" = "Fel Mage", "node" = "res://Classes/Fel Mage.tscn"},
+		"1" = {"name" = "Fel Mage", "node" = $"Fel Mage"},
 		"2" = {"name" = "Bastard Fist", "node" = $"Bastard Fist"},
 		"3" = {"name" = "Shade Hunter", "node" = $"Shade Hunter"},
 		"4" = {"name" = "Forest Healer", "node" = $"Forest Healer"},

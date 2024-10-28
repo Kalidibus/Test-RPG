@@ -7,7 +7,7 @@ extends Node
 @onready var enemy2 = preload("res://Enemies/monRatkin.tscn")
 @onready var enemy3 = preload("res://Enemies/monRaklak.tscn")
 
-@onready var battlers = get_node("../Battlers")
+@onready var battlers = get_node("../Enemies")
 
 
 func GetEnemies():

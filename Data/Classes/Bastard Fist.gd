@@ -86,7 +86,7 @@ func VermillionDance():
 	else: CombatGUI.QueueAction(self, "VermillionDance2")
 func VermillionDance2():
 	MPCost(30)
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	var enemies = get_enemy_targets()
 	var damage = STR+SPD * 1.3
 	EventHandler.BattleLog(str(charname) + " unleashes the Vermillion Dance!")
 	for target in enemies:

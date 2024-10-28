@@ -16,10 +16,10 @@ func ready():
 	pass
 
 func GetEnemies(): #check this every time an item is used for the current list
-	enemies = get_tree().get_nodes_in_group("enemies")
+	enemies = $Enemies.get_children()
 
 func GetParty(): #check this every time an item is used for the current list
-	partylist = get_tree().get_nodes_in_group("partymembers")
+	partylist = $Party.get_children()
 
 func GetScenes():
 	EventHandler = get_node("/root/CombatEventHandler")

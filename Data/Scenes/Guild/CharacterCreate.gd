@@ -54,9 +54,8 @@ func _on_create_char_button_pressed() -> void:
 	CharacterChanges.add_equipment(newcharid, "body", "b01")
 	CharacterChanges.add_equipment(newcharid, "main_hand", "w01")
 
-	print("The following character was created:" + str(Globals.roster[str(newcharid)]))
-
-
+	#Create success pop-up dialogue
+	Globals.system_message("Successfully hired " + user_entered_name + " as a " + JobDictionary.JobName(user_selected_job) + "!\nWelcome to the team.")
 
 func _on_option_button_item_selected(index: int) -> void:
 	pass # Replace with function body.
