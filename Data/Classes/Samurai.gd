@@ -12,7 +12,7 @@ var starting_stats = {
 		"SPD" = 40
 		}
 
-var job_description = "TBD"
+var job_description = "The Samurai Vocation readies a single strike for perfect execution. \n\nBy steadying ones mind through the chaos of battle, the perfect moment to draw your sword and strike arrives. A unique vocation that rewards carefully buffing individual devastating attacks. \n\nVery low ranged utility, and if vulnerable while charging it's strike."
 
 func _ready():
 	charname = "Samurai"
