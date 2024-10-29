@@ -8,8 +8,11 @@ var starting_stats = {
 		"INT" = 75,
 		"FTH" = 125,
 		"RES" = 100,
+		"EVD" = 20,
 		"SPD" = 75
 		}
+
+var job_description = "The Erde Cleric is a healer capable of powerful restorations. \n\nThe party can safely soak massive damage with minimal fear while an Erde Cleric is present, as they are one of the most powerful healing Vocations known. \n\nTheir high focus on healing leaves them unable to contribute much to offense."
 
 func _ready():
 	charname = "Cleric"

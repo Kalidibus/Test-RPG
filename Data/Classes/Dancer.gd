@@ -8,8 +8,11 @@ var starting_stats = {
 		"INT" = 25,
 		"FTH" = 60,
 		"RES" = 50,
+		"EVD" = 40,
 		"SPD" = 60
 		}
+
+var job_description = "TBD"
 
 func _ready():
 	charname = "Dancer"

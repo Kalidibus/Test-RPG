@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckp0uk8o3xelw"]
+
+[ext_resource type="Script" path="res://Classes/War Mage/War Mage.gd" id="1_05yhc"]
+
+[node name="War Mage" type="Node"]
+script = ExtResource("1_05yhc")

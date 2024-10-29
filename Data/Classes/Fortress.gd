@@ -11,8 +11,11 @@ var starting_stats = {
 		"INT" = 25,
 		"FTH" = 50,
 		"RES" = 50,
+		"EVD" = 20,
 		"SPD" = 25
 		}
+
+var job_description = "An iron wall to keep Lamentations at bay. \n\nThe Fortress vocation excels at defending the party from physical attacks. Taking hits from enemies repeatedly will also accumulate a resource called [b]Ire[/b] which can be used to trigger powerful counter-attacks. \n\nWhile the Fortresses' shields can protect against magic attacks to some degree, they are not as well suited for foes that deal elemental damage."
 
 func _ready():
 	var classid = 0 

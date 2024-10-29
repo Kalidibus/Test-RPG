@@ -131,12 +131,14 @@ func _on_Exit_pressed():
 func win():
 	get_parent().BattleLog("You have prevailed on this fine day. Congratulations")
 	emit_signal("menuhide")
-	pass
+	await get_tree().create_timer(2.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
 
 func lose():
 	Globals.system_message("Evil has managed to triumph. The Sea of Revalations overflows upon this earth unchecked")
 	emit_signal("menuhide")
-	pass
+	await get_tree().create_timer(2.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/Start.tscn")
 
 func _on_Flee_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")

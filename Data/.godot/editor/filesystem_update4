@@ -1,26 +1,13 @@
-res://Scenes/Start.tscn
+res://Classes/War Mage/War Mage.tscn
 res://Enemies/monKobold.gd
-res://Scenes/Second.tscn
+res://Classes/JobDictionary.gd
+res://Scenes/Start.tscn
 res://Scenes/Battle Scenes/Combat.tscn
-res://Scenes/Other/CharacterChanges.tscn
-res://Scenes/Guild/CharacterCreate.tscn
 res://Scenes/Battle Scenes/Party.tscn
 res://Classes/Classes.tscn
 res://Classes/Shade Hunter.tscn
 res://Classes/Dancer.tscn
 res://Classes/Cleric.tscn
+res://Scenes/Guild/CharacterCreate.tscn
 res://Scenes/Other/SystemNotification.tscn
-res://Scenes/Other/SystemNotification.gd
-res://Scenes/Guild/CharacterCreate.gd
-res://Classes/JobDictionary.gd
-res://Scenes/Battle Scenes/CombatController.gd
-res://Scenes/SaveandLoad.gd
-res://Scenes/Globals.gd
-res://Scenes/Start.gd
-res://Scenes/Battle Scenes/CombatGUI.gd
-res://Scenes/Battle Scenes/AridEncounters1.gd
-res://Scenes/Battle Scenes/CombatEventHandler.gd
-res://Scenes/Battle Scenes/Entity.gd
-res://Enemies/monRaklak.gd
-res://Enemies/monRatkin.gd
-res://Classes/Fortress.gd
+res://Classes/Fel Mage.tscn

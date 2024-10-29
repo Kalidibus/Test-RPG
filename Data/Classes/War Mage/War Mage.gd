@@ -1,10 +1,10 @@
 extends Entity
 
 var starting_stats = {
-		"HP" = 50,
-		"MP" = 175,
-		"STR" = 5,
-		"DEF" = 20,
+		"HP" = 80,
+		"MP" = 125,
+		"STR" = 80,
+		"DEF" = 50,
 		"INT" = 60,
 		"FTH" = 30,
 		"RES" = 50,
@@ -12,10 +12,10 @@ var starting_stats = {
 		"SPD" = 25
 		}
 
-var job_description = "The Fel Mage is destruction incarnate. \n\nMaster of all elements, and capable of raining massive damage down upon foes regardless of their resistances or position. Their ability to recover MP also makes them excellent sustainers for long journies. \n\nHowever Fel Mage's lack much in the way of defenses, and must be protected. "
+var job_description = "TBD"
 
 func _ready():
-	charname = "Fel Mage"
+	charname = "War Mage"
 	MaxHP = 50
 	HP = 50
 	MaxMP = 175

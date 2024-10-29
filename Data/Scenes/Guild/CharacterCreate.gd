@@ -2,7 +2,8 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_node("HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/ReturnButton").grab_focus()
+	%UserEnteredName.grab_focus()
+	#%OptionButton.select(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -13,8 +14,8 @@ func _on_return_button_pressed() -> void:
 
 func _on_create_char_button_pressed() -> void:
 	var newcharid
-	var user_entered_name = $HBoxContainer/VBoxContainer2/Name/LineEdit.text
-	var user_selected_job = $HBoxContainer/VBoxContainer2/Job/OptionButton.selected
+	var user_entered_name = %UserEnteredName.text
+	var user_selected_job = %OptionButton.selected
 	
 	if not user_entered_name:
 		print("box is empty")
@@ -58,4 +59,22 @@ func _on_create_char_button_pressed() -> void:
 	Globals.system_message("Successfully hired " + user_entered_name + " as a " + JobDictionary.JobName(user_selected_job) + "!\nWelcome to the team.")
 
 func _on_option_button_item_selected(index: int) -> void:
-	pass # Replace with function body.
+	#the value of "index" is the same as the job IDs defined in the job dictionary. This function compares against that for what it needs.
+	
+	#Set the splash image.
+	%CharaSplash.set_texture(load(JobDictionary.JobSplash(index)))
+	
+	#Very clunky way to grab individual stats and update them. could use a "for n in Stats.get_children() but whatever this works.
+	%HP_stat.text = str(JobDictionary.Stats(index)["HP"])
+	%MP_stat.text = str(JobDictionary.Stats(index)["MP"])
+	%STR_stat.text = str(JobDictionary.Stats(index)["STR"])
+	%DEF_stat.text = str(JobDictionary.Stats(index)["DEF"])
+	%INT_stat.text = str(JobDictionary.Stats(index)["INT"])
+	%FTH_stat.text = str(JobDictionary.Stats(index)["FTH"])
+	%RES_stat.text = str(JobDictionary.Stats(index)["RES"])
+	%EVD_stat.text = str(JobDictionary.Stats(index)["EVD"])
+	%SPD_stat.text = str(JobDictionary.Stats(index)["SPD"])
+	
+	#Set the name
+	%job_name_display.text = JobDictionary.JobName(index)
+	%job_description_display.text = JobDictionary.JobDesc(index)
