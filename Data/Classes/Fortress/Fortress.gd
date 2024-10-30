@@ -3,6 +3,8 @@ extends Entity
 var PASSIVE_accumulate_ire = true
 var ire = 0
 
+var jobid = "0"
+
 var starting_stats = {
 		"HP" = 125,
 		"MP" = 50,

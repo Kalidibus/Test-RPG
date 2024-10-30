@@ -1,12 +1,13 @@
 extends Node
 
 var dict = {
-	"wa01" = {
-		"name" = "Corroded Axe Hilt",
-		"stats" = {"STR" = 2},
-		"desc" = "Was once a formidable axe. Broken down and decayed by the Brine, now only now only a hilt remains.",
+	"apan01" = {
+		"name" = "Corroded Greaves",
+		"stats" = {"DEF" = 2},
+		"desc" = "Was once formidable armour. Broken down and decayed by the Brine, now only tatters remain.",
 		"value" = 5
 	}
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

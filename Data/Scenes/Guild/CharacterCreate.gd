@@ -2,8 +2,14 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	await get_tree().create_timer(0.2).timeout
+	%OptionButton.select(0)
+	CharaDetails(0)
+	%BackButton.disabled = true
 	%UserEnteredName.grab_focus()
-	#%OptionButton.select(0)
+	
+	#Disables options that aren't unlocked yet
+	#%OptionButton
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,21 +24,21 @@ func _on_create_char_button_pressed() -> void:
 	var user_selected_job = %OptionButton.selected
 	
 	if not user_entered_name:
-		print("box is empty")
+		Globals.system_message("No name entered!")
 		return
 	
 	if user_selected_job == -1:
-		print("no job selected")
+		Globals.system_message("No job selected!")
 		return
 	
 	#look at current roster. Look at the last Character ID created and add +1 for the new character. Checks for empty roster. 
-	if Globals.roster.size() == 0:
+	if PlayerData.roster.size() == 0:
 		newcharid = 0
 	else:
-		newcharid = int(Globals.roster.keys()[-1]) + 1
+		newcharid = int(PlayerData.roster.keys()[-1]) + 1
 	
 	#main function to add the new character using the Character ID generated above.
-	Globals.roster[str(newcharid)] = {
+	PlayerData.roster[str(newcharid)] = {
 		"name" = str(user_entered_name),
 		"job_id" = str(user_selected_job),
 		"job_name" = JobDictionary.JobName(user_selected_job),
@@ -59,6 +65,13 @@ func _on_create_char_button_pressed() -> void:
 	Globals.system_message("Successfully hired " + user_entered_name + " as a " + JobDictionary.JobName(user_selected_job) + "!\nWelcome to the team.")
 
 func _on_option_button_item_selected(index: int) -> void:
+	CharaDetails(index)
+
+
+func _on_char_unlock_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes//Guild/Unlocks.tscn")
+
+func CharaDetails(index: int) -> void:
 	#the value of "index" is the same as the job IDs defined in the job dictionary. This function compares against that for what it needs.
 	
 	#Set the splash image.
@@ -78,3 +91,41 @@ func _on_option_button_item_selected(index: int) -> void:
 	#Set the name
 	%job_name_display.text = JobDictionary.JobName(index)
 	%job_description_display.text = JobDictionary.JobDesc(index)
+	
+
+
+func _on_back_button_pressed() -> void:
+	var index = %OptionButton.get_selected_id()
+	index -= 1
+	%OptionButton.select(index)
+	index = %OptionButton.get_selected_id()
+	CharaDetails(index)
+	
+	%ForwardButton.disabled = false
+	
+	CheckUnlocked(index)
+	
+	if index == 0:
+		%BackButton.disabled = true
+
+func _on_forward_button_pressed() -> void:
+	var index = %OptionButton.get_selected_id()
+	index += 1
+	%OptionButton.select(index)
+	index = %OptionButton.get_selected_id()
+	CharaDetails(index)
+	
+	%BackButton.disabled = false
+	
+	CheckUnlocked(index)
+	
+	if index == JobDictionary.job_dictionary.size() -1:
+		%ForwardButton.disabled = true
+
+func CheckUnlocked(index):
+	if not PlayerData.IsClassUnlocked(index): 
+		%CreateCharButton.disabled = true
+		%CreateCharButton.text = "Class is not Unlocked!"
+	else: 
+		%CreateCharButton.disabled = false
+		%CreateCharButton.text = "Create a new Character"

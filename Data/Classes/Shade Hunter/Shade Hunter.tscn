@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4prmq10iieeg"]
 
-[ext_resource type="Script" path="res://Classes/Shade Hunter.gd" id="1"]
+[ext_resource type="Script" path="res://Classes/Shade Hunter/Shade Hunter.gd" id="1"]
 
 [node name="Shade Hunter" type="Node" groups=["partymembers"]]
 script = ExtResource("1")

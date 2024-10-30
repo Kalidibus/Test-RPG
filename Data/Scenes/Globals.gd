@@ -26,13 +26,11 @@ func GetCombatGlobals():
 	CombatEventHandler = get_node("/root/CombatEventHandler")
 	Selector = get_node("/root/CombatEventHandler/Selector")
 
-func PlayerData():
-	pass
-
 func system_message(text):
 
-	var success_message = popup.instantiate()
-	success_message.set_text(text)
-	add_child(success_message)
-	await get_tree().create_timer(3).timeout
-	remove_child(success_message)
+	var message = popup.instantiate()
+	message.set_text(text)
+	add_child(message)
+	message.focusOK()
+	await Signal(message, "confirmation")
+	remove_child(message)

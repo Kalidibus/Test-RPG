@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxf0tjpf272mb"]
 
 [ext_resource type="Script" path="res://Scenes/Guild/CharacterCreate.gd" id="1_vmlei"]
-[ext_resource type="Texture2D" uid="uid://b0qdu6k6i8f35" path="res://Assets/icon.png" id="2_8dnlh"]
+[ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="2_htkpp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pwk7"]
 bg_color = Color(0.17, 0.158525, 0.1445, 1)
@@ -29,7 +29,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_8dnlh")
+texture = ExtResource("2_htkpp")
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MainMenu"]
@@ -42,14 +42,14 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MainMenu/HBoxContainer"]
 layout_mode = 2
 
+[node name="CharUnlock" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Unlock New Classes"
+
 [node name="ReturnButton" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Return to the Main Screen"
-
-[node name="CreateCharButton" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Create a new Character"
 
 [node name="Select_and_Stats" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -77,6 +77,11 @@ layout_mode = 2
 layout_mode = 2
 text = "Character Vocation:"
 
+[node name="BackButton" type="Button" parent="HBoxContainer/Select_and_Stats/VBoxContainer2/Job"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "<-"
+
 [node name="OptionButton" type="OptionButton" parent="HBoxContainer/Select_and_Stats/VBoxContainer2/Job"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -99,9 +104,15 @@ popup/item_7/id = 7
 popup/item_8/text = "War Mage"
 popup/item_8/id = 8
 
+[node name="ForwardButton" type="Button" parent="HBoxContainer/Select_and_Stats/VBoxContainer2/Job"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "->"
+
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Select_and_Stats/VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Select_and_Stats/VBoxContainer2/MarginContainer"]
 layout_mode = 2
@@ -194,6 +205,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "-"
 
+[node name="CreateCharButton" type="Button" parent="HBoxContainer/Select_and_Stats/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create a new Character"
+
 [node name="Description" type="Control" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -260,16 +276,18 @@ layout_mode = 2
 
 [node name="CharaSplash" type="TextureRect" parent="HBoxContainer/CharaSplashBox"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_left = -796.224
 offset_right = -10.0
 offset_bottom = 980.0
 size_flags_horizontal = 10
 expand_mode = 3
 
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/CharUnlock" to="." method="_on_char_unlock_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_RETURN_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/CreateCharButton" to="." method="_on_create_char_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Select_and_Stats/VBoxContainer2/Job/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="item_selected" from="HBoxContainer/Select_and_Stats/VBoxContainer2/Job/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="HBoxContainer/Select_and_Stats/VBoxContainer2/Job/ForwardButton" to="." method="_on_forward_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Select_and_Stats/VBoxContainer2/CreateCharButton" to="." method="_on_create_char_button_pressed"]

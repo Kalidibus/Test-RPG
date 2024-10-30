@@ -14,6 +14,7 @@ config/name="Heretic: Interlude"
 config/description="Proof of concept test version"
 run/main_scene="res://Scenes/Start.tscn"
 config/features=PackedStringArray("4.3")
+boot_splash/image="res://Assets/UI/Selector.png"
 config/icon="res://Assets/Classes/Fortress-profile.png"
 
 [autoload]
@@ -24,12 +25,23 @@ Globals="*res://Scenes/Globals.gd"
 SaveandLoad="*res://Scenes/SaveandLoad.gd"
 CharacterChanges="*res://Scenes/Other/CharacterChanges.gd"
 JobDictionary="*res://Classes/Classes.tscn"
+ItemDict="*res://Items/ItemDict.tscn"
+PlayerData="*res://Scenes/PlayerData/PlayerData.tscn"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/mode="2d"
+window/size/mode=3
+window/size/resizable=false
+window/size/borderless=true
+window/stretch/mode="canvas_items"
+
+[importer_defaults]
+
+animation_library={
+"animation/fps": 60.0
+}
 
 [input]
 

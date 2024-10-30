@@ -1,0 +1,37 @@
+extends Node
+
+var dict = {	
+	"lcom001" = {
+		"name" = "Meager Dregs",
+		"stats" = {},
+		"desc" = "Meagre Dregs of a Lamentation that failed to Manifest. Can be used in crafting, and unlocking new Vocations.",
+		"value" = 5
+	},
+	"lcom002" = {
+		"name" = "Scrap Metal",
+		"stats" = {},
+		"desc" = "Various shreds of metal. Barely suitable for melting down. Can be used in crafting, and unlocking new Vocations.",
+		"value" = 5
+	},
+	"lcom003" = {
+		"name" = "Oily Bone Fragments",
+		"stats" = {},
+		"desc" = "Shards of bone from an unknown creature. Thick black oil drips from them. Can be used in crafting, and unlocking new Vocations.",
+		"value" = 5
+	},
+	"lcom004" = {
+		"name" = "Arcane Traces",
+		"stats" = {},
+		"desc" = "Wisps of magic collected in bottles. Barely any mana remains. Can be used in crafting, and unlocking new Vocations.",
+		"value" = 5
+	}
+}
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

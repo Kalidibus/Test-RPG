@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://4rxy5ie5qj7e"]
+[gd_scene load_steps=13 format=3 uid="uid://4rxy5ie5qj7e"]
 
 [ext_resource type="Script" path="res://Classes/JobDictionary.gd" id="1_ms52s"]
-[ext_resource type="PackedScene" uid="uid://bx372r1f1175" path="res://Classes/Bastard Fist.tscn" id="2_13m5k"]
-[ext_resource type="PackedScene" uid="uid://lmohey3y7fjg" path="res://Classes/Cleric.tscn" id="3_27a65"]
-[ext_resource type="PackedScene" uid="uid://bgfl8ur6qdx6u" path="res://Classes/Dancer.tscn" id="4_alnd6"]
-[ext_resource type="PackedScene" uid="uid://cfbfjw61ew6p" path="res://Classes/Fel Mage.tscn" id="5_vh3l3"]
-[ext_resource type="PackedScene" path="res://Classes/Fortress.tscn" id="6_yphjg"]
-[ext_resource type="PackedScene" uid="uid://b4prmq10iieeg" path="res://Classes/Shade Hunter.tscn" id="7_wcu1n"]
-[ext_resource type="PackedScene" uid="uid://bc1k3mpux3aux" path="res://Classes/Illusionist.tscn" id="8_3672v"]
-[ext_resource type="Script" path="res://Classes/Illusionist.gd" id="9_4bepa"]
-[ext_resource type="PackedScene" uid="uid://kugcqwt1o2fy" path="res://Classes/Samurai.tscn" id="10_lcvfa"]
+[ext_resource type="PackedScene" uid="uid://bx372r1f1175" path="res://Classes/Bastard Fist/Bastard Fist.tscn" id="2_13m5k"]
+[ext_resource type="PackedScene" uid="uid://lmohey3y7fjg" path="res://Classes/Erde Cleric/Erde Cleric.tscn" id="3_27a65"]
+[ext_resource type="PackedScene" uid="uid://bgfl8ur6qdx6u" path="res://Classes/Dancer/Dancer.tscn" id="4_alnd6"]
+[ext_resource type="PackedScene" uid="uid://cfbfjw61ew6p" path="res://Classes/Fel Mage/Fel Mage.tscn" id="5_vh3l3"]
+[ext_resource type="PackedScene" path="res://Classes/Fortress/Fortress.tscn" id="6_yphjg"]
+[ext_resource type="PackedScene" uid="uid://b4prmq10iieeg" path="res://Classes/Shade Hunter/Shade Hunter.tscn" id="7_wcu1n"]
+[ext_resource type="PackedScene" uid="uid://bc1k3mpux3aux" path="res://Classes/Illusionist/Illusionist.tscn" id="8_3672v"]
+[ext_resource type="Script" path="res://Classes/Illusionist/Illusionist.gd" id="9_4bepa"]
+[ext_resource type="PackedScene" uid="uid://kugcqwt1o2fy" path="res://Classes/Samurai/Samurai.tscn" id="10_lcvfa"]
 [ext_resource type="PackedScene" uid="uid://ckp0uk8o3xelw" path="res://Classes/War Mage/War Mage.tscn" id="11_s2ud6"]
+[ext_resource type="Script" path="res://Classes/unlock_requirements.gd" id="12_e2gvo"]
 
 [node name="JobDictionary" type="Node"]
 script = ExtResource("1_ms52s")
@@ -23,7 +24,7 @@ script = ExtResource("1_ms52s")
 
 [node name="Shade Hunter" parent="." instance=ExtResource("7_wcu1n")]
 
-[node name="Forest Healer" parent="." instance=ExtResource("3_27a65")]
+[node name="Erde Cleric" parent="." instance=ExtResource("3_27a65")]
 
 [node name="Dancer" parent="." instance=ExtResource("4_alnd6")]
 
@@ -33,3 +34,6 @@ script = ExtResource("9_4bepa")
 [node name="Samurai" parent="." instance=ExtResource("10_lcvfa")]
 
 [node name="War Mage" parent="." instance=ExtResource("11_s2ud6")]
+
+[node name="UnlockRequirements" type="Node" parent="."]
+script = ExtResource("12_e2gvo")

@@ -1,11 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://d0fmeparersoj"]
 
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/TargetButton.gd" id="1"]
 
 [node name="TargetButton" type="Button"]
 offset_right = 70.0
 offset_bottom = 20.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")

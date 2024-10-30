@@ -12,11 +12,11 @@ func _process(delta: float) -> void:
 func add_equipment(charid, slot, add_eqp) -> void:
 	charid = str(charid)
 	
-	if Globals.roster[charid]["equipment"][slot] != null:
-		add_inventory(Globals.roster[charid]["equipment"][slot])
-	Globals.roster[charid]["equipment"][slot] = add_eqp
+	if PlayerData.roster[charid]["equipment"][slot] != null:
+		add_inventory(PlayerData.roster[charid]["equipment"][slot])
+	PlayerData.roster[charid]["equipment"][slot] = add_eqp
 	
-	print(str(Globals.roster[charid]["equipment"][slot]) +" was added to slot " + slot)
+	print(str(PlayerData.roster[charid]["equipment"][slot]) +" was added to slot " + slot)
 
 func add_inventory(item) -> void:
 	pass

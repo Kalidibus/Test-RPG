@@ -9,6 +9,7 @@ extends Node
 func _ready():
 	Globals.GetCombatGlobals()
 	$CombatController.GetEnemies(currentzone)
+	await get_tree().create_timer(0.2).timeout #This is a hacky solution to make sure the Selector is loaded in time. Try and get rid of this.
 	$CombatController.GetParty()
 	$CombatGUI.CreateLabels(party, enemies)
 	

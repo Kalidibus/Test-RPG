@@ -8,7 +8,7 @@ var attacker
 var damage : int
 
 
-var party = Globals.roster
+#var party = PlayerData.roster
 var partylist = []
 var enemies = []
 var battlers = []
@@ -26,24 +26,13 @@ signal all_turns_selected
 func GetEnemies(currentzone):
 	currentzone.GetEnemies()
 
-# Reads the dictinary in the Party node to get the info needed.
-#func GetParty():
-#	print(party)
-#	for n in party.party:
-#			var charclass = party.party[n].get("class")
-#			var slot = load("res://Classes/" + charclass + ".tscn")
-#			var node = slot.instantiate()
-#			$Battlers.add_child(node)
-#			node.slot = n
-#this checks the Globals.roster variable currently, and dynamically adds to the party based on who is in there.
-#clunky implementation to pull the scene in by name. I can probably add it to the job dictionary.
+#checks party variable members for their job_id, and then uses the job dictionary to pull the resource to be loaded.
 func GetParty():
-	for n in party:
-			var charclass = party[str(n)].get("job_name")
-			var slot = load("res://Classes/" + charclass + ".tscn")
-			var node = slot.instantiate()
-			$Party.add_child(node)
-			node.slot = n
+	for n in PlayerData.roster:
+			var jobid = PlayerData.roster[str(n)].get("job_id")
+			var node = load(JobDictionary.job_dictionary[jobid]["resource"])
+			$Party.add_child(node.instantiate())
+
 
 func MainBattleLoop():
 	await get_tree().create_timer(0.1).timeout
@@ -54,18 +43,12 @@ func MainBattleLoop():
 
 func PartyTurnOrder():
 	partylist = $Party.get_children()
-	print(get_tree_string_pretty())
-	print("this is the party list" + str(partylist))
+
 	var count = 0
 	var combatover = false
 	
 	while count < partylist.size():
 		active_character = partylist[count]
-		print(count)
-		print(partylist.size())
-		print(partylist)
-		print(active_character)
-		print(Globals.roster)
 		if CheckWin() == true: # for death from DoTs during player turn
 			combatover = true #used to stop combat when one side dead
 			break
@@ -75,11 +58,6 @@ func PartyTurnOrder():
 			active_character.Turn()
 			count += 1
 		else:
-			print(count)
-			print(partylist.size())
-			print(partylist)
-			print(active_character)
-			print(Globals.roster)
 			Globals.CombatGUI.Selector(active_character.node.get_node("BG").global_position)
 			Globals.CombatGUI.SetCharaSplash(active_character)
 			active_character.Turn()
@@ -131,6 +109,13 @@ func _on_Exit_pressed():
 func win():
 	get_parent().BattleLog("You have prevailed on this fine day. Congratulations")
 	emit_signal("menuhide")
+	
+	#Basic loot test.
+	ItemDict.AddtoInventory("lcom001", 8)
+	ItemDict.AddtoInventory("lcom002", 8)
+	ItemDict.AddtoInventory("lcom003", 8)
+	ItemDict.AddtoInventory("lcom004", 8)
+	
 	await get_tree().create_timer(2.5).timeout
 	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
 

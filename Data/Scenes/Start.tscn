@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://7e6cnxckdu1r"]
 
-[ext_resource type="Texture2D" uid="uid://ctwoni5edmf7" path="res://Assets/icon.jpg" id="1"]
 [ext_resource type="Script" path="res://Scenes/Start.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="2_mlm8r"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/EnemyStatList.gd" id="3_epfif"]
 
 [node name="Start" type="MarginContainer"]
@@ -18,6 +18,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -26,7 +29,8 @@ alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1")
+size_flags_horizontal = 4
+texture = ExtResource("2_mlm8r")
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]

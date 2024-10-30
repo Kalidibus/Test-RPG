@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bah0sjprg27oh"]
+
+[ext_resource type="Script" path="res://Scenes/PlayerData/PlayerData.gd" id="1_fgewf"]
+
+[node name="PlayerData" type="Node"]
+script = ExtResource("1_fgewf")
+
+[node name="Party" type="Node" parent="."]
+
+[node name="Inventory" type="Node" parent="."]
+
+[node name="Roster" type="Node" parent="."]

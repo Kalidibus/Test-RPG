@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cfbfjw61ew6p"]
 
-[ext_resource type="Script" path="res://Classes/Fel Mage.gd" id="1"]
+[ext_resource type="Script" path="res://Classes/Fel Mage/Fel Mage.gd" id="1"]
 
 [node name="Sorcerer" type="Node" groups=["partymembers"]]
 script = ExtResource("1")

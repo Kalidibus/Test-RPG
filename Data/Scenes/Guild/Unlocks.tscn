@@ -1,0 +1,142 @@
+[gd_scene load_steps=4 format=3 uid="uid://eml63b22l883"]
+
+[ext_resource type="Script" path="res://Scenes/Guild/Unlocks.gd" id="1_f0qpl"]
+[ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="2_7hd1r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0mqv"]
+bg_color = Color(0.17, 0.158525, 0.1445, 1)
+
+[node name="CharUnlocks" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("1_f0qpl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MainMenu" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_7hd1r")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MainMenu"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MainMenu"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MainMenu/HBoxContainer"]
+layout_mode = 2
+
+[node name="Givestuff" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Give me stuff!"
+
+[node name="Takestuff" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Remove Stuff instead"
+
+[node name="ReturnButton" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
+
+[node name="Select_and_Stats" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 80
+
+[node name="ListBox" type="VBoxContainer" parent="HBoxContainer/Select_and_Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Description" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Description"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Description/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 50
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Description/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 800
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Description/MarginContainer/MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/Description/MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Vocation:[/b]
+"
+fit_content = true
+
+[node name="job_name_display" type="RichTextLabel" parent="HBoxContainer/Description/MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="HBoxContainer/Description/MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Description:[/b]
+"
+fit_content = true
+
+[node name="job_description_display" type="RichTextLabel" parent="HBoxContainer/Description/MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/Description/MarginContainer"]
+z_index = -1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_e0mqv")
+
+[node name="CharaSplashBox" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CharaSplash" type="TextureRect" parent="HBoxContainer/CharaSplashBox"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = -796.224
+offset_right = -10.0
+offset_bottom = 980.0
+size_flags_horizontal = 10
+expand_mode = 3
+
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/Givestuff" to="." method="_on_givestuff_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/Takestuff" to="." method="_on_takestuff_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
