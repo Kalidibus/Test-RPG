@@ -25,4 +25,6 @@ func IsClassUnlocked(jobid):
 		return 0
 	else:
 		return 1
-	
+
+func UnlockClass(jobid):
+	unlocked_classes.append(str(jobid))

@@ -49,4 +49,27 @@ func set_unlock_gui(jobid):
 
 
 func _on_unlock_button_pressed() -> void:
-	pass
+	if PaythePrice():
+		var jobid = self.get_index()
+		PlayerData.UnlockClass(jobid)
+		%UnlockButton.disabled = true
+		print(PlayerData.unlocked_classes)
+	
+		%unlockstatus.text = "Unlocked!"
+		%ResourceContainer.visible = false
+		%UnlockButton.disabled = true
+
+func PaythePrice():
+	var jobid = self.get_index()
+	print(jobid)
+	var cost = JobDictionary.GetUnlocks(str(jobid))
+	
+#	for n in cost:
+#		print(n)
+#		if PlayerData.GetInvItemQty(n) > cost[n]:
+#			print("yes")
+	
+	print(cost) 
+	
+	ItemDict.RemovefromInventory("lcom001", 5)
+	

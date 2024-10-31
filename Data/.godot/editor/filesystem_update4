@@ -1,6 +1,8 @@
-res://Scenes/Guild/Unlocks.tscn
+res://Scenes/Guild/UnlockGUIBox.tscn
 res://Enemies/monKobold.gd
-res://Scenes/Guild/Unlocks.gd
+res://Scenes/PlayerData/PlayerData.gd
+res://Scenes/Guild/UnlockGuiBox.gd
+res://Scenes/Guild/Unlocks.tscn
 res://Scenes/Start.tscn
 res://Scenes/Battle Scenes/Combat.tscn
 res://Classes/Erde Cleric/Erde Cleric.tscn
@@ -9,10 +11,4 @@ res://Scenes/Other/SystemNotification.tscn
 res://Classes/War Mage/War Mage.tscn
 res://Classes/Fel Mage/Fel Mage.tscn
 res://Items/ItemDict.tscn
-res://Scenes/Guild/UnlockGUIBox.tscn
 res://Scenes/PlayerData/PlayerData.tscn
-res://Items/ItemDict.gd
-res://Scenes/Guild/UnlockGuiBox.gd
-res://Scenes/PlayerData/PlayerData.gd
-res://Scenes/Battle Scenes/CombatController.gd
-res://Scenes/Guild/CharacterCreate.gd
