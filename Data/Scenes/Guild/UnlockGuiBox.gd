@@ -49,27 +49,42 @@ func set_unlock_gui(jobid):
 
 
 func _on_unlock_button_pressed() -> void:
-	if PaythePrice():
-		var jobid = self.get_index()
+	var jobid = self.get_index()
+	
+	if PaythePrice(jobid):
+
 		PlayerData.UnlockClass(jobid)
 		%UnlockButton.disabled = true
-		print(PlayerData.unlocked_classes)
 	
 		%unlockstatus.text = "Unlocked!"
 		%ResourceContainer.visible = false
 		%UnlockButton.disabled = true
+		
+		$/root/CharUnlocks.get_tree().reload_current_scene()
 
-func PaythePrice():
-	var jobid = self.get_index()
-	print(jobid)
-	var cost = JobDictionary.GetUnlocks(str(jobid))
+func PaythePrice(jobid):
+	var costarray = JobDictionary.GetUnlocks(str(jobid))
+	var count = 0
+
+	for n in costarray:
+		var cost = costarray[n]["needed"]
+		var item = costarray[n]["itemid"]
+
+
+		if PlayerData.GetInvItemQty(item) >= cost:
+			count += 1
+	if count == 4:
+		for n in costarray:
+			var item = costarray[n]["itemid"]
+			var cost = costarray[n]["needed"]
+			
+			ItemDict.RemovefromInventory(item, cost)
+			
+			Globals.system_message(JobDictionary.JobName(jobid) + " has been unlocked!")
+		return 1
+	else:
+		Globals.system_message("Inadequate Resources")
+		return 0
 	
-#	for n in cost:
-#		print(n)
-#		if PlayerData.GetInvItemQty(n) > cost[n]:
-#			print("yes")
-	
-	print(cost) 
-	
-	ItemDict.RemovefromInventory("lcom001", 5)
+
 	

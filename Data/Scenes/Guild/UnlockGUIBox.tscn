@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/Guild/UnlockGuiBox.gd" id="1_letxd"]
 
 [node name="UnlockGUIBox" type="MarginContainer"]
+custom_minimum_size = Vector2(515, 0)
 offset_right = 515.0
 offset_bottom = 115.0
 size_flags_horizontal = 3
