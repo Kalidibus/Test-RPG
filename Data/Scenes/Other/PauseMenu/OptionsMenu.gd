@@ -1,14 +1,4 @@
-extends Node
-
-var dict = {
-	"apan01" = {
-		"name" = "Corroded Greaves",
-		"type" = "pants",
-		"stats" = {"DEF" = 2},
-		"desc" = "Was once formidable armour. Broken down and decayed by the Brine, now only tatters remain.",
-		"value" = 5
-	}
-}
+extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,3 +8,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_save_button_pressed() -> void:
+	SaveandLoad.ask_save()
+
+
+func _on_load_button_pressed() -> void:
+	SaveandLoad.load_file()

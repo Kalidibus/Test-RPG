@@ -1,0 +1,184 @@
+[gd_scene load_steps=2 format=3 uid="uid://c73fkwqcpd4it"]
+
+[ext_resource type="Script" path="res://Scenes/Other/PauseMenu/ItemMenu.gd" id="1_5qxyk"]
+
+[node name="ItemMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_5qxyk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="WeaponBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2/WeaponBox"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+
+[node name="Button8" type="Label" parent="VBoxContainer/HBoxContainer2/WeaponBox/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -11.5
+offset_right = 28.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Weapons"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/WeaponBox"]
+layout_mode = 2
+
+[node name="1Hand" type="Button" parent="VBoxContainer/HBoxContainer2/WeaponBox/HBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "One-Handed Weapons"
+
+[node name="Two-Handed" type="Button" parent="VBoxContainer/HBoxContainer2/WeaponBox/HBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Two-Handed Weapons"
+
+[node name="Shields" type="Button" parent="VBoxContainer/HBoxContainer2/WeaponBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Shields"
+
+[node name="Arcana" type="Button" parent="VBoxContainer/HBoxContainer2/WeaponBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Arcana"
+
+[node name="GearBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2/GearBox"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+
+[node name="Button8" type="Label" parent="VBoxContainer/HBoxContainer2/GearBox/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -11.5
+offset_right = 28.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Gear"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/GearBox"]
+layout_mode = 2
+
+[node name="Head" type="Button" parent="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Head"
+
+[node name="Body" type="Button" parent="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Body"
+
+[node name="Gloves" type="Button" parent="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Gloves"
+
+[node name="Pants" type="Button" parent="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Pants"
+
+[node name="Rings" type="Button" parent="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Rings"
+
+[node name="Necklaces" type="Button" parent="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Necklaces"
+
+[node name="ItemBox" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2/ItemBox"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+
+[node name="Button8" type="Label" parent="VBoxContainer/HBoxContainer2/ItemBox/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -11.5
+offset_right = 28.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loot & Other"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/ItemBox"]
+layout_mode = 2
+
+[node name="Items" type="Button" parent="VBoxContainer/HBoxContainer2/ItemBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Consumables"
+
+[node name="Crafting" type="Button" parent="VBoxContainer/HBoxContainer2/ItemBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Crafting"
+
+[node name="Augments" type="Button" parent="VBoxContainer/HBoxContainer2/ItemBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Augments"
+
+[node name="Key" type="Button" parent="VBoxContainer/HBoxContainer2/ItemBox/HBoxContainer"]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+text = "Key"
+
+[node name="Items" type="GridContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/WeaponBox/HBoxContainer/1Hand" to="." method="_on_hand_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/WeaponBox/HBoxContainer/Two-Handed" to="." method="_on_two_handed_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/WeaponBox/HBoxContainer/Shields" to="." method="_on_shields_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/WeaponBox/HBoxContainer/Arcana" to="." method="_on_arcana_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer/Head" to="." method="_on_head_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer/Body" to="." method="_on_body_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer/Gloves" to="." method="_on_gloves_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer/Pants" to="." method="_on_pants_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer/Rings" to="." method="_on_rings_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/GearBox/HBoxContainer/Necklaces" to="." method="_on_necklaces_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ItemBox/HBoxContainer/Items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ItemBox/HBoxContainer/Crafting" to="." method="_on_crafting_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ItemBox/HBoxContainer/Augments" to="." method="_on_augments_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ItemBox/HBoxContainer/Key" to="." method="_on_key_pressed"]

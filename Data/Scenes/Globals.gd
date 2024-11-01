@@ -1,6 +1,7 @@
 extends Node
 
 @onready var popup = preload("res://Scenes/Other/SystemNotification.tscn")
+@onready var choice_popup = preload("res://Scenes/Other/SystemChoice.tscn")
 
 var camera = null
 var CombatEventHandler
@@ -34,3 +35,21 @@ func system_message(text):
 	message.focusOK()
 	await Signal(message, "confirmation")
 	remove_child(message)
+
+func system_message_choice(text, selection1, selection2):
+
+	var message = choice_popup.instantiate()
+	message.set_text(text)
+	message.set_buttons(selection1, selection2)
+	add_child(message)
+	message.focusOK()
+	await Signal(message, "confirmation")
+	
+	if message.choice == "left":
+		remove_child(message)
+		return("left")
+	if message.choice == "right":
+		remove_child(message)
+		return("right")
+	else:
+		return("failure")

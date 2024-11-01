@@ -3,6 +3,7 @@ extends Node
 var dict = {
 	"arin01" = {
 		"name" = "Corroded Ring",
+		"type" = "ring",
 		"stats" = {"INT" = 2},
 		"desc" = "Was once a formidable ring. Broken down and decayed by the Brine, now only fragments remain.",
 		"value" = 5

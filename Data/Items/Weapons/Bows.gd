@@ -1,7 +1,7 @@
 extends Node
 
 var dict = {
-	"wbow01" = {
+	"2wep001" = {
 		"name" = "Corroded Bow Fragment",
 		"stats" = {"DEX" = 2},
 		"desc" = "Was once a formidable bow. Broken down and decayed by the Brine, now only meager timber remains.",

@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwxnh2oywwts3"]
+[gd_scene load_steps=18 format=3 uid="uid://bwxnh2oywwts3"]
 
 [ext_resource type="Script" path="res://Items/ItemDict.gd" id="1_vjw20"]
 [ext_resource type="Script" path="res://Items/Weapons/Arcana.gd" id="2_lg4f7"]
 [ext_resource type="Script" path="res://Items/Weapons/Swords.gd" id="3_3lw2q"]
+[ext_resource type="Script" path="res://Items/1handw.gd" id="3_j6f7n"]
 [ext_resource type="Script" path="res://Items/Weapons/Bows.gd" id="4_ui0s5"]
 [ext_resource type="Script" path="res://Items/Weapons/Axes.gd" id="5_drf3o"]
 [ext_resource type="Script" path="res://Items/Weapons/Hammers.gd" id="6_lb75c"]
@@ -26,11 +27,14 @@ script = ExtResource("1_vjw20")
 unique_name_in_owner = true
 script = ExtResource("2_lg4f7")
 
+[node name="OneHandWep" type="Node" parent="Weapons"]
+script = ExtResource("3_j6f7n")
+
 [node name="Axes" type="Node" parent="Weapons"]
 unique_name_in_owner = true
 script = ExtResource("5_drf3o")
 
-[node name="Bows" type="Node" parent="Weapons"]
+[node name="TwoHandWep" type="Node" parent="Weapons"]
 unique_name_in_owner = true
 script = ExtResource("4_ui0s5")
 

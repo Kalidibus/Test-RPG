@@ -3,6 +3,7 @@ extends Node
 var dict = {
 	"abod01" = {
 		"name" = "Corroded Breastguard",
+		"type" = "body",
 		"stats" = {"HP" = 5, "DEF" = 2},
 		"desc" = "Was once formidable armour. Broken down and decayed by the Brine, now only tatters remain.",
 		"value" = 5

@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://csvgfcwhbxsib"]
+
+[ext_resource type="Script" path="res://Scenes/Other/PauseMenu/OptionsMenu.gd" id="1_boudc"]
+
+[node name="OptionsMenu" type="MarginContainer"]
+offset_right = 100.0
+offset_bottom = 66.0
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+script = ExtResource("1_boudc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Load"
+
+[connection signal="pressed" from="VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

@@ -1,11 +1,11 @@
 extends Node
 
 var dict = {
-	"apan01" = {
-		"name" = "Corroded Greaves",
-		"type" = "pants",
-		"stats" = {"DEF" = 2},
-		"desc" = "Was once formidable armour. Broken down and decayed by the Brine, now only tatters remain.",
+	"1wep001" = {
+		"name" = "Corroded Axe Hilt",
+		"type" = "1hand",
+		"stats" = {"STR" = 2},
+		"desc" = "Was once a formidable axe. Broken down and decayed by the Brine, now only now only a hilt remains.",
 		"value" = 5
 	}
 }
