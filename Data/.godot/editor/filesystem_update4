@@ -1,39 +1,21 @@
-res://Scenes/Start.tscn
 res://Enemies/monKobold.gd
-res://Scenes/Guild/UnlockGuiBox.gd
+res://Scenes/Other/PauseMenu/PartyBlock.tscn
+res://Scenes/Other/PauseMenu/PartyMenu.tscn
+res://Scenes/Other/PauseMenu/PauseMenu.gd
+res://Scenes/Other/PauseMenu/PauseMenu.tscn
+res://Scenes/Start.tscn
 res://Scenes/Battle Scenes/Combat.tscn
 res://Classes/Erde Cleric/Erde Cleric.tscn
 res://Scenes/Guild/CharacterCreate.tscn
-res://Scenes/Other/SystemNotification.tscn
+res://Scenes/Other/SystemChoice.tscn
 res://Classes/War Mage/War Mage.tscn
 res://Classes/Fel Mage/Fel Mage.tscn
 res://Items/ItemDict.tscn
 res://Scenes/Guild/Unlocks.tscn
 res://Scenes/Guild/UnlockGUIBox.tscn
 res://Scenes/PlayerData/PlayerData.tscn
-res://Scenes/Other/PauseMenu.tscn
-res://Scenes/SaveandLoad.gd
-res://Scenes/Other/PauseMenu/PauseMenu.gd
-res://Scenes/Other/PauseMenu/PauseMenu.tscn
 res://Scenes/Other/PauseMenu/ItemMenu.tscn
-res://Scenes/Start.gd
-res://OptionsMenu.gd
 res://Scenes/Other/PauseMenu/OptionsMenu.tscn
-res://Scenes/Other/PauseMenu/ItemMenu.gd
 res://Scenes/Other/PauseMenu/ItemBlock.tscn
-res://Items/ItemDict.gd
-res://Items/Weapons/Arcana.gd
-res://Items/Weapons/Axes.gd
-res://Items/Loot/Components.gd
-res://Items/Accessories/Rings.gd
-res://Items/Accessories/Necklaces.gd
-res://Items/Armour/Pants.gd
-res://Items/Armour/Gloves.gd
-res://Items/Armour/Body.gd
-res://Items/Armour/Head.gd
-res://Items/1handw.gd
-res://Items/Weapons/Bows.gd
-res://Scenes/Globals.gd
-res://Scenes/Other/SystemChoice.gd
-res://Scenes/Other/SystemChoice.tscn
-res://Scenes/Other/PauseMenu/OptionsMenu.gd
+res://Scenes/Battle Scenes/PlayerBlock.tscn
+res://Scenes/Other/PauseMenu/PartyMenu.gd

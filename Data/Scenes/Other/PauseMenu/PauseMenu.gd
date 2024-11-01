@@ -1,10 +1,13 @@
 extends MarginContainer
 
-var currentscreen = "party"
+var currentscreen = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var menu = load("res://Scenes/Other/PauseMenu/PartyMenu.tscn")
+	ClearScreen()
+	%MenuContainer.add_child(menu.instantiate())
+	currentscreen = "party"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,3 +41,11 @@ func _on_quit_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://Scenes/Start.tscn")
 	if choice == "right":
 		get_tree().change_scene_to_file("res://Scenes/Start.tscn")
+
+
+func _on_party_button_pressed() -> void:
+	if not currentscreen == "party":
+		var menu = load("res://Scenes/Other/PauseMenu/PartyMenu.tscn")
+		ClearScreen()
+		%MenuContainer.add_child(menu.instantiate())
+		currentscreen = "party"

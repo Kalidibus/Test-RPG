@@ -61,6 +61,7 @@ theme_override_constants/margin_bottom = 15
 [node name="Panel" type="Panel" parent="VBoxContainer/MenuContainer"]
 layout_mode = 2
 
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/PartyButton" to="." method="_on_party_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

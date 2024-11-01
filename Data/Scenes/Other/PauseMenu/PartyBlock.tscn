@@ -1,0 +1,149 @@
+[gd_scene load_steps=6 format=3 uid="uid://8xf84jklsj73"]
+
+[ext_resource type="Texture2D" uid="uid://coaxx58modqde" path="res://Assets/Classes/Fortress-profile.png" id="1_jwlbq"]
+[ext_resource type="Texture2D" uid="uid://drac0yxtmd00b" path="res://Assets/UI/bar_under.png" id="2_76vh2"]
+[ext_resource type="Texture2D" uid="uid://cnvglr0j77jl6" path="res://Assets/UI/HP_bar_progress.png" id="3_12plf"]
+[ext_resource type="Texture2D" uid="uid://daiq7i2a0xvoq" path="res://Assets/UI/MP_bar_progress.png" id="4_c52yh"]
+
+[sub_resource type="Theme" id="Theme_a4g7p"]
+
+[node name="PartyBlock" type="MarginContainer"]
+custom_minimum_size = Vector2(655, 170)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_a4g7p")
+text = "Kalidibus"
+
+[node name="Class" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_a4g7p")
+text = "Fortress"
+
+[node name="Lv" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_a4g7p")
+text = "Lv. 2"
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Control"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 580.0
+offset_bottom = 27.0
+scale = Vector2(0.8, 0.8)
+columns = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Control/GridContainer"]
+layout_mode = 2
+text = "Main Hand: Weapon"
+
+[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Control/GridContainer"]
+layout_mode = 2
+text = "Main Hand: Weapon"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 433.0
+offset_top = -106.0
+offset_right = 807.0
+offset_bottom = 328.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_jwlbq")
+
+[node name="Stats" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+offset_left = 399.0
+offset_top = 36.0
+offset_right = 519.0
+offset_bottom = 59.0
+text = "120/137"
+
+[node name="MP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+offset_left = 528.0
+offset_top = 33.0
+offset_right = 648.0
+offset_bottom = 56.0
+text = "68/90"
+
+[node name="HPBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+offset_left = 365.0
+offset_top = 57.0
+offset_right = 754.0
+offset_bottom = 78.0
+scale = Vector2(0.25, 0.6)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+value = 70.0
+texture_under = ExtResource("2_76vh2")
+texture_progress = ExtResource("3_12plf")
+
+[node name="MPBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+offset_left = 473.0
+offset_top = 57.0
+offset_right = 880.0
+offset_bottom = 78.0
+scale = Vector2(0.25, 0.6)
+value = 60.0
+texture_under = ExtResource("2_76vh2")
+texture_progress = ExtResource("4_c52yh")
+
+[node name="XP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+offset_left = 1.0
+offset_top = 43.0
+offset_right = 100.0
+offset_bottom = 66.0
+text = "XP: 999/1000"
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Panel2" type="Panel" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Position" type="Label" parent="HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "FRONT"
