@@ -14,6 +14,18 @@ var starting_stats = {
 		"SPD" = 25
 		}
 
+var stat_scaling = {
+		"HPmax" = "A",
+		"MPmax" = "C",
+		"STR" = "B",
+		"DEF" = "S",
+		"INT" = "C",
+		"FTH" = "C",
+		"RES" = "B",
+		"EVD" = "D",
+		"SPD" = "D"
+}
+
 var job_description = "The Fel Mage is destruction incarnate. \n\nMaster of all elements, and capable of raining massive damage down upon foes regardless of their resistances or position. Their ability to recover MP also makes them excellent sustainers for long journies. \n\nHowever Fel Mage's lack much in the way of defenses, and must be protected. "
 
 func _ready():

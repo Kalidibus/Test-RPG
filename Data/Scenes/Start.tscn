@@ -72,6 +72,10 @@ text = "[DEBUG] PauseMenu"
 layout_mode = 2
 text = "Exit"
 
+[node name="debug" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "DEBUG"
+
 [node name="EnemyStatList" type="Node" parent="."]
 script = ExtResource("3_epfif")
 
@@ -83,3 +87,4 @@ script = ExtResource("3_epfif")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/debug" to="." method="_on_debug_pressed"]

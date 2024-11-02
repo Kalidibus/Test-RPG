@@ -1,6 +1,7 @@
-res://Scenes/Start.tscn
+res://Scenes/Other/PauseMenu/PartyBlock.tscn
 res://Enemies/monKobold.gd
 res://Scenes/Other/PauseMenu/PartyMenu.gd
+res://Scenes/Start.tscn
 res://Scenes/Battle Scenes/Combat.tscn
 res://Classes/Erde Cleric/Erde Cleric.tscn
 res://Scenes/Guild/CharacterCreate.tscn
@@ -16,11 +17,11 @@ res://Scenes/Other/PauseMenu/ItemMenu.tscn
 res://Scenes/Other/PauseMenu/OptionsMenu.tscn
 res://Scenes/Other/PauseMenu/ItemBlock.tscn
 res://Scenes/Other/PauseMenu/PartyMenu.tscn
-res://Scenes/Other/PauseMenu/PartyBlock.tscn
 res://Scenes/Battle Scenes/PlayerBlock.tscn
 res://Classes/Classes.tscn
 res://Scenes/Other/CharacterChanges.tscn
 res://Scenes/Battle Scenes/Party.tscn
 res://Scenes/Other/CharacterChanges.gd
-res://Scenes/Battle Scenes/CombatController.gd
+res://Classes/JobDictionary.gd
 res://Scenes/Start.gd
+res://Scenes/Battle Scenes/Entity.gd

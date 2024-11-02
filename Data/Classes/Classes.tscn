@@ -16,6 +16,9 @@
 [node name="JobDictionary" type="Node"]
 script = ExtResource("1_ms52s")
 
+[node name="UnlockRequirements" type="Node" parent="."]
+script = ExtResource("12_e2gvo")
+
 [node name="Fortress" parent="." instance=ExtResource("6_yphjg")]
 
 [node name="Fel Mage" parent="." instance=ExtResource("5_vh3l3")]
@@ -34,6 +37,3 @@ script = ExtResource("9_4bepa")
 [node name="Samurai" parent="." instance=ExtResource("10_lcvfa")]
 
 [node name="War Mage" parent="." instance=ExtResource("11_s2ud6")]
-
-[node name="UnlockRequirements" type="Node" parent="."]
-script = ExtResource("12_e2gvo")

@@ -80,8 +80,6 @@ func CreateLabels(notparty, notenemies):
 			box.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
 			box.set_name(i.charname + "Block")
 			enemies.append(i)
-			print(i.charname)
-			print(box)
 			i.node = box
 			i.selectionBG = box.get_child(0)
 			enemylblcount += 1
@@ -101,8 +99,7 @@ func CreateLabels(notparty, notenemies):
 			pbox.SwitchRows(i)
 			i.node = pbox #so the overall node can be referred to
 			i.selectionBG = pbox.get_child(0) #for the selection
-			print(i.charname)
-			print(pbox)
+
 			
 			
 		count += 1

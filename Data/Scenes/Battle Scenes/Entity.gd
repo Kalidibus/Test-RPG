@@ -257,8 +257,6 @@ func AttemptStatusAilment(type, amount, time):
 		CombatGUI.StatusLabels(self)
 
 func UseItem():
-	print("useitems" + str(queueditem))
-	print(charname)
 	queueditem.call_func(self)
 
 func DecideTarget():
@@ -266,7 +264,6 @@ func DecideTarget():
 	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
 	var rng = RNG()
 	var partylist = get_party_targets()
-	print(partylist)
 	var targetlist = []
 	
 	for n in partylist:

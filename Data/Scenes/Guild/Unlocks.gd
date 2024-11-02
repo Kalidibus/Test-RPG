@@ -39,7 +39,6 @@ func _on_givestuff_pressed() -> void:
 	CharacterChanges.AddtoInventory("lcom002", 5)
 	CharacterChanges.AddtoInventory("lcom003", 5)
 	CharacterChanges.AddtoInventory("lcom004", 5)
-	print(PlayerData.inventory)
 	get_tree().reload_current_scene()
 
 func _on_takestuff_pressed() -> void:
@@ -47,5 +46,4 @@ func _on_takestuff_pressed() -> void:
 	CharacterChanges.RemovefromInventory("lcom002", 5)
 	CharacterChanges.RemovefromInventory("lcom003", 5)
 	CharacterChanges.RemovefromInventory("lcom004", 5)
-	print(PlayerData.inventory)
 	get_tree().reload_current_scene()

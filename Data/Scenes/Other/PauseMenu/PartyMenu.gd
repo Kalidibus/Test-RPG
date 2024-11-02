@@ -23,6 +23,13 @@ func _ready() -> void:
 		block.get_node("%MPBar").min_value = MP
 		block.get_node("%MPBar").max_value = MPmax
 		
+		block.get_node("%STR_stat").text = str(PlayerData.GetStat(n, "STR"))
+		block.get_node("%DEF_stat").text = str(PlayerData.GetStat(n, "DEF"))
+		block.get_node("%INT_stat").text = str(PlayerData.GetStat(n, "INT"))
+		block.get_node("%RES_stat").text = str(PlayerData.GetStat(n, "RES"))
+		block.get_node("%FTH_stat").text = str(PlayerData.GetStat(n, "FTH"))
+		block.get_node("%EVD_stat").text = str(PlayerData.GetStat(n, "EVD"))
+		block.get_node("%SPD_stat").text = str(PlayerData.GetStat(n, "SPD"))
 		
 		%PartyBlockHolder.add_child(block)
 

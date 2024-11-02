@@ -12,6 +12,18 @@ var starting_stats = {
 		"SPD" = 25
 		}
 
+var stat_scaling = {
+		"HPmax" = "A",
+		"MPmax" = "C",
+		"STR" = "B",
+		"DEF" = "S",
+		"INT" = "C",
+		"FTH" = "C",
+		"RES" = "B",
+		"EVD" = "D",
+		"SPD" = "D"
+}
+
 var job_description = "The War Mage is a frontline caster with explosive capabilities. \n\nSpecializing in close-range Levin and Infernal damage, they are monsters against groups of enemies that fight in the front-line. Hitting enemies with Infernal or Levin damage also accumulates a resource called [b]Overheat[/b] which can be used to fuel explosive attacks that hit the whole enemy party. \n\nThier capabilities against single enemies, or ranged enemies can be found lacking."
 
 func _ready():

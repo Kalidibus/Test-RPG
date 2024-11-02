@@ -23,6 +23,18 @@ func _process(delta: float) -> void:
 func Stats(jobid):
 	return job_dictionary[str(jobid)]["node"].starting_stats
 
+func StatScaling(jobid, stat):
+	var statscale = job_dictionary[str(jobid)]["node"].stat_scaling[stat]
+	match statscale:
+		"S": return 1.1
+		"A": return 1.08
+		"B": return 1.06
+		"C": return 1.05
+		"D": return 1.04
+		"E": return 1.02
+		"F": return 1
+		
+		
 func JobName(jobid):
 	return job_dictionary[str(jobid)]["name"]
 	

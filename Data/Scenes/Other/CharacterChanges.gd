@@ -16,7 +16,6 @@ func add_equipment(charid, slot, add_eqp) -> void:
 		AddtoInventory(PlayerData.roster[charid]["equipment"][slot], 1)
 	PlayerData.roster[charid]["equipment"][slot] = add_eqp
 	
-	print(str(PlayerData.roster[charid]["equipment"][slot]) +" was added to slot " + slot)
 
 func AddtoInventory(itemid, qty) -> void:
 	if not PlayerData.inventory.has(itemid):
@@ -36,20 +35,39 @@ func RemovefromInventory(itemid, qty):
 func GainXP(charid, xp):
 	charid = str(charid)
 	PlayerData.roster[charid]["xp"] += xp
-	LevelUp(charid)
+	LevelUpCheck(charid)
 
 func LoseXP(charid, xp):
 	charid = str(charid)
 	PlayerData.roster[charid]["xp"] -= xp
 
-func LevelUp(charid):
+func LevelUpCheck(charid):
 	var xp = PlayerData.roster[charid]["xp"]
 	var xpneeded = PlayerData.roster[charid]["xpneeded"]
 	var level = PlayerData.roster[charid]["level"]
 
 	if xp >= xpneeded:
-		PlayerData.roster[charid]["level"] += 1 #this needs stat increase somehow still
-		PlayerData.roster[charid]["xpneeded"] = int(xpneeded*1.5)
 		LevelUp(charid)
 	else:
 		return
+
+func LevelUp(charid):
+	var stats = PlayerData.roster[charid]["stats"]
+	var jobid = PlayerData.roster[charid]["job_id"]
+	
+	#increase Level
+	PlayerData.roster[charid]["level"] += 1 
+	#increase XP needed for next level
+	PlayerData.roster[charid]["xpneeded"] = int(PlayerData.roster[charid]["xpneeded"]*1.5)
+	
+	#increase stats
+	for n in stats:
+		if n == "HP" or n == "MP": pass
+		else: PlayerData.roster[charid]["stats"][n] = int(stats[n] * JobDictionary.StatScaling(jobid, n)) + 1
+	
+	#Fill up HP / MP
+	PlayerData.roster[charid]["stats"]["HP"] = PlayerData.roster[charid]["stats"]["HPmax"]
+	PlayerData.roster[charid]["stats"]["MP"] = PlayerData.roster[charid]["stats"]["MPmax"]
+	
+	#check for multiple level ups in case of huge XP gain
+	LevelUpCheck(charid)

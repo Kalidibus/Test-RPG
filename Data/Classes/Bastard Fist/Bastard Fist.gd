@@ -14,6 +14,18 @@ var starting_stats = {
 		"SPD" = 40
 		}
 
+var stat_scaling = {
+		"HPmax" = "A",
+		"MPmax" = "C",
+		"STR" = "B",
+		"DEF" = "S",
+		"INT" = "C",
+		"FTH" = "C",
+		"RES" = "B",
+		"EVD" = "D",
+		"SPD" = "D"
+}
+
 var job_description = "In a flury of crushing blows, the Bastard Fist Vocation unleashes hell with it's massive gauntlets. \n\nSpecializing in combination attacks, Bastard Fists become stronger with repeated attacks. They also boast impressive self buffing capabilities. \n\nTheir buffs often come at a cost however, granting incredible damage at the cost of Defense or Health."
 
 func _ready():

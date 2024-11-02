@@ -12,6 +12,18 @@ var starting_stats = {
 		"SPD" = 60
 		}
 
+var stat_scaling = {
+		"HPmax" = "A",
+		"MPmax" = "C",
+		"STR" = "B",
+		"DEF" = "S",
+		"INT" = "C",
+		"FTH" = "C",
+		"RES" = "B",
+		"EVD" = "D",
+		"SPD" = "D"
+}
+
 var job_description = "A whirlwind of blades that bolsters the parties damage. \n\nDancer's are a potent addition to any party, especially those focused on physical damage types. Using a variety of dances, they bolster damage and MP regeneration, or follow up with ally attacks to devestating effect. \n\nThey are less effective at bolstering the abilities of Casters."
 
 func _ready():
