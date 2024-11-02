@@ -41,7 +41,3 @@ func _on_hire_button_pressed() -> void:
 
 func _on_pause_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Other/PauseMenu/PauseMenu.tscn")
-
-
-func _on_pause_button_2_pressed() -> void:
-	Globals.system_message_choice("This is a choice!", "OK", "No!")

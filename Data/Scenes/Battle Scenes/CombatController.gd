@@ -118,7 +118,7 @@ func win():
 	
 	#Basic XP Test.
 	for n in PlayerData.roster:
-		PlayerData.roster[n]["xp"] += 25
+		PlayerData.roster[n]["xp"] += 2205
 	
 	await get_tree().create_timer(2.5).timeout
 	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")

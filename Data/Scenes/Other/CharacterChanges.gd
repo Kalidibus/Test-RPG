@@ -36,7 +36,20 @@ func RemovefromInventory(itemid, qty):
 func GainXP(charid, xp):
 	charid = str(charid)
 	PlayerData.roster[charid]["xp"] += xp
+	LevelUp(charid)
 
 func LoseXP(charid, xp):
 	charid = str(charid)
 	PlayerData.roster[charid]["xp"] -= xp
+
+func LevelUp(charid):
+	var xp = PlayerData.roster[charid]["xp"]
+	var xpneeded = PlayerData.roster[charid]["xpneeded"]
+	var level = PlayerData.roster[charid]["level"]
+
+	if xp >= xpneeded:
+		PlayerData.roster[charid]["level"] += 1 #this needs stat increase somehow still
+		PlayerData.roster[charid]["xpneeded"] = int(xpneeded*1.5)
+		LevelUp(charid)
+	else:
+		return

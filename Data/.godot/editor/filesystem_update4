@@ -1,8 +1,6 @@
-res://Scenes/Other/CharacterChanges.tscn
-res://Enemies/monKobold.gd
-res://Scenes/Other/CharacterChanges.gd
-res://Items/ItemDict.gd
 res://Scenes/Start.tscn
+res://Enemies/monKobold.gd
+res://Scenes/Other/PauseMenu/PartyMenu.gd
 res://Scenes/Battle Scenes/Combat.tscn
 res://Classes/Erde Cleric/Erde Cleric.tscn
 res://Scenes/Guild/CharacterCreate.tscn
@@ -21,14 +19,8 @@ res://Scenes/Other/PauseMenu/PartyMenu.tscn
 res://Scenes/Other/PauseMenu/PartyBlock.tscn
 res://Scenes/Battle Scenes/PlayerBlock.tscn
 res://Classes/Classes.tscn
-res://Scenes/Other/PauseMenu/PauseMenu.gd
-res://Scenes/Start.gd
-res://Scenes/SaveandLoad.gd
-res://Scenes/Battle Scenes/CombatController.gd
-res://Scenes/Guild/CharacterCreate.gd
-res://Scenes/Other/PauseMenu/PartyMenu.gd
-res://Classes/Fortress/Fortress.gd
-res://Classes/Fel Mage/Fel Mage.gd
-res://Classes/Bastard Fist/Bastard Fist.gd
-res://Scenes/PlayerData/PlayerData.gd
+res://Scenes/Other/CharacterChanges.tscn
 res://Scenes/Battle Scenes/Party.tscn
+res://Scenes/Other/CharacterChanges.gd
+res://Scenes/Battle Scenes/CombatController.gd
+res://Scenes/Start.gd
