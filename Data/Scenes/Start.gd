@@ -18,7 +18,16 @@ func _on_OptionsButton_pressed():
 		get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	var choice = await Globals.system_message_choice("Do you wish to save your game before quitting?", "Yes", "No")
+	if choice == "left":
+		await SaveandLoad.save_file()
+		await SaveandLoad.autosave()
+		get_tree().quit()
+	if choice == "right":
+		await SaveandLoad.autosave()
+		get_tree().quit()
+		
+
 
 func _on_save_button_pressed():
 	SaveandLoad.save_file()

@@ -78,7 +78,7 @@ func PaythePrice(jobid):
 			var item = costarray[n]["itemid"]
 			var cost = costarray[n]["needed"]
 			
-			ItemDict.RemovefromInventory(item, cost)
+			CharacterChanges.RemovefromInventory(item, cost)
 			
 			Globals.system_message(JobDictionary.JobName(jobid) + " has been unlocked!")
 		return 1

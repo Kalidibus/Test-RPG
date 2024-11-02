@@ -13,10 +13,30 @@ func add_equipment(charid, slot, add_eqp) -> void:
 	charid = str(charid)
 	
 	if PlayerData.roster[charid]["equipment"][slot] != null:
-		add_inventory(PlayerData.roster[charid]["equipment"][slot])
+		AddtoInventory(PlayerData.roster[charid]["equipment"][slot], 1)
 	PlayerData.roster[charid]["equipment"][slot] = add_eqp
 	
 	print(str(PlayerData.roster[charid]["equipment"][slot]) +" was added to slot " + slot)
 
-func add_inventory(item) -> void:
-	pass
+func AddtoInventory(itemid, qty) -> void:
+	if not PlayerData.inventory.has(itemid):
+		PlayerData.inventory[itemid] = qty
+	else:
+		PlayerData.inventory[itemid] += qty
+
+func RemovefromInventory(itemid, qty):
+	if not PlayerData.inventory.has(itemid):
+		return 0
+	if PlayerData.inventory[itemid] < qty:
+		return 0
+	else:
+		PlayerData.inventory[itemid] -= qty
+		return 1
+
+func GainXP(charid, xp):
+	charid = str(charid)
+	PlayerData.roster[charid]["xp"] += xp
+
+func LoseXP(charid, xp):
+	charid = str(charid)
+	PlayerData.roster[charid]["xp"] -= xp

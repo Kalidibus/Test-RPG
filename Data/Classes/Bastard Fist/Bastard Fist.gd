@@ -3,6 +3,8 @@ extends Entity
 var starting_stats = {
 		"HP" = 100,
 		"MP" = 80,
+		"HPmax" = 100,
+		"MPmax" = 80,
 		"STR" = 70,
 		"DEF" = 20,
 		"INT" = 20,

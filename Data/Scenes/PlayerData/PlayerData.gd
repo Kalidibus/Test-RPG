@@ -28,3 +28,6 @@ func IsClassUnlocked(jobid):
 
 func UnlockClass(jobid):
 	unlocked_classes.append(str(jobid))
+
+func GetStat(charid, stat):
+	return roster[charid]["stats"][stat]

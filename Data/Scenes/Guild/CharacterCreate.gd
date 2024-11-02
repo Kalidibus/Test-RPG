@@ -42,6 +42,9 @@ func _on_create_char_button_pressed() -> void:
 		"name" = str(user_entered_name),
 		"job_id" = str(user_selected_job),
 		"job_name" = JobDictionary.JobName(user_selected_job),
+		"level" = 1,
+		"xp" = 0,
+		"xpneeded" = 100,
 		"stats" = JobDictionary.Stats(user_selected_job),
 		"abilities" = {},
 		"equipment" = {

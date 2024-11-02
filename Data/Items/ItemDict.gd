@@ -39,18 +39,3 @@ func GetItemName(itemid):
 		if n.dict.has(itemid):
 			return n.dict[itemid]["name"]
 	return "Not Found!"
-
-func AddtoInventory(itemid, qty) -> void:
-	if not PlayerData.inventory.has(itemid):
-		PlayerData.inventory[itemid] = qty
-	else:
-		PlayerData.inventory[itemid] += qty
-
-func RemovefromInventory(itemid, qty):
-	if not PlayerData.inventory.has(itemid):
-		return 0
-	if PlayerData.inventory[itemid] < qty:
-		return 0
-	else:
-		PlayerData.inventory[itemid] -= qty
-		return 1

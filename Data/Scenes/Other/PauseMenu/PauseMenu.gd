@@ -35,11 +35,6 @@ func _on_options_button_pressed() -> void:
 		currentscreen = "options"
 	
 func _on_quit_button_pressed() -> void:
-	var choice = await Globals.system_message_choice("Do you wish to save your game before quitting?", "Yes", "No")
-	if choice == "left":
-		await SaveandLoad.save_file()
-		get_tree().change_scene_to_file("res://Scenes/Start.tscn")
-	if choice == "right":
 		get_tree().change_scene_to_file("res://Scenes/Start.tscn")
 
 

@@ -111,10 +111,14 @@ func win():
 	emit_signal("menuhide")
 	
 	#Basic loot test.
-	ItemDict.AddtoInventory("lcom001", 8)
-	ItemDict.AddtoInventory("lcom002", 8)
-	ItemDict.AddtoInventory("lcom003", 8)
-	ItemDict.AddtoInventory("lcom004", 8)
+	CharacterChanges.AddtoInventory("lcom001", 8)
+	CharacterChanges.AddtoInventory("lcom002", 8)
+	CharacterChanges.AddtoInventory("lcom003", 8)
+	CharacterChanges.AddtoInventory("lcom004", 8)
+	
+	#Basic XP Test.
+	for n in PlayerData.roster:
+		PlayerData.roster[n]["xp"] += 25
 	
 	await get_tree().create_timer(2.5).timeout
 	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")

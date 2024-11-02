@@ -7,7 +7,9 @@ var jobid = "0"
 
 var starting_stats = {
 		"HP" = 125,
+		"HPmax" = 125,
 		"MP" = 50,
+		"MPmax" = 50,
 		"STR" = 50,
 		"DEF" = 75,
 		"INT" = 25,

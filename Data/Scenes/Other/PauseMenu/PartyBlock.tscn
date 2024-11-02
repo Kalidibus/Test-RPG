@@ -89,6 +89,7 @@ layout_mode = 2
 
 [node name="HP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 399.0
 offset_top = 36.0
 offset_right = 519.0
@@ -97,6 +98,7 @@ text = "120/137"
 
 [node name="MP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 528.0
 offset_top = 33.0
 offset_right = 648.0
@@ -105,6 +107,7 @@ text = "68/90"
 
 [node name="HPBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 365.0
 offset_top = 57.0
 offset_right = 754.0
@@ -118,6 +121,7 @@ texture_progress = ExtResource("3_12plf")
 
 [node name="MPBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 473.0
 offset_top = 57.0
 offset_right = 880.0
@@ -129,6 +133,7 @@ texture_progress = ExtResource("4_c52yh")
 
 [node name="XP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 1.0
 offset_top = 43.0
 offset_right = 100.0
