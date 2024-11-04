@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7spw3ltsk5b8"]
+
+[ext_resource type="Script" path="res://Enemies/EnemyDict.gd" id="1_pmhbi"]
+[ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_pylon.gd" id="1_ppid3"]
+[ext_resource type="Script" path="res://Enemies/arid.gd" id="2_b3n7h"]
+[ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_mistake.gd" id="2_svjvr"]
+[ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_cutter.gd" id="3_7meg8"]
+[ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_meatshield.gd" id="4_jkq3d"]
+
+[node name="EnemyDict" type="Node"]
+script = ExtResource("1_pmhbi")
+
+[node name="arid" type="Node" parent="."]
+script = ExtResource("2_b3n7h")
+
+[node name="Boss" type="Node" parent="arid"]
+
+[node name="Regular" type="Node" parent="arid"]
+
+[node name="mon_pylon" type="Node" parent="arid/Regular"]
+unique_name_in_owner = true
+script = ExtResource("1_ppid3")
+
+[node name="mon_mistake" type="Node" parent="arid/Regular"]
+unique_name_in_owner = true
+script = ExtResource("2_svjvr")
+
+[node name="mon_cutter" type="Node" parent="arid/Regular"]
+unique_name_in_owner = true
+script = ExtResource("3_7meg8")
+
+[node name="mon_meatshield" type="Node" parent="arid/Regular"]
+unique_name_in_owner = true
+script = ExtResource("4_jkq3d")

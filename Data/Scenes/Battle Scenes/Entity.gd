@@ -1,10 +1,12 @@
 extends Node
 class_name Entity
 
-var EventHandler = Globals.CombatEventHandler
-var CombatGUI = Globals.CombatGUI
-var CombatController = Globals.CombatController
+@onready var EventHandler = $/root/Combat
+@onready var CombatGUI = $/root/Combat/CombatGUI
+@onready var CombatController = $/root/Combat/CombatController
 
+var charid
+var stats
 
 var charname
 var level:int
@@ -215,8 +217,7 @@ func take_damage (damage, type):
 	HP = max(0, HP)
 	
 	CombatGUI.TakeDamageGUI(self)
-	
-	EventHandler.UpdateStats(self, HP, MP)
+	CombatGUI.UpdateStats(self, HP, MP)
 	
 	if HP <= 0: 
 		dies()
@@ -227,7 +228,7 @@ func get_healed (heal_amount:int):
 	HP += heal_amount
 	HP = min(MaxHP, HP)
 	
-	EventHandler.UpdateStats(self, HP, MP)
+	CombatGUI.UpdateStats(self, HP, MP)
 
 func AttemptStatusAilment(type, amount, time):
 	var rng = RNG()
@@ -305,7 +306,7 @@ func MPCost(MPcost):
 	MP -= MPcost
 	MP = max(0, MP)
 	MP = min(MaxMP, MP)
-	EventHandler.UpdateStats(self, HP, MP)
+	CombatGUI.UpdateStats(self, HP, MP)
 
 func CloseTurn(string=""):
 	CombatGUI.ClearSecondMenu()

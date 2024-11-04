@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0pkcycd8e3lj"]
+
+[ext_resource type="Script" path="res://Scenes/Guild/PartyBuild.gd" id="1_2iht4"]
+
+[node name="PartyBuild" type="MarginContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -952.0
+offset_right = 952.0
+offset_bottom = 170.0
+grow_horizontal = 2
+script = ExtResource("1_2iht4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Go Back"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AddtoRoster" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add to Roster"
+
+[node name="AddtoParty" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add to Party"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PartyBlockHolder" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RosterBlockHolder" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/AddtoRoster" to="." method="_on_addto_roster_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/AddtoParty" to="." method="_on_addto_party_pressed"]

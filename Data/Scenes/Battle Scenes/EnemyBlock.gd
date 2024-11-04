@@ -13,9 +13,9 @@ func _process(delta):
 	HPbar.value = animated_HP
 
 func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
-	path.get_child(0).text = charname
-	path.get_child(1).max_value = MaxHP
-	path.get_child(1).value = HP
+	%Name.text = charname
+	%HPbar.max_value = MaxHP
+	%HPbar.value = HP
 	
 	animated_HP = HP
 	animated_MP = MP
@@ -24,5 +24,3 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
 		$Sprite2D.set_offset(Vector2(0,25))
 		$Sprite2D.set_scale(Vector2(8,8))
 		$Sprite2D.set_z_index(-2)
-func UpdateStats(HP, MP):
-	pass #now handled by the GUI controller Tweening.

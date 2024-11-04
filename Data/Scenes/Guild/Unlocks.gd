@@ -7,13 +7,13 @@ func _ready() -> void:
 	
 	var count = 0 
 	
-	while count < JobDictionary.job_dictionary.size():
+	while count < JobDict.job_dictionary.size():
 		var guibox = box.instantiate()
 		%ListBox.add_child(guibox)
 		var child = %ListBox.get_child(count)
 		
 		#Fills in "Class Name part of block
-		child.get_node("%classname").text = JobDictionary.job_dictionary[str(count)]["name"]
+		child.get_node("%classname").text = JobDict.job_dictionary[str(count)]["name"]
 		
 		#Checks if unlocked or not
 		if PlayerData.IsClassUnlocked(count):

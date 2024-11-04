@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://rurfjmtlkk3"]
 
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/PlayerBlock.gd" id="1_t78d7"]
-[ext_resource type="Texture2D" uid="uid://diwcq2vq3fbux" path="res://Assets/Classes/Fortress-PartyLabel.png" id="2_s1gq7"]
+[ext_resource type="Texture2D" uid="uid://diwcq2vq3fbux" path="res://Assets/Classes/Fortress/Fortress-PartyLabel.png" id="2_s1gq7"]
 [ext_resource type="Texture2D" uid="uid://drac0yxtmd00b" path="res://Assets/UI/bar_under.png" id="3_88ycv"]
 [ext_resource type="Texture2D" uid="uid://cnvglr0j77jl6" path="res://Assets/UI/HP_bar_progress.png" id="4_ha8tl"]
 [ext_resource type="Texture2D" uid="uid://daiq7i2a0xvoq" path="res://Assets/UI/MP_bar_progress.png" id="5_j2kek"]
@@ -27,6 +27,7 @@ size_flags_vertical = 7
 script = ExtResource("1_t78d7")
 
 [node name="BG" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.202341
@@ -41,6 +42,7 @@ size_flags_vertical = 7
 texture = ExtResource("2_s1gq7")
 
 [node name="Stats" type="Control" parent="BG"]
+unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 317.333
 offset_top = 62.3333
@@ -50,6 +52,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Name" type="Label" parent="BG/Stats"]
+unique_name_in_owner = true
 layout_mode = 0
 anchor_left = -1.94411
 anchor_top = -0.588557
@@ -63,6 +66,7 @@ theme = SubResource("1")
 text = "blahblah"
 
 [node name="HP" type="Label" parent="BG/Stats"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -316.333
 offset_top = 10.6667
@@ -71,6 +75,7 @@ offset_bottom = 24.6667
 text = "PH"
 
 [node name="MP" type="Label" parent="BG/Stats"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -206.333
 offset_top = 11.6667
@@ -79,6 +84,7 @@ offset_bottom = 25.6667
 text = "blah"
 
 [node name="HPBar" type="TextureProgressBar" parent="BG/Stats"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -303.333
 offset_top = 27.6667
@@ -92,6 +98,7 @@ texture_under = ExtResource("3_88ycv")
 texture_progress = ExtResource("4_ha8tl")
 
 [node name="MPBar" type="TextureProgressBar" parent="BG/Stats"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -195.333
 offset_top = 27.6667
@@ -103,6 +110,7 @@ texture_under = ExtResource("3_88ycv")
 texture_progress = ExtResource("5_j2kek")
 
 [node name="Vanguardlabel" type="TextureRect" parent="BG"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 41.0
 offset_top = 297.0
@@ -111,6 +119,7 @@ offset_bottom = 323.0
 texture = ExtResource("6_f7g7u")
 
 [node name="Readguardlabel" type="TextureRect" parent="BG"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 47.0
 offset_top = -20.0
@@ -119,6 +128,7 @@ offset_bottom = 6.00004
 texture = ExtResource("7_1hj5l")
 
 [node name="StatusContainer" type="HBoxContainer" parent="BG"]
+unique_name_in_owner = true
 layout_mode = 0
 anchor_left = 0.058
 anchor_top = 0.922

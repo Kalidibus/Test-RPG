@@ -9,12 +9,12 @@ func _process(delta: float) -> void:
 
 #Function receives the ID of character who's equipping an item, the slot, and the item ID.
 #Equips it and moves anything already in the slot to inventory space.
-func add_equipment(charid, slot, add_eqp) -> void:
+func add_equipment(charid, slot, add_eqp, location) -> void:
 	charid = str(charid)
 	
-	if PlayerData.roster[charid]["equipment"][slot] != null:
-		AddtoInventory(PlayerData.roster[charid]["equipment"][slot], 1)
-	PlayerData.roster[charid]["equipment"][slot] = add_eqp
+	if PlayerData.get(location)[charid]["equipment"][slot] != null:
+		AddtoInventory(PlayerData.get(location)[charid]["equipment"][slot], 1)
+	PlayerData.get(location)[charid]["equipment"][slot] = add_eqp
 	
 
 func AddtoInventory(itemid, qty) -> void:
@@ -34,17 +34,17 @@ func RemovefromInventory(itemid, qty):
 
 func GainXP(charid, xp):
 	charid = str(charid)
-	PlayerData.roster[charid]["xp"] += xp
+	PlayerData.party[charid]["xp"] += xp
 	LevelUpCheck(charid)
 
 func LoseXP(charid, xp):
 	charid = str(charid)
-	PlayerData.roster[charid]["xp"] -= xp
+	PlayerData.party[charid]["xp"] -= xp
 
 func LevelUpCheck(charid):
-	var xp = PlayerData.roster[charid]["xp"]
-	var xpneeded = PlayerData.roster[charid]["xpneeded"]
-	var level = PlayerData.roster[charid]["level"]
+	var xp = PlayerData.party[charid]["xp"]
+	var xpneeded = PlayerData.party[charid]["xpneeded"]
+	var level = PlayerData.party[charid]["level"]
 
 	if xp >= xpneeded:
 		LevelUp(charid)
@@ -52,22 +52,22 @@ func LevelUpCheck(charid):
 		return
 
 func LevelUp(charid):
-	var stats = PlayerData.roster[charid]["stats"]
-	var jobid = PlayerData.roster[charid]["job_id"]
+	var stats = PlayerData.party[charid]["stats"]
+	var jobid = PlayerData.party[charid]["job_id"]
 	
 	#increase Level
-	PlayerData.roster[charid]["level"] += 1 
+	PlayerData.party[charid]["level"] += 1 
 	#increase XP needed for next level
-	PlayerData.roster[charid]["xpneeded"] = int(PlayerData.roster[charid]["xpneeded"]*1.5)
+	PlayerData.party[charid]["xpneeded"] = int(PlayerData.party[charid]["xpneeded"]*1.5)
 	
 	#increase stats
 	for n in stats:
 		if n == "HP" or n == "MP": pass
-		else: PlayerData.roster[charid]["stats"][n] = int(stats[n] * JobDictionary.StatScaling(jobid, n)) + 1
+		else: PlayerData.party[charid]["stats"][n] = int(stats[n] * JobDict.StatScaling(jobid, n)) + 1
 	
 	#Fill up HP / MP
-	PlayerData.roster[charid]["stats"]["HP"] = PlayerData.roster[charid]["stats"]["HPmax"]
-	PlayerData.roster[charid]["stats"]["MP"] = PlayerData.roster[charid]["stats"]["MPmax"]
+	PlayerData.party[charid]["stats"]["HP"] = PlayerData.party[charid]["stats"]["HPmax"]
+	PlayerData.party[charid]["stats"]["MP"] = PlayerData.party[charid]["stats"]["MPmax"]
 	
 	#check for multiple level ups in case of huge XP gain
 	LevelUpCheck(charid)

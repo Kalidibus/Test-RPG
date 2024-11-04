@@ -41,11 +41,12 @@ func _on_create_char_button_pressed() -> void:
 	PlayerData.roster[str(newcharid)] = {
 		"name" = str(user_entered_name),
 		"job_id" = str(user_selected_job),
-		"job_name" = JobDictionary.JobName(user_selected_job),
+		"job_name" = JobDict.JobName(user_selected_job),
 		"level" = 1,
+		"row" = "front",
 		"xp" = 0,
 		"xpneeded" = 100,
-		"stats" = JobDictionary.Stats(user_selected_job),
+		"stats" = JobDict.Stats(user_selected_job),
 		"abilities" = {},
 		"equipment" = {
 			"main_hand" = "",
@@ -57,15 +58,16 @@ func _on_create_char_button_pressed() -> void:
 			"necklace" = "",
 			"ring_1" = "",
 			"ring_2" = ""
-		}
+		},
+		"status" = {}
 	}
 	#give starting equipment
-	CharacterChanges.add_equipment(newcharid, "head", "h01")
-	CharacterChanges.add_equipment(newcharid, "body", "b01")
-	CharacterChanges.add_equipment(newcharid, "main_hand", "w01")
+	CharacterChanges.add_equipment(newcharid, "head", "h01", "roster")
+	CharacterChanges.add_equipment(newcharid, "body", "b01", "roster")
+	CharacterChanges.add_equipment(newcharid, "main_hand", "w01", "roster")
 
 	#Create success pop-up dialogue
-	Globals.system_message("Successfully hired " + user_entered_name + " as a " + JobDictionary.JobName(user_selected_job) + "!\nWelcome to the team.")
+	Globals.system_message("Successfully hired " + user_entered_name + " as a " + JobDict.JobName(user_selected_job) + "!\nWelcome to the team.")
 
 func _on_option_button_item_selected(index: int) -> void:
 	CharaDetails(index)
@@ -78,22 +80,22 @@ func CharaDetails(index: int) -> void:
 	#the value of "index" is the same as the job IDs defined in the job dictionary. This function compares against that for what it needs.
 	
 	#Set the splash image.
-	%CharaSplash.set_texture(load(JobDictionary.JobSplash(index)))
+	%CharaSplash.set_texture(load(JobDict.JobSplash(index)))
 	
 	#Very clunky way to grab individual stats and update them. could use a "for n in Stats.get_children() but whatever this works.
-	%HP_stat.text = str(JobDictionary.Stats(index)["HP"])
-	%MP_stat.text = str(JobDictionary.Stats(index)["MP"])
-	%STR_stat.text = str(JobDictionary.Stats(index)["STR"])
-	%DEF_stat.text = str(JobDictionary.Stats(index)["DEF"])
-	%INT_stat.text = str(JobDictionary.Stats(index)["INT"])
-	%FTH_stat.text = str(JobDictionary.Stats(index)["FTH"])
-	%RES_stat.text = str(JobDictionary.Stats(index)["RES"])
-	%EVD_stat.text = str(JobDictionary.Stats(index)["EVD"])
-	%SPD_stat.text = str(JobDictionary.Stats(index)["SPD"])
+	%HP_stat.text = str(JobDict.Stats(index)["HP"])
+	%MP_stat.text = str(JobDict.Stats(index)["MP"])
+	%STR_stat.text = str(JobDict.Stats(index)["STR"])
+	%DEF_stat.text = str(JobDict.Stats(index)["DEF"])
+	%INT_stat.text = str(JobDict.Stats(index)["INT"])
+	%FTH_stat.text = str(JobDict.Stats(index)["FTH"])
+	%RES_stat.text = str(JobDict.Stats(index)["RES"])
+	%EVD_stat.text = str(JobDict.Stats(index)["EVD"])
+	%SPD_stat.text = str(JobDict.Stats(index)["SPD"])
 	
 	#Set the name
-	%job_name_display.text = JobDictionary.JobName(index)
-	%job_description_display.text = JobDictionary.JobDesc(index)
+	%job_name_display.text = JobDict.JobName(index)
+	%job_description_display.text = JobDict.JobDesc(index)
 	
 
 
@@ -122,7 +124,7 @@ func _on_forward_button_pressed() -> void:
 	
 	CheckUnlocked(index)
 	
-	if index == JobDictionary.job_dictionary.size() -1:
+	if index == JobDict.job_dictionary.size() -1:
 		%ForwardButton.disabled = true
 
 func CheckUnlocked(index):
@@ -132,3 +134,7 @@ func CheckUnlocked(index):
 	else: 
 		%CreateCharButton.disabled = false
 		%CreateCharButton.text = "Create a new Character"
+
+
+func _on_adjust_party_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes//Guild/PartyBuild.tscn")

@@ -1,31 +1,38 @@
 extends Node
 
-@onready var party = get_node("CombatController/Party") 
-@onready var enemies = get_node("CombatController/Enemies") 
+@onready var party = %Party
+@onready var enemies = %Enemies
 
 #this should change depending on the level entered. Can have this as an input.
-@onready var currentzone = $CombatController/AridEncounters1
+var currentzone = "arid"
 
 func _ready():
-	Globals.GetCombatGlobals()
-	$CombatController.GetEnemies(currentzone)
+	GetEnemies()
 	await get_tree().create_timer(0.2).timeout #This is a hacky solution to make sure the Selector is loaded in time. Try and get rid of this.
-	$CombatController.GetParty()
+	GetParty()
 	$CombatGUI.CreateLabels(party, enemies)
-	
 	$CombatController.MainBattleLoop()
 
-func UpdateStats(target, HP, MP):
-	$CombatGUI.UpdateStats(target, HP, MP)
+func GetEnemies():
+	var enemy_array = EnemyDict.GetEncounter(currentzone)
+	for n in enemy_array:
+		%Enemies.add_child(n)
+
+func GetParty():
+	var party_array = PlayerData.party
+	
+	for n in party_array:
+		var job = party_array[n]["job_id"]
+		var node = JobDict.JobNode(job).duplicate()
+		
+		#link the node to the player
+		node.charid = n
+		node.stats = party_array[n]["stats"]
+		
+		%Party.add_child(node)
 
 func BattleLog(string):
 	$CombatGUI.BattleLog(string)
-
-func _on_CombatController_menuvis():
-	$CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu.visible = true
-
-func _on_CombatController_menuhide():
-	$CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu.visible = false
 
 func ConfirmTarget(target):
 	$CombatController.target = target

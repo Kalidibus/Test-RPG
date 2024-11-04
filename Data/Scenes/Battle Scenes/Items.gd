@@ -22,20 +22,20 @@ func GetParty(): #check this every time an item is used for the current list
 	partylist = $Party.get_children()
 
 func GetScenes():
-	EventHandler = get_node("/root/CombatEventHandler")
-	CombatGUI = get_node("/root/CombatEventHandler/CombatGUI")
-	CombatController = get_node("/root/CombatEventHandler/CombatController")
+	EventHandler = get_node("/root/Combat")
+	CombatGUI = get_node("/root/Combat/CombatGUI")
+	CombatController = get_node("/root/Combat/CombatController")
 
 func Consume(string):
-	SaveandLoad.inventory[string] -= 1
-	if SaveandLoad.inventory[string] == 0:
-		SaveandLoad.inventory.erase(string)
+	PlayerData.inventory[string] -= 1
+	if PlayerData.inventory[string] == 0:
+		PlayerData.inventory.erase(string)
 
 func CloseTurn(active_character):
 	active_character.CloseTurn()
 
 func Bomb(active_character):
-	Globals.CombatGUI.QueueAction(active_character, "UseItem")
+	%CombatGUI.QueueAction(active_character, "UseItem")
 	active_character.queueditem = Callable(self, "Bomb2")
 func Bomb2(active_character):
 	GetScenes()
@@ -49,7 +49,7 @@ func Bomb2(active_character):
 	CloseTurn(active_character)
 
 func Potion(active_character):
-	Globals.CombatGUI.QueueAction(active_character, "UseItem")
+	%CombatGUI.QueueAction(active_character, "UseItem")
 	active_character.queueditem = Callable(self, "Potion2")
 func Potion2(active_character):
 	GetScenes()

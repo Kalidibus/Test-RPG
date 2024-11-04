@@ -9,11 +9,6 @@ var unlocked_classes = ["0", "1", "2", "3", "4"]
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func GetInvItemQty(itemid):
 	if not inventory.has(itemid):
 		return 0
@@ -30,4 +25,11 @@ func UnlockClass(jobid):
 	unlocked_classes.append(str(jobid))
 
 func GetStat(charid, stat):
-	return roster[charid]["stats"][stat]
+	var allchar = {}
+	allchar.merge(roster)
+	allchar.merge(party)
+	
+	return allchar[charid]["stats"][stat]
+
+func GetParty():
+	return roster

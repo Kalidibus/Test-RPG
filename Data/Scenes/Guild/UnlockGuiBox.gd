@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func set_unlock_gui(jobid):
-	var dict = JobDictionary.GetUnlocks(jobid)
+	var dict = JobDict.GetUnlocks(jobid)
 	var itemid
 	var needed
 	
@@ -63,7 +63,7 @@ func _on_unlock_button_pressed() -> void:
 		$/root/CharUnlocks.get_tree().reload_current_scene()
 
 func PaythePrice(jobid):
-	var costarray = JobDictionary.GetUnlocks(str(jobid))
+	var costarray = JobDict.GetUnlocks(str(jobid))
 	var count = 0
 
 	for n in costarray:
@@ -80,7 +80,7 @@ func PaythePrice(jobid):
 			
 			CharacterChanges.RemovefromInventory(item, cost)
 			
-			Globals.system_message(JobDictionary.JobName(jobid) + " has been unlocked!")
+			Globals.system_message(JobDict.JobName(jobid) + " has been unlocked!")
 		return 1
 	else:
 		Globals.system_message("Inadequate Resources")

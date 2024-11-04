@@ -13,7 +13,7 @@ func save_file():
 	var file = FileAccess.open(player_file_path, FileAccess.WRITE)
 	file.store_var(PlayerData.inventory)
 	file.store_var(PlayerData.roster)
-	file.store_var(Globals.party)
+	file.store_var(PlayerData.party)
 	file.store_var(PlayerData.unlocked_classes)
 	Globals.system_message("File Saved!")
 
@@ -24,7 +24,7 @@ func autosave():
 	print(file)
 	file.store_var(PlayerData.inventory)
 	file.store_var(PlayerData.roster)
-	file.store_var(Globals.party)
+	file.store_var(PlayerData.party)
 	file.store_var(PlayerData.unlocked_classes)
 
 
@@ -35,7 +35,7 @@ func load_file():
 		return
 	PlayerData.inventory = file.get_var(0)
 	PlayerData.roster = file.get_var(1)
-	Globals.party = file.get_var(2)
+	PlayerData.party = file.get_var(2)
 	PlayerData.unlocked_classes = file.get_var(3)
 	Globals.system_message("File Loaded!")
 

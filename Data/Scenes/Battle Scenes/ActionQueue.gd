@@ -17,24 +17,24 @@ func PlayRound():
 		action = n["action"]
 		target = n["target"]
 
-		if Globals.CombatController.CheckWin() == true:
+		if %CombatController.CheckWin() == true:
 			combatover = true
 			break
 		elif active_character.dead == true: 
 			pass
 		elif active_character.status.has("stun"):
 			active_character.status.erase("stun")
-			Globals.CombatGUI.BattleLog(active_character.charname + " misses their turn...")
+			%CombatGUI.BattleLog(active_character.charname + " misses their turn...")
 			await get_tree().create_timer(0.5).timeout
 		elif target != null and target.dead == true and n["action_string"] != "Raise":
-			Globals.CombatGUI.BattleLog("Nothing to target...")
+			%CombatGUI.BattleLog("Nothing to target...")
 			await get_tree().create_timer(0.5).timeout
 		else: 
 			Execute()
 			await self.turn_done
 	
 	queuedactions = [] #reset the queue
-	if combatover == false: Globals.CombatController.MainBattleLoop() #call next round if combat hasn't ended
+	if combatover == false: %CombatController.MainBattleLoop() #call next round if combat hasn't ended
 
 func SortbySpeed(a, b):
 	return a["speed"] > b["speed"]

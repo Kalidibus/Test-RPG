@@ -1,27 +1,30 @@
-res://Scenes/Other/PauseMenu/PartyBlock.tscn
+res://Scenes/Guild/PartyBuild.tscn
 res://Enemies/monKobold.gd
 res://Scenes/Other/PauseMenu/PartyMenu.gd
 res://Scenes/Start.tscn
 res://Scenes/Battle Scenes/Combat.tscn
-res://Classes/Erde Cleric/Erde Cleric.tscn
-res://Scenes/Guild/CharacterCreate.tscn
-res://Scenes/Other/SystemChoice.tscn
-res://Classes/War Mage/War Mage.tscn
-res://Classes/Fel Mage/Fel Mage.tscn
-res://Items/ItemDict.tscn
-res://Scenes/Guild/Unlocks.tscn
-res://Scenes/Guild/UnlockGUIBox.tscn
-res://Scenes/PlayerData/PlayerData.tscn
-res://Scenes/Other/PauseMenu/PauseMenu.tscn
-res://Scenes/Other/PauseMenu/ItemMenu.tscn
-res://Scenes/Other/PauseMenu/OptionsMenu.tscn
-res://Scenes/Other/PauseMenu/ItemBlock.tscn
-res://Scenes/Other/PauseMenu/PartyMenu.tscn
+res://Enemies/EnemyDict.tscn
 res://Scenes/Battle Scenes/PlayerBlock.tscn
-res://Classes/Classes.tscn
-res://Scenes/Other/CharacterChanges.tscn
-res://Scenes/Battle Scenes/Party.tscn
+res://Scenes/Battle Scenes/Items.tscn
+res://Scenes/Guild/CharacterCreate.tscn
+res://Scenes/Other/PauseMenu/PartyMenu.tscn
+res://Scenes/Other/PauseMenu/PartyBlock.tscn
+res://Scenes/Guild/RosterPartyBlock.tscn
+res://Scenes/Guild/PartyBuild.gd
+res://Scenes/Guild/roster_party_block.gd
+res://Scenes/PlayerData/PlayerData.gd
+res://Scenes/Battle Scenes/Combat.gd
+res://Scenes/Battle Scenes/CombatController.gd
 res://Scenes/Other/CharacterChanges.gd
-res://Classes/JobDictionary.gd
+res://Scenes/SaveandLoad.gd
 res://Scenes/Start.gd
-res://Scenes/Battle Scenes/Entity.gd
+res://Scenes/Guild/CharacterCreate.gd
+res://Classes/Classes.tscn
+res://Enemies/arid.gd
+res://Enemies/EnemyDict.gd
+res://Scenes/Battle Scenes/CombatGUI.gd
+res://Classes/JobDictionary.gd
+res://Scenes/Battle Scenes/PlayerBlock.gd
+res://Enemies/Arid/Regular/mon_pylon.gd
+res://Scenes/Battle Scenes/EnemyLabel.tscn
+res://Scenes/Battle Scenes/EnemyBlock.gd

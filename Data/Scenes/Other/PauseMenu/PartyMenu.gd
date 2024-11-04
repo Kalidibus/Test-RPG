@@ -4,12 +4,13 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for n in PlayerData.roster:
+	for n in PlayerData.party:
+		var char = PlayerData.party[n]
 		var block = partyblock.instantiate()
-		block.get_node("%Name").text = PlayerData.roster[n]["name"]
-		block.get_node("%Class").text = PlayerData.roster[n]["job_name"]
-		block.get_node("%XP").text = "XP: " + str(PlayerData.roster[n]["xp"]) + "/" + str(PlayerData.roster[n]["xpneeded"])
-		block.get_node("%Lv").text = "Lv. " + str(PlayerData.roster[n]["level"])
+		block.get_node("%Name").text = char["name"]
+		block.get_node("%Class").text = char["job_name"]
+		block.get_node("%XP").text = "XP: " + str(char["xp"]) + "/" + str(char["xpneeded"])
+		block.get_node("%Lv").text = "Lv. " + str(char["level"])
 		
 		var HP = PlayerData.GetStat(n, "HP")
 		var HPmax = PlayerData.GetStat(n, "HPmax")
