@@ -7,8 +7,6 @@ extends MarginContainer
 @onready var secondmenu = %SecondMenu
 @onready var Combat = $/root/Combat
 
-#var enemies = []
-var partylist = []
 var skilllist
 var lastpushed = "Attack"
 
@@ -79,7 +77,7 @@ func AllyTargetList(function):
 	ClearSecondMenu()
 	var active_character = Combat.active_character
 	
-	for n in partylist:
+	for n in %Party.get_children():
 		var button = TargetButton.new()
 		button.text = n.charname
 		button.target = n
@@ -91,7 +89,7 @@ func AllyTargetList(function):
 	label.text = "ALLY TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
-	secondmenu.get_child(1).grab_focus()
+#	secondmenu.get_child(1).grab_focus()
 
 # creates labels and ties them to the appropriate battler in the combat tree
 
@@ -175,7 +173,8 @@ func _on_Attack_pressed():
 func _on_Switch_pressed(): #needs to be fixed for new card style config
 	var active_character = Combat.active_character
 	active_character.SwitchRows()
-	active_character.node.SwitchRows(active_character)
+	active_character.combatlabel.SwitchRows(active_character.row)
+	print("ok")
 
 func SetCharaSplash(jobid):
 	

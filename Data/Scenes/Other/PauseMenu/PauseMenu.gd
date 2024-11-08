@@ -35,7 +35,7 @@ func _on_options_button_pressed() -> void:
 		currentscreen = "options"
 	
 func _on_quit_button_pressed() -> void:
-		get_tree().change_scene_to_file("res://Scenes/Start.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
 
 
 func _on_party_button_pressed() -> void:
@@ -44,3 +44,16 @@ func _on_party_button_pressed() -> void:
 		ClearScreen()
 		%MenuContainer.add_child(menu.instantiate())
 		currentscreen = "party"
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Start.tscn")
+
+#This function checks for Escape key being hit during pause menun and returns to world. Update to be generic so you can return to anywhere. 
+#Requires a Timer node (see this scene for example)
+func _on_timer_timeout() -> void:
+	var Escape := Input.is_action_pressed("Escape")
+
+	
+	if Escape:
+		get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")

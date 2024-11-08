@@ -29,6 +29,7 @@ func CreateNodes(party, enemies):
 		node.stats = party[n]["stats"]
 		node.charname = party[n]["name"]
 		node.combatlabel = party[n]["combatlabel"]
+		node.row = party[n]["row"]
 		%Party.add_child(node)
 		party[n]["combatnode"] = node
 	for n in enemies:
@@ -131,7 +132,9 @@ func win():
 	#Update MP / HP
 	for n in PlayerData.party:
 		for node in %Party.get_children():
-			if node.charid == n: PlayerData.party[n]["stats"] = node.stats
+			if node.charid == n: 
+				PlayerData.party[n]["stats"] = node.stats
+				PlayerData.party[n]["row"] = node.row
 	
 	await get_tree().create_timer(2.5).timeout
 	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
@@ -143,4 +146,8 @@ func lose():
 	get_tree().change_scene_to_file("res://Scenes/Start.tscn")
 
 func _on_Flee_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
+
+
+func _on_flee_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")

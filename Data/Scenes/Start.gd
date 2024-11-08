@@ -2,7 +2,7 @@ extends MarginContainer
 
 func _ready():
 	#SaveandLoad.load_file()
-	get_node("VBoxContainer/HBoxContainer/VBoxContainer/StartButton").grab_focus()
+	%Dungeon.grab_focus()
 
 func _on_StartButton_pressed():
 	if not PlayerData.party:

@@ -29,7 +29,6 @@ var job_description = "The Illusionist Vocation channels the art of silver mist 
 func _ready():
 	charname = "Illusionist"
 	HATE = 60
-	row = "Front"
 	enemy = false
 	weapontype = "slash"
 	

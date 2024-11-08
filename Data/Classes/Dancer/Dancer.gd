@@ -29,7 +29,6 @@ var job_description = "A whirlwind of blades that bolsters the parties damage. \
 func _ready():
 	charname = "Dancer"
 	HATE = 60
-	row = "Front"
 	enemy = false
 	weapontype = "slash"
 	

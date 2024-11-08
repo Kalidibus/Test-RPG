@@ -93,7 +93,7 @@ func _ready():
 func Turn():
 	StatModCountDown()
 	StatusEffects()
-	#CombatGUI.StatusLabels(self)
+	CombatGUI.StatusLabels(self)
 
 	#this check is to stop the turn if the player dies from DoT damage
 	if dead:
@@ -107,11 +107,11 @@ func get_enemy_targets():
 	return EventHandler.enemies.get_children()
 
 func SwitchRows():
-	if row == "Front":
-		row = "Back"
+	if row == "front":
+		row = "back"
 		HATE = HATE*0.5
-	elif row == "Back":
-		row = "Front"
+	elif row == "back":
+		row = "front"
 		HATE = HATE*2
 
 func StatModCountDown():

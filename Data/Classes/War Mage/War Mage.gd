@@ -29,7 +29,6 @@ var job_description = "The War Mage is a frontline caster with explosive capabil
 func _ready():
 	charname = "War Mage"
 	HATE = 30
-	row = "Back"
 	enemy = false
 	weapontype = "impact"
 

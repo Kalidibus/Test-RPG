@@ -29,7 +29,6 @@ var job_description = "The Samurai Vocation readies a single strike for perfect 
 func _ready():
 	charname = "Samurai"
 	HATE = 50
-	row = "Front"
 	enemy = false
 	weapontype = "slash"
 	

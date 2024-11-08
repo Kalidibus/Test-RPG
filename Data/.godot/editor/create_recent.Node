@@ -1,12 +1,12 @@
+VBoxContainer
+Control
 Node
 Button
 Label
 HBoxContainer
 Panel
-VBoxContainer
 MarginContainer
 GridContainer
-Control
 Container
 CanvasLayer
 TextureRect

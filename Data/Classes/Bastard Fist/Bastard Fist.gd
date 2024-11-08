@@ -31,7 +31,6 @@ var job_description = "In a flury of crushing blows, the Bastard Fist Vocation u
 func _ready():
 	charname = "Bastard Fist"
 	HATE = 50
-	row = "Front"
 	enemy = false
 	weapontype = "impact"
 	

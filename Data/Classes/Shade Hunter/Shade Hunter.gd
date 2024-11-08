@@ -29,7 +29,6 @@ var job_description = "Striking from the shadows, the Shade Hunter's tainted arr
 func _ready():
 	charname = "Shade Hunter"
 	HATE = 50
-	row = "Back"
 	enemy = false
 	weapontype = "pierce"
 	

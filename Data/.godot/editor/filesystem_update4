@@ -1,14 +1,26 @@
-res://Scenes/Battle Scenes/Combat.tscn
-res://Enemies/monKobold.gd
-res://Scenes/Battle Scenes/Combat.gd
 res://Scenes/Start.tscn
+res://Enemies/monKobold.gd
+res://Scenes/Battle Scenes/Entity.gd
+res://Scenes/Battle Scenes/Combat.tscn
 res://Classes/Classes.tscn
 res://Enemies/EnemyDict.tscn
 res://Scenes/Battle Scenes/PlayerBlock.tscn
 res://Scenes/Battle Scenes/EnemyLabel.tscn
-res://Scenes/Battle Scenes/Entity.gd
 res://Scenes/Battle Scenes/CombatGUI.gd
-res://Scenes/Battle Scenes/ActionQueue.gd
-res://Enemies/Arid/Regular/mon_pylon.gd
-res://Enemies/Arid/arid.gd
-res://Scenes/SaveandLoad.gd
+res://Classes/Fortress/Fortress.gd
+res://Scenes/Battle Scenes/Combat.gd
+res://Classes/Bastard Fist/Bastard Fist.gd
+res://Classes/Dancer/Dancer.gd
+res://Classes/Erde Cleric/Erde Cleric.gd
+res://Classes/Fel Mage/Fel Mage.gd
+res://Classes/Illusionist/Illusionist.gd
+res://Classes/Samurai/Samurai.gd
+res://Classes/Shade Hunter/Shade Hunter.gd
+res://Classes/War Mage/War Mage.gd
+res://Scenes/Other/PauseMenu/PartyBlock.tscn
+res://Scenes/Dungeon/Player.gd
+res://Scenes/Other/PauseMenu/PauseMenu.tscn
+res://Scenes/Other/PauseMenu/PauseMenu.gd
+res://Scenes/Dungeon/Player.tscn
+res://Scenes/Start.gd
+res://Scenes/Guild/CharacterCreate.gd

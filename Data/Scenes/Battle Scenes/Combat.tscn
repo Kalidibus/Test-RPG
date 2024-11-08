@@ -102,10 +102,6 @@ text = "Switch"
 layout_mode = 2
 text = "Flee"
 
-[node name="Exit" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
-layout_mode = 2
-text = "Exit"
-
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -159,3 +155,4 @@ environment = SubResource("1")
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Defend" to="CombatGUI" method="_on_Defend_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Items" to="CombatGUI" method="_on_Items_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Switch" to="CombatGUI" method="_on_Switch_pressed"]
+[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Flee" to="." method="_on_flee_pressed"]

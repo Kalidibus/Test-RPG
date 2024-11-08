@@ -38,7 +38,6 @@ func _ready():
 	
 	charname = "Fortress"
 	HATE = 100
-	row = "Front"
 	enemy = false
 	weapontype = "impact"
 	

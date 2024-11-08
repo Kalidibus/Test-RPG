@@ -31,7 +31,6 @@ var job_description = "The Fel Mage is destruction incarnate. \n\nMaster of all 
 func _ready():
 	charname = "Fel Mage"
 	HATE = 30
-	row = "Back"
 	enemy = false
 	weapontype = "impact"
 

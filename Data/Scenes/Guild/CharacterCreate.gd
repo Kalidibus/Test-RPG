@@ -70,7 +70,9 @@ func _on_create_char_button_pressed() -> void:
 	CharacterChanges.add_equipment(newcharid, "main_hand", "w01", "roster")
 
 	#Create success pop-up dialogue
-	Globals.system_message("Successfully hired " + user_entered_name + " as a " + JobDict.JobName(user_selected_job) + "!\nWelcome to the team.")
+	var choice = await Globals.system_message_choice("Successfully hired " + user_entered_name + " as a " + JobDict.JobName(user_selected_job) + "!\nWould you like to adjust your current party now?", "Yes", "No")
+	if choice == "left": get_tree().change_scene_to_file("res://Scenes//Guild/PartyBuild.tscn")
+
 
 func _on_option_button_item_selected(index: int) -> void:
 	CharaDetails(index)

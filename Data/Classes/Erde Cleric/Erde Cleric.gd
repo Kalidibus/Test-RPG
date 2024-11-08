@@ -29,7 +29,6 @@ var job_description = "The Erde Cleric is a healer capable of powerful restorati
 func _ready():
 	charname = "Cleric"
 	HATE = 50
-	row = "Back"
 	enemy = false
 	weapontype = "impact"
 	
