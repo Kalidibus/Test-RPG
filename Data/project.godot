@@ -28,6 +28,7 @@ JobDict="*res://Classes/Classes.tscn"
 ItemDict="*res://Items/ItemDict.tscn"
 PlayerData="*res://Scenes/PlayerData/PlayerData.tscn"
 EnemyDict="*res://Enemies/EnemyDict.tscn"
+TransitionScreen="*res://Scenes/Transition/TransitionScreen.tscn"
 
 [display]
 

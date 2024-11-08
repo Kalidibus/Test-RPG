@@ -35,6 +35,8 @@ func _on_options_button_pressed() -> void:
 		currentscreen = "options"
 	
 func _on_quit_button_pressed() -> void:
+		TransitionScreen.transition()
+		await TransitionScreen.on_transition_finished
 		get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
 
 
@@ -56,4 +58,7 @@ func _on_timer_timeout() -> void:
 
 	
 	if Escape:
-		get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
+		print(get_tree())
+		TransitionScreen.transition()
+		await TransitionScreen.on_transition_finished
+		get_tree().call_deferred("change_scene_to_file", "res://Scenes/Dungeon/World.tscn")

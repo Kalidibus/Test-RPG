@@ -90,4 +90,6 @@ func encounter_check():
 		encounterRNG = 0
 		Globals.mappos = position
 		Globals.maprotation = rotation
+		TransitionScreen.battle_transition()
+		await TransitionScreen.on_transition_finished
 		get_tree().change_scene_to_file("res://Scenes/Battle Scenes/Combat.tscn")

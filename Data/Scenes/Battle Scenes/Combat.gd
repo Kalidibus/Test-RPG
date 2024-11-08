@@ -137,17 +137,21 @@ func win():
 				PlayerData.party[n]["row"] = node.row
 	
 	await get_tree().create_timer(2.5).timeout
+	SaveandLoad.autosave()
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
 	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
 
 func lose():
 	Globals.system_message("Evil has managed to triumph. The Sea of Revalations overflows upon this earth unchecked")
 	%Menu.visible = false
 	await get_tree().create_timer(2.5).timeout
+	SaveandLoad.autosave()
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
 	get_tree().change_scene_to_file("res://Scenes/Start.tscn")
-
-func _on_Flee_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
-
-
+	
 func _on_flee_pressed() -> void:
+	TransitionScreen.transition()
+	await TransitionScreen.on_transition_finished
 	get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")

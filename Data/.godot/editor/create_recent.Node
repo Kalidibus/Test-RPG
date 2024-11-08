@@ -1,3 +1,6 @@
+AnimationPlayer
+ColorRect
+CanvasLayer
 VBoxContainer
 Control
 Node
@@ -8,7 +11,5 @@ Panel
 MarginContainer
 GridContainer
 Container
-CanvasLayer
 TextureRect
 TextEdit
-Marker2D
