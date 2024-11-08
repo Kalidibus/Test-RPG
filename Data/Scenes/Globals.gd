@@ -7,6 +7,8 @@ var camera = null
 
 const GRID_SIZE = 2
 const PLAY_SPEED = 0.3 #lower is faster
+const ENCOUNTER_RATE = 2 #higher is more encounters
+
 
 var mappos
 var maprotation

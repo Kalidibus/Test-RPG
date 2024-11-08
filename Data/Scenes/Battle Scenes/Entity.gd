@@ -46,9 +46,7 @@ var statmods =  {
 	"ACC": 1,
 	"EVD": 1
 }
-
 var statmodtimer = {}
-
 var statres = {
 	"poison": 40,
 	"stun": 40,
@@ -58,7 +56,6 @@ var statres = {
 	"regen": 0,
 	"marked": 40
 }
-
 var damageres = {
 	"impact": 20,
 	"slash": 20,
@@ -71,19 +68,14 @@ var damageres = {
 	"virtuos": 20,
 	"true": 0
 }
-	
 
 var node
 var target
-var selectionBG
-var Selector
 var skilllist
 var sealedskilllist
 var status:Array
-var enemytargetlist
 var reward_xp
 
-var DEFbonus = 1
 
 signal turn_complete
 
@@ -127,9 +119,8 @@ func StatModCountDown():
 				statmodtimer[n] -= 1
 
 func StatusEffects():
-	if "stun" in status: # does not work yet
+	if "stun" in status: 
 		CombatGUI.BattleLog(charname + " is stunned!")
-		# status.erase("stun") Handled in Turn() to skip turn.
 		statres["stun"] = statres["stun"] * 1.5
 	if "poison" in status:
 		CombatGUI.BattleLog(charname + " takes " + str(poison) + " damage from poison!")
@@ -160,6 +151,7 @@ func StatusEffects():
 		sealcount -= 1
 		if sealcount == 0:
 			status.erase("seal")
+			skilllist = sealedskilllist
 			statres["seal"] = statres["seal"] * 1.5
 	if "marked" in status:
 		CombatGUI.BattleLog(charname + " has drawn the enemies ire!")
@@ -173,16 +165,18 @@ func StatusEffects():
 		if regencount == 0:
 			status.erase("regen")
 
+func Stat(stat):
+	return stats[stat] * statmods[stat]
+
 func Attack(target):
 	CombatGUI.emit_signal("menuhide")
-	var damage = stats["STR"] * statmods["STR"]
+	var damage = Stat("STR")
 	var adjusteddamage = target.take_damage(damage, weapontype) 
 	
 	CloseTurn(charname + " has attacked " + target.charname + " for " + str(adjusteddamage) + " damage!")
 
 func Defend():
 	StatMod("DEF", 1.5, 0)
-	
 	CloseTurn(str((charname) + " defends herself!"))
 
 func take_damage (damage, type):
@@ -190,10 +184,10 @@ func take_damage (damage, type):
 	if stats["HP"] == 0: return #to prevent multi-attacks from triggering die() multiple times
 	
 	if type == "impact" or "slash" or "pierce":
-		adjusteddamage = max(1, damage * (100 / (100+(float(stats["DEF"]) * statmods["DEF"]))))
+		adjusteddamage = max(1, damage * (100 / (100+(float(Stat("DEF"))))))
 		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 	if type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
-		adjusteddamage = max(1, damage * (100 / (100+(float(stats["RES"]) * statmods["RES"]))))
+		adjusteddamage = max(1, damage * (100 / (100+(float(Stat("RES"))))))
 		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 
 	if type == "true":

@@ -96,8 +96,8 @@ func AllyTargetList(function):
 
 func UpdateStats(target, HP, MP):
 	var tween = create_tween()	
-	tween.tween_property(target.node, "animated_HP", HP, 0.4)
-	if not target.enemy: tween.tween_property(target.node, "animated_MP", MP, 0.4)
+	tween.tween_property(target.combatlabel, "animated_HP", HP, 0.4)
+	if not target.enemy: tween.tween_property(target.combatlabel, "animated_MP", MP, 0.4)
 
 
 func BattleLog(string):
