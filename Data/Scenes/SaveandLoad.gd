@@ -6,7 +6,6 @@ var player_file_path = "user://saves/playersaves/player_save.json"
 func ask_save():
 	if await Globals.system_message_choice("Do you wish to save your game?", "Yes", "No") == "left":
 		save_file()
-		print("saved")
 
 func save_file():
 	CreateSaveDirectories()
@@ -21,7 +20,7 @@ func autosave():
 	CreateSaveDirectories()
 	var autosave_file_path = "user://saves/autosaves/autosave-" + Time.get_datetime_string_from_system(false, false) + "json"
 	var file = FileAccess.open(autosave_file_path, FileAccess.WRITE)
-	print(file)
+
 	file.store_var(PlayerData.inventory)
 	file.store_var(PlayerData.roster)
 	file.store_var(PlayerData.party)

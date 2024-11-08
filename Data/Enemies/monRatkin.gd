@@ -2,17 +2,8 @@ extends Entity
 
 func _ready():
 	charname = "Ratkin"
-	MaxHP = 50
-	HP = 50
-	MaxMP = 5
-	MP = 5
-	STR = 40
-	DEF = 30
-	RES = 20
-	SPD = 30
 	row = "Back"
 	enemy = true
-	emit_signal("display_stats", charname,HP,MP,MaxHP,MaxMP, row)
 	
 	statres = {
 		"poison": 10,
@@ -55,12 +46,12 @@ func AttackList(target, rng):
 		mDefend()
 
 func mAttack(target):
-	var damage:int = STR * statmods["STR"]
+	var damage:int = stats["STR"] * statmods["STR"]
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	CloseTurn("The " + str(charname) + " unveils a twisted dagger and stabs into " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
 func Scratch(target):
-	var damage:int = 2 * STR*statmods["STR"]
+	var damage:int = 2 * stats["STR"] * statmods["STR"]
 	var adjusteddamage = target.take_damage(damage, "slash")
 	CloseTurn("The " + str(charname) + " salivates while raking " + str(target.charname) + " wildly with claws for " + str(damage) + " damage!!!")
 

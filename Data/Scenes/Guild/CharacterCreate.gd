@@ -59,7 +59,10 @@ func _on_create_char_button_pressed() -> void:
 			"ring_1" = "",
 			"ring_2" = ""
 		},
-		"status" = {}
+		"status" = {},
+		"dead" = false,
+		"combatlabel" = null,
+		"combatnode" = null
 	}
 	#give starting equipment
 	CharacterChanges.add_equipment(newcharid, "head", "h01", "roster")

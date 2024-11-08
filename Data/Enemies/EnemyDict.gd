@@ -21,5 +21,13 @@ func GetStat(monid, stat):
 	var stat_to_return = get_node("%" + str(node)).stats[stat]
 	return stat_to_return
 
+func GetAllStats(monid):
+	var node = enemydict[monid]["node"]
+	var stats = get_node("%" + str(node)).stats
+	return stats
+
 func GetName(monid):
 	return enemydict[monid]["name"]
+
+func GetNode(monid):
+	return enemydict[monid]["node"]

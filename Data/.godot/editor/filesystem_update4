@@ -1,30 +1,14 @@
-res://Scenes/Guild/PartyBuild.tscn
-res://Enemies/monKobold.gd
-res://Scenes/Other/PauseMenu/PartyMenu.gd
-res://Scenes/Start.tscn
 res://Scenes/Battle Scenes/Combat.tscn
+res://Enemies/monKobold.gd
+res://Scenes/Battle Scenes/Combat.gd
+res://Scenes/Start.tscn
+res://Classes/Classes.tscn
 res://Enemies/EnemyDict.tscn
 res://Scenes/Battle Scenes/PlayerBlock.tscn
-res://Scenes/Battle Scenes/Items.tscn
-res://Scenes/Guild/CharacterCreate.tscn
-res://Scenes/Other/PauseMenu/PartyMenu.tscn
-res://Scenes/Other/PauseMenu/PartyBlock.tscn
-res://Scenes/Guild/RosterPartyBlock.tscn
-res://Scenes/Guild/PartyBuild.gd
-res://Scenes/Guild/roster_party_block.gd
-res://Scenes/PlayerData/PlayerData.gd
-res://Scenes/Battle Scenes/Combat.gd
-res://Scenes/Battle Scenes/CombatController.gd
-res://Scenes/Other/CharacterChanges.gd
-res://Scenes/SaveandLoad.gd
-res://Scenes/Start.gd
-res://Scenes/Guild/CharacterCreate.gd
-res://Classes/Classes.tscn
-res://Enemies/arid.gd
-res://Enemies/EnemyDict.gd
-res://Scenes/Battle Scenes/CombatGUI.gd
-res://Classes/JobDictionary.gd
-res://Scenes/Battle Scenes/PlayerBlock.gd
-res://Enemies/Arid/Regular/mon_pylon.gd
 res://Scenes/Battle Scenes/EnemyLabel.tscn
-res://Scenes/Battle Scenes/EnemyBlock.gd
+res://Scenes/Battle Scenes/Entity.gd
+res://Scenes/Battle Scenes/CombatGUI.gd
+res://Scenes/Battle Scenes/ActionQueue.gd
+res://Enemies/Arid/Regular/mon_pylon.gd
+res://Enemies/Arid/arid.gd
+res://Scenes/SaveandLoad.gd

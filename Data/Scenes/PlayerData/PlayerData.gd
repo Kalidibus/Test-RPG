@@ -32,4 +32,4 @@ func GetStat(charid, stat):
 	return allchar[charid]["stats"][stat]
 
 func GetParty():
-	return roster
+	return party

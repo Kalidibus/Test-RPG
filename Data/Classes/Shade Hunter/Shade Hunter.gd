@@ -28,13 +28,6 @@ var job_description = "Striking from the shadows, the Shade Hunter's tainted arr
 
 func _ready():
 	charname = "Shade Hunter"
-	MaxHP = 60
-	HP = 60
-	MaxMP = 60
-	MP = 60
-	STR = 50
-	DEF = 20
-	SPD = 100
 	HATE = 50
 	row = "Back"
 	enemy = false
@@ -52,7 +45,7 @@ func PoisonArrow():
 	if MPCheck(10) == "fail": return
 	CombatGUI.TargetList("PoisonArrow2")
 func PoisonArrow2(target):
-	var damage = (SPD * statmods["SPD"])*0.5
+	var damage = (stats["SPD"] * statmods["SPD"])*0.5
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	MPCost(10)
 	CloseTurn(str(charname) + " fires a poison drenched arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
@@ -62,7 +55,7 @@ func BurningArrow():
 	if MPCheck(10) == "fail": return
 	CombatGUI.TargetList("BurningArrow2")
 func BurningArrow2(target):
-	var damage = (SPD * statmods["SPD"])*0.5
+	var damage = (stats["SPD"] * statmods["SPD"])*0.5
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	MPCost(10)
 	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
@@ -72,14 +65,14 @@ func BladedVolley():
 	if MPCheck(30) == "fail": return
 	else: CombatGUI.QueueAction(self, "BladedVolley2")
 func BladedVolley2():
-	var damage = (SPD * statmods["SPD"])*0.6
+	var damage = (stats["SPD"] * statmods["SPD"])*0.6
 	var enemies = get_enemy_targets()
 	MPCost(30)
-	EventHandler.BattleLog(str(charname) + " fires a Bladed Volley!")
+	CombatGUI.BattleLog(str(charname) + " fires a Bladed Volley!")
 	for target in enemies:
 		if target.row == "Back" and target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "slash")
-			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")
 
@@ -87,7 +80,7 @@ func PlateCrusher():
 	if MPCheck(20) == "fail": return
 	CombatGUI.TargetList("PlateCrusher2")
 func PlateCrusher2(target):
-	var damage = (SPD * statmods["SPD"])
+	var damage = (stats["SPD"] * statmods["SPD"])
 	var adjusteddamage = target.take_damage(damage, "impact")
 	MPCost(20)
 	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
@@ -98,7 +91,7 @@ func IsolatePrey():
 	if MPCheck(20) == "fail": return
 	CombatGUI.TargetList("IsolatePrey2")
 func IsolatePrey2(target):
-	var damage = max((SPD * statmods["SPD"])*0.5, (SPD * statmods["SPD"]) * target.status.size())
+	var damage = max((stats["SPD"] * statmods["SPD"])*0.5, (stats["SPD"] * statmods["SPD"]) * target.status.size())
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	MPCost(20)
 	CloseTurn(str(charname) + " strikes at the vitals of the weakened " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")

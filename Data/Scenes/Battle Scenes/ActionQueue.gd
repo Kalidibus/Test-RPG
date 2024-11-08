@@ -7,6 +7,8 @@ var action
 var target
 var combatover = false
 
+@onready var Combat = $/root/Combat
+
 signal turn_done
 
 func PlayRound():
@@ -17,7 +19,7 @@ func PlayRound():
 		action = n["action"]
 		target = n["target"]
 
-		if %CombatController.CheckWin() == true:
+		if Combat.CheckWin() == true:
 			combatover = true
 			break
 		elif active_character.dead == true: 
@@ -34,13 +36,13 @@ func PlayRound():
 			await self.turn_done
 	
 	queuedactions = [] #reset the queue
-	if combatover == false: %CombatController.MainBattleLoop() #call next round if combat hasn't ended
+	if combatover == false: Combat.MainBattleLoop() #call next round if combat hasn't ended
 
 func SortbySpeed(a, b):
 	return a["speed"] > b["speed"]
 
 func Execute():
-	active_character.selectionBG.set_self_modulate("4bff0a")
+	active_character["combatlabel"].set_self_modulate("4bff0a")
 	if target != null: 
 		action.call(target)
 	else: 
@@ -50,5 +52,5 @@ func Execute():
 		await active_character.turn_complete
 	else:
 		await get_tree().create_timer(0.5).timeout
-	active_character.selectionBG.set_self_modulate("ffffff")
+	active_character["combatlabel"].set_self_modulate("ffffff")
 	emit_signal("turn_done")

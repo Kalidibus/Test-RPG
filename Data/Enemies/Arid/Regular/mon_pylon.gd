@@ -4,6 +4,9 @@ extends Entity
 
 func _ready():
 	
+	charname = "Pylon"
+	reward_xp = 50
+	
 	stats = {
 		"HPMax" = 100,
 		"HP" = 100,
@@ -63,14 +66,14 @@ func AttackList(target, rng):
 		mDefend()
 
 func mAttack(target):
-	var damage:int = STR * statmods["STR"]
+	var damage:int = stats["STR"] * statmods["STR"]
 	var adjusteddamage = target.take_damage(damage, "slash")
-	CloseTurn("The " + str(charname) + " slashes at " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
+	CloseTurn("The " + charname + " slashes at " + target.charname + " for " + str(adjusteddamage) + " damage!")
 
 func Bludgeon(target):
-	var damage:int = 2 * STR * statmods["STR"]
+	var damage:int = 2 * stats["STR"] * statmods["STR"]
 	var adjusteddamage = target.take_damage(damage, "impact")
-	CloseTurn("The " + str(charname) + " emits a bloodcurdling shriek and bludgeons " + str(target.charname) + " fiercly for " + str(adjusteddamage) + " damage!!!")
+	CloseTurn("The " + charname + " emits a bloodcurdling shriek and bludgeons " + target.charname + " fiercly for " + str(adjusteddamage) + " damage!!!")
 	target.AttemptStatusAilment("stun", 0, 0)
 	
 

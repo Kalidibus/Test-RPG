@@ -11,4 +11,3 @@ func ready():
 
 func _pressed():
 	get_node("/root/Combat/CombatGUI").ClearSecondMenu()
-#	get_node("../../../../..").ConfirmTarget(target)

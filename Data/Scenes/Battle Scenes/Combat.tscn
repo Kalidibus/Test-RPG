@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ktubc2fyxeev"]
+[gd_scene load_steps=8 format=3 uid="uid://ktubc2fyxeev"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/ActionQueue.tscn" id="1"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/CombatGUI.gd" id="2"]
-[ext_resource type="Script" path="res://Scenes/Battle Scenes/CombatController.gd" id="3"]
-[ext_resource type="Script" path="res://Scenes/Battle Scenes/AridEncounters1.gd" id="4"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/Combat.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bwkr71clxk32v" path="res://Assets/backgrounds/Screenshot_20230318_165916.png" id="6_hqre3"]
@@ -20,17 +18,12 @@ script = ExtResource("5")
 [node name="ActionQueue" parent="." instance=ExtResource("1")]
 unique_name_in_owner = true
 
-[node name="CombatController" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3")
+[node name="Combatants" type="Node" parent="."]
 
-[node name="AridEncounters1" type="Node" parent="CombatController"]
-script = ExtResource("4")
-
-[node name="Party" type="Node" parent="CombatController"]
+[node name="Party" type="Node" parent="Combatants"]
 unique_name_in_owner = true
 
-[node name="Enemies" type="Node" parent="CombatController"]
+[node name="Enemies" type="Node" parent="Combatants"]
 unique_name_in_owner = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -85,6 +78,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Attack" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Attack"
 
@@ -160,13 +154,8 @@ texture = ExtResource("6")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("1")
 
-[connection signal="update_players" from="CombatController" to="." method="_on_CombatController_update_players"]
-[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatController" method="_on_Attack_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatGUI" method="_on_Attack_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Skills" to="CombatGUI" method="_on_Skills_pressed"]
-[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Defend" to="CombatController" method="_on_Defend_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Defend" to="CombatGUI" method="_on_Defend_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Items" to="CombatGUI" method="_on_Items_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Switch" to="CombatGUI" method="_on_Switch_pressed"]
-[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Flee" to="CombatController" method="_on_Flee_pressed"]
-[connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Exit" to="CombatController" method="_on_Exit_pressed"]

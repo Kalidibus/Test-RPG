@@ -1,5 +1,12 @@
 extends Node
 
+@onready var enemies = {
+	"e01" = {
+		"name" = "pylon", 
+		"dead" = false,
+		"stats" = %mon_pylon.stats
+		}
+	}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,5 +19,4 @@ func _process(delta: float) -> void:
 
 func Encounters():
 	#simple for now. add RNG later.
-	var enemies = {"e01" = {"name" = "pylon"}}
 	return enemies 

@@ -2,14 +2,6 @@ extends Entity
 
 func _ready():
 	charname = "Kobold"
-	MaxHP = 100
-	HP = 100
-	MaxMP = 5
-	MP = 5
-	STR = 15
-	DEF = 60
-	SPD = 8
-	RES = 30
 	row = "Front"
 	enemy = true
 
@@ -55,12 +47,12 @@ func AttackList(target, rng):
 		mDefend()
 
 func mAttack(target):
-	var damage:int = STR * statmods["STR"]
+	var damage:int = stats["STR"] * statmods["STR"]
 	var adjusteddamage = target.take_damage(damage, "slash")
 	CloseTurn("The " + str(charname) + " draws its rusty axe and strikes " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
 func Bludgeon(target):
-	var damage:int = 2 * STR * statmods["STR"]
+	var damage:int = 2 * stats["STR"] * statmods["STR"]
 	var adjusteddamage = target.take_damage(damage, "impact")
 	CloseTurn("The " + str(charname) + " emits a bloodcurdling shriek and bludgeons " + str(target.charname) + " fiercly for " + str(adjusteddamage) + " damage!!!")
 	target.AttemptStatusAilment("stun", 0, 0)

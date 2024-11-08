@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Enemies/EnemyDict.gd" id="1_pmhbi"]
 [ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_pylon.gd" id="1_ppid3"]
-[ext_resource type="Script" path="res://Enemies/arid.gd" id="2_b3n7h"]
+[ext_resource type="Script" path="res://Enemies/Arid/arid.gd" id="2_b3n7h"]
 [ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_mistake.gd" id="2_svjvr"]
 [ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_cutter.gd" id="3_7meg8"]
 [ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_meatshield.gd" id="4_jkq3d"]

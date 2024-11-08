@@ -37,16 +37,6 @@ func _ready():
 	var classid = 0 
 	
 	charname = "Fortress"
-	MaxHP = 125
-	HP = 125
-	MaxMP = 80
-	MP = 80
-	STR = 50
-	DEF = 75
-	INT = 25
-	FTH = 50
-	RES = 50
-	SPD = 25
 	HATE = 100
 	row = "Front"
 	enemy = false
@@ -91,7 +81,7 @@ func Vanguard():
 	if MPCheck(40) == "fail": return
 	else: CombatGUI.TargetList("Vanguard2")
 func Vanguard2(target):
-	var damage = DEF * statmods["DEF"]
+	var damage = stats["DEF"] * statmods["DEF"]
 	var adjusteddamage = target.take_damage(damage, "impact")
 	MPCost(40)
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
@@ -100,7 +90,7 @@ func Bastion():
 	if MPCheck(40) == "fail": return
 	else: CombatGUI.AllyTargetList("Bastion2")
 func Bastion2(target):
-	var heal = 2*DEF
+	var heal = 2 * stats["DEF"]
 	target.get_healed(heal)
 	MPCost(40)
 	CloseTurn(str(charname) + " provides shelter behind her shields to " + str(target.charname) + ", healing her for " + str(heal) + " HP!")
@@ -115,11 +105,11 @@ func Embolden2():
 
 func SkullSplitter():
 	if ire == 0:
-		EventHandler.BattleLog("Need Ire to perform this action!")
+		CombatGUI.BattleLog("Need Ire to perform this action!")
 		return
 	else: CombatGUI.TargetList("SkullSplitter2")
 func SkullSplitter2(target):
-	var damage = DEF * statmods["DEF"] + STR * statmods["STR"]
+	var damage = stats["DEF"] * statmods["DEF"] + stats["STR"] * statmods["STR"]
 	var adjusteddamage = target.take_damage(damage, "impact")
 	ire -= 1
 	CloseTurn(str(charname) + " uses Ire to perform a crushing overhead blow! to " + str(target.charname) + ", dealing" + str(adjusteddamage) + " damage!")

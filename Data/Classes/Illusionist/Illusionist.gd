@@ -28,16 +28,6 @@ var job_description = "The Illusionist Vocation channels the art of silver mist 
 
 func _ready():
 	charname = "Illusionist"
-	MaxHP = 80
-	HP = 80
-	MaxMP = 120
-	MP = 120
-	STR = 70
-	DEF = 50
-	INT = 25
-	FTH = 60
-	RES = 50
-	SPD = 50
 	HATE = 60
 	row = "Front"
 	enemy = false
