@@ -36,8 +36,22 @@ var job_description = "An iron wall to keep Lamentations at bay. \n\nThe Fortres
 func _ready():
 	HATE = 100
 	weapontype = "impact"
+	
+	skill_list = {
+		"skillFORTRESS01" = {"skillname" = "Taunt",
+			"skilldesc" = "Marks self, significantly increasing odds of enemies targetting the Fortress. Also increases base HATE."},
+		"skillFORTRESS02" = {"skillname" = "Vanguard",
+			"skilldesc" = "A savage blow with both shields. Deals high impact damage scaling with DEF."},
+		"skillFORTRESS03" = {"skillname" = "Bastion",
+			"skilldesc" = "Restores HP to target party member. Amount healed scales with DEF."},
+		"skillFORTRESS04" = {"skillname" = "Embolden",
+			"skilldesc" = "Boosts the DEF stat for 3 turns."},
+		"skillFORTRESS05" = {"skillname" = "Skull Splitter",
+			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."}
+		}
 
 func GetSkills():
+	#I'm not sure why but in combat the variable in _ready is getting wiped out, so I have to define it again here
 	skill_list = {
 		"skillFORTRESS01" = {"skillname" = "Taunt",
 			"skilldesc" = "Marks self, increasing odds of enemies targetting Fortress. Also increases base aggro."},

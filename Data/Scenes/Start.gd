@@ -52,5 +52,12 @@ func _on_debug_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
-	CharacterChanges.LearnSkill("0", "skillFORTRESS01")
-	CharacterChanges.LearnSkill("1", "skillFELMAGE01")
+	for n in PlayerData.party:
+		if PlayerData.party[n]["job_id"] == "0":
+			CharacterChanges.LearnSkill(n, "skillFORTRESS01")
+			CharacterChanges.LearnSkill(n, "skillFORTRESS02")
+			CharacterChanges.LearnSkill(n, "skillFORTRESS03")
+		elif PlayerData.party[n]["job_id"] == "1":
+			CharacterChanges.LearnSkill(n, "skillFELMAGE01")
+			CharacterChanges.LearnSkill(n, "skillFELMAGE02")
+			CharacterChanges.LearnSkill(n, "skillFELMAGE03")

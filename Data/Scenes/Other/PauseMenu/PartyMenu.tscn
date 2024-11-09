@@ -48,12 +48,15 @@ custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 text = "Equipment"
 
-[node name="Control" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="Holder" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/Control"]
+[node name="Panel" type="Panel" parent="HBoxContainer/VBoxContainer/Holder"]
 layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer2/SkillsButton" to="." method="_on_skills_button_pressed"]

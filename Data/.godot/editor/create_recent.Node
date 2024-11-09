@@ -1,4 +1,6 @@
 Button
+HSeparator
+Label
 VBoxContainer
 MarginContainer
 HBoxContainer
@@ -7,8 +9,6 @@ ColorRect
 CanvasLayer
 Control
 Node
-Label
 Panel
 GridContainer
 Container
-TextureRect

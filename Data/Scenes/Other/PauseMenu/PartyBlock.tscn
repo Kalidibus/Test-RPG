@@ -152,6 +152,11 @@ offset_right = 100.0
 offset_bottom = 66.0
 text = "XP: 999/1000"
 
+[node name="CharSelectButton" type="Button" parent="HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 2
+
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -321,6 +326,7 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "DOWN"
 
+[connection signal="pressed" from="HBoxContainer/MarginContainer/CharSelectButton" to="." method="_on_char_select_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/PositionButton" to="." method="_on_position_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/UpButton" to="." method="_on_up_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/DownButton" to="." method="_on_down_button_pressed"]

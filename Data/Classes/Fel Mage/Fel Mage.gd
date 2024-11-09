@@ -33,21 +33,46 @@ func _ready():
 	weapontype = "impact"
 	
 	skill_list = {
-		"Fel Bolt" : "A Fel aspected attack, dealing moderate damage.",
-		"Deep Bolt" : "A Deep aspected attack, dealing moderate damage.",
-		"Levin Bolt" : "A Levin aspected attack, dealing moderate damage.",
-		"Inferno Bolt" : "An Inferno aspected attack, dealing moderate damage.",
-		"Fel Storm" : "A Fel aspected attack, dealing minor damage to all enemies.",
-		"Deep Storm" : "A Deep aspected attack, dealing minor damage to all enemies.",
-		"Levin Storm" : "A Levin aspected attack, dealing minor damage to all enemies.",
-		"Inferno Storm" : "An Inferno aspected attack, dealing minor damage to all enemies.",
-		"Fel Pact" : "Sacrfice HP for an equivilant amount of MP."
-	}
+		"skillFELMAGE01" = {"skillname" = "Fel Bolt",
+			"skilldesc" = "A Fel aspected attack, dealing moderate damage."},
+		"skillFELMAGE02" = {"skillname" = "Deep Bolt",
+			"skilldesc" = "A Deep aspected attack, dealing moderate damage."},
+		"skillFELMAGE03" = {"skillname" = "Levin Bolt",
+			"skilldesc" = "A Levin aspected attack, dealing moderate damage."},
+		"skillFELMAGE04" = {"skillname" = "Inferno Bolt",
+			"skilldesc" = "An Inferno aspected attack, dealing moderate damage."},
+		"skillFELMAGE05" = {"skillname" = "Fel Storm",
+			"skilldesc" = "A Fel aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE06" = {"skillname" = "Deep Storm",
+			"skilldesc" = "A Deep aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE07" = {"skillname" = "Levin Storm",
+			"skilldesc" = "A Levin aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE08" = {"skillname" = "Inferno Storm",
+			"skilldesc" = "An Inferno aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE09" = {"skillname" = "Fel Pact",
+			"skilldesc" = "Sacrfice HP for an equivilant amount of MP."}
+		}
 
 func GetSkills():
 	skill_list = {
 		"skillFELMAGE01" = {"skillname" = "Fel Bolt",
-			"skilldesc" = "A Fel aspected attack, dealing moderate damage."}
+			"skilldesc" = "A Fel aspected attack, dealing moderate damage."},
+		"skillFELMAGE02" = {"skillname" = "Deep Bolt",
+			"skilldesc" = "A Deep aspected attack, dealing moderate damage."},
+		"skillFELMAGE03" = {"skillname" = "Levin Bolt",
+			"skilldesc" = "A Levin aspected attack, dealing moderate damage."},
+		"skillFELMAGE04" = {"skillname" = "Inferno Bolt",
+			"skilldesc" = "An Inferno aspected attack, dealing moderate damage."},
+		"skillFELMAGE05" = {"skillname" = "Fel Storm",
+			"skilldesc" = "A Fel aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE06" = {"skillname" = "Deep Storm",
+			"skilldesc" = "A Deep aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE07" = {"skillname" = "Levin Storm",
+			"skilldesc" = "A Levin aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE08" = {"skillname" = "Inferno Storm",
+			"skilldesc" = "An Inferno aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE09" = {"skillname" = "Fel Pact",
+			"skilldesc" = "Sacrfice HP for an equivilant amount of MP."}
 		}
 	super.GetSkills()
 

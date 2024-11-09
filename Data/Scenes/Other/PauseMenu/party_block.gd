@@ -1,5 +1,7 @@
 extends MarginContainer
 
+@onready var partymenu = get_node("/root/PauseMenu/VBoxContainer/MenuContainer/PartyMenu")
+
 var charid 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +29,8 @@ func _on_up_button_pressed() -> void:
 	partymenu.AddBlocks()
 
 func _on_down_button_pressed() -> void:
-	var partymenu = get_node("/root/PauseMenu/VBoxContainer/MenuContainer/PartyMenu")
 	PlayerData.MovePartyMember(charid, "down")
 	partymenu.AddBlocks()
+
+func _on_char_select_button_pressed() -> void:
+	partymenu.FillCharInfo(charid)
