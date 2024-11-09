@@ -52,3 +52,6 @@ func JobDesc(jobid):
 
 func GetUnlocks(jobid):
 	return $UnlockRequirements.req[jobid]
+
+func GetHireCost(jobid):
+	return job_dictionary[str(jobid)]["node"].hire_cost

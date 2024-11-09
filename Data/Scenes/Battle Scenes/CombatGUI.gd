@@ -7,7 +7,6 @@ extends MarginContainer
 @onready var secondmenu = %SecondMenu
 @onready var Combat = $/root/Combat
 
-var skilllist
 var lastpushed = "Attack"
 
 signal skillpress
@@ -95,6 +94,7 @@ func AllyTargetList(function):
 
 
 func UpdateStats(target, HP, MP):
+	if not target.enemy: target.combatlabel.UpdateStats(HP, MP)
 	var tween = create_tween()	
 	tween.tween_property(target.combatlabel, "animated_HP", HP, 0.4)
 	if not target.enemy: tween.tween_property(target.combatlabel, "animated_MP", MP, 0.4)
@@ -103,7 +103,6 @@ func UpdateStats(target, HP, MP):
 func BattleLog(string):
 	if string != "": $"../ScrollContainer/BattleLog".text += "\n" + str(string)
 	var scroll = $"../ScrollContainer"
-	#await get_tree().idle_frame    #removed for gd4
 	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 
 func _on_Skills_pressed():
@@ -111,20 +110,24 @@ func _on_Skills_pressed():
 	ClearSecondMenu()
 	
 	
-	for i in Combat.active_character.skilllist:
-		var skillname =  i.replace(" ","")
-		var skilldesc = Combat.active_character.skilllist[i]
+	for i in Combat.active_character.current_skills:
+		print(Combat.active_character.current_skills)
+		print(i)
+		var skillname =  Combat.active_character.current_skills[i]["skillname"]
+		var skillfunc = skillname.replace(" ","")
+		var skilldesc = Combat.active_character.current_skills[i]["skilldesc"]
 		
 		var skillnode = load("res://Scenes/Battle Scenes/SkillNode.tscn").instantiate()
 		secondmenu.add_child(skillnode)
-		skillnode.SetSkill(i, skilldesc)
-		skillnode.get_child(0).connect("pressed",Callable(Combat.active_character,skillname))
+		skillnode.SetSkill(skillname, skilldesc)
+		skillnode.get_child(0).tooltip_text = skilldesc
+		skillnode.get_child(0).connect("pressed",Callable(Combat.active_character,skillfunc))
 	
 	var label = Label.new()
 	label.text = "SKILLS"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
-	secondmenu.get_child(1).button.grab_focus()
+	if secondmenu.get_child_count() > 1: secondmenu.get_child(1).button.grab_focus()
 
 func _on_Items_pressed():
 	lastpushed = "Items"

@@ -29,11 +29,9 @@ var stat_scaling = {
 var job_description = "The Fel Mage is destruction incarnate. \n\nMaster of all elements, and capable of raining massive damage down upon foes regardless of their resistances or position. Their ability to recover MP also makes them excellent sustainers for long journies. \n\nHowever Fel Mage's lack much in the way of defenses, and must be protected. "
 
 func _ready():
-	charname = "Fel Mage"
 	HATE = 30
-	enemy = false
 	weapontype = "impact"
-
+	
 	skilllist = {
 		"Fel Bolt" : "A Fel aspected attack, dealing moderate damage.",
 		"Deep Bolt" : "A Deep aspected attack, dealing moderate damage.",
@@ -45,6 +43,13 @@ func _ready():
 		"Inferno Storm" : "An Inferno aspected attack, dealing minor damage to all enemies.",
 		"Fel Pact" : "Sacrfice HP for an equivilant amount of MP."
 	}
+
+func GetSkills():
+	skill_list = {
+		"skillFELMAGE01" = {"skillname" = "Fel Bolt",
+			"skilldesc" = "A Fel aspected attack, dealing moderate damage."}
+		}
+	super.GetSkills()
 
 func FelBolt():
 	if MPCheck(10) == "fail": return

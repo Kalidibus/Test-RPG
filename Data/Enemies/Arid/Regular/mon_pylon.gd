@@ -5,10 +5,10 @@ func _ready():
 	charname = "Pylon"
 	reward_xp = RNG_range(45, 75)
 	loot_table = {
-		"lcom001" = 25,
-		"lcom002" = 25,
-		"lcom003" = 25,
-		"lcom004" = 25}
+		"lcom001" = 55,
+		"lcom002" = 15,
+		"lcom003" = 15,
+		"lcom004" = 15}
 	roll_count = 7
 	
 	stats = {

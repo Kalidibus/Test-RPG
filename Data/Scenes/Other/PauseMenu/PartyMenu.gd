@@ -19,9 +19,9 @@ func _ready() -> void:
 		
 		block.get_node("%HP").text = str(HP) + "/" + str(HPmax)
 		block.get_node("%MP").text = str(MP) + "/" + str(MPmax)
-		block.get_node("%HPBar").min_value = HP
+		block.get_node("%HPBar").value = HP
 		block.get_node("%HPBar").max_value = HPmax
-		block.get_node("%MPBar").min_value = MP
+		block.get_node("%MPBar").value = MP
 		block.get_node("%MPBar").max_value = MPmax
 		
 		block.get_node("%STR_stat").text = str(PlayerData.GetStat(n, "STR"))

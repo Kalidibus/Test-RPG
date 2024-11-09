@@ -24,6 +24,10 @@ func AddBlocks(location, n):
 	var block = partyblock.instantiate()
 	var char = PlayerData.get(location)[n]
 	block.charid = n
+	
+	#hides party members from roster without actually removing them
+	if PlayerData.party.has(n) and location == "roster": 
+		block.visible = false
 		
 	block.get_node("%Name").text = char["name"]
 	block.get_node("%Class").text = char["job_name"]
@@ -58,7 +62,6 @@ func _on_addto_party_pressed() -> void:
 	for n in %RosterBlockHolder.get_children():
 		if n.charid == current_selection:
 			PlayerData.party[n.charid] = PlayerData.roster[n.charid]
-			PlayerData.roster.erase(n.charid)
 			ClearBlocks()
 			GetBlockData()
 			
@@ -67,7 +70,6 @@ func _on_addto_party_pressed() -> void:
 func _on_addto_roster_pressed() -> void:
 	for n in %PartyBlockHolder.get_children():
 		if n.charid == current_selection:
-			PlayerData.roster[n.charid] = PlayerData.party[n.charid]
 			PlayerData.party.erase(n.charid)
 			ClearBlocks()
 			GetBlockData()

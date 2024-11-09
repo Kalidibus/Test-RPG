@@ -29,25 +29,28 @@ var stat_scaling = {
 		"RES" = "B",
 		"EVD" = "D",
 		"SPD" = "D"
-}
+	}
 
 var job_description = "An iron wall to keep Lamentations at bay. \n\nThe Fortress vocation excels at defending the party from physical attacks. Taking hits from enemies repeatedly will also accumulate a resource called [b]Ire[/b] which can be used to trigger powerful counter-attacks. \n\nWhile the Fortresses' shields can protect against magic attacks to some degree, they are not as well suited for foes that deal elemental damage."
 
 func _ready():
-	var classid = 0 
-	
-	charname = "Fortress"
 	HATE = 100
-	enemy = false
 	weapontype = "impact"
-	
-	skilllist = {
-		"Taunt" : "Marks self, increasing odds of enemies targetting Fortress. Also increases base aggro.",
-		"Vanguard" : "A savage blow with both shields. Deals high impact damage scaling with DEF.",
-		"Bastion" : "Restores HP to target party member. Amount healed scales with DEF.",
-		"Embolden" : "Boosts the DEF stat for 3 turns.",
-		"Skull Splitter" : "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."
-	}
+
+func GetSkills():
+	skill_list = {
+		"skillFORTRESS01" = {"skillname" = "Taunt",
+			"skilldesc" = "Marks self, increasing odds of enemies targetting Fortress. Also increases base aggro."},
+		"skillFORTRESS02" = {"skillname" = "Vanguard",
+			"skilldesc" = "A savage blow with both shields. Deals high impact damage scaling with DEF."},
+		"skillFORTRESS03" = {"skillname" = "Bastion",
+			"skilldesc" = "Restores HP to target party member. Amount healed scales with DEF."},
+		"skillFORTRESS04" = {"skillname" = "Embolden",
+			"skilldesc" = "Boosts the DEF stat for 3 turns."},
+		"skillFORTRESS05" = {"skillname" = "Skull Splitter",
+			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."}
+		}
+	super.GetSkills()
 
 func Turn():
 	super.Turn() #calls the parent Turn function. 
@@ -58,9 +61,11 @@ func Defend():
 	PASSIVE_accumulate_ire = true
 
 func take_damage(damage, type):
-	if PASSIVE_accumulate_ire == true: ire += 1
-	var adjusteddamage = super.take_damage(damage, type)
+	if PASSIVE_accumulate_ire == true: 
+		ire += 1
+		CombatGUI.BattleLog(charname + "'s Ire rises... Current Ire is " + str(ire))
 	
+	var adjusteddamage = super.take_damage(damage, type)
 	return int(adjusteddamage)
 
 func Taunt():

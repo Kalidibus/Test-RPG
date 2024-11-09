@@ -22,6 +22,11 @@ func _on_create_char_button_pressed() -> void:
 	var newcharid
 	var user_entered_name = %UserEnteredName.text
 	var user_selected_job = %OptionButton.selected
+	var cost = JobDict.GetHireCost(user_selected_job)
+	
+	if not PlayerData.inventory.has("lcom001") or PlayerData.inventory["lcom001"] < cost:
+		Globals.system_message("Not enough " +ItemDict.GetItemName("lcom001") + " to hire.")
+		return
 	
 	if not user_entered_name:
 		Globals.system_message("No name entered!")
@@ -30,6 +35,9 @@ func _on_create_char_button_pressed() -> void:
 	if user_selected_job == -1:
 		Globals.system_message("No job selected!")
 		return
+	
+	var choice = await Globals.system_message_choice("Spend " + str(cost) + " " + ItemDict.GetItemName("lcom001") + " to hire " + str(user_entered_name) + "?", "Yes", "No")
+	if choice == "right": return
 	
 	#look at current roster. Look at the last Character ID created and add +1 for the new character. Checks for empty roster. 
 	if PlayerData.roster.size() == 0:
@@ -47,7 +55,7 @@ func _on_create_char_button_pressed() -> void:
 		"xp" = 0,
 		"xpneeded" = 100,
 		"stats" = JobDict.Stats(user_selected_job),
-		"abilities" = {},
+		"known_skills" = [],
 		"equipment" = {
 			"main_hand" = "",
 			"off_hand" = "",
@@ -68,10 +76,13 @@ func _on_create_char_button_pressed() -> void:
 	CharacterChanges.add_equipment(newcharid, "head", "h01", "roster")
 	CharacterChanges.add_equipment(newcharid, "body", "b01", "roster")
 	CharacterChanges.add_equipment(newcharid, "main_hand", "w01", "roster")
-
+	
+	#pay hiring price
+	CharacterChanges.RemovefromInventory("lcom001", cost)
+	
 	#Create success pop-up dialogue
-	var choice = await Globals.system_message_choice("Successfully hired " + user_entered_name + " as a " + JobDict.JobName(user_selected_job) + "!\nWould you like to adjust your current party now?", "Yes", "No")
-	if choice == "left": get_tree().change_scene_to_file("res://Scenes//Guild/PartyBuild.tscn")
+	var choice2 = await Globals.system_message_choice("Successfully hired " + user_entered_name + " as a " + JobDict.JobName(user_selected_job) + "!\nWould you like to adjust your current party now?", "Yes", "No")
+	if choice2 == "left": get_tree().change_scene_to_file("res://Scenes//Guild/PartyBuild.tscn")
 
 
 func _on_option_button_item_selected(index: int) -> void:

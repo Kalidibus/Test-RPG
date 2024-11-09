@@ -53,3 +53,8 @@ func _on_pause_button_pressed() -> void:
 func _on_debug_pressed() -> void:
 	for n in PlayerData.party:
 		CharacterChanges.GainXP(n, 2000)
+
+
+func _on_button_pressed() -> void:
+	CharacterChanges.LearnSkill("0", "skillFORTRESS01")
+	CharacterChanges.LearnSkill("1", "skillFELMAGE01")

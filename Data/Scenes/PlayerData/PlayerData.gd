@@ -25,11 +25,10 @@ func UnlockClass(jobid):
 	unlocked_classes.append(str(jobid))
 
 func GetStat(charid, stat):
-	var allchar = {}
-	allchar.merge(roster)
-	allchar.merge(party)
-	
-	return allchar[charid]["stats"][stat]
-
-func GetParty():
-	return party
+	if party.has(charid): 
+		return party[charid]["stats"][stat]
+	else: 
+		return roster[charid]["stats"][stat]
+		
+func KnownSkills(charid):
+	return party[charid]["known_skills"]

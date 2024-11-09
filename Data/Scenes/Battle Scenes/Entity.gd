@@ -9,6 +9,9 @@ var charid
 var charname
 var combatlabel
 var stats = {} #this is filled in during Combat initiation based on the party member or monster that owns the node
+var hire_cost = 5
+var skill_list
+var current_skills = {}
 
 var row
 var enemy
@@ -47,6 +50,21 @@ var statmods =  {
 	"ACC": 1,
 	"EVD": 1
 }
+var gear_statmods = {
+	"MaxHP": 0,
+	"HP": 0, 
+	"MaxMP": 0,
+	"MP": 0,
+	"STR": 0,
+	"DEF": 0,
+	"INT": 0,
+	"FTH": 0,
+	"RES": 0,
+	"SPD": 0,
+	"ACC": 0,
+	"EVD": 0
+	}
+	
 var statmodtimer = {}
 var statres = {
 	"poison": 40,
@@ -95,6 +113,14 @@ func Turn():
 	if status.has("stun"):
 		status.erase("stun")
 		CloseTurn(charname + " misses their turn...")
+
+func GetSkills():
+	var skill_array = PlayerData.KnownSkills(charid)
+	
+	for n in skill_array:
+		print(current_skills)
+		print(skill_list)
+		current_skills[n] = skill_list[n]
 
 func get_enemy_targets():
 	return EventHandler.enemies.get_children()
@@ -167,7 +193,7 @@ func StatusEffects():
 			status.erase("regen")
 
 func Stat(stat):
-	return stats[stat] * statmods[stat]
+	return stats[stat] * statmods[stat] + gear_statmods[stat]
 
 func Attack(target):
 	CombatGUI.emit_signal("menuhide")

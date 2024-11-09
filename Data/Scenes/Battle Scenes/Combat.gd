@@ -30,6 +30,7 @@ func CreateNodes(party, enemies):
 		node.charname = party[n]["name"]
 		node.combatlabel = party[n]["combatlabel"]
 		node.row = party[n]["row"]
+		node.GetSkills()
 		%Party.add_child(node)
 		party[n]["combatnode"] = node
 	for n in enemies:
@@ -113,19 +114,13 @@ func _on_Exit_pressed():
 	get_tree().quit()
 
 func win():
-	%CombatGUI.BattleLog("You have prevailed on this fine day. Congratulations")
+	Globals.system_message("MANIFESTATIONS SLAIN")
 	%Menu.visible = false
 	
-	#Basic loot test.
-	#CharacterChanges.AddtoInventory("lcom001", 8)
-	#CharacterChanges.AddtoInventory("lcom002", 8)
-	#CharacterChanges.AddtoInventory("lcom003", 8)
-	#CharacterChanges.AddtoInventory("lcom004", 8)
+	#Get Loot
 	for n in %Enemies.get_children():
 		var loot = n.LootRolls()
 		for i in loot:
-			print(i)
-			print(loot[i])
 			CharacterChanges.AddtoInventory(i, loot[i])
 	
 	#Gain XP

@@ -289,10 +289,10 @@ expand_mode = 3
 
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/CharUnlock" to="." method="_on_char_unlock_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/AdjustParty" to="." method="_on_adjust_party_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_RETURN_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_RETURN_pressed"]
 [connection signal="pressed" from="HBoxContainer/Select_and_Stats/VBoxContainer2/Job/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="item_selected" from="HBoxContainer/Select_and_Stats/VBoxContainer2/Job/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="HBoxContainer/Select_and_Stats/VBoxContainer2/Job/ForwardButton" to="." method="_on_forward_button_pressed"]

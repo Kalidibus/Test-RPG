@@ -71,3 +71,10 @@ func LevelUp(charid):
 	
 	#check for multiple level ups in case of huge XP gain
 	LevelUpCheck(charid)
+	Globals.system_message(PlayerData.party[charid]["name"] + " has reached level " + str(PlayerData.party[charid]["level"]))
+	
+
+
+func LearnSkill(charid, skillid):
+	if not PlayerData.party[charid]["known_skills"].has(skillid):
+		PlayerData.party[charid]["known_skills"].append(skillid)
