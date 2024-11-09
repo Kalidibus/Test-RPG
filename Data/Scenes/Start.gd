@@ -1,20 +1,29 @@
 extends MarginContainer
 
 func _ready():
-	get_node("VBoxContainer/HBoxContainer/VBoxContainer/StartButton").grab_focus()
+	#SaveandLoad.load_file()
+	%Dungeon.grab_focus()
 
 func _on_StartButton_pressed():
-	if not PlayerData.roster:
+	if not PlayerData.party:
 		Globals.system_message("Party has not yet been created")
 		return
 	else: 
+		print("1")
+		TransitionScreen.transition()
+		print("2")
+		await TransitionScreen.on_transition_finished
+		print("3")
 		get_tree().change_scene_to_file("res://Scenes/Battle Scenes/Combat.tscn")
 
 func _on_OptionsButton_pressed():
-	if not PlayerData.roster:
+	if not PlayerData.party:
 		Globals.system_message("Party has not yet been created")
 		return
 	else: 
+		TransitionScreen.transition()
+		print("2")
+		await TransitionScreen.on_transition_finished
 		get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
 
 func _on_QuitButton_pressed():
@@ -38,11 +47,14 @@ func _on_load_button_pressed():
 func _on_hire_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Guild/CharacterCreate.tscn")
 
-
 func _on_pause_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Other/PauseMenu/PauseMenu.tscn")
 
-
 func _on_debug_pressed() -> void:
-	for n in PlayerData.roster:
-		CharacterChanges.GainXP(n, 500)
+	for n in PlayerData.party:
+		CharacterChanges.GainXP(n, 2000)
+
+
+func _on_button_pressed() -> void:
+	CharacterChanges.LearnSkill("0", "skillFORTRESS01")
+	CharacterChanges.LearnSkill("1", "skillFELMAGE01")

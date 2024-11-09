@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn6s3voxxlctn"
-path="res://.godot/imported/Cleric-PartyLabel.png-db150dd19f071b52c0a8229af5f20b99.ctex"
+uid="uid://dyhxpjgbbs3k2"
+path="res://.godot/imported/Shade Hunter-PartyLabel.png-811bcbf09271ae27f83ccbab35c96546.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Classes/Cleric-PartyLabel.png"
-dest_files=["res://.godot/imported/Cleric-PartyLabel.png-db150dd19f071b52c0a8229af5f20b99.ctex"]
+source_file="res://Assets/Classes/Shade Hunter/Shade Hunter-PartyLabel.png"
+dest_files=["res://.godot/imported/Shade Hunter-PartyLabel.png-811bcbf09271ae27f83ccbab35c96546.ctex"]
 
 [params]
 

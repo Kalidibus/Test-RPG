@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://badc63k8adntc"
-path="res://.godot/imported/Fel Mage-PartyLabel.png-cd365c5d1bdb61a326af40ed8a33211d.ctex"
+uid="uid://cktjpe51iek3h"
+path="res://.godot/imported/Bastard Fist-PartyLabel.png-db30a782bda000e2995dadffd55525a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Classes/Fel Mage-PartyLabel.png"
-dest_files=["res://.godot/imported/Fel Mage-PartyLabel.png-cd365c5d1bdb61a326af40ed8a33211d.ctex"]
+source_file="res://Assets/Classes/Bastard Fist/Bastard Fist-PartyLabel.png"
+dest_files=["res://.godot/imported/Bastard Fist-PartyLabel.png-db30a782bda000e2995dadffd55525a8.ctex"]
 
 [params]
 

@@ -7,6 +7,8 @@ var action
 var target
 var combatover = false
 
+@onready var Combat = $/root/Combat
+
 signal turn_done
 
 func PlayRound():
@@ -17,30 +19,30 @@ func PlayRound():
 		action = n["action"]
 		target = n["target"]
 
-		if Globals.CombatController.CheckWin() == true:
+		if Combat.CheckWin() == true:
 			combatover = true
 			break
 		elif active_character.dead == true: 
 			pass
 		elif active_character.status.has("stun"):
 			active_character.status.erase("stun")
-			Globals.CombatGUI.BattleLog(active_character.charname + " misses their turn...")
+			%CombatGUI.BattleLog(active_character.charname + " misses their turn...")
 			await get_tree().create_timer(0.5).timeout
 		elif target != null and target.dead == true and n["action_string"] != "Raise":
-			Globals.CombatGUI.BattleLog("Nothing to target...")
+			%CombatGUI.BattleLog("Nothing to target...")
 			await get_tree().create_timer(0.5).timeout
 		else: 
 			Execute()
 			await self.turn_done
 	
 	queuedactions = [] #reset the queue
-	if combatover == false: Globals.CombatController.MainBattleLoop() #call next round if combat hasn't ended
+	if combatover == false: Combat.MainBattleLoop() #call next round if combat hasn't ended
 
 func SortbySpeed(a, b):
 	return a["speed"] > b["speed"]
 
 func Execute():
-	active_character.selectionBG.set_self_modulate("4bff0a")
+	active_character["combatlabel"].set_self_modulate("4bff0a")
 	if target != null: 
 		action.call(target)
 	else: 
@@ -50,5 +52,5 @@ func Execute():
 		await active_character.turn_complete
 	else:
 		await get_tree().create_timer(0.5).timeout
-	active_character.selectionBG.set_self_modulate("ffffff")
+	active_character["combatlabel"].set_self_modulate("ffffff")
 	emit_signal("turn_done")

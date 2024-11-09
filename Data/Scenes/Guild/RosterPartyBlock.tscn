@@ -1,0 +1,312 @@
+[gd_scene load_steps=7 format=3 uid="uid://dja8s82daakdd"]
+
+[ext_resource type="Script" path="res://Scenes/Guild/roster_party_block.gd" id="1_1oyg8"]
+[ext_resource type="Texture2D" uid="uid://coaxx58modqde" path="res://Assets/Classes/Fortress-profile.png" id="1_4jjeb"]
+[ext_resource type="Texture2D" uid="uid://drac0yxtmd00b" path="res://Assets/UI/bar_under.png" id="2_2fkvn"]
+[ext_resource type="Texture2D" uid="uid://cnvglr0j77jl6" path="res://Assets/UI/HP_bar_progress.png" id="3_peuia"]
+[ext_resource type="Texture2D" uid="uid://daiq7i2a0xvoq" path="res://Assets/UI/MP_bar_progress.png" id="4_6ox00"]
+
+[sub_resource type="Theme" id="Theme_a4g7p"]
+
+[node name="RosterPartyBlock" type="MarginContainer"]
+custom_minimum_size = Vector2(0, 170)
+offset_right = 604.0
+offset_bottom = 170.0
+script = ExtResource("1_1oyg8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_a4g7p")
+text = "Kalidibus"
+
+[node name="Class" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_a4g7p")
+text = "Fortress"
+
+[node name="Lv" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_a4g7p")
+text = "Lv. 2"
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Control"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 580.0
+offset_bottom = 27.0
+scale = Vector2(0.8, 0.8)
+columns = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Control/GridContainer"]
+layout_mode = 2
+text = "Main Hand: Weapon"
+
+[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Control/GridContainer"]
+layout_mode = 2
+text = "Main Hand: Weapon"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 433.0
+offset_top = -106.0
+offset_right = 807.0
+offset_bottom = 328.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_4jjeb")
+
+[node name="Stats" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 342.0
+offset_top = 35.0
+offset_right = 462.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.698247, 1, 0.671603, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "120/137"
+horizontal_alignment = 2
+
+[node name="MP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 450.0
+offset_top = 33.0
+offset_right = 570.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(1, 0.766612, 0.989244, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "68/90"
+horizontal_alignment = 2
+
+[node name="HPBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 365.0
+offset_top = 57.0
+offset_right = 754.0
+offset_bottom = 78.0
+scale = Vector2(0.25, 0.6)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+value = 70.0
+texture_under = ExtResource("2_2fkvn")
+texture_progress = ExtResource("3_peuia")
+
+[node name="MPBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 473.0
+offset_top = 57.0
+offset_right = 880.0
+offset_bottom = 78.0
+scale = Vector2(0.25, 0.6)
+value = 60.0
+texture_under = ExtResource("2_2fkvn")
+texture_progress = ExtResource("4_6ox00")
+
+[node name="XP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 43.0
+offset_right = 100.0
+offset_bottom = 66.0
+text = "XP: 999/1000"
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Panel2" type="Panel" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Position" type="Label" parent="HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "FRONT"
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Stats" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4"]
+visible = false
+layout_mode = 2
+
+[node name="HP" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/VBoxContainer"]
+layout_mode = 2
+text = "HP:"
+
+[node name="HP_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5000"
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4"]
+visible = false
+layout_mode = 2
+
+[node name="MP" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/VBoxContainer2"]
+layout_mode = 2
+text = "MP:"
+
+[node name="MP_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5000"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4"]
+layout_mode = 2
+
+[node name="STR" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/HBoxContainer"]
+layout_mode = 2
+text = "Strength:"
+
+[node name="STR_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "80"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4"]
+layout_mode = 2
+
+[node name="DEF" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/HBoxContainer2"]
+layout_mode = 2
+text = "Defense:"
+
+[node name="DEF_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4"]
+layout_mode = 2
+
+[node name="INT" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/HBoxContainer3"]
+layout_mode = 2
+text = "Intelligence:"
+
+[node name="INT_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4"]
+layout_mode = 2
+
+[node name="FTH" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/HBoxContainer4"]
+layout_mode = 2
+text = "Faith:"
+
+[node name="FTH_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer4/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3"]
+layout_mode = 2
+
+[node name="RES" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3/HBoxContainer5"]
+layout_mode = 2
+text = "Resistance:"
+
+[node name="RES_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3/HBoxContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3"]
+layout_mode = 2
+
+[node name="EVD" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3/HBoxContainer6"]
+layout_mode = 2
+text = "Evasion:"
+
+[node name="EVD_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3/HBoxContainer6"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3"]
+layout_mode = 2
+
+[node name="SPD" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3/HBoxContainer7"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="SPD_stat" type="Label" parent="HBoxContainer/MarginContainer3/HBoxContainer/Stats/VBoxContainer3/HBoxContainer7"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-"
+
+[node name="Button" type="Button" parent="."]
+show_behind_parent = true
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

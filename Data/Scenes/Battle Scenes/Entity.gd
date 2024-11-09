@@ -1,25 +1,18 @@
 extends Node
 class_name Entity
 
-var EventHandler = Globals.CombatEventHandler
-var CombatGUI = Globals.CombatGUI
-var CombatController = Globals.CombatController
+@onready var EventHandler = get_node("/root/Combat")
+@onready var CombatGUI = get_node("/root/Combat/CombatGUI")
+@onready var party = get_node("/root/Combat/Combatants/Party")
 
-
+var charid
 var charname
-var level:int
-var HP:int
-var MP:int
-var STR:int
-var DEF:int
-var INT:int
-var FTH:int
-var RES:int
-var SPD:int
-var MaxHP:int
-var MaxMP:int
-var XP:int
-var XP_to_level:int
+var combatlabel
+var stats = {} #this is filled in during Combat initiation based on the party member or monster that owns the node
+var hire_cost = 5
+var skill_list
+var current_skills = {}
+
 var row
 var enemy
 var eqpSTR
@@ -57,9 +50,22 @@ var statmods =  {
 	"ACC": 1,
 	"EVD": 1
 }
-
+var gear_statmods = {
+	"MaxHP": 0,
+	"HP": 0, 
+	"MaxMP": 0,
+	"MP": 0,
+	"STR": 0,
+	"DEF": 0,
+	"INT": 0,
+	"FTH": 0,
+	"RES": 0,
+	"SPD": 0,
+	"ACC": 0,
+	"EVD": 0
+	}
+	
 var statmodtimer = {}
-
 var statres = {
 	"poison": 40,
 	"stun": 40,
@@ -69,7 +75,6 @@ var statres = {
 	"regen": 0,
 	"marked": 40
 }
-
 var damageres = {
 	"impact": 20,
 	"slash": 20,
@@ -82,18 +87,14 @@ var damageres = {
 	"virtuos": 20,
 	"true": 0
 }
-	
 
 var node
 var target
-var selectionBG
-var Selector
 var skilllist
 var sealedskilllist
 var status:Array
-var enemytargetlist
 
-var DEFbonus = 1
+
 
 signal turn_complete
 
@@ -113,18 +114,23 @@ func Turn():
 		status.erase("stun")
 		CloseTurn(charname + " misses their turn...")
 
+func GetSkills():
+	var skill_array = PlayerData.KnownSkills(charid)
+	
+	for n in skill_array:
+		print(current_skills)
+		print(skill_list)
+		current_skills[n] = skill_list[n]
+
 func get_enemy_targets():
 	return EventHandler.enemies.get_children()
 
-func get_party_targets():
-	return EventHandler.party.get_children()
-
 func SwitchRows():
-	if row == "Front":
-		row = "Back"
+	if row == "front":
+		row = "back"
 		HATE = HATE*0.5
-	elif row == "Back":
-		row = "Front"
+	elif row == "back":
+		row = "front"
 		HATE = HATE*2
 
 func StatModCountDown():
@@ -140,26 +146,25 @@ func StatModCountDown():
 				statmodtimer[n] -= 1
 
 func StatusEffects():
-	if "stun" in status: # does not work yet
-		EventHandler.BattleLog(charname + " is stunned!")
-		# status.erase("stun") Handled in Turn() to skip turn.
+	if "stun" in status: 
+		CombatGUI.BattleLog(charname + " is stunned!")
 		statres["stun"] = statres["stun"] * 1.5
 	if "poison" in status:
-		EventHandler.BattleLog(charname + " takes " + str(poison) + " damage from poison!")
+		CombatGUI.BattleLog(charname + " takes " + str(poison) + " damage from poison!")
 		take_damage(poison, "true")
 		poisoncount -= 1
 		if poisoncount == 0:
 			status.erase("poison")
 			statres["poison"] = statres["poison"] * 1.5
 	if "burn" in status:
-		EventHandler.BattleLog(charname + " takes " + str(burn) + " burn damage!")
+		CombatGUI.BattleLog(charname + " takes " + str(burn) + " burn damage!")
 		take_damage(burn, "true")
 		burncount -= 1
 		if burncount == 0:
 			status.erase("burn")
 			statres["burn"] = statres["burn"] * 1.5
 	if "blind" in status:
-		EventHandler.BattleLog(charname + " is blinded!")
+		CombatGUI.BattleLog(charname + " is blinded!")
 		statmods["ACC"] = 0.3
 		blindcount -= 1
 		if blindcount == 0:
@@ -167,67 +172,69 @@ func StatusEffects():
 			status.erase("blind")
 			statres["blind"] = statres["blind"] * 1.5
 	if "seal" in status:
-		EventHandler.BattleLog(charname + "'s Skills are sealed!")
+		CombatGUI.BattleLog(charname + "'s Skills are sealed!")
 		sealedskilllist = skilllist
 		skilllist = {}
 		sealcount -= 1
 		if sealcount == 0:
 			status.erase("seal")
+			skilllist = sealedskilllist
 			statres["seal"] = statres["seal"] * 1.5
 	if "marked" in status:
-		EventHandler.BattleLog(charname + " has drawn the enemies ire!")
+		CombatGUI.BattleLog(charname + " has drawn the enemies ire!")
 		markedcount -= 1
 		if markedcount == 0:
 			status.erase("marked")
 	if "regen" in status:
 		get_healed(regen)
-		EventHandler.BattleLog("Regen restores " + charname + "'s health!")
+		CombatGUI.BattleLog("Regen restores " + charname + "'s health!")
 		regencount -= 1
 		if regencount == 0:
 			status.erase("regen")
 
+func Stat(stat):
+	return stats[stat] * statmods[stat] + gear_statmods[stat]
+
 func Attack(target):
-	CombatController.emit_signal("menuhide")
-	var damage = STR * statmods["STR"]
+	CombatGUI.emit_signal("menuhide")
+	var damage = Stat("STR")
 	var adjusteddamage = target.take_damage(damage, weapontype) 
 	
-	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
+	CloseTurn(charname + " has attacked " + target.charname + " for " + str(adjusteddamage) + " damage!")
 
 func Defend():
 	StatMod("DEF", 1.5, 0)
-	
 	CloseTurn(str((charname) + " defends herself!"))
 
 func take_damage (damage, type):
 	var adjusteddamage
-	if HP == 0: return #to prevent multi-attacks from triggering die() multiple times
+	if stats["HP"] == 0: return #to prevent multi-attacks from triggering die() multiple times
 	
 	if type == "impact" or "slash" or "pierce":
-		adjusteddamage = max(1, damage * (100 / (100+(float(DEF) * statmods["DEF"]))))
+		adjusteddamage = max(1, damage * (100 / (100+(float(Stat("DEF"))))))
 		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 	if type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
-		adjusteddamage = max(1, damage * (100 / (100+(float(RES) * statmods["RES"]))))
+		adjusteddamage = max(1, damage * (100 / (100+(float(Stat("RES"))))))
 		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 
 	if type == "true":
 		adjusteddamage = damage
-	HP -= int(adjusteddamage)
-	HP = max(0, HP)
+	stats["HP"] -= int(adjusteddamage)
+	stats["HP"] = max(0, stats["HP"])
 	
 	CombatGUI.TakeDamageGUI(self)
+	CombatGUI.UpdateStats(self, stats["HP"], stats["MP"])
 	
-	EventHandler.UpdateStats(self, HP, MP)
-	
-	if HP <= 0: 
+	if stats["HP"] <= 0: 
 		dies()
 	return int(adjusteddamage)
 
 func get_healed (heal_amount:int):
 	
-	HP += heal_amount
-	HP = min(MaxHP, HP)
+	stats["HP"] += heal_amount
+	stats["HP"] = min(stats["HPmax"], stats["HP"])
 	
-	EventHandler.UpdateStats(self, HP, MP)
+	CombatGUI.UpdateStats(self, stats["HP"], stats["MP"])
 
 func AttemptStatusAilment(type, amount, time):
 	var rng = RNG()
@@ -237,37 +244,39 @@ func AttemptStatusAilment(type, amount, time):
 		if type == "poison":
 			poison = amount
 			poisoncount = time
-			EventHandler.BattleLog(charname + " has been inflicted with poison!")
+			CombatGUI.BattleLog(charname + " has been inflicted with poison!")
 		elif type == "burn":
 			burn = amount
 			burncount = time
-			EventHandler.BattleLog(charname + " has been blinded!")
+			CombatGUI.BattleLog(charname + " has been blinded!")
 		elif type == "regen":
 			regen = amount
 			regencount = time
 		elif type == "marked":
 			markedamount = amount
 			markedcount = time
-			EventHandler.BattleLog(charname + " has been marked!")
+			CombatGUI.BattleLog(charname + " has been marked!")
 		elif type == "blind":
-			EventHandler.BattleLog(charname + " has been blinded!")
+			CombatGUI.BattleLog(charname + " has been blinded!")
 		elif type == "seal":
-			EventHandler.BattleLog(charname + "'s Skills are sealed!")
+			CombatGUI.BattleLog(charname + "'s Skills are sealed!")
 
 		CombatGUI.StatusLabels(self)
 
 func UseItem():
 	queueditem.call_func(self)
 
+func get_party_targets():
+	return party.get_children()
+
 func DecideTarget():
 	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
 	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
 	var rng = RNG()
-	var partylist = get_party_targets()
 	var targetlist = []
-	
-	for n in partylist:
-		if n.HP != 0:
+		
+	for n in get_party_targets():
+		if n.stats["HP"] != 0:
 			targetlist.append(n)
 	
 	for n in targetlist:
@@ -283,7 +292,7 @@ func DecideTarget():
 	rng = randf_range(0, total_hate)
 	
 	for n in targetlist:
-		if (n.ref_hate > rng) and n.HP != 0:
+		if (n.ref_hate > rng) and n.stats["HP"] != 0:
 			return n
 
 func RNG():
@@ -292,24 +301,30 @@ func RNG():
 	var rng = num.randi_range(1, 100)
 	return rng
 
+func RNG_range(bottom_range, top_range):
+	var num = RandomNumberGenerator.new()
+	num.randomize()
+	var rng = num.randi_range(bottom_range, top_range)
+	return rng
+
 func StatMod(stat, amount, timer):
 	statmods[stat] = amount
 	statmodtimer[stat] = timer
 
 func MPCheck(MPcost):
-	if MP < MPcost: 
-		EventHandler.BattleLog("Not enough MP!")
+	if stats["MP"] < MPcost: 
+		CombatGUI.BattleLog("Not enough MP!")
 		return "fail"
 
 func MPCost(MPcost):
-	MP -= MPcost
-	MP = max(0, MP)
-	MP = min(MaxMP, MP)
-	EventHandler.UpdateStats(self, HP, MP)
+	stats["MP"] -= MPcost
+	stats["MP"] = max(0, stats["MP"])
+	stats["MP"] = min(stats["MPmax"], stats["MP"])
+	CombatGUI.UpdateStats(self, stats["HP"], stats["MP"])
 
 func CloseTurn(string=""):
 	CombatGUI.ClearSecondMenu()
-	EventHandler.BattleLog(string)
+	CombatGUI.BattleLog(string)
 	await get_tree().create_timer(0.5).timeout
 	emit_signal("turn_complete")
 
@@ -317,7 +332,7 @@ func dies():
 	if enemy == true:
 		dead = true
 		#CombatController.battlers.erase(self)
-		node.visible = false
+		combatlabel.visible = false
 		#queue_free()
 	else:
 		dead = true

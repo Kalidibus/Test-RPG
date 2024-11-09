@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyhxpjgbbs3k2"
-path="res://.godot/imported/Shade Hunter-PartyLabel.png-c0ca9becdd4fa3fb411663125541bf2b.ctex"
+uid="uid://badc63k8adntc"
+path="res://.godot/imported/Fel Mage-PartyLabel.png-e3a964c90dfba28b490e4f8bf3b628f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Classes/Shade Hunter-PartyLabel.png"
-dest_files=["res://.godot/imported/Shade Hunter-PartyLabel.png-c0ca9becdd4fa3fb411663125541bf2b.ctex"]
+source_file="res://Assets/Classes/Fel Mage/Fel Mage-PartyLabel.png"
+dest_files=["res://.godot/imported/Fel Mage-PartyLabel.png-e3a964c90dfba28b490e4f8bf3b628f1.ctex"]
 
 [params]
 

@@ -4,13 +4,9 @@ extends MarginContainer
 @onready var enemylabels = preload("res://Scenes/Battle Scenes/EnemyLabel.tscn")
 @onready var partylabels = preload("res://Scenes/Battle Scenes/PlayerBlock.tscn")
 @onready var statusicon = preload("res://Scenes/Battle Scenes/StatusIcon.tscn")
-@onready var secondmenu = $VBoxContainer/CenterContainer/HBoxContainer/SecondMenu
-@onready var EventHandler = get_node("/root/CombatEventHandler")
-@onready var CombatController = get_node("/root/CombatEventHandler/CombatController")
+@onready var secondmenu = %SecondMenu
+@onready var Combat = $/root/Combat
 
-var enemies = []
-var partylist = []
-var skilllist
 var lastpushed = "Attack"
 
 signal skillpress
@@ -20,12 +16,46 @@ signal turn_selected
 func _process(delta):
 	if (Input.is_action_just_pressed("ui_cancel")):
 		ClearSecondMenu()
-		get_node("VBoxContainer/CenterContainer/HBoxContainer/Menu/" + lastpushed).grab_focus()
+		get_node("%Menu/" + lastpushed).grab_focus()
 
-func TargetList(function):
+func CreateLabels(party, enemies):
 	ClearSecondMenu()
 	
-	var active_character = EventHandler.GetSkills()
+	#Create party labels from party dictionary
+	for n in party:
+		var pbox = partylabels.instantiate()
+		var guy = party[n]
+		var stat = guy["stats"]
+		
+		#Tie the label node and party member together for UI updates. 
+		guy["combatlabel"] = pbox
+		#Update Stats on the Label
+		pbox.SetStats(guy["name"], stat["HP"], stat["MP"], stat["HPmax"], stat["MPmax"])
+		#Set the Label Image
+		pbox.get_node("%BG").texture = load(JobDict.JobLabel(party[n]["job_id"]))
+		%PlayerGUI.add_child(pbox)
+		#Confirm label placement is correct based on Row setting.
+		pbox.SwitchRows(party[n]["row"])
+		pbox.charid = n
+	
+	#Create enemy labels from enemy dictionary
+	for n in enemies:
+		var ebox = enemylabels.instantiate()
+		var name = EnemyDict.GetName(n)
+		var hp = EnemyDict.GetStat(n, "HP")
+		var mp = EnemyDict.GetStat(n, "MP")
+		var hpmax = EnemyDict.GetStat(n, "HPMax")
+		var mpmax = EnemyDict.GetStat(n, "MPMax")
+
+		enemies[n]["combatlabel"] = ebox
+		%EnemyGUI.add_child(ebox)
+		ebox.SetStats(name, hp, mp, hpmax, mpmax, "front")
+
+func TargetList(function):
+	var active_character = Combat.active_character
+	var enemies = %Enemies.get_children()
+	
+	ClearSecondMenu()
 	
 	for n in enemies:
 		if n.dead == true: pass 
@@ -40,13 +70,13 @@ func TargetList(function):
 	label.text = "TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
-	secondmenu.get_child(1).grab_focus() 
+#	secondmenu.get_child(1).grab_focus() 
 
 func AllyTargetList(function):
 	ClearSecondMenu()
-	var active_character = EventHandler.GetSkills()
+	var active_character = Combat.active_character
 	
-	for n in partylist:
+	for n in %Party.get_children():
 		var button = TargetButton.new()
 		button.text = n.charname
 		button.target = n
@@ -58,97 +88,58 @@ func AllyTargetList(function):
 	label.text = "ALLY TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
-	secondmenu.get_child(1).grab_focus()
+#	secondmenu.get_child(1).grab_focus()
 
 # creates labels and ties them to the appropriate battler in the combat tree
-func CreateLabels(notparty, notenemies):
-	ClearSecondMenu()
-	
-	var fighters = notparty.get_child_count() + notenemies.get_child_count()
-	var childitems = notparty.get_children() + notenemies.get_children()
-	
-	var enemylblcount = 0
-	var partycount = 0
-	var count = 0
-	
-	while count < fighters:
-		if childitems[count].enemy == true:
-			var enemy = enemylabels.instantiate()
-			$VBoxContainer/EnemyGUI.add_child(enemy)
-			var box = $VBoxContainer/EnemyGUI.get_child(enemylblcount)
-			var i = childitems[count]
-			box.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
-			box.set_name(i.charname + "Block")
-			enemies.append(i)
-			i.node = box
-			i.selectionBG = box.get_child(0)
-			enemylblcount += 1
-			
-		if childitems[count].enemy == false:
-			var i = childitems[count]
-			var party = partylabels.instantiate()
-			var pbox
-			
-			$VBoxContainer/PlayerGUI.add_child(party)
-			pbox = $VBoxContainer/PlayerGUI.get_child(partycount)
-			partycount += 1
-			
-			pbox.SetStats(i.charname,i.HP,i.MP,i.MaxHP,i.MaxMP,i.row)
-			pbox.set_name(i.charname + "Block")
-			pbox.SetImage("res://Assets/Classes/" + i.charname + "-PartyLabel.png" )
-			pbox.SwitchRows(i)
-			i.node = pbox #so the overall node can be referred to
-			i.selectionBG = pbox.get_child(0) #for the selection
 
-			
-			
-		count += 1
 
 func UpdateStats(target, HP, MP):
-	var tween = create_tween()
-	
-	target.node.UpdateStats(HP, MP)
-	tween.tween_property(target.node, "animated_HP", HP, 0.4)
-	if not target.enemy: tween.tween_property(target.node, "animated_MP", MP, 0.4)
-	#if not tween.is_active():      rm gd4
-	#	tween.start()	
+	if not target.enemy: target.combatlabel.UpdateStats(HP, MP)
+	var tween = create_tween()	
+	tween.tween_property(target.combatlabel, "animated_HP", HP, 0.4)
+	if not target.enemy: tween.tween_property(target.combatlabel, "animated_MP", MP, 0.4)
+
 
 func BattleLog(string):
 	if string != "": $"../ScrollContainer/BattleLog".text += "\n" + str(string)
 	var scroll = $"../ScrollContainer"
-	#await get_tree().idle_frame    #removed for gd4
 	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
 
 func _on_Skills_pressed():
 	lastpushed = "Skills"
 	ClearSecondMenu()
-	var active_character = get_parent().GetSkills()
 	
-	for i in skilllist:
-		var skillname =  i.replace(" ","")
-		var skilldesc = skilllist[i]
+	
+	for i in Combat.active_character.current_skills:
+		print(Combat.active_character.current_skills)
+		print(i)
+		var skillname =  Combat.active_character.current_skills[i]["skillname"]
+		var skillfunc = skillname.replace(" ","")
+		var skilldesc = Combat.active_character.current_skills[i]["skilldesc"]
 		
 		var skillnode = load("res://Scenes/Battle Scenes/SkillNode.tscn").instantiate()
 		secondmenu.add_child(skillnode)
-		skillnode.SetSkill(i, skilldesc)
-		skillnode.get_child(0).connect("pressed",Callable(active_character,skillname))
+		skillnode.SetSkill(skillname, skilldesc)
+		skillnode.get_child(0).tooltip_text = skilldesc
+		skillnode.get_child(0).connect("pressed",Callable(Combat.active_character,skillfunc))
 	
 	var label = Label.new()
 	label.text = "SKILLS"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
-	secondmenu.get_child(1).button.grab_focus()
+	if secondmenu.get_child_count() > 1: secondmenu.get_child(1).button.grab_focus()
 
 func _on_Items_pressed():
 	lastpushed = "Items"
 	ClearSecondMenu()
-	if SaveandLoad.inventory.is_empty():
+	if PlayerData.inventory.is_empty():
 		BattleLog("No Items")
 	else:
-		for n in SaveandLoad.inventory:
+		for n in PlayerData.inventory:
+
 			var item = n
 			var itemdesc = Items.items[n]
-			var active_character = Globals.CombatController.active_character
+			var active_character = Combat.active_character
 			
 			var skillnode = load("res://Scenes/Battle Scenes/SkillNode.tscn").instantiate()
 			secondmenu.add_child(skillnode)
@@ -166,7 +157,7 @@ func _on_Items_pressed():
 func _on_Defend_pressed(): 
 	ClearSecondMenu()
 	emit_signal("menuhide")
-	QueueAction(Globals.CombatController.active_character, "Defend")
+	QueueAction(Combat.active_character, "Defend")
 
 func ClearSecondMenu():
 	delete_children(secondmenu)
@@ -183,14 +174,15 @@ func _on_Attack_pressed():
 	TargetList("Attack")
 
 func _on_Switch_pressed(): #needs to be fixed for new card style config
-	var active_character = Globals.CombatController.active_character
+	var active_character = Combat.active_character
 	active_character.SwitchRows()
-	active_character.node.SwitchRows(active_character)
+	active_character.combatlabel.SwitchRows(active_character.row)
+	print("ok")
 
-func SetCharaSplash(active_character):
+func SetCharaSplash(jobid):
 	
 	await get_tree().create_timer(0.2).timeout
-	$CharaSplash.set_texture(load("res://Assets/Classes/" + active_character.charname + "-splash.png"))
+	$CharaSplash.set_texture(load(JobDict.JobSplash(jobid)))
 	create_tween().tween_property($CharaSplash, "position",Vector2(1596, 511), 0.2)
 	$CharaSplash.visible = true
 
@@ -200,17 +192,18 @@ func ClearCharaSplash():
 	$CharaSplash.visible = false
 
 func AttackFocus():
-	$VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack.grab_focus()
+	%Attack.grab_focus()
 
 func TakeDamageGUI(target):
 	if target.enemy == false:Globals.camera.shake(160)
+	
 	var count = 2
 	while count > 0:
 		if is_instance_valid(target):
-			target.selectionBG.set_self_modulate("ff0000")
+			target["combatlabel"].set_self_modulate("ff0000")
 			await get_tree().create_timer(0.1).timeout
 		if is_instance_valid(target):
-			target.selectionBG.set_self_modulate("ffffff")
+			target["combatlabel"].set_self_modulate("ffffff")
 			await get_tree().create_timer(0.1).timeout
 		count -= 1
 
@@ -220,10 +213,10 @@ func StatusLabels(target):
 	var statuscontainer 
 	
 	if target.enemy == true: 
-		statuscontainer = target.node.get_node("BG/Stats/StatusContainer")
+		statuscontainer = target.combatlabel.get_node("BG/Stats/StatusContainer")
 	else:
-		statuscontainer = target.node.get_node("BG/StatusContainer")
-	
+		statuscontainer = target.combatlabel.get_node("BG/StatusContainer")
+
 	delete_children(statuscontainer)
 	
 	for n in target.status:
@@ -254,25 +247,25 @@ func QueueAction(active_character, action_string, target = null):
 	var action = {"name" : active_character, 
 		"action": function,
 		"target": target,
-		"speed" : active_character.SPD,
+		"speed" : active_character.stats["SPD"],
 		"action_string" : action_string
 		}
-	Globals.ActionQueue.queuedactions.append(action)
+	%ActionQueue.queuedactions.append(action)
 	emit_signal("turn_selected")
 
 func Selector(pos):
-	var ac = Globals.CombatController.active_character
+	var ac = Combat.active_character
 	var tween
 	
 	if tween != null: tween.kill()
 	
-	Globals.Selector.position = pos + Vector2(120, -85)
-	Globals.Selector.visible = true
+	%Selector.position = pos + Vector2(120, -85)
+	%Selector.visible = true
 
-	while ac == Globals.CombatController.active_character:
-		tween = create_tween().tween_property(Globals.Selector, "position",pos + Vector2(120, -95), 0.5)
+	while ac == Combat.active_character:
+		tween = create_tween().tween_property(%Selector, "position",pos + Vector2(120, -95), 0.5)
 		await get_tree().create_timer(0.5).timeout
 
-		if ac == Globals.CombatController.active_character:
-			tween = create_tween().tween_property(Globals.Selector, "position",pos + Vector2(120, -85), 0.5)
+		if ac == Combat.active_character:
+			tween = create_tween().tween_property(%Selector, "position",pos + Vector2(120, -85), 0.5)
 			await get_tree().create_timer(0.5).timeout

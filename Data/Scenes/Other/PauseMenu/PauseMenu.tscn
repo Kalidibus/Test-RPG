@@ -61,7 +61,19 @@ theme_override_constants/margin_bottom = 15
 [node name="Panel" type="Panel" parent="VBoxContainer/MenuContainer"]
 layout_mode = 2
 
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Exit Game"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/PartyButton" to="." method="_on_party_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

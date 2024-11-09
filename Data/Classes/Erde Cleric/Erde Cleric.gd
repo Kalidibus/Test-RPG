@@ -28,18 +28,7 @@ var job_description = "The Erde Cleric is a healer capable of powerful restorati
 
 func _ready():
 	charname = "Cleric"
-	MaxHP = 75
-	HP = 75
-	MaxMP = 125
-	MP = 125
-	STR = 25
-	DEF = 50
-	INT = 75
-	FTH = 125
-	RES = 100
-	SPD = 75
 	HATE = 50
-	row = "Back"
 	enemy = false
 	weapontype = "impact"
 	
@@ -55,9 +44,9 @@ func Bounty():
 	else: CombatGUI.AllyTargetList("Bounty2")
 func Bounty2(target):
 	if target.HP == 0:
-		EventHandler.BattleLog("This target must be raised from the dead first")
+		CombatGUI.BattleLog("This target must be raised from the dead first")
 		return
-	var heal = FTH
+	var heal = stats["FTH"]
 	target.get_healed(heal)
 	MPCost(10)
 	CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
@@ -70,14 +59,14 @@ func FullBlessing2():
 	MPCost(50)
 	for n in partylist:
 		if n.HP != 0:
-			n.get_healed(FTH)
-	CloseTurn(str(charname) + " Restores the parties health for " + str(FTH) + "!")
+			n.get_healed(stats["FTH"])
+	CloseTurn(str(charname) + " Restores the parties health for " + str(stats["FTH"]) + "!")
 
 func DivineBolt():
 	if MPCheck(10) == "fail": return
 	CombatGUI.TargetList("DivineBolt2")
 func DivineBolt2(target):
-	var damage = INT * statmods["INT"]
+	var damage = stats["INT"] * statmods["INT"]
 	target.take_damage(damage, "virtuos")
 	MPCost(10)
 	CloseTurn(str(charname) + " launches an divine bolt of cleansing magic at " + str(target.charname) + ", hitting it for " + str(damage) + " damage!")
@@ -89,7 +78,7 @@ func Raise(target): #any function that revives needs to be called Raise so it do
 	if target.HP != 0:
 		CloseTurn(str(target.charname) + " is not dead!")
 	else:
-		var heal = FTH
+		var heal = stats["FTH"]
 		target.get_healed(heal)
 		target.dead = false
 		MPCost(50)

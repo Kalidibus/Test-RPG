@@ -24,9 +24,11 @@ Items="*res://Scenes/Battle Scenes/Items.tscn"
 Globals="*res://Scenes/Globals.gd"
 SaveandLoad="*res://Scenes/SaveandLoad.gd"
 CharacterChanges="*res://Scenes/Other/CharacterChanges.gd"
-JobDictionary="*res://Classes/Classes.tscn"
+JobDict="*res://Classes/Classes.tscn"
 ItemDict="*res://Items/ItemDict.tscn"
 PlayerData="*res://Scenes/PlayerData/PlayerData.tscn"
+EnemyDict="*res://Enemies/EnemyDict.tscn"
+TransitionScreen="*res://Scenes/Transition/TransitionScreen.tscn"
 
 [display]
 

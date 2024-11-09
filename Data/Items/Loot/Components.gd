@@ -2,10 +2,10 @@ extends Node
 
 var dict = {	
 	"lcom001" = {
-		"name" = "Meager Dregs",
+		"name" = "Dregs",
 		"type" = "components",
 		"stats" = {},
-		"desc" = "Meagre Dregs of a Lamentation that failed to Manifest. Can be used in crafting, and unlocking new Vocations.",
+		"desc" = "Meagre Dregs of a Lamentation that failed to Manifest. It's myriad uses makes it a common currency amongst vendors.",
 		"value" = 5
 	},
 	"lcom002" = {

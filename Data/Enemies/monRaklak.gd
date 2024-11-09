@@ -3,14 +3,6 @@ class_name Raklak
 
 func _ready():
 	charname = "Raklak"
-	MaxHP = 50
-	HP = 50
-	MaxMP = 5
-	MP = 5
-	STR = 40
-	DEF = 30
-	SPD = 18
-	RES = 20
 	row = "Front"
 	enemy = true
 	
@@ -53,7 +45,7 @@ func AttackList(target, rng):
 		mAttack(target)
 
 func mAttack(target):
-	var damage:int = STR * statmods["STR"]
+	var damage:int = stats["STR"] * statmods["STR"]
 	
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	

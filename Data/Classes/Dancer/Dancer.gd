@@ -28,18 +28,7 @@ var job_description = "A whirlwind of blades that bolsters the parties damage. \
 
 func _ready():
 	charname = "Dancer"
-	MaxHP = 80
-	HP = 80
-	MaxMP = 120
-	MP = 120
-	STR = 70
-	DEF = 50
-	INT = 25
-	FTH = 60
-	RES = 50
-	SPD = 50
 	HATE = 60
-	row = "Front"
 	enemy = false
 	weapontype = "slash"
 	
@@ -84,13 +73,13 @@ func WhirlingBlades():
 	if MPCheck(30) == "fail": return
 	else: CombatGUI.QueueAction(self, "WhirlingBlades2")
 func WhirlingBlades2():
-	var damage = (STR * statmods["STR"])*0.6
+	var damage = (stats["STR"] * statmods["STR"])*0.6
 	var enemies = get_enemy_targets()
 	MPCost(30)
-	EventHandler.BattleLog(str(charname) + " performs a whirling dance of blades!")
+	CombatGUI.BattleLog(str(charname) + " performs a whirling dance of blades!")
 	for target in enemies:
 		if target.row == "Front" and target.HP != 0:
 			var adjusteddamage = target.take_damage(damage, "slash")
-			EventHandler.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")

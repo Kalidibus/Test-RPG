@@ -53,7 +53,9 @@ func _on_timer_timeout():
 	elif GO_D: 
 		ray_dir = right
 	elif Escape:
-		get_tree().change_scene_to_file("res://Scenes/Start.tscn")
+		Globals.mappos = position
+		Globals.maprotation = rotation
+		get_tree().change_scene_to_file("res://Scenes/Other/PauseMenu/PauseMenu.tscn")
 	elif turn_dir:
 		timerprocessor.stop()
 		await tween_rotation(PI/2 * turn_dir)
@@ -80,10 +82,14 @@ func tween_rotation(change):
 
 #checks if it's time for an encounter
 func encounter_check():
-	encounterRNG = encounterRNG + 1
+	encounterRNG = encounterRNG + Globals.ENCOUNTER_RATE
+	print(encounterRNG)
+	
 	
 	if encounterRNG >= rng:
 		encounterRNG = 0
 		Globals.mappos = position
 		Globals.maprotation = rotation
+		TransitionScreen.battle_transition()
+		await TransitionScreen.on_transition_finished
 		get_tree().change_scene_to_file("res://Scenes/Battle Scenes/Combat.tscn")

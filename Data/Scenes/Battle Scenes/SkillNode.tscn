@@ -1,51 +1,35 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://crq4bw035ndpf"]
 
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/SkillNode.gd" id="1"]
 
 [node name="SkillNode" type="MarginContainer"]
 offset_right = 32.0
 offset_bottom = 40.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
 
 [node name="Button" type="Button" parent="."]
-offset_right = 32.0
-offset_bottom = 40.0
-custom_minimum_size = Vector2( 0, 40 )
-custom_constants/h_separation = 0
-align = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+tooltip_text = "TESTING THE TOOLTIP"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Button"]
+layout_mode = 0
 offset_left = 13.0
 offset_top = 6.0
 offset_right = 421.0
 offset_bottom = 37.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="SkillName" type="Label" parent="Button/HBoxContainer"]
-offset_top = 8.0
-offset_right = 42.0
-offset_bottom = 22.0
+layout_mode = 2
 text = "Heal - "
 
 [node name="Label" type="Label" parent="Button/HBoxContainer"]
-offset_left = 46.0
-offset_top = 8.0
-offset_right = 54.0
-offset_bottom = 22.0
+visible = false
+layout_mode = 2
 text = ": "
 
 [node name="SkillDesc" type="Label" parent="Button/HBoxContainer"]
-offset_left = 58.0
-offset_right = 415.0
-offset_bottom = 31.0
+visible = false
+layout_mode = 2
 text = "Uses aetherial conjuration to restore 25% of targets HP.
 Further upgrades could result in more potent heals"
