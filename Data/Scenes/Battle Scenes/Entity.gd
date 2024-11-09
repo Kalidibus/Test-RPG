@@ -3,6 +3,7 @@ class_name Entity
 
 @onready var EventHandler = get_node("/root/Combat")
 @onready var CombatGUI = get_node("/root/Combat/CombatGUI")
+@onready var party = get_node("/root/Combat/Combatants/Party")
 
 var charid
 var charname
@@ -74,7 +75,7 @@ var target
 var skilllist
 var sealedskilllist
 var status:Array
-var reward_xp
+
 
 
 signal turn_complete
@@ -240,16 +241,15 @@ func UseItem():
 	queueditem.call_func(self)
 
 func get_party_targets():
-	pass
+	return party.get_children()
 
 func DecideTarget():
 	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
 	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
 	var rng = RNG()
 	var targetlist = []
-	var party = get_node("/root/Combat/Combatants/Party")
 		
-	for n in party.get_children():
+	for n in get_party_targets():
 		if n.stats["HP"] != 0:
 			targetlist.append(n)
 	
@@ -273,6 +273,12 @@ func RNG():
 	var num = RandomNumberGenerator.new()
 	num.randomize()
 	var rng = num.randi_range(1, 100)
+	return rng
+
+func RNG_range(bottom_range, top_range):
+	var num = RandomNumberGenerator.new()
+	num.randomize()
+	var rng = num.randi_range(bottom_range, top_range)
 	return rng
 
 func StatMod(stat, amount, timer):

@@ -1,11 +1,15 @@
-extends Entity
-
-
+extends Monster
 
 func _ready():
 	
 	charname = "Pylon"
-	reward_xp = 50
+	reward_xp = RNG_range(45, 75)
+	loot_table = {
+		"lcom001" = 25,
+		"lcom002" = 25,
+		"lcom003" = 25,
+		"lcom004" = 25}
+	roll_count = 7
 	
 	stats = {
 		"HPMax" = 100,

@@ -117,12 +117,18 @@ func win():
 	%Menu.visible = false
 	
 	#Basic loot test.
-	CharacterChanges.AddtoInventory("lcom001", 8)
-	CharacterChanges.AddtoInventory("lcom002", 8)
-	CharacterChanges.AddtoInventory("lcom003", 8)
-	CharacterChanges.AddtoInventory("lcom004", 8)
+	#CharacterChanges.AddtoInventory("lcom001", 8)
+	#CharacterChanges.AddtoInventory("lcom002", 8)
+	#CharacterChanges.AddtoInventory("lcom003", 8)
+	#CharacterChanges.AddtoInventory("lcom004", 8)
+	for n in %Enemies.get_children():
+		var loot = n.LootRolls()
+		for i in loot:
+			print(i)
+			print(loot[i])
+			CharacterChanges.AddtoInventory(i, loot[i])
 	
-	#Basic XP Test.
+	#Gain XP
 	var total_xp = 0
 	for n in %Enemies.get_children():
 		total_xp += n.reward_xp
