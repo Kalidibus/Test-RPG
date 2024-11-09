@@ -75,7 +75,7 @@ func Taunt2():
 	var previousvalue = statres["marked"]
 	statres["marked"] = 0
 	if not status.has("marked"):
-		AttemptStatusAilment("marked", 80, 2)
+		AttemptStatusAilment("marked", 80, 2, 0)
 	statres["marked"] = previousvalue
 	HATE += 50
 	MPCost(10)
@@ -117,4 +117,4 @@ func SkullSplitter2(target):
 	var adjusteddamage = target.take_damage(damage, "impact")
 	ire -= 1
 	CloseTurn(str(charname) + " uses Ire to perform a crushing overhead blow! to " + str(target.charname) + ", dealing" + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment("stun", 0, 0)
+	target.AttemptStatusAilment("stun", 0, 0, 20)

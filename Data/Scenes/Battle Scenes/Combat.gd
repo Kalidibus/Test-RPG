@@ -22,7 +22,7 @@ func _ready():
 	CreateNodes(party, enemies)
 	MainBattleLoop()
 
-func CreateNodes(party, enemies):
+func CreateNodes(party, enemy_array):
 	for n in party:
 		var node = JobDict.JobNode(party[n]["job_id"]).duplicate()
 		node.charid = n
@@ -33,13 +33,15 @@ func CreateNodes(party, enemies):
 		node.GetSkills()
 		%Party.add_child(node)
 		party[n]["combatnode"] = node
-	for n in enemies:
-		var enode = EnemyDict.GetNode(n).duplicate()
-		enode.charid = n
-		enode.stats = EnemyDict.GetAllStats(n)
-		enode.combatlabel = enemies[n]["combatlabel"]
-		%Enemies.add_child(enode)
-		enemies[n]["combatnode"] = enode
+	for enemy in enemy_array:
+		for n in enemy:
+			print(n)
+			var enode = EnemyDict.GetNode(n).duplicate()
+			enode.charid = n
+			#enode.stats = EnemyDict.GetAllStats(n) #redundant
+			enode.combatlabel = enemy[n]["combatlabel"]
+			%Enemies.add_child(enode)
+			enemy[n]["combatnode"] = enode
 
 func MainBattleLoop():
 	await get_tree().create_timer(0.1).timeout
@@ -52,7 +54,7 @@ func PartyTurnOrder(): #next to fix
 	var count = 0
 	var combatover = false
 	
-	while count < party.size():
+	while count < %Party.get_children().size():
 		var active_char_label = %PlayerGUI.get_child(count)
 		var charid = active_char_label.charid
 		active_character = PlayerData.party[charid]["combatnode"]
@@ -61,6 +63,7 @@ func PartyTurnOrder(): #next to fix
 			combatover = true #used to stop combat when one side dead
 			break
 		elif active_character["stats"]["HP"] == 0: 
+			print("dead")
 			count += 1
 		elif active_character["status"].has("stun"):
 			active_character.Turn()
@@ -108,10 +111,6 @@ func CheckWin(): #checked each turn by the ActionQueue
 		if ecount == enemylist.size(): 
 			win()
 			return true
-
-#quits the game
-func _on_Exit_pressed(): 
-	get_tree().quit()
 
 func win():
 	Globals.system_message("MANIFESTATIONS SLAIN")

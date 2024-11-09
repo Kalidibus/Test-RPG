@@ -32,7 +32,7 @@ func _ready():
 	enemy = false
 	weapontype = "slash"
 	
-	skilllist = {
+	skill_list = {
 		"Black Mist" : "Increases Party-wide Evasion"
 	}
 

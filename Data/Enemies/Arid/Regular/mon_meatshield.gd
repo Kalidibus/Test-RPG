@@ -1,4 +1,4 @@
-extends Entity
+extends Monster
 
 func _ready():
 	charname = "Meat Shield"
@@ -36,7 +36,7 @@ func Turn():
 		CloseTurn(charname + " misses their turn...")
 	else:
 		target = DecideTarget()
-		var rng = RNG()
+		var rng = Globals.RNG()
 		AttackList(target, rng)
 
 func AttackList(target, rng):

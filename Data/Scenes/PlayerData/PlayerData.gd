@@ -2,6 +2,7 @@ extends Node
 
 var roster = {}
 var party = {}
+var party_order = []
 var inventory = {}
 var unlocked_classes = ["0", "1", "2", "3", "4"]
 
@@ -32,3 +33,18 @@ func GetStat(charid, stat):
 		
 func KnownSkills(charid):
 	return party[charid]["known_skills"]
+
+func MovePartyMember(charid, direction):
+	var index = party_order.find(charid)
+	
+	if direction == "up":
+		print(party_order) 
+		if index > 0: 
+			party_order.erase(charid)
+			party_order.insert(index - 1, charid)
+		print(party_order) 
+	elif direction == "down":
+		if index < party_order.size() - 1: 
+			party_order.erase(charid)
+			party_order.insert(index + 1, charid)
+		print(party_order) 

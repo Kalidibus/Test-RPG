@@ -83,8 +83,6 @@ func tween_rotation(change):
 #checks if it's time for an encounter
 func encounter_check():
 	encounterRNG = encounterRNG + Globals.ENCOUNTER_RATE
-	print(encounterRNG)
-	
 	
 	if encounterRNG >= rng:
 		encounterRNG = 0

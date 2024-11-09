@@ -26,11 +26,13 @@ layout_mode = 2
 text = "Party"
 
 [node name="SkillsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 text = "Skills"
 
 [node name="EquipmentButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 text = "Equipment"
@@ -69,7 +71,6 @@ text = "Exit Game"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
-autostart = true
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/PartyButton" to="." method="_on_party_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]

@@ -20,7 +20,7 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
 	animated_HP = HP
 	animated_MP = MP
 	
-	if row == "Front":
+	if row == "front":
 		$Sprite2D.set_offset(Vector2(0,25))
 		$Sprite2D.set_scale(Vector2(8,8))
 		$Sprite2D.set_z_index(-2)

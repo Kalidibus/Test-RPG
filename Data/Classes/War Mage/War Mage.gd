@@ -32,7 +32,7 @@ func _ready():
 	enemy = false
 	weapontype = "impact"
 
-	skilllist = {
+	skill_list = {
 		"Fel Bolt" : "A Fel aspected attack, dealing moderate damage.",
 		"Deep Bolt" : "A Deep aspected attack, dealing moderate damage.",
 		"Levin Bolt" : "A Levin aspected attack, dealing moderate damage.",

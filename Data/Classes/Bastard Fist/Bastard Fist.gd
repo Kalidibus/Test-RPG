@@ -34,7 +34,7 @@ func _ready():
 	enemy = false
 	weapontype = "impact"
 	
-	skilllist = {
+	skill_list = {
 		"Crimson Rush": "Strikes an opponent with a flurry of blows. Scales with SPD and STR",
 		"Scarlet Sun": "COMBO: Crimson Rush - A powerful single blow",
 		"Vermillion Dance": "COMBO: Scarlet Sun - This final formation unleashes the true power of the Bastard Fists",

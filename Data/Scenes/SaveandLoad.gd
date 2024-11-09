@@ -14,6 +14,7 @@ func save_file():
 	file.store_var(PlayerData.roster)
 	file.store_var(PlayerData.party)
 	file.store_var(PlayerData.unlocked_classes)
+	file.store_var(PlayerData.party_order)
 	Globals.system_message("File Saved!")
 
 func autosave():
@@ -36,6 +37,7 @@ func load_file():
 	PlayerData.roster = file.get_var(1)
 	PlayerData.party = file.get_var(2)
 	PlayerData.unlocked_classes = file.get_var(3)
+	PlayerData.party_order = file.get_var(4)
 	Globals.system_message("File Loaded!")
 
 func CreateSaveDirectories():

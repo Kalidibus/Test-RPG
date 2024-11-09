@@ -32,7 +32,7 @@ func _ready():
 	enemy = false
 	weapontype = "impact"
 	
-	skilllist = {
+	skill_list = {
 		"Bounty" : "Heals an allied unit",
 		"Full Blessing" : "Heals the party",
 		"Divine Bolt" : "A modest bolt of light, damages a single enemy",

@@ -32,7 +32,7 @@ func _ready():
 	enemy = false
 	weapontype = "pierce"
 	
-	skilllist = {
+	skill_list = {
 	"Poison Arrow" : "An arrow dipped in Raklak poison secretions. Can inflict Poison.",
 	"Burning Arrow" : "An arrow dipped in molten inferno. Can inflict Burn.",
 	"Bladed Volley" : "Slashing damage to all back line enemies.",
@@ -48,7 +48,7 @@ func PoisonArrow2(target):
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	MPCost(10)
 	CloseTurn(str(charname) + " fires a poison drenched arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment("poison", 40, 3)
+	target.AttemptStatusAilment("poison", 40, 3, 20)
 
 func BurningArrow():
 	if MPCheck(10) == "fail": return
@@ -58,7 +58,7 @@ func BurningArrow2(target):
 	var adjusteddamage = target.take_damage(damage, "pierce")
 	MPCost(10)
 	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment("burn", 40, 3)
+	target.AttemptStatusAilment("burn", 40, 3, 20)
 	
 func BladedVolley():
 	if MPCheck(30) == "fail": return
@@ -83,7 +83,7 @@ func PlateCrusher2(target):
 	var adjusteddamage = target.take_damage(damage, "impact")
 	MPCost(20)
 	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
-	var rng = RNG()
+	var rng = Globals.RNG()
 	if rng >= 50: target.StatMod("DEF", 0.6, 2)
 
 func IsolatePrey():

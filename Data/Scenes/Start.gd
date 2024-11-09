@@ -9,11 +9,8 @@ func _on_StartButton_pressed():
 		Globals.system_message("Party has not yet been created")
 		return
 	else: 
-		print("1")
 		TransitionScreen.transition()
-		print("2")
 		await TransitionScreen.on_transition_finished
-		print("3")
 		get_tree().change_scene_to_file("res://Scenes/Battle Scenes/Combat.tscn")
 
 func _on_OptionsButton_pressed():
@@ -22,7 +19,6 @@ func _on_OptionsButton_pressed():
 		return
 	else: 
 		TransitionScreen.transition()
-		print("2")
 		await TransitionScreen.on_transition_finished
 		get_tree().change_scene_to_file("res://Scenes/Dungeon/World.tscn")
 

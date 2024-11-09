@@ -18,11 +18,11 @@ func _process(delta):
 		ClearSecondMenu()
 		get_node("%Menu/" + lastpushed).grab_focus()
 
-func CreateLabels(party, enemies):
+func CreateLabels(party, enemy_array):
 	ClearSecondMenu()
 	
 	#Create party labels from party dictionary
-	for n in party:
+	for n in PlayerData.party_order:
 		var pbox = partylabels.instantiate()
 		var guy = party[n]
 		var stat = guy["stats"]
@@ -39,17 +39,19 @@ func CreateLabels(party, enemies):
 		pbox.charid = n
 	
 	#Create enemy labels from enemy dictionary
-	for n in enemies:
-		var ebox = enemylabels.instantiate()
-		var name = EnemyDict.GetName(n)
-		var hp = EnemyDict.GetStat(n, "HP")
-		var mp = EnemyDict.GetStat(n, "MP")
-		var hpmax = EnemyDict.GetStat(n, "HPMax")
-		var mpmax = EnemyDict.GetStat(n, "MPMax")
+	for enemy in enemy_array:
+		for n in enemy:
+			var ebox = enemylabels.instantiate()
+			var name = EnemyDict.GetName(n)
+			var hp = EnemyDict.GetStat(n, "HP")
+			var mp = EnemyDict.GetStat(n, "MP")
+			var hpmax = EnemyDict.GetStat(n, "HPMax")
+			var mpmax = EnemyDict.GetStat(n, "MPMax")
 
-		enemies[n]["combatlabel"] = ebox
-		%EnemyGUI.add_child(ebox)
-		ebox.SetStats(name, hp, mp, hpmax, mpmax, "front")
+			enemy[n]["combatlabel"] = ebox
+			%EnemyGUI.add_child(ebox)
+			print(enemy[n]["row"])
+			ebox.SetStats(name, hp, mp, hpmax, mpmax, enemy[n]["row"])
 
 func TargetList(function):
 	var active_character = Combat.active_character
@@ -70,7 +72,7 @@ func TargetList(function):
 	label.text = "TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
-#	secondmenu.get_child(1).grab_focus() 
+	if secondmenu.get_child_count() > 1: secondmenu.get_child(1).grab_focus() 
 
 func AllyTargetList(function):
 	ClearSecondMenu()
@@ -88,10 +90,7 @@ func AllyTargetList(function):
 	label.text = "ALLY TARGET"
 	secondmenu.add_child(label)
 	secondmenu.move_child(label, 0)
-#	secondmenu.get_child(1).grab_focus()
-
-# creates labels and ties them to the appropriate battler in the combat tree
-
+	if secondmenu.get_child_count() > 1: secondmenu.get_child(1).grab_focus()
 
 func UpdateStats(target, HP, MP):
 	if not target.enemy: target.combatlabel.UpdateStats(HP, MP)
@@ -111,8 +110,6 @@ func _on_Skills_pressed():
 	
 	
 	for i in Combat.active_character.current_skills:
-		print(Combat.active_character.current_skills)
-		print(i)
 		var skillname =  Combat.active_character.current_skills[i]["skillname"]
 		var skillfunc = skillname.replace(" ","")
 		var skilldesc = Combat.active_character.current_skills[i]["skilldesc"]
@@ -177,7 +174,6 @@ func _on_Switch_pressed(): #needs to be fixed for new card style config
 	var active_character = Combat.active_character
 	active_character.SwitchRows()
 	active_character.combatlabel.SwitchRows(active_character.row)
-	print("ok")
 
 func SetCharaSplash(jobid):
 	

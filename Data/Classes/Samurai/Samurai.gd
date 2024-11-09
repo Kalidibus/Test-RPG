@@ -32,7 +32,7 @@ func _ready():
 	enemy = false
 	weapontype = "slash"
 	
-	skilllist = {
+	skill_list = {
 		"DEV hit": "Strikes an opponent with a flurry of blows. Scales with SPD and STR"
 	}
 

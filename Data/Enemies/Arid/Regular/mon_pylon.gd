@@ -1,9 +1,8 @@
 extends Monster
 
 func _ready():
-	
 	charname = "Pylon"
-	reward_xp = RNG_range(45, 75)
+	reward_xp = Globals.RNG_range(45, 75)
 	loot_table = {
 		"lcom001" = 55,
 		"lcom002" = 15,
@@ -11,6 +10,7 @@ func _ready():
 		"lcom004" = 15}
 	roll_count = 7
 	
+	enemy = true
 	stats = {
 		"HPMax" = 100,
 		"HP" = 100,
@@ -25,17 +25,13 @@ func _ready():
 		"RES" = 30,
 		"EVD" = 10
 		}
-	row = "Front"
-	enemy = true
-
 	statres = {
 		"poison": 10,
 		"stun": 50,
 		"burn": 20,
 		"blind": 80,
 		"seal": 10
-	}
-
+		}
 	damageres = {
 		"impact": 20,
 		"slash": 5,
@@ -47,7 +43,7 @@ func _ready():
 		"erde": 50,
 		"virtuos": -5,
 		"true": 0
-	}
+		}
 
 func Turn():
 	super.Turn()
@@ -58,27 +54,22 @@ func Turn():
 		CloseTurn(charname + " misses their turn...")
 	else:
 		target = DecideTarget()
-		var rng = RNG()
+		var rng = Globals.RNG()
 		AttackList(target, rng)
 
 func AttackList(target, rng):
-	if rng <= 75:
-		mAttack(target)
-	elif rng <= 90:
-		Bludgeon(target)
-	elif rng <= 100:
-		mDefend()
+	if rng <= 75: mAttack(target)
+	elif rng <= 90: Bludgeon(target)
+	elif rng <= 100: mDefend()
 
 func mAttack(target):
-	var damage:int = stats["STR"] * statmods["STR"]
-	var adjusteddamage = target.take_damage(damage, "slash")
-	CloseTurn("The " + charname + " slashes at " + target.charname + " for " + str(adjusteddamage) + " damage!")
+	var damage_dealt = Damage(target, 1.1 * Stat("STR"), "slash")
+	CloseTurn("The " + charname + " slashes at " + target.charname + " for " + str(damage_dealt) + " damage!")
 
 func Bludgeon(target):
-	var damage:int = 2 * stats["STR"] * statmods["STR"]
-	var adjusteddamage = target.take_damage(damage, "impact")
-	CloseTurn("The " + charname + " emits a bloodcurdling shriek and bludgeons " + target.charname + " fiercly for " + str(adjusteddamage) + " damage!!!")
-	target.AttemptStatusAilment("stun", 0, 0)
+	var damage_dealt = Damage(target, 1.7 * Stat("STR"), "impact")
+	CloseTurn("The " + charname + " emits a bloodcurdling shriek and bludgeons " + target.charname + " fiercly for " + str(damage_dealt) + " damage!!!")
+	target.AttemptStatusAilment("stun", 0, 0, 0)
 	
 
 func mDefend():

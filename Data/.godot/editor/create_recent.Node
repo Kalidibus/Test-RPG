@@ -1,14 +1,14 @@
 Button
+VBoxContainer
+MarginContainer
+HBoxContainer
 AnimationPlayer
 ColorRect
 CanvasLayer
-VBoxContainer
 Control
 Node
 Label
-HBoxContainer
 Panel
-MarginContainer
 GridContainer
 Container
 TextureRect

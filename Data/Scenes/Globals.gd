@@ -43,3 +43,15 @@ func system_message_choice(text, selection1, selection2):
 		return("right")
 	else:
 		return("failure")
+
+func RNG():
+	var num = RandomNumberGenerator.new()
+	num.randomize()
+	var rng = num.randi_range(1, 100)
+	return rng
+
+func RNG_range(bottom_range, top_range):
+	var num = RandomNumberGenerator.new()
+	num.randomize()
+	var rng = num.randi_range(bottom_range, top_range)
+	return rng

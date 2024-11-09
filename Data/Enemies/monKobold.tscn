@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4sva7i7q5v3a"]
-
-[ext_resource type="Script" path="res://Enemies/monKobold.gd" id="1"]
-
-[node name="monKobold" type="Node" groups=["enemies"]]
-script = ExtResource("1")

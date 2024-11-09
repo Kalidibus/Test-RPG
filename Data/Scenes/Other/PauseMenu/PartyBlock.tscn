@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://8xf84jklsj73"]
+[gd_scene load_steps=7 format=3 uid="uid://8xf84jklsj73"]
 
+[ext_resource type="Script" path="res://Scenes/Other/PauseMenu/party_block.gd" id="1_gcbhj"]
 [ext_resource type="Texture2D" uid="uid://coaxx58modqde" path="res://Assets/Classes/Fortress-profile.png" id="1_jwlbq"]
 [ext_resource type="Texture2D" uid="uid://drac0yxtmd00b" path="res://Assets/UI/bar_under.png" id="2_76vh2"]
 [ext_resource type="Texture2D" uid="uid://cnvglr0j77jl6" path="res://Assets/UI/HP_bar_progress.png" id="3_12plf"]
@@ -8,12 +9,14 @@
 [sub_resource type="Theme" id="Theme_a4g7p"]
 
 [node name="PartyBlock" type="MarginContainer"]
-custom_minimum_size = Vector2(950, 170)
+custom_minimum_size = Vector2(800, 170)
+script = ExtResource("1_gcbhj")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(425, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -50,6 +53,7 @@ theme = SubResource("Theme_a4g7p")
 text = "Lv. 2"
 
 [node name="Control" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/Control"]
@@ -77,10 +81,10 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Control"]
 unique_name_in_owner = true
 layout_mode = 1
-offset_left = 433.0
-offset_top = -106.0
-offset_right = 807.0
-offset_bottom = 328.0
+offset_left = 253.0
+offset_top = -110.0
+offset_right = 627.0
+offset_bottom = 324.0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_jwlbq")
 
@@ -90,10 +94,10 @@ layout_mode = 2
 [node name="HP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 342.0
-offset_top = 35.0
-offset_right = 462.0
-offset_bottom = 58.0
+offset_left = 170.0
+offset_top = 28.0
+offset_right = 290.0
+offset_bottom = 51.0
 theme_override_colors/font_color = Color(0.698247, 1, 0.671603, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -103,10 +107,10 @@ horizontal_alignment = 2
 [node name="MP" type="Label" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 450.0
-offset_top = 33.0
-offset_right = 570.0
-offset_bottom = 56.0
+offset_left = 278.0
+offset_top = 26.0
+offset_right = 398.0
+offset_bottom = 49.0
 theme_override_colors/font_color = Color(1, 0.766612, 0.989244, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -116,10 +120,10 @@ horizontal_alignment = 2
 [node name="HPBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 365.0
-offset_top = 57.0
-offset_right = 754.0
-offset_bottom = 78.0
+offset_left = 193.0
+offset_top = 50.0
+offset_right = 582.0
+offset_bottom = 71.0
 scale = Vector2(0.25, 0.6)
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -130,10 +134,10 @@ texture_progress = ExtResource("3_12plf")
 [node name="MPBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/Stats"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 473.0
-offset_top = 57.0
-offset_right = 880.0
-offset_bottom = 78.0
+offset_left = 301.0
+offset_top = 50.0
+offset_right = 708.0
+offset_bottom = 71.0
 scale = Vector2(0.25, 0.6)
 value = 60.0
 texture_under = ExtResource("2_76vh2")
@@ -156,8 +160,9 @@ size_flags_horizontal = 8
 [node name="Panel2" type="Panel" parent="HBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="Position" type="Label" parent="HBoxContainer/MarginContainer2"]
+[node name="PositionButton" type="Button" parent="HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "FRONT"
 
@@ -298,3 +303,24 @@ text = "Speed:"
 unique_name_in_owner = true
 layout_mode = 2
 text = "-"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="UpButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "UP"
+
+[node name="DownButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "DOWN"
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/PositionButton" to="." method="_on_position_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/DownButton" to="." method="_on_down_button_pressed"]

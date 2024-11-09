@@ -32,7 +32,7 @@ func _ready():
 	enemy = false
 	weapontype = "slash"
 	
-	skilllist = {
+	skill_list = {
 		"Raptor Samba" : "Increases Party-wide Strength",
 		"Soothing Waltz" : "Applies a regen effect to the whole party.",
 		"Invigorating Galliard" : "Increases Party-wide Speed",
@@ -56,7 +56,7 @@ func SoothingWaltz2():
 	var partylist = get_party_targets()
 	MPCost(30)
 	for n in partylist:
-		if n.HP != 0: n.AttemptStatusAilment("regen", 30, 3)
+		if n.HP != 0: n.AttemptStatusAilment("regen", 30, 3, 0)
 	CloseTurn(str(charname) + "'s Soothing Waltz begins healing the party!")
    
 func InvigoratingGalliard():

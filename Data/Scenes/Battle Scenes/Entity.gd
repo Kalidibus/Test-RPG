@@ -5,26 +5,32 @@ class_name Entity
 @onready var CombatGUI = get_node("/root/Combat/CombatGUI")
 @onready var party = get_node("/root/Combat/Combatants/Party")
 
-var charid
-var charname
-var combatlabel
-var stats = {} #this is filled in during Combat initiation based on the party member or monster that owns the node
+#not currently used, but may be easier in long run?
+enum STAT {HP, HPmax, MP, MPmax, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, HATE}
+
 var hire_cost = 5
+
+#Combat Variables
+var charid #ties a node to it's owner in the party
+var charname #character name (party member or monster common field)
+var combatlabel #ties a node to it's label on the GUI
+var stats = {} #this is filled in during Combat initiation based on the party member or monster that owns the node
 var skill_list
 var current_skills = {}
 
 var row
 var enemy
-var eqpSTR
-var eqpDEF
 var dead = false
-var HATE
+var HATE #could eventually move this to the stats dictionary if you wanted, but not much value.
 var ref_hate
 var combo
 var weapontype
-var slot
 var queueditem
+var target
+var sealedskilllist
 
+#Variables related to status effects. These could probably be rolled up into an ENUM and making the ailments Dictionaries in the status array. 
+var status:Array
 var poison
 var poisoncount
 var burn
@@ -36,12 +42,14 @@ var markedcount
 var regen
 var regencount
 
+#Variables relating to stats and resistances
 var statmods =  {
 	"MaxHP": 1,
 	"HP": 1, 
 	"MaxMP": 1,
 	"MP": 1,
 	"STR": 1,
+	"DEX": 1,
 	"DEF": 1,
 	"INT": 1,
 	"FTH": 1,
@@ -49,7 +57,7 @@ var statmods =  {
 	"SPD": 1,
 	"ACC": 1,
 	"EVD": 1
-}
+	}
 var gear_statmods = {
 	"MaxHP": 0,
 	"HP": 0, 
@@ -57,6 +65,7 @@ var gear_statmods = {
 	"MP": 0,
 	"STR": 0,
 	"DEF": 0,
+	"DEX": 0,
 	"INT": 0,
 	"FTH": 0,
 	"RES": 0,
@@ -64,7 +73,6 @@ var gear_statmods = {
 	"ACC": 0,
 	"EVD": 0
 	}
-	
 var statmodtimer = {}
 var statres = {
 	"poison": 40,
@@ -74,7 +82,7 @@ var statres = {
 	"seal": 40,
 	"regen": 0,
 	"marked": 40
-}
+	}
 var damageres = {
 	"impact": 20,
 	"slash": 20,
@@ -86,15 +94,7 @@ var damageres = {
 	"erde": 20,
 	"virtuos": 20,
 	"true": 0
-}
-
-var node
-var target
-var skilllist
-var sealedskilllist
-var status:Array
-
-
+	}
 
 signal turn_complete
 
@@ -116,10 +116,7 @@ func Turn():
 
 func GetSkills():
 	var skill_array = PlayerData.KnownSkills(charid)
-	
 	for n in skill_array:
-		print(current_skills)
-		print(skill_list)
 		current_skills[n] = skill_list[n]
 
 func get_enemy_targets():
@@ -173,12 +170,12 @@ func StatusEffects():
 			statres["blind"] = statres["blind"] * 1.5
 	if "seal" in status:
 		CombatGUI.BattleLog(charname + "'s Skills are sealed!")
-		sealedskilllist = skilllist
-		skilllist = {}
+		sealedskilllist = skill_list
+		skill_list = {}
 		sealcount -= 1
 		if sealcount == 0:
 			status.erase("seal")
-			skilllist = sealedskilllist
+			skill_list = sealedskilllist
 			statres["seal"] = statres["seal"] * 1.5
 	if "marked" in status:
 		CombatGUI.BattleLog(charname + " has drawn the enemies ire!")
@@ -197,10 +194,9 @@ func Stat(stat):
 
 func Attack(target):
 	CombatGUI.emit_signal("menuhide")
-	var damage = Stat("STR")
-	var adjusteddamage = target.take_damage(damage, weapontype) 
+	var damage_dealt = Damage(target, Stat("STR"), weapontype)
 	
-	CloseTurn(charname + " has attacked " + target.charname + " for " + str(adjusteddamage) + " damage!")
+	CloseTurn(charname + " has attacked " + target.charname + " for " + str(damage_dealt) + " damage!")
 
 func Defend():
 	StatMod("DEF", 1.5, 0)
@@ -230,16 +226,15 @@ func take_damage (damage, type):
 	return int(adjusteddamage)
 
 func get_healed (heal_amount:int):
-	
 	stats["HP"] += heal_amount
 	stats["HP"] = min(stats["HPmax"], stats["HP"])
 	
 	CombatGUI.UpdateStats(self, stats["HP"], stats["MP"])
 
-func AttemptStatusAilment(type, amount, time):
-	var rng = RNG()
-	
-	if rng > statres[type]: 
+#bonus to inflict is a percent chance advantage at inflicting the ailment.
+func AttemptStatusAilment(type, amount, time, bonus_to_inflict):
+	var rng = Globals.RNG()
+	if rng + bonus_to_inflict > statres[type]: 
 		status.append(type)
 		if type == "poison":
 			poison = amount
@@ -263,50 +258,18 @@ func AttemptStatusAilment(type, amount, time):
 
 		CombatGUI.StatusLabels(self)
 
+#returns the actual amount of damage that was dealt, and also triggers the damage on the target node.
+func Damage(target, damage_calc, damage_type):
+	var damage_dealt = target.take_damage(damage_calc, damage_type)
+	return damage_dealt
+
 func UseItem():
 	queueditem.call_func(self)
 
 func get_party_targets():
 	return party.get_children()
 
-func DecideTarget():
-	#checks for the "Marked" status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
-	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
-	var rng = RNG()
-	var targetlist = []
-		
-	for n in get_party_targets():
-		if n.stats["HP"] != 0:
-			targetlist.append(n)
-	
-	for n in targetlist:
-		if n.status.has("marked"):
-			if rng <= n.markedamount: return n
-	
-	var total_hate = 0
-	
-	for n in targetlist:
-		total_hate += n.HATE
-		n.ref_hate = total_hate
-		
-	rng = randf_range(0, total_hate)
-	
-	for n in targetlist:
-		if (n.ref_hate > rng) and n.stats["HP"] != 0:
-			return n
-
-func RNG():
-	var num = RandomNumberGenerator.new()
-	num.randomize()
-	var rng = num.randi_range(1, 100)
-	return rng
-
-func RNG_range(bottom_range, top_range):
-	var num = RandomNumberGenerator.new()
-	num.randomize()
-	var rng = num.randi_range(bottom_range, top_range)
-	return rng
-
+#used to apply stat modifiers (buffs or debuffs) for a set period of time
 func StatMod(stat, amount, timer):
 	statmods[stat] = amount
 	statmodtimer[stat] = timer
@@ -331,9 +294,7 @@ func CloseTurn(string=""):
 func dies():
 	if enemy == true:
 		dead = true
-		#CombatController.battlers.erase(self)
 		combatlabel.visible = false
-		#queue_free()
 	else:
 		dead = true
 		status = []
