@@ -47,10 +47,11 @@ func CreateLabels(party, enemy_array):
 			var mp = EnemyDict.GetStat(n, "MP")
 			var hpmax = EnemyDict.GetStat(n, "HPMax")
 			var mpmax = EnemyDict.GetStat(n, "MPMax")
+			var image = EnemyDict.GetImage(n)
 
 			enemy[n]["combatlabel"] = ebox
 			%EnemyGUI.add_child(ebox)
-			ebox.SetStats(name, hp, mp, hpmax, mpmax, enemy[n]["row"])
+			ebox.SetStats(name, hp, mp, hpmax, mpmax, enemy[n]["row"], image)
 
 func TargetList(function):
 	var active_character = Combat.active_character
@@ -231,7 +232,6 @@ func StatusLabels(target):
 			statuscount = 1
 		
 		statuscontainer.add_child(statusicon.instantiate())
-		#await get_tree().idle_frame    rm gd4
 		statuscontainer.get_child(count).SetStatus(n, statuscount)
 		count +=1
 

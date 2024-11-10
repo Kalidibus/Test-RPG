@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://brpedqmd2201a"]
+[gd_scene load_steps=4 format=3 uid="uid://brpedqmd2201a"]
 
 [ext_resource type="Texture2D" uid="uid://4velul5v51li" path="res://Assets/StatusIcons/icon_small.png" id="1_io0cj"]
 [ext_resource type="Script" path="res://Scenes/Guild/UnlockGuiBox.gd" id="1_letxd"]
+[ext_resource type="Texture2D" uid="uid://4081ifol8kv5" path="res://Assets/Classes/Dancer/Dancer-profile.png" id="2_qsuej"]
 
 [node name="UnlockGUIBox" type="MarginContainer"]
 custom_minimum_size = Vector2(515, 0)
@@ -11,8 +12,32 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_letxd")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 2
+
+[node name="PVTexture" type="TextureRect" parent="Panel"]
+unique_name_in_owner = true
+self_modulate = Color(0.485703, 0.485704, 0.485703, 1)
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -232.5
+offset_right = 85.0
+offset_bottom = 201.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("2_qsuej")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

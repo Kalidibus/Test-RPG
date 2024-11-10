@@ -1,48 +1,57 @@
 extends Entity
+#PASSIVES
 
+#STATS
 var starting_stats = {
 		"HP" = 100,
 		"MP" = 80,
 		"HPmax" = 100,
 		"MPmax" = 80,
 		"STR" = 70,
+		"DEX" = 50,
 		"DEF" = 20,
 		"INT" = 20,
 		"FTH" = 30,
 		"RES" = 50,
+		"ACC" = 40,
 		"EVD" = 40,
-		"SPD" = 40
+		"SPD" = 70
 		}
-
 var stat_scaling = {
-		"HPmax" = "A",
+		"HPmax" = "B",
 		"MPmax" = "C",
-		"STR" = "B",
-		"DEF" = "S",
-		"INT" = "C",
-		"FTH" = "C",
-		"RES" = "B",
-		"EVD" = "D",
-		"SPD" = "D"
-}
-
+		"STR" = "A",
+		"DEX" = "B",
+		"DEF" = "B",
+		"INT" = "D",
+		"FTH" = "D",
+		"RES" = "C",
+		"ACC" = "B",
+		"EVD" = "B",
+		"SPD" = "A"
+	}
 var job_description = "In a flury of crushing blows, the Bastard Fist Vocation unleashes hell with it's massive gauntlets. \n\nSpecializing in combination attacks, Bastard Fists become stronger with repeated attacks. They also boast impressive self buffing capabilities. \n\nTheir buffs often come at a cost however, granting incredible damage at the cost of Defense or Health."
 
 func _ready():
-	charname = "Bastard Fist"
 	HATE = 50
-	enemy = false
 	weapontype = "impact"
 	
 	skill_list = {
-		"Crimson Rush": "Strikes an opponent with a flurry of blows. Scales with SPD and STR",
-		"Scarlet Sun": "COMBO: Crimson Rush - A powerful single blow",
-		"Vermillion Dance": "COMBO: Scarlet Sun - This final formation unleashes the true power of the Bastard Fists",
-		"Bastard Spirit" : "Raises STR for 3 turns",
-		"Lunatic Spirit" : "Greatly raises STR and SPD for 3 turns, but reduces DEF",
-		"Shear Grit" : "Recover a percentage of missing health"
-	}
+		"skillBFIST01" = {"skillname" = "Crimson Rush",
+			"skilldesc" = "Strikes an opponent with a flurry of blows. Scales with SPD and STR"},
+		"skillBFIST02" = {"skillname" = "Scarlet Sun",
+			"skilldesc" = "COMBO: Crimson Rush - A powerful single blow"},
+		"skillBFIST03" = {"skillname" = "Vermillion Dance",
+			"skilldesc" = "COMBO: Scarlet Sun - This final formation unleashes the true power of the Bastard Fists"},
+		"skillBFIST04" = {"skillname" = "Bastard Spirit",
+			"skilldesc" = "Raises STR for 3 turns."},
+		"skillBFIST05" = {"skillname" = "Lunatic Spirit",
+			"skilldesc" = "Greatly raises STR and SPD for 3 turns, but reduces DEF."},
+		"skillBFIST06" = {"skillname" = "Shear Grit",
+			"skilldesc" = "Recover a percentage of missing health."}
+		}
 
+#SKILLS
 func CrimsonRush():
 	if MPCheck(15) == "fail": return
 	else: CombatGUI.TargetList("CrimsonRush2")

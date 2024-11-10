@@ -1,31 +1,36 @@
 extends Entity
 
+#PASSIVES
+
+#STATS
 var starting_stats = {
 		"HP" = 50,
 		"MP" = 175,
 		"HPmax" = 50,
 		"MPmax" = 175,
 		"STR" = 5,
+		"DEX" = 10,
 		"DEF" = 20,
 		"INT" = 60,
 		"FTH" = 30,
 		"RES" = 50,
 		"EVD" = 20,
+		"ACC" = 30,
 		"SPD" = 25
 		}
-
 var stat_scaling = {
-		"HPmax" = "A",
-		"MPmax" = "C",
-		"STR" = "B",
-		"DEF" = "S",
-		"INT" = "C",
-		"FTH" = "C",
-		"RES" = "B",
-		"EVD" = "D",
-		"SPD" = "D"
-}
-
+		"HPmax" = "B",
+		"MPmax" = "S",
+		"STR" = "D",
+		"DEX" = "D",
+		"DEF" = "C",
+		"INT" = "S",
+		"FTH" = "A",
+		"RES" = "A",
+		"EVD" = "B",
+		"ACC" = "B",
+		"SPD" = "B"
+	}
 var job_description = "The Fel Mage is destruction incarnate. \n\nMaster of all elements, and capable of raining massive damage down upon foes regardless of their resistances or position. Their ability to recover MP also makes them excellent sustainers for long journies. \n\nHowever Fel Mage's lack much in the way of defenses, and must be protected. "
 
 func _ready():
@@ -53,29 +58,7 @@ func _ready():
 			"skilldesc" = "Sacrfice HP for an equivilant amount of MP."}
 		}
 
-func GetSkills():
-	skill_list = {
-		"skillFELMAGE01" = {"skillname" = "Fel Bolt",
-			"skilldesc" = "A Fel aspected attack, dealing moderate damage."},
-		"skillFELMAGE02" = {"skillname" = "Deep Bolt",
-			"skilldesc" = "A Deep aspected attack, dealing moderate damage."},
-		"skillFELMAGE03" = {"skillname" = "Levin Bolt",
-			"skilldesc" = "A Levin aspected attack, dealing moderate damage."},
-		"skillFELMAGE04" = {"skillname" = "Inferno Bolt",
-			"skilldesc" = "An Inferno aspected attack, dealing moderate damage."},
-		"skillFELMAGE05" = {"skillname" = "Fel Storm",
-			"skilldesc" = "A Fel aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE06" = {"skillname" = "Deep Storm",
-			"skilldesc" = "A Deep aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE07" = {"skillname" = "Levin Storm",
-			"skilldesc" = "A Levin aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE08" = {"skillname" = "Inferno Storm",
-			"skilldesc" = "An Inferno aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE09" = {"skillname" = "Fel Pact",
-			"skilldesc" = "Sacrfice HP for an equivilant amount of MP."}
-		}
-	super.GetSkills()
-
+#SKILLS
 func FelBolt():
 	if MPCheck(10) == "fail": return
 	CombatGUI.TargetList("FelBolt2")

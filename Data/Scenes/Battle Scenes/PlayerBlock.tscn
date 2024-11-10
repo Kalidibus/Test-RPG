@@ -73,6 +73,7 @@ offset_top = 10.6667
 offset_right = -196.333
 offset_bottom = 24.6667
 text = "PH"
+horizontal_alignment = 1
 
 [node name="MP" type="Label" parent="BG/Stats"]
 unique_name_in_owner = true
@@ -82,6 +83,7 @@ offset_top = 11.6667
 offset_right = -86.3327
 offset_bottom = 25.6667
 text = "blah"
+horizontal_alignment = 1
 
 [node name="HPBar" type="TextureProgressBar" parent="BG/Stats"]
 unique_name_in_owner = true

@@ -1,10 +1,11 @@
+res://Scenes/Battle Scenes/PlayerBlock.tscn
+res://Scenes/Battle Scenes/EnemyBlock.gd
+res://Scenes/Battle Scenes/CombatGUI.gd
+res://Scenes/Battle Scenes/StatusIcon.gd
 res://Scenes/Start.tscn
-res://Classes/Fortress/Fortress.gd
-res://Scenes/Start.gd
 res://Scenes/Battle Scenes/Combat.tscn
 res://Classes/Classes.tscn
 res://Enemies/EnemyDict.tscn
-res://Scenes/Battle Scenes/PlayerBlock.tscn
 res://Scenes/Battle Scenes/EnemyLabel.tscn
 res://Scenes/Other/PauseMenu/PartyBlock.tscn
 res://Scenes/Other/PauseMenu/PauseMenu.tscn
@@ -14,11 +15,5 @@ res://Scenes/Guild/RosterPartyBlock.tscn
 res://Scenes/Battle Scenes/SkillNode.tscn
 res://Scenes/Other/PauseMenu/ItemMenu.tscn
 res://Scenes/Other/PauseMenu/SkillsMenu.tscn
-res://Classes/JobDictionary.gd
-res://Enemies/Arid/Regular/mon_pylon.gd
-res://Enemies/Arid/Regular/mon_mistake.gd
-res://Scenes/Battle Scenes/Combat.gd
-res://Scenes/Battle Scenes/CombatGUI.gd
-res://Enemies/EnemyDict.gd
-res://Scenes/Other/PauseMenu/PartyMenu.gd
-res://Scenes/PlayerData/PlayerData.gd
+res://Scenes/Guild/UnlockGUIBox.tscn
+res://Scenes/Battle Scenes/StatusIcon.tscn

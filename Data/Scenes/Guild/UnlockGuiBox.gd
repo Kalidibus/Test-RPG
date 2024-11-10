@@ -15,6 +15,8 @@ func set_unlock_gui(jobid):
 	var itemid
 	var needed
 	
+	%PVTexture.texture = load(JobDict.job_dictionary[jobid]["profile"])
+	
 	#resource 1
 	itemid = dict["0"]["itemid"]
 	needed = dict["0"]["needed"]

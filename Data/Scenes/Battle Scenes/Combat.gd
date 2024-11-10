@@ -30,8 +30,8 @@ func CreateNodes(party, enemy_array):
 		node.charname = party[n]["name"]
 		node.combatlabel = party[n]["combatlabel"]
 		node.row = party[n]["row"]
-		node.GetSkills()
 		%Party.add_child(node)
+		node.GetSkills()
 		party[n]["combatnode"] = node
 	for enemy in enemy_array:
 		for n in enemy:

@@ -15,7 +15,7 @@ config/description="Proof of concept test version"
 run/main_scene="res://Scenes/Start.tscn"
 config/features=PackedStringArray("4.3")
 boot_splash/image="res://Assets/UI/Selector.png"
-config/icon="res://Assets/Classes/Fortress-profile.png"
+config/icon="res://Assets/Classes/Fortress/Fortress-profile.png"
 
 [autoload]
 

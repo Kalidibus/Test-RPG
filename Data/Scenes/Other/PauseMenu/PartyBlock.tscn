@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://8xf84jklsj73"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/party_block.gd" id="1_gcbhj"]
-[ext_resource type="Texture2D" uid="uid://coaxx58modqde" path="res://Assets/Classes/Fortress-profile.png" id="1_jwlbq"]
+[ext_resource type="Texture2D" uid="uid://coaxx58modqde" path="res://Assets/Classes/Fortress/Fortress-profile.png" id="1_jwlbq"]
 [ext_resource type="Texture2D" uid="uid://drac0yxtmd00b" path="res://Assets/UI/bar_under.png" id="2_76vh2"]
 [ext_resource type="Texture2D" uid="uid://cnvglr0j77jl6" path="res://Assets/UI/HP_bar_progress.png" id="3_12plf"]
 [ext_resource type="Texture2D" uid="uid://daiq7i2a0xvoq" path="res://Assets/UI/MP_bar_progress.png" id="4_c52yh"]

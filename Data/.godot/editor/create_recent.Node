@@ -1,3 +1,6 @@
+Control
+TextureRect
+Sprite2D
 Button
 HSeparator
 Label
@@ -7,8 +10,5 @@ HBoxContainer
 AnimationPlayer
 ColorRect
 CanvasLayer
-Control
 Node
 Panel
-GridContainer
-Container

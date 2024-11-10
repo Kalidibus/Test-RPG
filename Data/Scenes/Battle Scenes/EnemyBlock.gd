@@ -12,7 +12,7 @@ func _ready():
 func _process(delta):
 	HPbar.value = animated_HP
 
-func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
+func SetStats(charname,HP,MP,MaxHP,MaxMP, row, image):
 	%Name.text = charname
 	%HPbar.max_value = MaxHP
 	%HPbar.value = HP
@@ -20,7 +20,17 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row):
 	animated_HP = HP
 	animated_MP = MP
 	
+	$Sprite2D.texture = load(image)
+	
 	if row == "front":
 		$Sprite2D.set_offset(Vector2(0,25))
-		$Sprite2D.set_scale(Vector2(8,8))
+		var current_scale = $Sprite2D.get_scale()
+		print(current_scale)
+		var new_scale: Vector2
+		new_scale.x = current_scale.x * 1.4
+		new_scale.y = current_scale.y * 1.4
+		$Sprite2D.set_scale(new_scale)
 		$Sprite2D.set_z_index(-2)
+	if row == "back": 
+		z_index -= 10
+		print(z_index)

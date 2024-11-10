@@ -1,36 +1,38 @@
 extends Entity
 
+#PASSIVES
 var PASSIVE_accumulate_ire = true
 var ire = 0
 
-var jobid = "0"
-
+#STATS
 var starting_stats = {
 		"HP" = 125,
 		"HPmax" = 125,
 		"MP" = 50,
 		"MPmax" = 50,
 		"STR" = 50,
+		"DEX" = 20,
 		"DEF" = 75,
 		"INT" = 25,
 		"FTH" = 50,
 		"RES" = 50,
 		"EVD" = 20,
+		"ACC" = 20,
 		"SPD" = 25
 		}
-
 var stat_scaling = {
 		"HPmax" = "A",
 		"MPmax" = "C",
 		"STR" = "B",
+		"DEX" = "D",
 		"DEF" = "S",
 		"INT" = "C",
 		"FTH" = "C",
 		"RES" = "B",
 		"EVD" = "D",
+		"ACC" = "C",
 		"SPD" = "D"
 	}
-
 var job_description = "An iron wall to keep Lamentations at bay. \n\nThe Fortress vocation excels at defending the party from physical attacks. Taking hits from enemies repeatedly will also accumulate a resource called [b]Ire[/b] which can be used to trigger powerful counter-attacks. \n\nWhile the Fortresses' shields can protect against magic attacks to some degree, they are not as well suited for foes that deal elemental damage."
 
 func _ready():
@@ -62,35 +64,7 @@ func _ready():
 			"skilldesc" = "Defend and massively increase damage resistance this turn."}
 		}
 
-func GetSkills():
-	#I'm not sure why but in combat the variable in _ready is getting wiped out, so I have to define it again here
-	skill_list = {
-		"skillFORTRESS01" = {"skillname" = "Taunt",
-			"skilldesc" = "Marks self, increasing odds of enemies targetting Fortress. Also increases base aggro."},
-		"skillFORTRESS02" = {"skillname" = "Vanguard",
-			"skilldesc" = "A savage blow with both shields. Deals high impact damage scaling with DEF."},
-		"skillFORTRESS03" = {"skillname" = "Bastion",
-			"skilldesc" = "Restores HP to target party member. Amount healed scales with DEF."},
-		"skillFORTRESS04" = {"skillname" = "Embolden",
-			"skilldesc" = "Boosts the DEF stat for 3 turns."},
-		"skillFORTRESS05" = {"skillname" = "Shield Tremor",
-			"skilldesc" = "Smashing shields into the ground destablizes the enemy, reducing STR."},
-		"skillFORTRESS06" = {"skillname" = "Full Cover",
-			"skilldesc" = "Increases Defense of the Front Line"},
-		"skillFORTRESS07" = {"skillname" = "Skull Splitter",
-			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."},
-		"skillFORTRESS08" = {"skillname" = "Vanguard Crush",
-			"skilldesc" = "COST '1 Ire' - A crushing blow from dual shields. Deals heavy damage scaling off of DEF."},
-		"skillFORTRESS09" = {"skillname" = "Shrapnel Burst",
-			"skilldesc" = "COST '2 Ire' - An explosive blast of rubble that damages the entire enemy front line."},
-		"skillFORTRESS10" = {"skillname" = "Debilatio",
-			"skilldesc" = "COST '3 Ire' - The destructive ultimate potential of the Fortress. Massive Impact damage to the entire enemy party. Scales off of DEF."},
-		"skillFORTRESS11" = {"skillname" = "Perfect Shell",
-			"skilldesc" = "Defend and massively increase damage resistance this turn."}
-		}
-
-	super.GetSkills()
-
+#SKILLS
 func Turn():
 	super.Turn() #calls the parent Turn function. 
 	PASSIVE_accumulate_ire = false #reset ire accumulation

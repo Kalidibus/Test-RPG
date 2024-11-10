@@ -1,45 +1,55 @@
 extends Entity
+#PASSIVES
 
+#STATS
 var starting_stats = {
 		"HP" = 60,
 		"MP" = 60,
+		"HPmax" = 60,
+		"MPmax" = 60,
 		"STR" = 50,
+		"DEX" = 80,
 		"DEF" = 20,
 		"INT" = 30,
 		"FTH" = 30,
 		"RES" = 50,
+		"ACC" = 80,
 		"EVD" = 40,
 		"SPD" = 100
-		}
-
+	}
 var stat_scaling = {
-		"HPmax" = "A",
-		"MPmax" = "C",
-		"STR" = "B",
-		"DEF" = "S",
+		"HPmax" = "B",
+		"MPmax" = "B",
+		"STR" = "C",
+		"DEX" = "S",
+		"DEF" = "C",
 		"INT" = "C",
 		"FTH" = "C",
 		"RES" = "B",
-		"EVD" = "D",
-		"SPD" = "D"
-}
-
+		"ACC" = "S",
+		"EVD" = "A",
+		"SPD" = "A"
+	}
 var job_description = "Striking from the shadows, the Shade Hunter's tainted arrows weaken enemies and leave them vulnerable to ally attacks. \n\nThe Shade Hunter vocation is an excellent addition to parties that need debuffing capabilities to take on stronger foes. In addition, various attacks target the enemy back row effectively, dealing significant damage in groups. A solid unit capable of fitting into most party compositions. \n\nThe Shade Hunter is less effective against units resistant to Burn or Poison."
 
 func _ready():
-	charname = "Shade Hunter"
 	HATE = 50
-	enemy = false
 	weapontype = "pierce"
 	
 	skill_list = {
-	"Poison Arrow" : "An arrow dipped in Raklak poison secretions. Can inflict Poison.",
-	"Burning Arrow" : "An arrow dipped in molten inferno. Can inflict Burn.",
-	"Bladed Volley" : "Slashing damage to all back line enemies.",
-	"Plate Crusher" : "A single target impact based shot with a chance to reduce enemies DEF.",
-	"Isolate Prey" : "Target weak links in the enemies lines. Moderate piercing damage that scales with SPD. Deal bonus damage for each status ailment on target."
-	}
+		"skillSHUNTER01" = {"skillname" = "Poison Arrow",
+			"skilldesc" = "An arrow dipped in potent venoms. Can inflict Poison."},
+		"skillSHUNTER02" = {"skillname" = "Burning Arrow",
+			"skilldesc" = "An arrow dipped in molten inferno. Can inflict Burn."},
+		"skillSHUNTER03" = {"skillname" = "Bladed Volley",
+			"skilldesc" = "Slashing damage to all back line enemies."},
+		"skillSHUNTER04" = {"skillname" = "Plate Crusher",
+			"skilldesc" = "A single target impact based shot with a chance to reduce enemies DEF."},
+		"skillSHUNTER05" = {"skillname" = "Isolate Prey",
+			"skilldesc" = "Target weak links in the enemies lines. Moderate piercing damage that scales with SPD. Deal bonus damage for each status ailment on target."}
+			}
 
+#SKILLS
 func PoisonArrow():
 	if MPCheck(10) == "fail": return
 	CombatGUI.TargetList("PoisonArrow2")
