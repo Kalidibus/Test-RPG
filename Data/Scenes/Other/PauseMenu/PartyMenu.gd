@@ -18,7 +18,6 @@ func AddBlocks():
 		var char = PlayerData.party[n]
 		var block = partyblock.instantiate()
 		block.charid = n
-		print(block.charid)
 		block.get_node("%Name").text = char["name"]
 		block.get_node("%Class").text = char["job_name"]
 		block.get_node("%XP").text = "XP: " + str(char["xp"]) + "/" + str(char["xpneeded"])

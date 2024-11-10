@@ -128,7 +128,7 @@ func FelStorm2():
 	MPCost(30)
 	CombatGUI.BattleLog(str(charname) + " unleashes a Fel Storm!")
 	for target in enemies:
-		if target.HP != 0:
+		if target.stats["HP"] != 0:
 			var adjusteddamage = target.take_damage(damage, "fel")
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
@@ -143,7 +143,7 @@ func DeepStorm2():
 	MPCost(30)
 	CombatGUI.BattleLog(str(charname) + " unleashes a Deep Storm!")
 	for target in enemies:
-		if target.HP != 0:
+		if target.stats["HP"] != 0:
 			var adjusteddamage = target.take_damage(damage, "deep")
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
@@ -158,7 +158,7 @@ func LevinStorm2():
 	MPCost(30)
 	CombatGUI.BattleLog(str(charname) + " unleashes a Levin Storm!")
 	for target in enemies:
-		if target.HP != 0:
+		if target.stats["HP"] != 0:
 			var adjusteddamage = target.take_damage(damage, "levin")
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
@@ -173,7 +173,7 @@ func InfernoStorm2():
 	MPCost(30)
 	CombatGUI.BattleLog(str(charname) + " unleashes an Inferno Storm!")
 	for target in enemies:
-		if target.HP != 0:
+		if target.stats["HP"] != 0:
 			var adjusteddamage = target.take_damage(damage, "inferno")
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout

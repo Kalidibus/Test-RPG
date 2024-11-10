@@ -28,7 +28,6 @@ func GetAllStats(monid):
 	return stats
 
 func GetName(monid):
-	print(monid)
 	return enemydict[monid]["name"]
 
 func GetNode(monid):

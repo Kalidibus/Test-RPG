@@ -50,7 +50,6 @@ func CreateLabels(party, enemy_array):
 
 			enemy[n]["combatlabel"] = ebox
 			%EnemyGUI.add_child(ebox)
-			print(enemy[n]["row"])
 			ebox.SetStats(name, hp, mp, hpmax, mpmax, enemy[n]["row"])
 
 func TargetList(function):

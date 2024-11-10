@@ -4,7 +4,7 @@ class_name Entity
 @onready var EventHandler = get_node("/root/Combat")
 @onready var CombatGUI = get_node("/root/Combat/CombatGUI")
 @onready var party = get_node("/root/Combat/Combatants/Party")
-
+@onready var enemies = get_node("/root/Combat/Combatants/Enemies")
 #not currently used, but may be easier in long run?
 enum STAT {HP, HPmax, MP, MPmax, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, HATE}
 
@@ -120,7 +120,7 @@ func GetSkills():
 		current_skills[n] = skill_list[n]
 
 func get_enemy_targets():
-	return EventHandler.enemies.get_children()
+	return enemies.get_children()
 
 func SwitchRows():
 	if row == "front":

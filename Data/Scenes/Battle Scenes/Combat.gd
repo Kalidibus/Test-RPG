@@ -35,7 +35,6 @@ func CreateNodes(party, enemy_array):
 		party[n]["combatnode"] = node
 	for enemy in enemy_array:
 		for n in enemy:
-			print(n)
 			var enode = EnemyDict.GetNode(n).duplicate()
 			enode.charid = n
 			#enode.stats = EnemyDict.GetAllStats(n) #redundant
@@ -63,7 +62,6 @@ func PartyTurnOrder(): #next to fix
 			combatover = true #used to stop combat when one side dead
 			break
 		elif active_character["stats"]["HP"] == 0: 
-			print("dead")
 			count += 1
 		elif active_character["status"].has("stun"):
 			active_character.Turn()

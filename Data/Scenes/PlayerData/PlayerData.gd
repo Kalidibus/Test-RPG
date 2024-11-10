@@ -38,13 +38,10 @@ func MovePartyMember(charid, direction):
 	var index = party_order.find(charid)
 	
 	if direction == "up":
-		print(party_order) 
 		if index > 0: 
 			party_order.erase(charid)
 			party_order.insert(index - 1, charid)
-		print(party_order) 
 	elif direction == "down":
 		if index < party_order.size() - 1: 
 			party_order.erase(charid)
 			party_order.insert(index + 1, charid)
-		print(party_order) 

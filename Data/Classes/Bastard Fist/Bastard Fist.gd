@@ -99,7 +99,7 @@ func VermillionDance2():
 	var damage = stats["STR"] + stats["SPD"] * 1.3
 	CombatGUI.BattleLog(str(charname) + " unleashes the Vermillion Dance!")
 	for target in enemies:
-		if target.HP != 0:
+		if target.stats["HP"] != 0:
 			var adjusteddamage = target.take_damage(damage, "impact")
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout

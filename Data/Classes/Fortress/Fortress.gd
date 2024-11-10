@@ -39,15 +39,27 @@ func _ready():
 	
 	skill_list = {
 		"skillFORTRESS01" = {"skillname" = "Taunt",
-			"skilldesc" = "Marks self, significantly increasing odds of enemies targetting the Fortress. Also increases base HATE."},
+			"skilldesc" = "Marks self, increasing odds of enemies targetting Fortress. Also increases base aggro."},
 		"skillFORTRESS02" = {"skillname" = "Vanguard",
 			"skilldesc" = "A savage blow with both shields. Deals high impact damage scaling with DEF."},
 		"skillFORTRESS03" = {"skillname" = "Bastion",
 			"skilldesc" = "Restores HP to target party member. Amount healed scales with DEF."},
 		"skillFORTRESS04" = {"skillname" = "Embolden",
 			"skilldesc" = "Boosts the DEF stat for 3 turns."},
-		"skillFORTRESS05" = {"skillname" = "Skull Splitter",
-			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."}
+		"skillFORTRESS05" = {"skillname" = "Shield Tremor",
+			"skilldesc" = "Smashing shields into the ground destablizes the enemy, reducing STR."},
+		"skillFORTRESS06" = {"skillname" = "Full Cover",
+			"skilldesc" = "Increases Defense of the Front Line"},
+		"skillFORTRESS07" = {"skillname" = "Skull Splitter",
+			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."},
+		"skillFORTRESS08" = {"skillname" = "Vanguard Crush",
+			"skilldesc" = "COST '1 Ire' - A crushing blow from dual shields. Deals heavy damage scaling off of DEF."},
+		"skillFORTRESS09" = {"skillname" = "Shrapnel Burst",
+			"skilldesc" = "COST '2 Ire' - An explosive blast of rubble that damages the entire enemy front line."},
+		"skillFORTRESS10" = {"skillname" = "Debilatio",
+			"skilldesc" = "COST '3 Ire' - The destructive ultimate potential of the Fortress. Massive Impact damage to the entire enemy party. Scales off of DEF."},
+		"skillFORTRESS11" = {"skillname" = "Perfect Shell",
+			"skilldesc" = "Defend and massively increase damage resistance this turn."}
 		}
 
 func GetSkills():
@@ -61,9 +73,22 @@ func GetSkills():
 			"skilldesc" = "Restores HP to target party member. Amount healed scales with DEF."},
 		"skillFORTRESS04" = {"skillname" = "Embolden",
 			"skilldesc" = "Boosts the DEF stat for 3 turns."},
-		"skillFORTRESS05" = {"skillname" = "Skull Splitter",
-			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."}
+		"skillFORTRESS05" = {"skillname" = "Shield Tremor",
+			"skilldesc" = "Smashing shields into the ground destablizes the enemy, reducing STR."},
+		"skillFORTRESS06" = {"skillname" = "Full Cover",
+			"skilldesc" = "Increases Defense of the Front Line"},
+		"skillFORTRESS07" = {"skillname" = "Skull Splitter",
+			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."},
+		"skillFORTRESS08" = {"skillname" = "Vanguard Crush",
+			"skilldesc" = "COST '1 Ire' - A crushing blow from dual shields. Deals heavy damage scaling off of DEF."},
+		"skillFORTRESS09" = {"skillname" = "Shrapnel Burst",
+			"skilldesc" = "COST '2 Ire' - An explosive blast of rubble that damages the entire enemy front line."},
+		"skillFORTRESS10" = {"skillname" = "Debilatio",
+			"skilldesc" = "COST '3 Ire' - The destructive ultimate potential of the Fortress. Massive Impact damage to the entire enemy party. Scales off of DEF."},
+		"skillFORTRESS11" = {"skillname" = "Perfect Shell",
+			"skilldesc" = "Defend and massively increase damage resistance this turn."}
 		}
+
 	super.GetSkills()
 
 func Turn():
@@ -121,9 +146,19 @@ func Embolden2():
 	StatMod("DEF", 1.25, 2)
 	CloseTurn(str(charname) + " takes on a defensive stances! DEF Increased.")
 
-func SkullSplitter():
+func VanguardCrush():
 	if ire == 0:
 		CombatGUI.BattleLog("Need Ire to perform this action!")
+		return
+	else: CombatGUI.TargetList("VanguardCrush2")
+func VanguardCrush2(target):
+	var damage_dealt = Damage(target, Stat("DEF") * 1.5, "impact")
+	MPCost(40)
+	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(damage_dealt) + " damage!")
+
+func SkullSplitter():
+	if ire == 0:
+		CombatGUI.BattleLog("Not enough Ire to perform this action!")
 		return
 	else: CombatGUI.TargetList("SkullSplitter2")
 func SkullSplitter2(target):
@@ -132,3 +167,70 @@ func SkullSplitter2(target):
 	ire -= 1
 	CloseTurn(str(charname) + " uses Ire to perform a crushing overhead blow! to " + str(target.charname) + ", dealing" + str(adjusteddamage) + " damage!")
 	target.AttemptStatusAilment("stun", 0, 0, 20)
+
+func ShrapnelBurst():
+	if ire < 2:
+		CombatGUI.BattleLog("Not enough Ire to perform this action!")
+		return
+	else: CombatGUI.QueueAction(self, "ShrapnelBurst2")
+func ShrapnelBurst2():
+	var enemies = get_enemy_targets()
+	ire -= 2
+	CombatGUI.BattleLog(str(charname) + " unleashes a burst of Shrapnel to the enemy front line!")
+	
+	for target in enemies:
+		if target.stats["HP"] != 0 and target.row == "front":
+			var damage_dealt = Damage(target, Stat("DEF") * 1.2, "impact")
+			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(damage_dealt) + " damage!")
+			await get_tree().create_timer(0.5).timeout
+	CloseTurn("")
+
+func ShieldTremor():
+	if MPCheck(20) == "fail": return
+	else: CombatGUI.QueueAction(self, "ShieldTremor2")
+func ShieldTremor2():
+	var enemies = get_enemy_targets()
+	CombatGUI.BattleLog(str(charname) + " smashes her shields into the ground, destabilizing enemy lines!")
+	for target in enemies:
+		if target.stats["HP"] != 0:
+			var damage_dealt = Damage(target, Stat("DEF")/0.5, "impact")
+			target.StatMod("STR", 30, 1)
+			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(damage_dealt) + " damage! STR Decreased!")
+			await get_tree().create_timer(0.5).timeout
+	CloseTurn("")
+
+func FullCover():
+	if MPCheck(20) == "fail": return
+	else: CombatGUI.QueueAction(self, "FullCover2")
+func FullCover2():
+	var party = get_party_targets()
+	for n in party:
+		if n.row =="front": StatMod("DEF", 1.6, 1)
+	CloseTurn(str(charname) + " guards the front row!")
+
+func Debilatio():
+	if ire < 3:
+		CombatGUI.BattleLog("Not enough Ire to perform this action!")
+		return
+	else: CombatGUI.QueueAction(self, "Debilatio2")
+func Debilatio2():
+	var enemies = get_enemy_targets()
+	ire -= 3
+	CombatGUI.BattleLog(str(charname) + " unleashes Debilatio!")
+	
+	for target in enemies:
+		if target.stats["HP"] != 0:
+			var damage_dealt = Damage(target, Stat("DEF") * 1.8, "impact")
+			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(damage_dealt) + " damage!")
+			await get_tree().create_timer(0.5).timeout
+	CloseTurn("")
+
+func PerfectShell():
+	if MPCheck(50) == "fail": return
+	else: CombatGUI.QueueAction(self, "PerfectShell2")
+func PerfectShell2():
+		StatMod("DEF", 999, 1)
+		StatMod("RES", 999, 1)
+		CombatGUI.BattleLog(str(charname) + " uses Perfect Shell!")
+		super.Defend()
+		CloseTurn("")

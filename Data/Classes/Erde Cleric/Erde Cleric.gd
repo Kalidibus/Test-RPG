@@ -43,7 +43,7 @@ func Bounty():
 	if MPCheck(10) == "fail": return
 	else: CombatGUI.AllyTargetList("Bounty2")
 func Bounty2(target):
-	if target.HP == 0:
+	if target.stats["HP"] == 0:
 		CombatGUI.BattleLog("This target must be raised from the dead first")
 		return
 	var heal = stats["FTH"]
@@ -75,7 +75,7 @@ func Resurrect():
 	if MPCheck(50) == "fail": return
 	else: CombatGUI.AllyTargetList("Raise")
 func Raise(target): #any function that revives needs to be called Raise so it doesn't get canceled by the auto-queue
-	if target.HP != 0:
+	if target.stats["HP"] != 0:
 		CloseTurn(str(target.charname) + " is not dead!")
 	else:
 		var heal = stats["FTH"]

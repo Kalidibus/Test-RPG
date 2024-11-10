@@ -55,3 +55,6 @@ func GetUnlocks(jobid):
 
 func GetHireCost(jobid):
 	return job_dictionary[str(jobid)]["node"].hire_cost
+
+func GetSkills(jobid):
+	return job_dictionary[str(jobid)]["node"].skill_list
