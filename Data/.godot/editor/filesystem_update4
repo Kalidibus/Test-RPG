@@ -1,11 +1,9 @@
-res://Scenes/Battle Scenes/PlayerBlock.tscn
-res://Scenes/Battle Scenes/EnemyBlock.gd
-res://Scenes/Battle Scenes/CombatGUI.gd
-res://Scenes/Battle Scenes/StatusIcon.gd
 res://Scenes/Start.tscn
+res://Scenes/Battle Scenes/EnemyBlock.gd
 res://Scenes/Battle Scenes/Combat.tscn
 res://Classes/Classes.tscn
 res://Enemies/EnemyDict.tscn
+res://Scenes/Battle Scenes/PlayerBlock.tscn
 res://Scenes/Battle Scenes/EnemyLabel.tscn
 res://Scenes/Other/PauseMenu/PartyBlock.tscn
 res://Scenes/Other/PauseMenu/PauseMenu.tscn
