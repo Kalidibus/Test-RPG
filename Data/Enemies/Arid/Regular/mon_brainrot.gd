@@ -1,7 +1,7 @@
 extends Monster
 
 func _ready():
-	charname = "Mistake"
+	charname = "Brain Rot"
 	reward_xp = Globals.RNG_range(45, 75)
 	loot_table = {
 		"lcom001" = 55,
@@ -14,7 +14,7 @@ func _ready():
 	row = "back"
 	stats = {
 		"HPMax" = 50,
-		"HP" = 50,
+		HP = 50,
 		"MPMax" = 5,
 		"MP" = 5,
 		"STR" = 15,
@@ -52,7 +52,7 @@ func Turn():
 		CloseTurn("")
 	elif status.has("stun"):
 		status.erase("stun")
-		CloseTurn(charname + " misses their turn...")
+		CloseTurn("The " + charname + " misses their turn...")
 	else:
 		target = DecideTarget()
 		var rng = Globals.RNG()
@@ -64,5 +64,5 @@ func AttackList(target, rng):
 
 func mAttack(target):
 	var dealt_damage = Damage(target, Stat("DEX"), "pierce") 
-	CloseTurn("The " + str(charname) + " pierces " + str(target.charname) + " with venomous tendrils for " + str(dealt_damage) + " damage!")
+	CloseTurn("The " + str(charname) + " pierces " + str(target.charname) + " with venomous needles for " + str(dealt_damage) + " damage!")
 	target.AttemptStatusAilment("poison", 20, 3, 0)

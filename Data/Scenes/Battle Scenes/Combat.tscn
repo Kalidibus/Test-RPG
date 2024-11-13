@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ktubc2fyxeev"]
+[gd_scene load_steps=9 format=3 uid="uid://ktubc2fyxeev"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/ActionQueue.tscn" id="1"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/CombatGUI.gd" id="2"]
+[ext_resource type="Script" path="res://Scenes/Battle Scenes/battle_log_scroll_cont.gd" id="3_sdkss"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/Combat.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bwkr71clxk32v" path="res://Assets/backgrounds/Screenshot_20230318_165916.png" id="6_hqre3"]
@@ -26,21 +27,42 @@ unique_name_in_owner = true
 [node name="Enemies" type="Node" parent="Combatants"]
 unique_name_in_owner = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(600, 0)
+offset_right = 600.0
+offset_bottom = 280.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="BattleLog_ScrollCont" type="ScrollContainer" parent="MarginContainer/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 250)
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 8.0
-grow_horizontal = 2
-size_flags_horizontal = 2
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.25
 follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("3_sdkss")
 
-[node name="BattleLog" type="Label" parent="ScrollContainer"]
+[node name="BattleLog" type="VBoxContainer" parent="MarginContainer/MarginContainer/BattleLog_ScrollCont"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Battle Log:"
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+show_behind_parent = true
+layout_mode = 2
 
 [node name="CombatGUI" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -53,6 +75,9 @@ theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 script = ExtResource("2")
+normal_colour = Color(1, 1, 1, 1)
+damage_colour = Color(0.745191, 0.251363, 0.187616, 1)
+dead_colour = Color(0.288518, 0.288518, 0.288518, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CombatGUI"]

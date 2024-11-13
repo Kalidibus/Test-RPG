@@ -87,7 +87,6 @@ func Raise(target): #any function that revives needs to be called Raise so it do
 		CloseTurn(str(target.charname) + " is not dead!")
 	else:
 		var heal = Stat("FTH")
-		target.get_healed(heal)
-		target.dead = false
+		Revive(target, heal)
 		MPCost(50)
 		CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")

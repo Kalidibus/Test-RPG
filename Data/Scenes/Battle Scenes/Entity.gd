@@ -19,7 +19,7 @@ var skill_list
 var current_skills = {}
 
 var row
-var enemy
+var enemy = false
 var dead = false
 var HATE #could eventually move this to the stats dictionary if you wanted, but not much value.
 var ref_hate
@@ -103,11 +103,12 @@ func _ready():
 
 func Turn():
 	StatModCountDown()
-	StatusEffects()
+	await StatusEffects()
 	CombatGUI.StatusLabels(self)
 
 	#this check is to stop the turn if the player dies from DoT damage
 	if dead:
+		print("dead")
 		CloseTurn("")
 	#skip turn if stunned
 	if status.has("stun"):
@@ -148,14 +149,14 @@ func StatusEffects():
 		statres["stun"] = statres["stun"] * 1.5
 	if "poison" in status:
 		CombatGUI.BattleLog(charname + " takes " + str(poison) + " damage from poison!")
-		take_damage(poison, "true")
+		await take_damage(poison, "true")
 		poisoncount -= 1
 		if poisoncount == 0:
 			status.erase("poison")
 			statres["poison"] = statres["poison"] * 1.5
 	if "burn" in status:
 		CombatGUI.BattleLog(charname + " takes " + str(burn) + " burn damage!")
-		take_damage(burn, "true")
+		await take_damage(burn, "true")
 		burncount -= 1
 		if burncount == 0:
 			status.erase("burn")
@@ -183,7 +184,7 @@ func StatusEffects():
 		if markedcount == 0:
 			status.erase("marked")
 	if "regen" in status:
-		get_healed(regen)
+		await get_healed(regen)
 		CombatGUI.BattleLog("Regen restores " + charname + "'s health!")
 		regencount -= 1
 		if regencount == 0:
@@ -262,6 +263,11 @@ func AttemptStatusAilment(type, amount, time, bonus_to_inflict):
 func Damage(target, damage_calc, damage_type):
 	var damage_dealt = target.take_damage(damage_calc, damage_type)
 	return damage_dealt
+
+func Revive(target, heal):
+	target.get_healed(heal)
+	target.dead = false
+	CombatGUI.ReviveLabel(target)
 
 func UseItem():
 	queueditem.call_func(self)

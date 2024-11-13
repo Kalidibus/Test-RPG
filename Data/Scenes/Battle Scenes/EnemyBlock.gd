@@ -25,7 +25,6 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row, image):
 	if row == "front":
 		$Sprite2D.set_offset(Vector2(0,25))
 		var current_scale = $Sprite2D.get_scale()
-		print(current_scale)
 		var new_scale: Vector2
 		new_scale.x = current_scale.x * 1.4
 		new_scale.y = current_scale.y * 1.4
@@ -33,4 +32,3 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row, image):
 		$Sprite2D.set_z_index(-2)
 	if row == "back": 
 		z_index -= 10
-		print(z_index)

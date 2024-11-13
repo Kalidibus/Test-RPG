@@ -59,12 +59,14 @@ func AddBlocks(location, n):
 
 
 func _on_addto_party_pressed() -> void:
-	for n in %RosterBlockHolder.get_children():
-		if n.charid == current_selection:
-			PlayerData.party[n.charid] = PlayerData.roster[n.charid]
-			PlayerData.party_order.append(n.charid)
-			ClearBlocks()
-			GetBlockData()
+	if PlayerData.party.size() == 5: Globals.system_message("party is full!")
+	else:
+		for n in %RosterBlockHolder.get_children():
+			if n.charid == current_selection:
+				PlayerData.party[n.charid] = PlayerData.roster[n.charid]
+				PlayerData.party_order.append(n.charid)
+				ClearBlocks()
+				GetBlockData()
 			
 			
 

@@ -7,6 +7,12 @@ extends MarginContainer
 @onready var secondmenu = %SecondMenu
 @onready var Combat = $/root/Combat
 
+
+@export var normal_colour: Color
+@export var damage_colour: Color
+@export var dead_colour: Color
+
+
 var lastpushed = "Attack"
 
 signal skillpress
@@ -14,6 +20,7 @@ signal children_deleted
 signal turn_selected
 
 func _process(delta):
+	#insert a way to go back to a previous characters turn here.
 	if (Input.is_action_just_pressed("ui_cancel")):
 		ClearSecondMenu()
 		get_node("%Menu/" + lastpushed).grab_focus()
@@ -48,10 +55,11 @@ func CreateLabels(party, enemy_array):
 			var hpmax = EnemyDict.GetStat(n, "HPMax")
 			var mpmax = EnemyDict.GetStat(n, "MPMax")
 			var image = EnemyDict.GetImage(n)
+			var row = EnemyDict.GetRow(n)
 
 			enemy[n]["combatlabel"] = ebox
 			%EnemyGUI.add_child(ebox)
-			ebox.SetStats(name, hp, mp, hpmax, mpmax, enemy[n]["row"], image)
+			ebox.SetStats(name, hp, mp, hpmax, mpmax, row, image)
 
 func TargetList(function):
 	var active_character = Combat.active_character
@@ -100,9 +108,10 @@ func UpdateStats(target, HP, MP):
 
 
 func BattleLog(string):
-	if string != "": $"../ScrollContainer/BattleLog".text += "\n" + str(string)
-	var scroll = $"../ScrollContainer"
-	scroll.scroll_vertical = scroll.get_v_scroll_bar().max_value
+	if string != "":
+		var label = Label.new()
+		label.text = string + "\n"
+		%BattleLog.add_child(label)
 
 func _on_Skills_pressed():
 	lastpushed = "Skills"
@@ -196,12 +205,13 @@ func TakeDamageGUI(target):
 	var count = 2
 	while count > 0:
 		if is_instance_valid(target):
-			target["combatlabel"].set_self_modulate("ff0000")
+			target["combatlabel"].set_modulate(damage_colour)
 			await get_tree().create_timer(0.1).timeout
 		if is_instance_valid(target):
-			target["combatlabel"].set_self_modulate("ffffff")
+			target["combatlabel"].set_modulate(normal_colour)
 			await get_tree().create_timer(0.1).timeout
 		count -= 1
+	if target.stats["HP"] == 0: DeadLabel(target)
 
 func StatusLabels(target):
 	var count = 0
@@ -264,3 +274,8 @@ func Selector(pos):
 		if ac == Combat.active_character:
 			tween = create_tween().tween_property(%Selector, "position",pos + Vector2(120, -85), 0.5)
 			await get_tree().create_timer(0.5).timeout
+
+func DeadLabel(target):
+	target["combatlabel"].set_modulate(dead_colour)
+func ReviveLabel(target):
+	target["combatlabel"].set_modulate(normal_colour)
