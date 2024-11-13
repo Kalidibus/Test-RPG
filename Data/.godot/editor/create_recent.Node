@@ -1,13 +1,13 @@
-VBoxContainer
-ScrollContainer
-MarginContainer
 Panel
+VBoxContainer
+Label
+MarginContainer
+ScrollContainer
 Control
 TextureRect
 Sprite2D
 Button
 HSeparator
-Label
 HBoxContainer
 AnimationPlayer
 ColorRect

@@ -127,11 +127,20 @@ text = "Switch"
 layout_mode = 2
 text = "Flee"
 
-[node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="MarginContainer" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 350)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 6
 
 [node name="Container" type="Container" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
