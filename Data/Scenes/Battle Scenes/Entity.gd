@@ -6,7 +6,13 @@ class_name Entity
 @onready var party = get_node("/root/Combat/Combatants/Party")
 @onready var enemies = get_node("/root/Combat/Combatants/Enemies")
 #not currently used, but may be easier in long run?
+
+
 enum STAT {HP, HPmax, MP, MPmax, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, HATE}
+enum damage_type {PIERCE, IMPACT, SLASH, INFERNAL, LEVIN, DEEP, ERDE, VIRTUOS, FEL}
+enum status_effects {POISON, BURN, BLIND, STUN, SEAL, MARKED, REGEN}
+
+
 
 var hire_cost = 5
 

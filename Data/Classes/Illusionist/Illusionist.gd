@@ -40,15 +40,16 @@ func _ready():
 	
 	skill_list = {
 		"skillILLUSIONIST01" = {"skillname" = "Black Mist",
-			"skilldesc" = "A black shroud of mist engulfs the battlefield, raising Party Evasion."},
+			"skilldesc" = "A black shroud of mist engulfs the battlefield, raising Party Evasion."}
+			}
 
 func BlackMist():
 	if MPCheck(30) == "fail": return
-	else: CombatGUI.QueueAction(self, "RaptorSamba2")
+	else: CombatGUI.QueueAction(self, "BlackMist2")
 func BlackMist2():
 	var partylist = get_party_targets()
 	MPCost(30)
 	for n in partylist:
-		if n.HP != 0: n.StatMod("SPD", 1.25, 2)
+		if n.stats["HP"] != 0: n.StatMod("EVD", 1.25, 2)
 	CloseTurn(str(charname) + "'s Black Mist billows across the battlefield. Evasion increased!")
   

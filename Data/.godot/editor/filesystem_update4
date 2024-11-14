@@ -1,10 +1,10 @@
-res://Scenes/Battle Scenes/StatusIcon.tscn
-res://Scenes/Battle Scenes/EnemyBlock.gd
-res://Enemies/EnemyDict.gd
-res://Enemies/EnemyDict.tscn
-res://Scenes/Start.tscn
 res://Scenes/Battle Scenes/Combat.tscn
+res://Scenes/Battle Scenes/CombatGUI.gd
+res://Scenes/Battle Scenes/EnemyBlock.gd
+res://Classes/Illusionist/Illusionist.gd
+res://Scenes/Start.tscn
 res://Classes/Classes.tscn
+res://Enemies/EnemyDict.tscn
 res://Scenes/Battle Scenes/PlayerBlock.tscn
 res://Scenes/Battle Scenes/EnemyLabel.tscn
 res://Scenes/Other/PauseMenu/PartyBlock.tscn
@@ -16,9 +16,7 @@ res://Scenes/Battle Scenes/SkillNode.tscn
 res://Scenes/Other/PauseMenu/ItemMenu.tscn
 res://Scenes/Other/PauseMenu/SkillsMenu.tscn
 res://Scenes/Guild/UnlockGUIBox.tscn
-res://Scenes/Battle Scenes/CombatGUI.gd
-res://Scenes/Battle Scenes/battle_log_scroll_cont.gd
-res://Scenes/Battle Scenes/Entity.gd
-res://Classes/Erde Cleric/Erde Cleric.gd
+res://Scenes/Battle Scenes/StatusIcon.tscn
 res://Scenes/Guild/PartyBuild.gd
-res://Scenes/Battle Scenes/Combat.gd
+res://Scenes/Start.gd
+res://Scenes/Battle Scenes/Entity.gd

@@ -53,18 +53,6 @@ func _on_debug_pressed() -> void:
 
 func _on_button_pressed() -> void:
 	for n in PlayerData.party:
-		if PlayerData.party[n]["job_id"] == "0":
-			for skill in JobDict.GetSkills("0"):
-				CharacterChanges.LearnSkill(n, skill)
-		elif PlayerData.party[n]["job_id"] == "1":
-			for skill in JobDict.GetSkills("1"):
-				CharacterChanges.LearnSkill(n, skill)
-		elif PlayerData.party[n]["job_id"] == "2":
-			for skill in JobDict.GetSkills("2"):
-				CharacterChanges.LearnSkill(n, skill)
-		elif PlayerData.party[n]["job_id"] == "3":
-			for skill in JobDict.GetSkills("3"):
-				CharacterChanges.LearnSkill(n, skill)
-		elif PlayerData.party[n]["job_id"] == "4":
-			for skill in JobDict.GetSkills("4"):
-				CharacterChanges.LearnSkill(n, skill)
+		var jobid = PlayerData.party[n]["job_id"]
+		for skill in JobDict.GetSkills(jobid):
+			CharacterChanges.LearnSkill(n, skill)

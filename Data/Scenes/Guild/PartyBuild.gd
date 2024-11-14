@@ -74,6 +74,7 @@ func _on_addto_roster_pressed() -> void:
 	for n in %PartyBlockHolder.get_children():
 		if n.charid == current_selection:
 			PlayerData.party.erase(n.charid)
+			PlayerData.party_order.erase(n.charid)
 			ClearBlocks()
 			GetBlockData()
 
