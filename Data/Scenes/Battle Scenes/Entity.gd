@@ -7,9 +7,8 @@ class_name Entity
 @onready var enemies = get_node("/root/Combat/Combatants/Enemies")
 #not currently used, but may be easier in long run?
 
-
-enum STAT {HP, HPmax, MP, MPmax, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, HATE}
-enum damage_type {PIERCE, IMPACT, SLASH, INFERNAL, LEVIN, DEEP, ERDE, VIRTUOS, FEL}
+enum stat {HP, MAXHP, MP, MAXMP, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, HATE}
+enum damage_type {PIERCE, IMPACT, SLASH, INFERNAL, LEVIN, DEEP, ERDE, VIRTUOS, FEL, TRUE}
 enum status_effects {POISON, BURN, BLIND, STUN, SEAL, MARKED, REGEN}
 
 
@@ -50,56 +49,57 @@ var regencount
 
 #Variables relating to stats and resistances
 var statmods =  {
-	"MaxHP": 1,
-	"HP": 1, 
-	"MaxMP": 1,
-	"MP": 1,
-	"STR": 1,
-	"DEX": 1,
-	"DEF": 1,
-	"INT": 1,
-	"FTH": 1,
-	"RES": 1,
-	"SPD": 1,
-	"ACC": 1,
-	"EVD": 1
+	stat.MAXHP: 1,
+	stat.HP: 1, 
+	stat.MAXMP: 1,
+	stat.MP: 1,
+	stat.STR: 1,
+	stat.DEX: 1,
+	stat.DEF: 1,
+	stat.INT: 1,
+	stat.FTH: 1,
+	stat.RES: 1,
+	stat.SPD: 1,
+	stat.ACC: 1,
+	stat.EVD: 1
 	}
 var gear_statmods = {
-	"MaxHP": 0,
-	"HP": 0, 
-	"MaxMP": 0,
-	"MP": 0,
-	"STR": 0,
-	"DEF": 0,
-	"DEX": 0,
-	"INT": 0,
-	"FTH": 0,
-	"RES": 0,
-	"SPD": 0,
-	"ACC": 0,
-	"EVD": 0
+	stat.MAXHP: 0,
+	stat.HP: 0, 
+	stat.MAXMP: 0,
+	stat.MP: 0,
+	stat.STR: 0,
+	stat.DEF: 0,
+	stat.DEX: 0,
+	stat.INT: 0,
+	stat.FTH: 0,
+	stat.RES: 0,
+	stat.SPD: 0,
+	stat.ACC: 0,
+	stat.EVD: 0
 	}
 var statmodtimer = {}
 var statres = {
-	"poison": 40,
-	"stun": 40,
-	"burn": 40,
-	"blind": 40,
-	"seal": 40,
-	"regen": 0,
-	"marked": 40
+	status_effects.POISON: 40,
+	status_effects.STUN: 40,
+	status_effects.BURN: 40,
+	status_effects.BLIND: 40,
+	status_effects.SEAL: 40,
+	status_effects.REGEN: 0,
+	status_effects.MARKED: 40
 	}
+
 var damageres = {
-	"impact": 20,
-	"slash": 20,
-	"pierce": 20,
-	"fel": 20,
-	"inferno": 20,
-	"levin": 20,
-	"deep": 20,
-	"erde": 20,
-	"virtuos": 20,
-	"true": 0
+	damage_type.IMPACT: 20,
+	damage_type.SLASH: 20,
+	damage_type.PIERCE: 20,
+	damage_type.FEL: 20,
+	damage_type.INFERNAL: 20,
+	damage_type.LEVIN: 20,
+	damage_type.DEEP: 20,
+	damage_type.ERDE: 20,
+	damage_type.VIRTUOS: 20,
+	damage_type.TRUE: 0
 	}
 
 signal turn_complete
@@ -111,14 +111,14 @@ func Turn():
 	StatModCountDown()
 	await StatusEffects()
 	CombatGUI.StatusLabels(self)
-
+	print(statres)
 	#this check is to stop the turn if the player dies from DoT damage
 	if dead:
 		print("dead")
 		CloseTurn("")
 	#skip turn if stunned
-	if status.has("stun"):
-		status.erase("stun")
+	if status.has(status_effects.STUN):
+		status.erase(status_effects.STUN)
 		CloseTurn(charname + " misses their turn...")
 
 func GetSkills():
@@ -150,117 +150,117 @@ func StatModCountDown():
 				statmodtimer[n] -= 1
 
 func StatusEffects():
-	if "stun" in status: 
+	if status_effects.STUN in status: 
 		CombatGUI.BattleLog(charname + " is stunned!")
-		statres["stun"] = statres["stun"] * 1.5
-	if "poison" in status:
+		statres[status_effects.STUN] = statres[status_effects.STUN] * 1.5
+	if status_effects.POISON in status:
 		CombatGUI.BattleLog(charname + " takes " + str(poison) + " damage from poison!")
-		await take_damage(poison, "true")
+		await take_damage(poison, damage_type.TRUE)
 		poisoncount -= 1
 		if poisoncount == 0:
-			status.erase("poison")
-			statres["poison"] = statres["poison"] * 1.5
-	if "burn" in status:
+			status.erase(status_effects.POISON)
+			statres[status_effects.POISON] = statres[status_effects.POISON] * 1.5
+	if status_effects.BURN in status:
 		CombatGUI.BattleLog(charname + " takes " + str(burn) + " burn damage!")
-		await take_damage(burn, "true")
+		await take_damage(burn, damage_type.TRUE)
 		burncount -= 1
 		if burncount == 0:
-			status.erase("burn")
-			statres["burn"] = statres["burn"] * 1.5
-	if "blind" in status:
+			status.erase(status_effects.BURN)
+			statres[status_effects.BURN] = statres[status_effects.BURN] * 1.5
+	if status_effects.BLIND in status:
 		CombatGUI.BattleLog(charname + " is blinded!")
-		statmods["ACC"] = 0.3
+		statmods[stat.ACC] = 0.3
 		blindcount -= 1
 		if blindcount == 0:
-			statmods["ACC"] = 1
-			status.erase("blind")
-			statres["blind"] = statres["blind"] * 1.5
-	if "seal" in status:
+			statmods[stat.ACC] = 1
+			status.erase(status_effects.BLIND)
+			statres[status_effects.BLIND] = statres[status_effects.BLIND] * 1.5
+	if status_effects.SEAL in status:
 		CombatGUI.BattleLog(charname + "'s Skills are sealed!")
 		sealedskilllist = skill_list
 		skill_list = {}
 		sealcount -= 1
 		if sealcount == 0:
-			status.erase("seal")
+			status.erase(status_effects.SEAL)
 			skill_list = sealedskilllist
-			statres["seal"] = statres["seal"] * 1.5
-	if "marked" in status:
+			statres[status_effects.SEAL] = statres[status_effects.SEAL] * 1.5
+	if status_effects.MARKED in status:
 		CombatGUI.BattleLog(charname + " has drawn the enemies ire!")
 		markedcount -= 1
 		if markedcount == 0:
-			status.erase("marked")
-	if "regen" in status:
+			status.erase(status_effects.MARKED)
+	if status_effects.REGEN in status:
 		await get_healed(regen)
 		CombatGUI.BattleLog("Regen restores " + charname + "'s health!")
 		regencount -= 1
 		if regencount == 0:
-			status.erase("regen")
+			status.erase(status_effects.REGEN)
 
 func Stat(stat):
 	return stats[stat] * statmods[stat] + gear_statmods[stat]
 
 func Attack(target):
 	CombatGUI.emit_signal("menuhide")
-	var damage_dealt = Damage(target, Stat("STR"), weapontype)
+	var damage_dealt = Damage(target, Stat(stat.STR), weapontype)
 	
 	CloseTurn(charname + " has attacked " + target.charname + " for " + str(damage_dealt) + " damage!")
 
 func Defend():
-	StatMod("DEF", 1.5, 0)
+	StatMod(stat.DEF, 1.5, 0)
 	CloseTurn(str((charname) + " defends herself!"))
 
 func take_damage (damage, type):
 	var adjusteddamage
-	if stats["HP"] == 0: return #to prevent multi-attacks from triggering die() multiple times
+	if stats[stat.HP] == 0: return #to prevent multi-attacks from triggering die() multiple times
 	
-	if type == "impact" or "slash" or "pierce":
-		adjusteddamage = max(1, damage * (100 / (100+(float(Stat("DEF"))))))
+	if type == damage_type.IMPACT or damage_type.SLASH or damage_type.PIERCE:
+		adjusteddamage = max(1, damage * (100 / (100+(float(Stat(stat.DEF))))))
 		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
-	if type == "fel" or "virtuos" or "inferno" or "levin" or "erde" or "deep":
-		adjusteddamage = max(1, damage * (100 / (100+(float(Stat("RES"))))))
+	if type == damage_type.FEL or damage_type.VIRTUOS or damage_type.INFERNAL or damage_type.LEVIN or damage_type.ERDE or damage_type.DEEP:
+		adjusteddamage = max(1, damage * (100 / (100+(float(Stat(stat.RES))))))
 		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 
-	if type == "true":
+	if type == damage_type.TRUE:
 		adjusteddamage = damage
-	stats["HP"] -= int(adjusteddamage)
-	stats["HP"] = max(0, stats["HP"])
+	stats[stat.HP] -= int(adjusteddamage)
+	stats[stat.HP] = max(0, stats[stat.HP])
 	
 	CombatGUI.TakeDamageGUI(self)
-	CombatGUI.UpdateStats(self, stats["HP"], stats["MP"])
+	CombatGUI.UpdateStats(self, stats[stat.HP], stats[stat.MP])
 	
-	if stats["HP"] <= 0: 
+	if stats[stat.HP] <= 0: 
 		dies()
 	return int(adjusteddamage)
 
 func get_healed (heal_amount:int):
-	stats["HP"] += heal_amount
-	stats["HP"] = min(stats["HPmax"], stats["HP"])
+	stats[stat.HP] += heal_amount
+	stats[stat.HP] = min(stats[stat.MAXHP], stats[stat.HP])
 	
-	CombatGUI.UpdateStats(self, stats["HP"], stats["MP"])
+	CombatGUI.UpdateStats(self, stats[stat.HP], stats[stat.MP])
 
 #bonus to inflict is a percent chance advantage at inflicting the ailment.
 func AttemptStatusAilment(type, amount, time, bonus_to_inflict):
 	var rng = Globals.RNG()
 	if rng + bonus_to_inflict > statres[type]: 
 		status.append(type)
-		if type == "poison":
+		if type == status_effects.POISON:
 			poison = amount
 			poisoncount = time
 			CombatGUI.BattleLog(charname + " has been inflicted with poison!")
-		elif type == "burn":
+		elif type == status_effects.BURN:
 			burn = amount
 			burncount = time
 			CombatGUI.BattleLog(charname + " has been blinded!")
-		elif type == "regen":
+		elif type == status_effects.REGEN:
 			regen = amount
 			regencount = time
-		elif type == "marked":
+		elif type == status_effects.MARKED:
 			markedamount = amount
 			markedcount = time
 			CombatGUI.BattleLog(charname + " has been marked!")
-		elif type == "blind":
+		elif type == status_effects.BLIND:
 			CombatGUI.BattleLog(charname + " has been blinded!")
-		elif type == "seal":
+		elif type == status_effects.SEAL:
 			CombatGUI.BattleLog(charname + "'s Skills are sealed!")
 
 		CombatGUI.StatusLabels(self)
@@ -287,15 +287,15 @@ func StatMod(stat, amount, timer):
 	statmodtimer[stat] = timer
 
 func MPCheck(MPcost):
-	if stats["MP"] < MPcost: 
+	if stats[stat.MP] < MPcost: 
 		CombatGUI.BattleLog("Not enough MP!")
 		return "fail"
 
 func MPCost(MPcost):
-	stats["MP"] -= MPcost
-	stats["MP"] = max(0, stats["MP"])
-	stats["MP"] = min(stats["MPmax"], stats["MP"])
-	CombatGUI.UpdateStats(self, stats["HP"], stats["MP"])
+	stats[stat.MP] -= MPcost
+	stats[stat.MP] = max(0, stats[stat.MP])
+	stats[stat.MP] = min(stats[stat.MAXMP], stats[stat.MP])
+	CombatGUI.UpdateStats(self, stats[stat.HP], stats[stat.MP])
 
 func CloseTurn(string=""):
 	CombatGUI.ClearSecondMenu()

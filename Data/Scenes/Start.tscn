@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://7e6cnxckdu1r"]
+[gd_scene load_steps=3 format=3 uid="uid://7e6cnxckdu1r"]
 
 [ext_resource type="Script" path="res://Scenes/Start.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="2_mlm8r"]
-[ext_resource type="Script" path="res://Scenes/Battle Scenes/EnemyStatList.gd" id="3_epfif"]
 
 [node name="Start" type="MarginContainer"]
 anchors_preset = 8
@@ -94,9 +93,6 @@ visible = false
 layout_mode = 2
 text = "DEBUG"
 
-[node name="EnemyStatList" type="Node" parent="."]
-script = ExtResource("3_epfif")
-
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/Dungeon" to="." method="_on_OptionsButton_pressed"]
@@ -104,6 +100,6 @@ script = ExtResource("3_epfif")
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/debug" to="." method="_on_debug_pressed"]

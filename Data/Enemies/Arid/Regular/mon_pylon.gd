@@ -13,45 +13,45 @@ func _ready():
 	enemy = true
 	row = "front"
 	stats = {
-		"HPMax" = 100,
-		"HP" = 100,
-		"MPMax" = 5,
-		"MP" = 5,
-		"STR" = 15,
-		"DEF" = 60,
-		"DEX" = 5,
-		"FTH" = 5,
-		"INT" = 5,
-		"SPD" = 8,
-		"RES" = 30,
-		"EVD" = 10
+		stat.MAXHP: 100,
+		stat.HP: 100,
+		stat.MAXMP: 5,
+		stat.MP: 5,
+		stat.STR: 15,
+		stat.DEF: 60,
+		stat.DEX: 5,
+		stat.FTH: 5,
+		stat.INT: 5,
+		stat.SPD: 8,
+		stat.RES: 30,
+		stat.EVD: 10
 		}
 	statres = {
-		"poison": 10,
-		"stun": 50,
-		"burn": 20,
-		"blind": 80,
-		"seal": 10
+		status_effects.POISON: 10,
+		status_effects.STUN: 50,
+		status_effects.BURN: 20,
+		status_effects.BLIND: 80,
+		status_effects.SEAL: 10
 		}
 	damageres = {
-		"impact": 20,
-		"slash": 5,
-		"pierce": 20,
-		"fel": 10,
-		"inferno": 10,
-		"levin": -20,
-		"deep": 10,
-		"erde": 50,
-		"virtuos": -5,
-		"true": 0
+		damage_type.IMPACT: 20,
+		damage_type.SLASH: 5,
+		damage_type.PIERCE: 20,
+		damage_type.FEL: 10,
+		damage_type.INFERNAL: 10,
+		damage_type.LEVIN: -20,
+		damage_type.DEEP: 10,
+		damage_type.ERDE: 50,
+		damage_type.VIRTUOS: -5,
+		damage_type.TRUE: 0
 		}
 
 func Turn():
 	super.Turn()
 	if dead: 
 		CloseTurn("")
-	elif status.has("stun"):
-		status.erase("stun")
+	elif status.has(status_effects.STUN):
+		status.erase(status_effects.STUN)
 		CloseTurn(charname + " misses their turn...")
 	else:
 		target = DecideTarget()
@@ -64,15 +64,15 @@ func AttackList(target, rng):
 	elif rng <= 100: mDefend()
 
 func mAttack(target):
-	var damage_dealt = Damage(target, 1.1 * Stat("STR"), "slash")
+	var damage_dealt = Damage(target, 1.1 * Stat(stat.STR), damage_type.SLASH)
 	CloseTurn("The " + charname + " slashes at " + target.charname + " for " + str(damage_dealt) + " damage!")
 
 func Bludgeon(target):
-	var damage_dealt = Damage(target, 1.7 * Stat("STR"), "impact")
+	var damage_dealt = Damage(target, 1.7 * Stat(stat.STR), damage_type.IMPACT)
 	CloseTurn("The " + charname + " emits a bloodcurdling shriek and bludgeons " + target.charname + " fiercly for " + str(damage_dealt) + " damage!!!")
-	target.AttemptStatusAilment("stun", 0, 0, 0)
+	target.AttemptStatusAilment(status_effects.STUN, 0, 0, 0)
 	
 
 func mDefend():
-	StatMod("DEF", 1.5, 0)
+	StatMod(stat.DEF, 1.5, 0)
 	CloseTurn("The " + str(charname) + " folds it's body up defensively...")

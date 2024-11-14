@@ -3,38 +3,38 @@ extends Entity
 
 #STATS
 var starting_stats = {
-		"HP" = 100,
-		"MP" = 80,
-		"HPmax" = 100,
-		"MPmax" = 80,
-		"STR" = 70,
-		"DEX" = 50,
-		"DEF" = 20,
-		"INT" = 20,
-		"FTH" = 30,
-		"RES" = 50,
-		"ACC" = 40,
-		"EVD" = 40,
-		"SPD" = 70
+		stat.HP: 100,
+		stat.MP: 80,
+		stat.MAXHP: 100,
+		stat.MAXMP: 80,
+		stat.STR: 70,
+		stat.DEX: 50,
+		stat.DEF: 20,
+		stat.INT: 20,
+		stat.FTH: 30,
+		stat.RES: 50,
+		stat.ACC: 40,
+		stat.EVD: 40,
+		stat.SPD: 70
 		}
 var stat_scaling = {
-		"HPmax" = "B",
-		"MPmax" = "C",
-		"STR" = "A",
-		"DEX" = "B",
-		"DEF" = "B",
-		"INT" = "D",
-		"FTH" = "D",
-		"RES" = "C",
-		"ACC" = "B",
-		"EVD" = "B",
-		"SPD" = "A"
+		stat.MAXHP: "B",
+		stat.MAXMP: "C",
+		stat.STR: "A",
+		stat.DEX: "B",
+		stat.DEF: "B",
+		stat.INT: "D",
+		stat.FTH: "D",
+		stat.RES: "C",
+		stat.ACC: "B",
+		stat.EVD: "B",
+		stat.SPD: "A"
 	}
 var job_description = "In a flury of crushing blows, the Bastard Fist Vocation unleashes hell with it's massive gauntlets. \n\nSpecializing in combination attacks, Bastard Fists become stronger with repeated attacks. They also boast impressive self buffing capabilities. \n\nTheir buffs often come at a cost however, granting incredible damage at the cost of Defense or Health."
 
 func _ready():
 	HATE = 50
-	weapontype = "impact"
+	weapontype = damage_type.IMPACT
 	
 	skill_list = {
 		"skillBFIST01" = {"skillname" = "Crimson Rush",
@@ -56,11 +56,11 @@ func CrimsonRush():
 	if MPCheck(15) == "fail": return
 	else: CombatGUI.TargetList("CrimsonRush2")
 func CrimsonRush2(target):
-	var damage = (stats["STR"] + stats["SPD"])/4
+	var damage = (stats[stat.STR] + stats[stat.SPD])/4
 	combo = "CrimsonRush"
 	MPCost(15)
 	for number in range(3):
-		var adjusteddamage = target.take_damage(damage, "impact")
+		var adjusteddamage = target.take_damage(damage, damage_type.IMPACT)
 		CombatGUI.BattleLog(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 		await get_tree().create_timer(0.5).timeout
 	CloseTurn("")
@@ -70,7 +70,7 @@ func BastardSpirit():
 	else: CombatGUI.QueueAction(self, "BastardSpirit2")
 func BastardSpirit2():
 	MPCost(15)
-	StatMod("STR", 1.25, 2)
+	StatMod(stat.STR, 1.25, 2)
 	CloseTurn(str(charname) + " draws upon her Bastard Spirit. STR Increased.")
 
 func LunaticSpirit():
@@ -78,9 +78,9 @@ func LunaticSpirit():
 	else: CombatGUI.QueueAction(self, "LunaticSpirit2")
 func LunaticSpirit2():
 	MPCost(20)
-	StatMod("STR", 1.5, 2)
-	StatMod("SPD", 1.5, 2)
-	StatMod("DEF", 0.6, 2)
+	StatMod(stat.STR, 1.5, 2)
+	StatMod(stat.SPD, 1.5, 2)
+	StatMod(stat.DEF, 0.6, 2)
 	CloseTurn(str(charname) + " draws upon her Lunatic Spirit. STR and SPD Increased! DEF Decreased.")
 
 func ScarletSun():
@@ -90,8 +90,8 @@ func ScarletSun():
 	if MPCheck(20) == "fail": return
 	else: CombatGUI.TargetList("ScarletSun2")
 func ScarletSun2(target):
-	var damage = stats["STR"] + stats["SPD"]* 1.2
-	var adjusteddamage = target.take_damage(damage, "impact")
+	var damage = stats[stat.STR] + stats[stat.SPD]* 1.2
+	var adjusteddamage = target.take_damage(damage, damage_type.IMPACT)
 	MPCost(20)
 	combo = "ScarletSun"
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
@@ -105,11 +105,11 @@ func VermillionDance():
 func VermillionDance2():
 	MPCost(30)
 	var enemies = get_enemy_targets()
-	var damage = stats["STR"] + stats["SPD"] * 1.3
+	var damage = stats[stat.STR] + stats[stat.SPD] * 1.3
 	CombatGUI.BattleLog(str(charname) + " unleashes the Vermillion Dance!")
 	for target in enemies:
-		if target.stats["HP"] != 0:
-			var adjusteddamage = target.take_damage(damage, "impact")
+		if target.stats[stat.HP] != 0:
+			var adjusteddamage = target.take_damage(damage, damage_type.IMPACT)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	combo = ""
@@ -119,6 +119,6 @@ func ShearGrit():
 	if MPCheck(30) == "fail": return
 	else: CombatGUI.QueueAction(self, "ShearGrit2")
 func ShearGrit2():
-	get_healed(stats["HPmax"] * 0.5)
+	get_healed(stats[stat.MAXHP] * 0.5)
 	MPCost(30)
 	CloseTurn(str(charname) + " grits her teeth through the pain. HP recovered!")

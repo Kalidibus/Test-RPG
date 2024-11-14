@@ -3,38 +3,38 @@ extends Entity
 
 #STATS
 var starting_stats = {
-		"HP" = 60,
-		"MP" = 60,
-		"HPmax" = 60,
-		"MPmax" = 60,
-		"STR" = 50,
-		"DEX" = 80,
-		"DEF" = 20,
-		"INT" = 30,
-		"FTH" = 30,
-		"RES" = 50,
-		"ACC" = 80,
-		"EVD" = 40,
-		"SPD" = 100
+		stat.HP: 60,
+		stat.MP: 60,
+		stat.MAXHP: 60,
+		stat.MAXMP: 60,
+		stat.STR: 50,
+		stat.DEX: 80,
+		stat.DEF: 20,
+		stat.INT: 30,
+		stat.FTH: 30,
+		stat.RES: 50,
+		stat.ACC: 80,
+		stat.EVD: 40,
+		stat.SPD: 100
 	}
 var stat_scaling = {
-		"HPmax" = "B",
-		"MPmax" = "B",
-		"STR" = "C",
-		"DEX" = "S",
-		"DEF" = "C",
-		"INT" = "C",
-		"FTH" = "C",
-		"RES" = "B",
-		"ACC" = "S",
-		"EVD" = "A",
-		"SPD" = "A"
+		stat.MAXHP: "B",
+		stat.MAXMP: "B",
+		stat.STR: "C",
+		stat.DEX: "S",
+		stat.DEF: "C",
+		stat.INT: "C",
+		stat.FTH: "C",
+		stat.RES: "B",
+		stat.ACC: "S",
+		stat.EVD: "A",
+		stat.SPD: "A"
 	}
 var job_description = "Striking from the shadows, the Shade Hunter's tainted arrows weaken enemies and leave them vulnerable to ally attacks. \n\nThe Shade Hunter vocation is an excellent addition to parties that need debuffing capabilities to take on stronger foes. In addition, various attacks target the enemy back row effectively, dealing significant damage in groups. A solid unit capable of fitting into most party compositions. \n\nThe Shade Hunter is less effective against units resistant to Burn or Poison."
 
 func _ready():
 	HATE = 50
-	weapontype = "pierce"
+	weapontype = damage_type.PIERCE
 	
 	skill_list = {
 		"skillSHUNTER01" = {"skillname" = "Poison Arrow",
@@ -54,33 +54,33 @@ func PoisonArrow():
 	if MPCheck(10) == "fail": return
 	CombatGUI.TargetList("PoisonArrow2")
 func PoisonArrow2(target):
-	var damage = (stats["SPD"] * statmods["SPD"])*0.5
-	var adjusteddamage = target.take_damage(damage, "pierce")
+	var damage = (stats[stat.SPD] * statmods[stat.SPD])*0.5
+	var adjusteddamage = target.take_damage(damage, damage_type.PIERCE)
 	MPCost(10)
 	CloseTurn(str(charname) + " fires a poison drenched arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment("poison", 40, 3, 20)
+	target.AttemptStatusAilment(status_effects.POISON, 40, 3, 20)
 
 func BurningArrow():
 	if MPCheck(10) == "fail": return
 	CombatGUI.TargetList("BurningArrow2")
 func BurningArrow2(target):
-	var damage = (stats["SPD"] * statmods["SPD"])*0.5
-	var adjusteddamage = target.take_damage(damage, "pierce")
+	var damage = (stats[stat.SPD] * statmods[stat.SPD])*0.5
+	var adjusteddamage = target.take_damage(damage, damage_type.PIERCE)
 	MPCost(10)
 	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment("burn", 40, 3, 20)
+	target.AttemptStatusAilment(status_effects.BURN, 40, 3, 20)
 	
 func BladedVolley():
 	if MPCheck(30) == "fail": return
 	else: CombatGUI.QueueAction(self, "BladedVolley2")
 func BladedVolley2():
-	var damage = (stats["SPD"] * statmods["SPD"])*0.6
+	var damage = (stats[stat.SPD] * statmods[stat.SPD])*0.6
 	var enemies = get_enemy_targets()
 	MPCost(30)
 	CombatGUI.BattleLog(str(charname) + " fires a Bladed Volley!")
 	for target in enemies:
-		if target.row == "Back" and target.stats["HP"] != 0:
-			var adjusteddamage = target.take_damage(damage, "slash")
+		if target.row == "Back" and target.stats[stat.HP] != 0:
+			var adjusteddamage = target.take_damage(damage, damage_type.SLASH)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")
@@ -89,18 +89,18 @@ func PlateCrusher():
 	if MPCheck(20) == "fail": return
 	CombatGUI.TargetList("PlateCrusher2")
 func PlateCrusher2(target):
-	var damage = (stats["SPD"] * statmods["SPD"])
-	var adjusteddamage = target.take_damage(damage, "impact")
+	var damage = (stats[stat.SPD] * statmods[stat.SPD])
+	var adjusteddamage = target.take_damage(damage, damage_type.IMPACT)
 	MPCost(20)
 	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 	var rng = Globals.RNG()
-	if rng >= 50: target.StatMod("DEF", 0.6, 2)
+	if rng >= 50: target.StatMod(stat.DEF, 0.6, 2)
 
 func IsolatePrey():
 	if MPCheck(20) == "fail": return
 	CombatGUI.TargetList("IsolatePrey2")
 func IsolatePrey2(target):
-	var damage = max((stats["SPD"] * statmods["SPD"])*0.5, (stats["SPD"] * statmods["SPD"]) * target.status.size())
-	var adjusteddamage = target.take_damage(damage, "pierce")
+	var damage = max((stats[stat.SPD] * statmods[stat.SPD])*0.5, (stats[stat.SPD] * statmods[stat.SPD]) * target.status.size())
+	var adjusteddamage = target.take_damage(damage, damage_type.PIERCE)
 	MPCost(20)
 	CloseTurn(str(charname) + " strikes at the vitals of the weakened " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")

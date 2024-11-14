@@ -4,7 +4,7 @@ var dict = {
 	"anec01" = {
 		"name" = "Corroded Necklace",
 		"type" = "neck",
-		"stats" = {"INT" = 2, "DEX" = 2},
+		"stats" = {Entity.stat.INT: 2, Entity.stat.DEX: 2},
 		"desc" = "Was once a formidable necklace. Broken down and decayed by the Brine, now only fragments remain.",
 		"value" = 5
 	}

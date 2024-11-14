@@ -37,7 +37,9 @@ func CreateLabels(party, enemy_array):
 		#Tie the label node and party member together for UI updates. 
 		guy["combatlabel"] = pbox
 		#Update Stats on the Label
-		pbox.SetStats(guy["name"], stat["HP"], stat["MP"], stat["HPmax"], stat["MPmax"])
+		print(guy)
+		print(stat)
+		pbox.SetStats(guy["name"], stat[Entity.stat.HP], stat[Entity.stat.MP], stat[Entity.stat.MAXHP], stat[Entity.stat.MAXMP])
 		#Set the Label Image
 		pbox.get_node("%BG").texture = load(JobDict.JobLabel(party[n]["job_id"]))
 		%PlayerGUI.add_child(pbox)
@@ -50,10 +52,10 @@ func CreateLabels(party, enemy_array):
 		for n in enemy:
 			var ebox = enemylabels.instantiate()
 			var name = EnemyDict.GetName(n)
-			var hp = EnemyDict.GetStat(n, "HP")
-			var mp = EnemyDict.GetStat(n, "MP")
-			var hpmax = EnemyDict.GetStat(n, "HPMax")
-			var mpmax = EnemyDict.GetStat(n, "MPMax")
+			var hp = EnemyDict.GetStat(n, Entity.stat.HP)
+			var mp = EnemyDict.GetStat(n, Entity.stat.MP)
+			var hpmax = EnemyDict.GetStat(n, Entity.stat.MAXHP)
+			var mpmax = EnemyDict.GetStat(n, Entity.stat.MAXMP)
 			var image = EnemyDict.GetImage(n)
 			var row = EnemyDict.GetRow(n)
 
@@ -211,7 +213,7 @@ func TakeDamageGUI(target):
 			target["combatlabel"].set_modulate(normal_colour)
 			await get_tree().create_timer(0.1).timeout
 		count -= 1
-	if target.stats["HP"] == 0: DeadLabel(target)
+	if target.stats[Entity.stat.HP] == 0: DeadLabel(target)
 
 func StatusLabels(target):
 	var count = 0
@@ -226,20 +228,14 @@ func StatusLabels(target):
 	delete_children(statuscontainer)
 	
 	for n in target.status:
-		if n == "burn": 
-			statuscount = target.burncount
-		elif n == "poison": 
-			statuscount = target.poisoncount
-		elif n == "marked": 
-			statuscount = target.markedcount
-		elif n == "seal": 
-			statuscount = target.sealcount
-		elif n == "blind": 
-			statuscount = target.blindcount
-		elif n == "regen": 
-			statuscount = target.regencount
-		else: 
-			statuscount = 1
+		match n:
+			Entity.status_effects.BURN: statuscount = target.burncount
+			Entity.status_effects.POISON: statuscount = target.poisoncount
+			Entity.status_effects.MARKED: statuscount = target.markedcount
+			Entity.status_effects.SEAL: statuscount = target.sealcount
+			Entity.status_effects.BLIND: statuscount = target.blindcount
+			Entity.status_effects.REGEN: statuscount = target.regencount
+			_: statuscount = 1
 		
 		statuscontainer.add_child(statusicon.instantiate())
 		statuscontainer.get_child(count).SetStatus(n, statuscount)
@@ -252,7 +248,7 @@ func QueueAction(active_character, action_string, target = null):
 	var action = {"name" : active_character, 
 		"action": function,
 		"target": target,
-		"speed" : active_character.stats["SPD"],
+		"speed" : active_character.stats[Entity.stat.SPD],
 		"action_string" : action_string
 		}
 	%ActionQueue.queuedactions.append(action)

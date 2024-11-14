@@ -12,13 +12,13 @@ var blind = preload("res://Assets/UI/Status/blind.png")
 
 func SetStatus(status, stattimer):
 	match status: 
-		"regen": $Sprite2D.set_texture(regen)
-		"poison": $Sprite2D.set_texture(poison)
-		"burn": $Sprite2D.set_texture(burn)
-		"stun": $Sprite2D.set_texture(stun)
-		"blind": $Sprite2D.set_texture(blind)
-		"seal": $Sprite2D.set_texture(seal)
-		"marked": $Sprite2D.set_texture(marked)
+		Entity.status_effects.REGEN: $Sprite2D.set_texture(regen)
+		Entity.status_effects.POISON: $Sprite2D.set_texture(poison)
+		Entity.status_effects.BURN: $Sprite2D.set_texture(burn)
+		Entity.status_effects.STUN: $Sprite2D.set_texture(stun)
+		Entity.status_effects.BLIND: $Sprite2D.set_texture(blind)
+		Entity.status_effects.SEAL: $Sprite2D.set_texture(seal)
+		Entity.status_effects.MARKED: $Sprite2D.set_texture(marked)
 	
 	$Sprite2D/Count.text = str(stattimer)
 	scale = Vector2(0.2, 0.2)

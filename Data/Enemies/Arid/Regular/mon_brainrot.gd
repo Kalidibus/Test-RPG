@@ -13,45 +13,45 @@ func _ready():
 	enemy = true
 	row = "back"
 	stats = {
-		"HPMax" = 50,
-		HP = 50,
-		"MPMax" = 5,
-		"MP" = 5,
-		"STR" = 15,
-		"DEF" = 30,
-		"DEX" = 25,
-		"FTH" = 5,
-		"INT" = 5,
-		"SPD" = 8,
-		"RES" = 30,
-		"EVD" = 10
+		stat.MAXHP: 50,
+		stat.HP: 50,
+		stat.MAXMP: 5,
+		stat.MP: 5,
+		stat.STR: 15,
+		stat.DEF: 30,
+		stat.DEX: 25,
+		stat.FTH: 5,
+		stat.INT: 5,
+		stat.SPD: 8,
+		stat.RES: 30,
+		stat.EVD: 10
 		}
 	statres = {
-		"poison": 90,
-		"stun": 20,
-		"burn": 5,
-		"blind": 20,
-		"seal": 10
+		status_effects.POISON: 90,
+		status_effects.STUN: 20,
+		status_effects.BURN: 5,
+		status_effects.BLIND: 20,
+		status_effects.SEAL: 10
 		}
 	damageres = {
-		"impact": 5,
-		"slash": 20,
-		"pierce": 20,
-		"fel": 20,
-		"inferno": -25,
-		"levin": 20,
-		"deep": 20,
-		"erde": 20,
-		"virtuos": 20,
-		"true": 0
+		damage_type.IMPACT: 5,
+		damage_type.SLASH: 20,
+		damage_type.PIERCE: 20,
+		damage_type.FEL: 20,
+		damage_type.INFERNAL: -25,
+		damage_type.LEVIN: 20,
+		damage_type.DEEP: 20,
+		damage_type.ERDE: 20,
+		damage_type.VIRTUOS: 20,
+		damage_type.TRUE: 0
 		}
 
 func Turn():
 	super.Turn()
 	if dead: 
 		CloseTurn("")
-	elif status.has("stun"):
-		status.erase("stun")
+	elif status.has(status_effects.STUN):
+		status.erase(status_effects.STUN)
 		CloseTurn("The " + charname + " misses their turn...")
 	else:
 		target = DecideTarget()
@@ -63,6 +63,6 @@ func AttackList(target, rng):
 		mAttack(target)
 
 func mAttack(target):
-	var dealt_damage = Damage(target, Stat("DEX"), "pierce") 
+	var dealt_damage = Damage(target, Stat(stat.DEX), damage_type.PIERCE) 
 	CloseTurn("The " + str(charname) + " pierces " + str(target.charname) + " with venomous needles for " + str(dealt_damage) + " damage!")
-	target.AttemptStatusAilment("poison", 20, 3, 0)
+	target.AttemptStatusAilment(status_effects.POISON, 20, 3, 0)

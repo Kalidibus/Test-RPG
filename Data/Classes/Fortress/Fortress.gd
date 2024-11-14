@@ -6,38 +6,38 @@ var ire = 0
 
 #STATS
 var starting_stats = {
-		"HP" = 125,
-		"HPmax" = 125,
-		"MP" = 50,
-		"MPmax" = 50,
-		"STR" = 50,
-		"DEX" = 20,
-		"DEF" = 75,
-		"INT" = 25,
-		"FTH" = 50,
-		"RES" = 50,
-		"EVD" = 20,
-		"ACC" = 20,
-		"SPD" = 25
+		stat.HP: 125,
+		stat.MAXHP: 125,
+		stat.MP: 50,
+		stat.MAXMP: 50,
+		stat.STR: 50,
+		stat.DEX: 20,
+		stat.DEF: 75,
+		stat.INT: 25,
+		stat.FTH: 50,
+		stat.RES: 50,
+		stat.EVD: 20,
+		stat.ACC: 20,
+		stat.SPD: 25
 		}
 var stat_scaling = {
-		"HPmax" = "A",
-		"MPmax" = "C",
-		"STR" = "B",
-		"DEX" = "D",
-		"DEF" = "S",
-		"INT" = "C",
-		"FTH" = "C",
-		"RES" = "B",
-		"EVD" = "D",
-		"ACC" = "C",
-		"SPD" = "D"
+		stat.MAXHP: "A",
+		stat.MAXMP: "C",
+		stat.STR: "B",
+		stat.DEX: "D",
+		stat.DEF: "S",
+		stat.INT: "C",
+		stat.FTH: "C",
+		stat.RES: "B",
+		stat.EVD: "D",
+		stat.ACC: "C",
+		stat.SPD: "D"
 	}
 var job_description = "An iron wall to keep Lamentations at bay. \n\nThe Fortress vocation excels at defending the party from physical attacks. Taking hits from enemies repeatedly will also accumulate a resource called [b]Ire[/b] which can be used to trigger powerful counter-attacks. \n\nWhile the Fortresses' shields can protect against magic attacks to some degree, they are not as well suited for foes that deal elemental damage."
 
 func _ready():
 	HATE = 100
-	weapontype = "impact"
+	weapontype = damage_type.IMPACT
 	
 	skill_list = {
 		"skillFORTRESS01" = {"skillname" = "Taunt",
@@ -85,11 +85,11 @@ func Taunt():
 	if MPCheck(10) == "fail": return
 	else: CombatGUI.QueueAction(self, "Taunt2")
 func Taunt2():
-	var previousvalue = statres["marked"]
-	statres["marked"] = 0
-	if not status.has("marked"):
-		AttemptStatusAilment("marked", 80, 2, 0)
-	statres["marked"] = previousvalue
+	var previousvalue = statres[status_effects.MARKED]
+	statres[status_effects.MARKED] = 0
+	if not status.has(status_effects.MARKED):
+		AttemptStatusAilment(status_effects.MARKED, 80, 2, 0)
+	statres[status_effects.MARKED] = previousvalue
 	HATE += 50
 	MPCost(10)
 	CloseTurn(str(charname) + " draws enemy attention!")
@@ -98,8 +98,8 @@ func Vanguard():
 	if MPCheck(40) == "fail": return
 	else: CombatGUI.TargetList("Vanguard2")
 func Vanguard2(target):
-	var damage = stats["DEF"] * statmods["DEF"]
-	var adjusteddamage = target.take_damage(damage, "impact")
+	var damage = stats[stat.DEF] * statmods[stat.DEF]
+	var adjusteddamage = target.take_damage(damage, damage_type.IMPACT)
 	MPCost(40)
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
@@ -107,7 +107,7 @@ func Bastion():
 	if MPCheck(40) == "fail": return
 	else: CombatGUI.AllyTargetList("Bastion2")
 func Bastion2(target):
-	var heal = 2 * stats["DEF"]
+	var heal = 2 * stats[stat.DEF]
 	target.get_healed(heal)
 	MPCost(40)
 	CloseTurn(str(charname) + " provides shelter behind her shields to " + str(target.charname) + ", healing her for " + str(heal) + " HP!")
@@ -117,7 +117,7 @@ func Embolden():
 	else: CombatGUI.QueueAction(self, "Embolden2")
 func Embolden2():
 	MPCost(20)
-	StatMod("DEF", 1.25, 2)
+	StatMod(stat.DEF, 1.25, 2)
 	CloseTurn(str(charname) + " takes on a defensive stances! DEF Increased.")
 
 func VanguardCrush():
@@ -126,7 +126,7 @@ func VanguardCrush():
 		return
 	else: CombatGUI.TargetList("VanguardCrush2")
 func VanguardCrush2(target):
-	var damage_dealt = Damage(target, Stat("DEF") * 1.5, "impact")
+	var damage_dealt = Damage(target, Stat(stat.DEF) * 1.5, damage_type.IMPACT)
 	MPCost(40)
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(damage_dealt) + " damage!")
 
@@ -136,11 +136,11 @@ func SkullSplitter():
 		return
 	else: CombatGUI.TargetList("SkullSplitter2")
 func SkullSplitter2(target):
-	var damage = stats["DEF"] * statmods["DEF"] + stats["STR"] * statmods["STR"]
-	var adjusteddamage = target.take_damage(damage, "impact")
+	var damage = stats[stat.DEF] * statmods[stat.DEF] + stats[stat.STR] * statmods[stat.STR]
+	var adjusteddamage = target.take_damage(damage, damage_type.IMPACT)
 	ire -= 1
 	CloseTurn(str(charname) + " uses Ire to perform a crushing overhead blow! to " + str(target.charname) + ", dealing" + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment("stun", 0, 0, 20)
+	target.AttemptStatusAilment(status_effects.STUN, 0, 0, 20)
 
 func ShrapnelBurst():
 	if ire < 2:
@@ -153,8 +153,8 @@ func ShrapnelBurst2():
 	CombatGUI.BattleLog(str(charname) + " unleashes a burst of Shrapnel to the enemy front line!")
 	
 	for target in enemies:
-		if target.stats["HP"] != 0 and target.row == "front":
-			var damage_dealt = Damage(target, Stat("DEF") * 1.2, "impact")
+		if target.stats[stat.HP] != 0 and target.row == "front":
+			var damage_dealt = Damage(target, Stat(stat.DEF) * 1.2, damage_type.IMPACT)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(damage_dealt) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")
@@ -166,9 +166,9 @@ func ShieldTremor2():
 	var enemies = get_enemy_targets()
 	CombatGUI.BattleLog(str(charname) + " smashes her shields into the ground, destabilizing enemy lines!")
 	for target in enemies:
-		if target.stats["HP"] != 0:
-			var damage_dealt = Damage(target, Stat("DEF")/0.5, "impact")
-			target.StatMod("STR", 30, 1)
+		if target.stats[stat.HP] != 0:
+			var damage_dealt = Damage(target, Stat(stat.DEF)/0.5, damage_type.IMPACT)
+			target.StatMod(stat.STR, 30, 1)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(damage_dealt) + " damage! STR Decreased!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")
@@ -179,7 +179,7 @@ func FullCover():
 func FullCover2():
 	var party = get_party_targets()
 	for n in party:
-		if n.row =="front": StatMod("DEF", 1.6, 1)
+		if n.row =="front": StatMod(stat.DEF, 1.6, 1)
 	CloseTurn(str(charname) + " guards the front row!")
 
 func Debilatio():
@@ -193,8 +193,8 @@ func Debilatio2():
 	CombatGUI.BattleLog(str(charname) + " unleashes Debilatio!")
 	
 	for target in enemies:
-		if target.stats["HP"] != 0:
-			var damage_dealt = Damage(target, Stat("DEF") * 1.8, "impact")
+		if target.stats[stat.HP] != 0:
+			var damage_dealt = Damage(target, Stat(stat.DEF) * 1.8, damage_type.IMPACT)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(damage_dealt) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")
@@ -203,8 +203,8 @@ func PerfectShell():
 	if MPCheck(50) == "fail": return
 	else: CombatGUI.QueueAction(self, "PerfectShell2")
 func PerfectShell2():
-		StatMod("DEF", 999, 1)
-		StatMod("RES", 999, 1)
+		StatMod(stat.DEF, 999, 1)
+		StatMod(stat.RES, 999, 1)
 		CombatGUI.BattleLog(str(charname) + " uses Perfect Shell!")
 		super.Defend()
 		CloseTurn("")

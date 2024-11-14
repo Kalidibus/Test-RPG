@@ -57,13 +57,13 @@ func PartyTurnOrder(): #next to fix
 		var active_char_label = %PlayerGUI.get_child(count)
 		var charid = active_char_label.charid
 		active_character = PlayerData.party[charid]["combatnode"]
-		print(str(active_character) + "   " + str(active_character.stats["HP"]))
+		print(str(active_character) + "   " + str(active_character.stats[Entity.stat.HP]))
 		if CheckWin() == true: # for death from DoTs during player turn
 			combatover = true #used to stop combat when one side dead
 			break
-		elif active_character.stats["HP"] == 0: 
+		elif active_character.stats[Entity.stat.HP] == 0: 
 			count += 1
-		elif active_character["status"].has("stun"):
+		elif active_character["status"].has(Entity.status_effects.STUN):
 			active_character.Turn()
 			count += 1
 		else:
@@ -96,7 +96,7 @@ func CheckWin(): #checked each turn by the ActionQueue
 
 	var count = 0
 	for n in partylist:
-		if n.stats["HP"] == 0:
+		if n.stats[Entity.stat.HP] == 0:
 			count += 1
 		if count == partylist.size(): 
 			lose()
@@ -104,7 +104,7 @@ func CheckWin(): #checked each turn by the ActionQueue
 	
 	var ecount = 0
 	for m in enemylist:
-		if m.stats["HP"] == 0:
+		if m.stats[Entity.stat.HP] == 0:
 			ecount += 1
 		if ecount == enemylist.size(): 
 			win()

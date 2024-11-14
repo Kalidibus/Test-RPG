@@ -24,8 +24,8 @@ func PlayRound():
 			break
 		elif active_character.dead == true: 
 			pass
-		elif active_character.status.has("stun"):
-			active_character.status.erase("stun")
+		elif active_character.status.has(Entity.status_effects.STUN):
+			active_character.status.erase(Entity.status_effects.STUN)
 			%CombatGUI.BattleLog(active_character.charname + " misses their turn...")
 			await get_tree().create_timer(0.5).timeout
 		elif target != null and target.dead == true and n["action_string"] != "Raise":

@@ -3,7 +3,7 @@ extends Node
 var dict = {
 	"wswo01" = {
 		"name" = "Corroded Sword Hilt",
-		"stats" = {"STR" = 2},
+		"stats" = {Entity.stat.STR: 2},
 		"desc" = "Was once a formidable sword. Broken down and decayed by the Brine, now only a hilt remains.",
 		"value" = 5
 	}

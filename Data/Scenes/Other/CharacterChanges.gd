@@ -62,12 +62,12 @@ func LevelUp(charid):
 	
 	#increase stats
 	for n in stats:
-		if n == "HP" or n == "MP": pass
+		if n == Entity.stat.HP or n == Entity.stat.MP: pass
 		else: PlayerData.party[charid]["stats"][n] = int(stats[n] * JobDict.StatScaling(jobid, n)) + 1
 	
 	#Fill up HP / MP
-	PlayerData.party[charid]["stats"]["HP"] = PlayerData.party[charid]["stats"]["HPmax"]
-	PlayerData.party[charid]["stats"]["MP"] = PlayerData.party[charid]["stats"]["MPmax"]
+	PlayerData.party[charid]["stats"][Entity.stat.HP] = PlayerData.party[charid]["stats"][Entity.stat.MAXHP]
+	PlayerData.party[charid]["stats"][Entity.stat.MP] = PlayerData.party[charid]["stats"][Entity.stat.MAXMP]
 	
 	#check for multiple level ups in case of huge XP gain
 	LevelUpCheck(charid)

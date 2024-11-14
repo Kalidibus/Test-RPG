@@ -25,10 +25,10 @@ func AddBlocks():
 		block.get_node("%TextureRect").texture = load(JobDict.job_dictionary[char["job_id"]]["profile"]) 
 		
 		
-		var HP = PlayerData.GetStat(n, "HP")
-		var HPmax = PlayerData.GetStat(n, "HPmax")
-		var MP = PlayerData.GetStat(n, "MP")
-		var MPmax = PlayerData.GetStat(n, "MPmax")
+		var HP = PlayerData.GetStat(n, Entity.stat.HP)
+		var HPmax = PlayerData.GetStat(n, Entity.stat.MAXHP)
+		var MP = PlayerData.GetStat(n, Entity.stat.MP)
+		var MPmax = PlayerData.GetStat(n, Entity.stat.MAXMP)
 		
 		block.get_node("%HP").text = str(HP) + "/" + str(HPmax)
 		block.get_node("%MP").text = str(MP) + "/" + str(MPmax)
@@ -37,13 +37,13 @@ func AddBlocks():
 		block.get_node("%MPBar").max_value = MPmax
 		block.get_node("%MPBar").value = MP
 		
-		block.get_node("%STR_stat").text = str(PlayerData.GetStat(n, "STR"))
-		block.get_node("%DEF_stat").text = str(PlayerData.GetStat(n, "DEF"))
-		block.get_node("%INT_stat").text = str(PlayerData.GetStat(n, "INT"))
-		block.get_node("%RES_stat").text = str(PlayerData.GetStat(n, "RES"))
-		block.get_node("%FTH_stat").text = str(PlayerData.GetStat(n, "FTH"))
-		block.get_node("%EVD_stat").text = str(PlayerData.GetStat(n, "EVD"))
-		block.get_node("%SPD_stat").text = str(PlayerData.GetStat(n, "SPD"))
+		block.get_node("%STR_stat").text = str(PlayerData.GetStat(n, Entity.stat.STR))
+		block.get_node("%DEF_stat").text = str(PlayerData.GetStat(n, Entity.stat.DEF))
+		block.get_node("%INT_stat").text = str(PlayerData.GetStat(n, Entity.stat.INT))
+		block.get_node("%RES_stat").text = str(PlayerData.GetStat(n, Entity.stat.RES))
+		block.get_node("%FTH_stat").text = str(PlayerData.GetStat(n, Entity.stat.FTH))
+		block.get_node("%EVD_stat").text = str(PlayerData.GetStat(n, Entity.stat.EVD))
+		block.get_node("%SPD_stat").text = str(PlayerData.GetStat(n, Entity.stat.SPD))
 		
 		var button = block.get_node("%PositionButton")
 		if char.row == "front": button.text = "FRONT"

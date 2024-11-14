@@ -68,7 +68,6 @@ func _on_create_char_button_pressed() -> void:
 			"ring_2" = ""
 		},
 		"status" = {},
-		"dead" = false,
 		"combatlabel" = null,
 		"combatnode" = null
 	}
@@ -99,15 +98,15 @@ func CharaDetails(index: int) -> void:
 	%CharaSplash.set_texture(load(JobDict.JobSplash(index)))
 	
 	#Very clunky way to grab individual stats and update them. could use a "for n in Stats.get_children() but whatever this works.
-	%HP_stat.text = str(JobDict.Stats(index)["HP"])
-	%MP_stat.text = str(JobDict.Stats(index)["MP"])
-	%STR_stat.text = str(JobDict.Stats(index)["STR"])
-	%DEF_stat.text = str(JobDict.Stats(index)["DEF"])
-	%INT_stat.text = str(JobDict.Stats(index)["INT"])
-	%FTH_stat.text = str(JobDict.Stats(index)["FTH"])
-	%RES_stat.text = str(JobDict.Stats(index)["RES"])
-	%EVD_stat.text = str(JobDict.Stats(index)["EVD"])
-	%SPD_stat.text = str(JobDict.Stats(index)["SPD"])
+	%HP_stat.text = str(JobDict.Stats(index)[Entity.stat.HP])
+	%MP_stat.text = str(JobDict.Stats(index)[Entity.stat.MP])
+	%STR_stat.text = str(JobDict.Stats(index)[Entity.stat.STR])
+	%DEF_stat.text = str(JobDict.Stats(index)[Entity.stat.DEF])
+	%INT_stat.text = str(JobDict.Stats(index)[Entity.stat.INT])
+	%FTH_stat.text = str(JobDict.Stats(index)[Entity.stat.FTH])
+	%RES_stat.text = str(JobDict.Stats(index)[Entity.stat.RES])
+	%EVD_stat.text = str(JobDict.Stats(index)[Entity.stat.EVD])
+	%SPD_stat.text = str(JobDict.Stats(index)[Entity.stat.SPD])
 	
 	#Set the name
 	%job_name_display.text = JobDict.JobName(index)

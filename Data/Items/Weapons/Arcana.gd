@@ -4,7 +4,7 @@ var dict = {
 	"warc01" = {
 		"name" = "Corroded Arcana",
 		"type" = "Arcana",
-		"stats" = {"FTH" = 2},
+		"stats" = {Entity.stat.FTH: 2},
 		"desc" = "Was once a formidable Arcana. Broken down and decayed by the Brine, now only fragments remains.",
 		"value" = 5
 	}

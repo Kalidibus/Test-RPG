@@ -4,7 +4,7 @@ var dict = {
 	"1wep001" = {
 		"name" = "Corroded Axe Hilt",
 		"type" = "1hand",
-		"stats" = {"STR" = 2},
+		"stats" = {Entity.stat.STR: 2},
 		"desc" = "Was once a formidable axe. Broken down and decayed by the Brine, now only now only a hilt remains.",
 		"value" = 5
 	}

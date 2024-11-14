@@ -1,27 +1,27 @@
 extends Entity
 
 var starting_stats = {
-		"HP" = 80,
-		"MP" = 120,
-		"STR" = 70,
-		"DEF" = 50,
-		"INT" = 25,
-		"FTH" = 60,
-		"RES" = 50,
-		"EVD" = 40,
-		"SPD" = 60
+		stat.HP: 80,
+		stat.MP: 120,
+		stat.STR: 70,
+		stat.DEF: 50,
+		stat.INT: 25,
+		stat.FTH: 60,
+		stat.RES: 50,
+		stat.EVD: 40,
+		stat.SPD: 60
 		}
 
 var stat_scaling = {
-		"HPmax" = "A",
-		"MPmax" = "C",
-		"STR" = "B",
-		"DEF" = "S",
-		"INT" = "C",
-		"FTH" = "C",
-		"RES" = "B",
-		"EVD" = "D",
-		"SPD" = "D"
+		stat.MAXHP: "A",
+		stat.MAXMP: "C",
+		stat.STR: "B",
+		stat.DEF: "S",
+		stat.INT: "C",
+		stat.FTH: "C",
+		stat.RES: "B",
+		stat.EVD: "D",
+		stat.SPD: "D"
 }
 
 var job_description = "A whirlwind of blades that bolsters the parties damage. \n\nDancer's are a potent addition to any party, especially those focused on physical damage types. Using a variety of dances, they bolster damage and MP regeneration, or follow up with ally attacks to devestating effect. \n\nThey are less effective at bolstering the abilities of Casters."
@@ -30,7 +30,7 @@ func _ready():
 	charname = "Dancer"
 	HATE = 60
 	enemy = false
-	weapontype = "slash"
+	weapontype = damage_type.SLASH
 	
 	skill_list = {
 		"Raptor Samba" : "Increases Party-wide Strength",
@@ -46,7 +46,7 @@ func RaptorSamba2():
 	var partylist = get_party_targets()
 	MPCost(30)
 	for n in partylist:
-		if n.HP != 0: n.StatMod("STR", 1.25, 2)
+		if n.HP != 0: n.StatMod(stat.STR, 1.25, 2)
 	CloseTurn(str(charname) + "'s Raptor Samba emboldens the party. Strength increased!")
   
 func SoothingWaltz():
@@ -56,7 +56,7 @@ func SoothingWaltz2():
 	var partylist = get_party_targets()
 	MPCost(30)
 	for n in partylist:
-		if n.HP != 0: n.AttemptStatusAilment("regen", 30, 3, 0)
+		if n.HP != 0: n.AttemptStatusAilment(status_effects.REGEN, 30, 3, 0)
 	CloseTurn(str(charname) + "'s Soothing Waltz begins healing the party!")
    
 func InvigoratingGalliard():
@@ -66,20 +66,20 @@ func InvigoratingGalliard2():
 	var partylist = get_party_targets()
 	MPCost(30)
 	for n in partylist:
-		if n.HP != 0: n.StatMod("SPD", 1.25, 2)
+		if n.HP != 0: n.StatMod(stat.SPD, 1.25, 2)
 	CloseTurn(str(charname) + "'s Invigorating Galliad motivates the party. Speed increased!")
 
 func WhirlingBlades():
 	if MPCheck(30) == "fail": return
 	else: CombatGUI.QueueAction(self, "WhirlingBlades2")
 func WhirlingBlades2():
-	var damage = (stats["STR"] * statmods["STR"])*0.6
+	var damage = (stats[stat.STR] * statmods[stat.STR])*0.6
 	var enemies = get_enemy_targets()
 	MPCost(30)
 	CombatGUI.BattleLog(str(charname) + " performs a whirling dance of blades!")
 	for target in enemies:
-		if target.row == "Front" and target.stats["HP"] != 0:
-			var adjusteddamage = target.take_damage(damage, "slash")
+		if target.row == "Front" and target.stats[stat.HP] != 0:
+			var adjusteddamage = target.take_damage(damage, damage_type.SLASH)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")

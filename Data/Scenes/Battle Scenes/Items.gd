@@ -40,7 +40,7 @@ func Bomb2(active_character):
 	GetEnemies() 
 
 	for n in enemies:
-		n.take_damage(35, "impact")
+		n.take_damage(35, Entity.damage_type.IMPACT)
 		CombatGUI.BattleLog("The " + str(n.charname) + " takes 35 damage from the explosion!")
 		await get_tree().create_timer(0.5).timeout
 	Consume("Bomb")

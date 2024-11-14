@@ -19,6 +19,8 @@ func GetEncounter(area):
 	
 func GetStat(monid, stat):
 	var node = enemydict[monid]["node"]
+	print(monid)
+	print(get_node("%" + str(node)).stats)
 	var stat_to_return = get_node("%" + str(node)).stats[stat]
 	return stat_to_return
 
