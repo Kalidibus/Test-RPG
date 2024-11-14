@@ -2,26 +2,32 @@ extends Entity
 
 var starting_stats = {
 		"HP" = 80,
+		"HPmax" = 80,
 		"MP" = 120,
+		"MPmax" = 120,
 		"STR" = 70,
+		"DEX" = 70,
 		"DEF" = 50,
 		"INT" = 25,
 		"FTH" = 60,
 		"RES" = 50,
 		"EVD" = 80,
+		"ACC" = 70,
 		"SPD" = 60
 		}
 
 var stat_scaling = {
 		"HPmax" = "A",
-		"MPmax" = "C",
-		"STR" = "B",
-		"DEF" = "S",
-		"INT" = "C",
-		"FTH" = "C",
+		"MPmax" = "B",
+		"STR" = "D",
+		"DEX" = "D",
+		"DEF" = "B",
+		"INT" = "A",
+		"FTH" = "B",
 		"RES" = "B",
-		"EVD" = "D",
-		"SPD" = "D"
+		"EVD" = "S",
+		"ACC" = "B",
+		"SPD" = "S"
 }
 
 var job_description = "The Illusionist Vocation channels the art of silver mist to protect the party with high Evasion. \n\nFocusing on a variety of ways to confuse enemies and help the party avoid fatal blows, the Illusionist is an unconventional, but highly effective tank in the right encounter. Evading attacks grants the Illusionist a resource called [b]Deceit[/b] which allows for the execution of potent Confusing abilities. \n\nEnemies that are highly resistant to blind or confusion may have an easier time finding their mark against an Illusionist."
@@ -33,8 +39,8 @@ func _ready():
 	weapontype = "slash"
 	
 	skill_list = {
-		"Black Mist" : "Increases Party-wide Evasion"
-	}
+		"skillILLUSIONIST01" = {"skillname" = "Black Mist",
+			"skilldesc" = "A black shroud of mist engulfs the battlefield, raising Party Evasion."},
 
 func BlackMist():
 	if MPCheck(30) == "fail": return
