@@ -46,8 +46,8 @@ func AddBlocks():
 		block.get_node("%SPD_stat").text = str(PlayerData.GetStat(n, Entity.stat.SPD))
 		
 		var button = block.get_node("%PositionButton")
-		if char.row == "front": button.text = "FRONT"
-		if char.row == "back": button.text = "BACK"
+		if char.row == Entity.row_line.FRONT: button.text = "FRONT"
+		if char.row == Entity.row_line.BACK: button.text = "BACK"
 		
 		%PartyBlockHolder.add_child(block)
 

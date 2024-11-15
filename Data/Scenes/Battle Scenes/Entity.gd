@@ -5,12 +5,11 @@ class_name Entity
 @onready var CombatGUI = get_node("/root/Combat/CombatGUI")
 @onready var party = get_node("/root/Combat/Combatants/Party")
 @onready var enemies = get_node("/root/Combat/Combatants/Enemies")
-#not currently used, but may be easier in long run?
 
 enum stat {HP, MAXHP, MP, MAXMP, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, HATE}
 enum damage_type {PIERCE, IMPACT, SLASH, INFERNAL, LEVIN, DEEP, ERDE, VIRTUOS, FEL, TRUE}
 enum status_effects {POISON, BURN, BLIND, STUN, SEAL, MARKED, REGEN}
-
+enum row_line {FRONT, BACK}
 
 
 var hire_cost = 5
@@ -111,10 +110,8 @@ func Turn():
 	StatModCountDown()
 	await StatusEffects()
 	CombatGUI.StatusLabels(self)
-	print(statres)
-	#this check is to stop the turn if the player dies from DoT damage
+	#this check is to stop the turn if the player dies from DoT damage, but doesn't seem to be working
 	if dead:
-		print("dead")
 		CloseTurn("")
 	#skip turn if stunned
 	if status.has(status_effects.STUN):
@@ -130,11 +127,11 @@ func get_enemy_targets():
 	return enemies.get_children()
 
 func SwitchRows():
-	if row == "front":
-		row = "back"
+	if row == row_line.FRONT:
+		row = row_line.BACK
 		HATE = HATE*0.5
-	elif row == "back":
-		row = "front"
+	elif row == row_line.BACK:
+		row = row_line.FRONT
 		HATE = HATE*2
 
 func StatModCountDown():
@@ -290,6 +287,7 @@ func MPCheck(MPcost):
 	if stats[stat.MP] < MPcost: 
 		CombatGUI.BattleLog("Not enough MP!")
 		return "fail"
+	else: return "pass"
 
 func MPCost(MPcost):
 	stats[stat.MP] -= MPcost

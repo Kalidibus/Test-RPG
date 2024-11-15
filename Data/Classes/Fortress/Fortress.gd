@@ -153,7 +153,7 @@ func ShrapnelBurst2():
 	CombatGUI.BattleLog(str(charname) + " unleashes a burst of Shrapnel to the enemy front line!")
 	
 	for target in enemies:
-		if target.stats[stat.HP] != 0 and target.row == "front":
+		if target.stats[stat.HP] != 0 and target.row == row_line.FRONT:
 			var damage_dealt = Damage(target, Stat(stat.DEF) * 1.2, damage_type.IMPACT)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(damage_dealt) + " damage!")
 			await get_tree().create_timer(0.5).timeout
@@ -179,7 +179,7 @@ func FullCover():
 func FullCover2():
 	var party = get_party_targets()
 	for n in party:
-		if n.row =="front": StatMod(stat.DEF, 1.6, 1)
+		if n.row ==row_line.FRONT: StatMod(stat.DEF, 1.6, 1)
 	CloseTurn(str(charname) + " guards the front row!")
 
 func Debilatio():

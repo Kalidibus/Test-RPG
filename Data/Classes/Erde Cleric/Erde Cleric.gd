@@ -69,7 +69,7 @@ func FullBlessing2():
 	for n in partylist:
 		if n.stats[stat.HP] != 0:
 			n.get_healed(Stat(stat.FTH))
-	CloseTurn(str(charname) + " Restores the parties health for " + str(stats[stat.FTH]) + "!")
+	CloseTurn(str(charname) + " Restores the parties health for " + str(Stat(stat.FTH)) + "!")
 
 func DivineBolt():
 	if MPCheck(10) == "fail": return

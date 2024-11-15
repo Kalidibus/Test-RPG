@@ -22,7 +22,7 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row, image):
 	
 	$Sprite2D.texture = load(image)
 	
-	if row == "front":
+	if row == Entity.row_line.FRONT:
 		$Sprite2D.set_offset(Vector2(0,25))
 		var current_scale = $Sprite2D.get_scale()
 		var new_scale: Vector2
@@ -30,5 +30,5 @@ func SetStats(charname,HP,MP,MaxHP,MaxMP, row, image):
 		new_scale.y = current_scale.y * 1.4
 		$Sprite2D.set_scale(new_scale)
 		$Sprite2D.set_z_index(-2)
-	if row == "back": 
+	if row == Entity.row_line.BACK: 
 		z_index -= 10

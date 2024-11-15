@@ -39,7 +39,7 @@ func UpdateStats(HP, MP):
 	#%BG.set_texture(load(string))
 
 func SwitchRows(row):
-	if row == "front":
+	if row == Entity.row_line.FRONT:
 		%Vanguardlabel.visible = true
 		%Readguardlabel.visible = false
 		if firstpos != true: 
@@ -47,7 +47,7 @@ func SwitchRows(row):
 			firstpos = true
 		else:
 			%BG.position = %BG.position + Vector2(0,-50)
-	elif row == "back":
+	elif row == Entity.row_line.BACK:
 		%Vanguardlabel.visible = false
 		%Readguardlabel.visible = true
 		if firstpos != true: 

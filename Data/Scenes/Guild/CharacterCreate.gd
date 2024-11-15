@@ -51,7 +51,7 @@ func _on_create_char_button_pressed() -> void:
 		"job_id" = str(user_selected_job),
 		"job_name" = JobDict.JobName(user_selected_job),
 		"level" = 1,
-		"row" = "front",
+		"row" = Entity.row_line.FRONT,
 		"xp" = 0,
 		"xpneeded" = 100,
 		"stats" = JobDict.Stats(user_selected_job),

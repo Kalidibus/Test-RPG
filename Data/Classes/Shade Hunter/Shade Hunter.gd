@@ -79,7 +79,7 @@ func BladedVolley2():
 	MPCost(30)
 	CombatGUI.BattleLog(str(charname) + " fires a Bladed Volley!")
 	for target in enemies:
-		if target.row == "Back" and target.stats[stat.HP] != 0:
+		if target.row == row_line.BACK and target.stats[stat.HP] != 0:
 			var adjusteddamage = target.take_damage(damage, damage_type.SLASH)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout

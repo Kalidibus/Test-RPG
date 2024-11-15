@@ -11,7 +11,7 @@ func _ready():
 	roll_count = 7
 	
 	enemy = true
-	row = "back"
+	row = row_line.BACK
 	stats = {
 		stat.MAXHP: 50,
 		stat.HP: 50,

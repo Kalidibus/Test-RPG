@@ -112,6 +112,7 @@ func UpdateStats(target, HP, MP):
 func BattleLog(string):
 	if string != "":
 		var label = Label.new()
+#		label.set_autowrap_mode(2) #This fucks up the text, can't be fucked 
 		label.text = string + "\n"
 		%BattleLog.add_child(label)
 

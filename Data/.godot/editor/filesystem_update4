@@ -38,3 +38,9 @@ res://Items/Accessories/Rings.gd
 res://Items/1handw.gd
 res://Enemies/EnemyDict.gd
 res://Classes/Erde Cleric/Erde Cleric.gd
+res://Scenes/Battle Scenes/Entity.gd
+res://Scenes/Globals.gd
+res://Scenes/Other/PauseMenu/party_block.gd
+res://Scenes/Other/PauseMenu/PartyMenu.gd
+res://Scenes/Battle Scenes/PlayerBlock.gd
+res://Classes/Fel Mage/Fel Mage.gd

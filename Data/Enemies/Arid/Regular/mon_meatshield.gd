@@ -2,7 +2,7 @@ extends Monster
 
 func _ready():
 	charname = "Meat Shield"
-	row = "Front"
+	row = row_line.FRONT
 	enemy = true
 	
 	statres = {

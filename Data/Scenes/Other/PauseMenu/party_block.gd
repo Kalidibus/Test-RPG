@@ -17,10 +17,10 @@ func _process(delta: float) -> void:
 func _on_position_button_pressed() -> void:
 	if %PositionButton.text == "FRONT":
 		%PositionButton.text = "BACK"
-		PlayerData.party[charid]["row"] = "back"
+		PlayerData.party[charid]["row"] = Entity.row_line.BACK
 	elif %PositionButton.text == "BACK":
 		%PositionButton.text = "FRONT"
-		PlayerData.party[charid]["row"] = "front"
+		PlayerData.party[charid]["row"] = Entity.row_line.FRONT
 
 
 func _on_up_button_pressed() -> void:

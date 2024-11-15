@@ -60,8 +60,7 @@ func _ready():
 
 #SKILLS
 func FelBolt():
-	if MPCheck(10) == "fail": return
-	CombatGUI.TargetList("FelBolt2")
+	if MPCheck(10): CombatGUI.TargetList("FelBolt2")
 func FelBolt2(target):
 	var damage = stats[stat.INT] * statmods[stat.INT]
 	var adjusteddamage = target.take_damage(damage, damage_type.FEL) 
