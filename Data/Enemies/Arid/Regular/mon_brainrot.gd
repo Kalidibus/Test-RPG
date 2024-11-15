@@ -25,7 +25,9 @@ func _ready():
 		stat.SPD: 8,
 		stat.RES: 30,
 		stat.ACC: 20,
-		stat.EVD: 10
+		stat.EVD: 10,
+		stat.CRIT: 90,
+		stat.CRITDMG: 1.5
 		}
 	statres = {
 		status_effects.POISON: 90,
@@ -46,18 +48,6 @@ func _ready():
 		damage_type.VIRTUOS: 20,
 		damage_type.TRUE: 0
 		}
-
-func Turn():
-	super.Turn()
-	if dead: 
-		CloseTurn("")
-	elif status.has(status_effects.STUN):
-		status.erase(status_effects.STUN)
-		CloseTurn("The " + charname + " misses their turn...")
-	else:
-		target = DecideTarget()
-		var rng = Globals.RNG()
-		AttackList(target, rng)
 
 func AttackList(target, rng):
 	if rng <= 100:

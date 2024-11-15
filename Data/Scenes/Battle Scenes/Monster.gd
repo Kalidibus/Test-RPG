@@ -8,6 +8,21 @@ var roll_count
 func _ready():
 	pass
 
+func Turn():
+	super.Turn()
+	if dead: 
+		CloseTurn("")
+	elif status.has(status_effects.STUN):
+		status.erase(status_effects.STUN)
+		CloseTurn("The " + charname + " misses their turn...")
+	else:
+		target = DecideTarget()
+		var rng = Globals.RNG()
+		AttackList(target, rng)
+
+func AttackList(target,rng):
+	pass #handled on individual monster files.
+
 #loot_table and roll_count are defined on individual monster scripts
 func LootRolls():
 	var total_chance = 0
@@ -28,6 +43,8 @@ func LootRolls():
 	return earned_loot
 
 func DecideTarget():
+	print(stats[stat.CRIT])
+	print(stats[stat.CRITDMG])
 	#checks for the status_effects.MARKED status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
 	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
 	var rng = Globals.RNG()

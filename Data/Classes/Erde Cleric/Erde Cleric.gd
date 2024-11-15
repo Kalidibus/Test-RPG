@@ -15,7 +15,9 @@ var starting_stats = {
 		stat.RES: 100,
 		stat.ACC: 50,
 		stat.EVD: 20,
-		stat.SPD: 75
+		stat.SPD: 75,
+		stat.CRIT: 10,
+		stat.CRITDMG: 1.5
 	}
 var stat_scaling = {
 		stat.MAXHP: "B",

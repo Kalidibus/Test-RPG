@@ -6,7 +6,7 @@ class_name Entity
 @onready var party = get_node("/root/Combat/Combatants/Party")
 @onready var enemies = get_node("/root/Combat/Combatants/Enemies")
 
-enum stat {HP, MAXHP, MP, MAXMP, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, HATE}
+enum stat {HP, MAXHP, MP, MAXMP, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, CRIT, CRITDMG, HATE}
 enum damage_type {PIERCE, IMPACT, SLASH, INFERNAL, LEVIN, DEEP, ERDE, VIRTUOS, FEL, TRUE}
 enum status_effects {POISON, BURN, BLIND, STUN, SEAL, MARKED, REGEN}
 enum row_line {FRONT, BACK}
@@ -60,7 +60,9 @@ var statmods =  {
 	stat.RES: 1,
 	stat.SPD: 1,
 	stat.ACC: 1,
-	stat.EVD: 1
+	stat.EVD: 1,
+	stat.CRIT: 1,
+	stat.CRITDMG: 1
 	}
 var gear_statmods = {
 	stat.MAXHP: 0,
@@ -75,7 +77,9 @@ var gear_statmods = {
 	stat.RES: 0,
 	stat.SPD: 0,
 	stat.ACC: 0,
-	stat.EVD: 0
+	stat.EVD: 0,
+	stat.CRIT: 0,
+	stat.CRITDMG: 0
 	}
 var statmodtimer = {}
 var statres = {
@@ -216,6 +220,10 @@ func CheckMiss(target):
 		CloseTurn(target.charname + " evades " + charname + "'s attack!")
 		return false
 
+func CheckCrit():
+	if stats[stat.CRIT] >= Globals.RNG(): return true
+	else: return false
+
 func take_damage (damage, type):
 	var adjusteddamage
 	if stats[stat.HP] == 0: return #to prevent multi-attacks from triggering die() multiple times
@@ -274,8 +282,13 @@ func AttemptStatusAilment(type, amount, time, bonus_to_inflict):
 
 #returns the actual amount of damage that was dealt, and also triggers the damage on the target node.
 func Damage(target, damage_calc, damage_type):
-	var damage_dealt = target.take_damage(damage_calc, damage_type)
-	return damage_dealt
+	var damage_dealt
+	if CheckCrit(): 
+		damage_dealt = target.take_damage(damage_calc * stats[stat.CRITDMG], damage_type)
+		return str(damage_dealt) + "!!"
+	else: 
+		damage_dealt = target.take_damage(damage_calc, damage_type)
+		return str(damage_dealt)
 
 func Revive(target, heal):
 	target.get_healed(heal)

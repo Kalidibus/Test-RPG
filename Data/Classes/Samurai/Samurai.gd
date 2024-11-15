@@ -9,7 +9,10 @@ var starting_stats = {
 		stat.FTH: 30,
 		stat.RES: 50,
 		stat.EVD: 20,
-		stat.SPD: 40
+		stat.ACC: 40,
+		stat.SPD: 40,
+		stat.CRIT: 10,
+		stat.CRITDMG: 1.5
 		}
 
 var stat_scaling = {

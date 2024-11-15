@@ -25,7 +25,9 @@ func _ready():
 		stat.SPD: 8,
 		stat.RES: 30,
 		stat.ACC: 20,
-		stat.EVD: 10
+		stat.EVD: 10,
+		stat.CRIT: 5,
+		stat.CRITDMG: 1.5
 		}
 	statres = {
 		status_effects.POISON: 10,
@@ -47,18 +49,6 @@ func _ready():
 		damage_type.TRUE: 0
 		}
 
-func Turn():
-	super.Turn()
-	if dead: 
-		CloseTurn("")
-	elif status.has(status_effects.STUN):
-		status.erase(status_effects.STUN)
-		CloseTurn(charname + " misses their turn...")
-	else:
-		target = DecideTarget()
-		var rng = Globals.RNG()
-		AttackList(target, rng)
-
 func AttackList(target, rng):
 	if rng <= 75: mAttack(target)
 	elif rng <= 90: Bludgeon(target)
@@ -66,12 +56,12 @@ func AttackList(target, rng):
 
 func mAttack(target):
 	if not CheckMiss(target): return
-	var damage_dealt = Damage(target, 1.1 * Stat(stat.STR), damage_type.SLASH)
+	var damage_dealt = Damage(target, 1.2 * Stat(stat.STR), damage_type.SLASH)
 	CloseTurn("The " + charname + " slashes at " + target.charname + " for " + str(damage_dealt) + " damage!")
 
 func Bludgeon(target):
 	if not CheckMiss(target): return
-	var damage_dealt = Damage(target, 1.7 * Stat(stat.STR), damage_type.IMPACT)
+	var damage_dealt = Damage(target, 1.5 * Stat(stat.STR), damage_type.IMPACT)
 	CloseTurn("The " + charname + " emits a bloodcurdling shriek and bludgeons " + target.charname + " fiercly for " + str(damage_dealt) + " damage!!!")
 	target.AttemptStatusAilment(status_effects.STUN, 0, 0, 0)
 	
