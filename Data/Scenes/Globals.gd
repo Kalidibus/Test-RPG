@@ -8,7 +8,7 @@ var camera = null
 const GRID_SIZE = 2
 const PLAY_SPEED = 0.3 #lower is faster
 const ENCOUNTER_RATE = 5 #higher is more encounters
-
+const BASE_MISS_CHANCE = 10 #higher is fighters miss more often.
 var mappos
 var maprotation
 

@@ -24,6 +24,7 @@ func _ready():
 		stat.INT: 5,
 		stat.SPD: 8,
 		stat.RES: 30,
+		stat.ACC: 20,
 		stat.EVD: 10
 		}
 	statres = {
@@ -63,6 +64,7 @@ func AttackList(target, rng):
 		mAttack(target)
 
 func mAttack(target):
+	if not CheckMiss(target): return
 	var dealt_damage = Damage(target, Stat(stat.DEX), damage_type.PIERCE) 
 	CloseTurn("The " + str(charname) + " pierces " + str(target.charname) + " with venomous needles for " + str(dealt_damage) + " damage!")
 	target.AttemptStatusAilment(status_effects.POISON, 20, 3, 0)

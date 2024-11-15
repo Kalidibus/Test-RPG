@@ -24,6 +24,7 @@ func _ready():
 		stat.INT: 5,
 		stat.SPD: 8,
 		stat.RES: 30,
+		stat.ACC: 20,
 		stat.EVD: 10
 		}
 	statres = {
@@ -64,10 +65,12 @@ func AttackList(target, rng):
 	elif rng <= 100: mDefend()
 
 func mAttack(target):
+	if not CheckMiss(target): return
 	var damage_dealt = Damage(target, 1.1 * Stat(stat.STR), damage_type.SLASH)
 	CloseTurn("The " + charname + " slashes at " + target.charname + " for " + str(damage_dealt) + " damage!")
 
 func Bludgeon(target):
+	if not CheckMiss(target): return
 	var damage_dealt = Damage(target, 1.7 * Stat(stat.STR), damage_type.IMPACT)
 	CloseTurn("The " + charname + " emits a bloodcurdling shriek and bludgeons " + target.charname + " fiercly for " + str(damage_dealt) + " damage!!!")
 	target.AttemptStatusAilment(status_effects.STUN, 0, 0, 0)

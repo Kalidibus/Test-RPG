@@ -198,13 +198,23 @@ func Stat(stat):
 
 func Attack(target):
 	CombatGUI.emit_signal("menuhide")
-	var damage_dealt = Damage(target, Stat(stat.STR), weapontype)
-	
+	if not CheckMiss(target): return
+	var damage_dealt = Damage(target, Stat(stat.STR), weapontype) 
 	CloseTurn(charname + " has attacked " + target.charname + " for " + str(damage_dealt) + " damage!")
 
 func Defend():
 	StatMod(stat.DEF, 1.5, 0)
 	CloseTurn(str((charname) + " defends herself!"))
+
+func CheckMiss(target):
+	var ratio = stats[stat.ACC] / target.stats[stat.EVD]
+	var rng = Globals.RNG()
+	var result = ratio * rng
+	
+	if result >= Globals.BASE_MISS_CHANCE : return true
+	else: 
+		CloseTurn(target.charname + " evades " + charname + "'s attack!")
+		return false
 
 func take_damage (damage, type):
 	var adjusteddamage
