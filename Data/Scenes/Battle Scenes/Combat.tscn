@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ktubc2fyxeev"]
+[gd_scene load_steps=10 format=3 uid="uid://ktubc2fyxeev"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/ActionQueue.tscn" id="1"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/CombatGUI.gd" id="2"]
+[ext_resource type="Script" path="res://Scenes/Battle Scenes/signal_bus.gd" id="3_j1whk"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/battle_log_scroll_cont.gd" id="3_sdkss"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/Combat.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="6"]
@@ -18,6 +19,10 @@ script = ExtResource("5")
 
 [node name="ActionQueue" parent="." instance=ExtResource("1")]
 unique_name_in_owner = true
+
+[node name="SignalBus" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_j1whk")
 
 [node name="Combatants" type="Node" parent="."]
 

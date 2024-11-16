@@ -55,7 +55,7 @@ func _ready():
 
 #SKILLS
 func CrimsonRush():
-	if MPCheck(15) == "fail": return
+	if MPCheck(15) == false: return
 	else: CombatGUI.TargetList("CrimsonRush2")
 func CrimsonRush2(target):
 	var damage = (stats[stat.STR] + stats[stat.SPD])/4
@@ -68,7 +68,7 @@ func CrimsonRush2(target):
 	CloseTurn("")
 
 func BastardSpirit():
-	if MPCheck(15) == "fail": return
+	if MPCheck(15) == false: return
 	else: CombatGUI.QueueAction(self, "BastardSpirit2")
 func BastardSpirit2():
 	MPCost(15)
@@ -76,7 +76,7 @@ func BastardSpirit2():
 	CloseTurn(str(charname) + " draws upon her Bastard Spirit. STR Increased.")
 
 func LunaticSpirit():
-	if MPCheck(20) == "fail": return
+	if MPCheck(20) == false: return
 	else: CombatGUI.QueueAction(self, "LunaticSpirit2")
 func LunaticSpirit2():
 	MPCost(20)
@@ -89,7 +89,7 @@ func ScarletSun():
 	if combo != "CrimsonRush":
 		CombatGUI.BattleLog("Combo not ready!")
 		return
-	if MPCheck(20) == "fail": return
+	if MPCheck(20) == false: return
 	else: CombatGUI.TargetList("ScarletSun2")
 func ScarletSun2(target):
 	var damage = stats[stat.STR] + stats[stat.SPD]* 1.2
@@ -102,7 +102,7 @@ func VermillionDance():
 	if combo != "ScarletSun":
 		CombatGUI.BattleLog("Combo not ready!")
 		return
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "VermillionDance2")
 func VermillionDance2():
 	MPCost(30)
@@ -118,7 +118,7 @@ func VermillionDance2():
 	CloseTurn("The dance ends...")
 
 func ShearGrit():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "ShearGrit2")
 func ShearGrit2():
 	get_healed(stats[stat.MAXHP] * 0.5)

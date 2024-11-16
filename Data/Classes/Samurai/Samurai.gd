@@ -40,7 +40,7 @@ func _ready():
 	}
 
 func DEVhit():
-	if MPCheck(15) == "fail": return
+	if MPCheck(15) == false: return
 	else: CombatGUI.TargetList("CrimsonRush2")
 func CrimsonRush2(target):
 	var damage = (stats[stat.STR] + stats[stat.SPD])/4

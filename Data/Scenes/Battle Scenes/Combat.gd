@@ -31,6 +31,7 @@ func CreateNodes(party, enemy_array):
 		node.combatlabel = party[n]["combatlabel"]
 		node.row = party[n]["row"]
 		%Party.add_child(node)
+		%SignalBus.ConnectSignals(node)
 		node.GetSkills()
 		party[n]["combatnode"] = node
 	for enemy in enemy_array:
@@ -40,6 +41,7 @@ func CreateNodes(party, enemy_array):
 			#enode.stats = EnemyDict.GetAllStats(n) #redundant
 			enode.combatlabel = enemy[n]["combatlabel"]
 			%Enemies.add_child(enode)
+			%SignalBus.ConnectSignals(enode)
 			enemy[n]["combatnode"] = enode
 
 func MainBattleLoop():
@@ -57,7 +59,6 @@ func PartyTurnOrder(): #next to fix
 		var active_char_label = %PlayerGUI.get_child(count)
 		var charid = active_char_label.charid
 		active_character = PlayerData.party[charid]["combatnode"]
-		print(str(active_character) + "   " + str(active_character.stats[Entity.stat.HP]))
 		if CheckWin() == true: # for death from DoTs during player turn
 			combatover = true #used to stop combat when one side dead
 			break

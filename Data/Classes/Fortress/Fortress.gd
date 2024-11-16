@@ -84,7 +84,7 @@ func take_damage(damage, type):
 	return int(adjusteddamage)
 
 func Taunt():
-	if MPCheck(10) == "fail": return
+	if MPCheck(10) == false: return
 	else: CombatGUI.QueueAction(self, "Taunt2")
 func Taunt2():
 	var previousvalue = statres[status_effects.MARKED]
@@ -97,7 +97,7 @@ func Taunt2():
 	CloseTurn(str(charname) + " draws enemy attention!")
 
 func Vanguard():
-	if MPCheck(40) == "fail": return
+	if MPCheck(40) == false: return
 	else: CombatGUI.TargetList("Vanguard2")
 func Vanguard2(target):
 	var damage = stats[stat.DEF] * statmods[stat.DEF]
@@ -106,7 +106,7 @@ func Vanguard2(target):
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
 
 func Bastion():
-	if MPCheck(40) == "fail": return
+	if MPCheck(40) == false: return
 	else: CombatGUI.AllyTargetList("Bastion2")
 func Bastion2(target):
 	var heal = 2 * stats[stat.DEF]
@@ -115,7 +115,7 @@ func Bastion2(target):
 	CloseTurn(str(charname) + " provides shelter behind her shields to " + str(target.charname) + ", healing her for " + str(heal) + " HP!")
 
 func Embolden():
-	if MPCheck(20) == "fail": return
+	if MPCheck(20) == false: return
 	else: CombatGUI.QueueAction(self, "Embolden2")
 func Embolden2():
 	MPCost(20)
@@ -162,7 +162,7 @@ func ShrapnelBurst2():
 	CloseTurn("")
 
 func ShieldTremor():
-	if MPCheck(20) == "fail": return
+	if MPCheck(20) == false: return
 	else: CombatGUI.QueueAction(self, "ShieldTremor2")
 func ShieldTremor2():
 	var enemies = get_enemy_targets()
@@ -176,7 +176,7 @@ func ShieldTremor2():
 	CloseTurn("")
 
 func FullCover():
-	if MPCheck(20) == "fail": return
+	if MPCheck(20) == false: return
 	else: CombatGUI.QueueAction(self, "FullCover2")
 func FullCover2():
 	var party = get_party_targets()
@@ -202,7 +202,7 @@ func Debilatio2():
 	CloseTurn("")
 
 func PerfectShell():
-	if MPCheck(50) == "fail": return
+	if MPCheck(50) == false: return
 	else: CombatGUI.QueueAction(self, "PerfectShell2")
 func PerfectShell2():
 		StatMod(stat.DEF, 999, 1)

@@ -2,7 +2,7 @@ res://Scenes/Battle Scenes/Combat.tscn
 res://Scenes/Battle Scenes/CombatGUI.gd
 res://Scenes/Battle Scenes/EnemyBlock.gd
 res://Scenes/Battle Scenes/Entity.gd
-res://Enemies/Arid/Regular/mon_pylon.gd
+res://Classes/Illusionist/Illusionist.gd
 res://Scenes/Start.tscn
 res://Classes/Classes.tscn
 res://Enemies/EnemyDict.tscn
@@ -19,14 +19,8 @@ res://Scenes/Other/PauseMenu/SkillsMenu.tscn
 res://Scenes/Guild/UnlockGUIBox.tscn
 res://Scenes/Battle Scenes/StatusIcon.tscn
 res://Scenes/Battle Scenes/Party.tscn
-res://Enemies/Arid/Regular/mon_brainrot.gd
+res://Scenes/Battle Scenes/Combat.gd
+res://Enemies/EnemyDict.gd
 res://Scenes/Battle Scenes/Monster.gd
-res://Classes/Illusionist/Illusionist.gd
-res://Classes/Fortress/Fortress.gd
-res://Classes/Fel Mage/Fel Mage.gd
-res://Classes/Erde Cleric/Erde Cleric.gd
-res://Classes/Bastard Fist/Bastard Fist.gd
-res://Classes/Shade Hunter/Shade Hunter.gd
-res://Classes/War Mage/War Mage.gd
-res://Classes/Samurai/Samurai.gd
-res://Classes/Dancer/Dancer.gd
+res://Enemies/Arid/Regular/mon_pylon.gd
+res://Scenes/Battle Scenes/signal_bus.gd

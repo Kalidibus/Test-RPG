@@ -53,7 +53,7 @@ func _ready():
 
 #SKILLS
 func PoisonArrow():
-	if MPCheck(10) == "fail": return
+	if MPCheck(10) == false: return
 	CombatGUI.TargetList("PoisonArrow2")
 func PoisonArrow2(target):
 	var damage = (stats[stat.SPD] * statmods[stat.SPD])*0.5
@@ -63,7 +63,7 @@ func PoisonArrow2(target):
 	target.AttemptStatusAilment(status_effects.POISON, 40, 3, 20)
 
 func BurningArrow():
-	if MPCheck(10) == "fail": return
+	if MPCheck(10) == false: return
 	CombatGUI.TargetList("BurningArrow2")
 func BurningArrow2(target):
 	var damage = (stats[stat.SPD] * statmods[stat.SPD])*0.5
@@ -73,7 +73,7 @@ func BurningArrow2(target):
 	target.AttemptStatusAilment(status_effects.BURN, 40, 3, 20)
 	
 func BladedVolley():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "BladedVolley2")
 func BladedVolley2():
 	var damage = (stats[stat.SPD] * statmods[stat.SPD])*0.6
@@ -88,7 +88,7 @@ func BladedVolley2():
 	CloseTurn("")
 
 func PlateCrusher():
-	if MPCheck(20) == "fail": return
+	if MPCheck(20) == false: return
 	CombatGUI.TargetList("PlateCrusher2")
 func PlateCrusher2(target):
 	var damage = (stats[stat.SPD] * statmods[stat.SPD])
@@ -99,7 +99,7 @@ func PlateCrusher2(target):
 	if rng >= 50: target.StatMod(stat.DEF, 0.6, 2)
 
 func IsolatePrey():
-	if MPCheck(20) == "fail": return
+	if MPCheck(20) == false: return
 	CombatGUI.TargetList("IsolatePrey2")
 func IsolatePrey2(target):
 	var damage = max((stats[stat.SPD] * statmods[stat.SPD])*0.5, (stats[stat.SPD] * statmods[stat.SPD]) * target.status.size())

@@ -5,12 +5,13 @@ class_name Entity
 @onready var CombatGUI = get_node("/root/Combat/CombatGUI")
 @onready var party = get_node("/root/Combat/Combatants/Party")
 @onready var enemies = get_node("/root/Combat/Combatants/Enemies")
+@onready var SignalBus = get_node("/root/Combat/SignalBus")
+
 
 enum stat {HP, MAXHP, MP, MAXMP, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, CRIT, CRITDMG, HATE}
 enum damage_type {PIERCE, IMPACT, SLASH, INFERNAL, LEVIN, DEEP, ERDE, VIRTUOS, FEL, TRUE}
 enum status_effects {POISON, BURN, BLIND, STUN, SEAL, MARKED, REGEN}
 enum row_line {FRONT, BACK}
-
 
 var hire_cost = 5
 
@@ -106,11 +107,18 @@ var damageres = {
 	}
 
 signal turn_complete
+signal dodged(defender, attacker)
+signal crit(defender, attacker)
+signal defended(defender, attacker)
 
 func _ready():
 	pass
 
+func ConnectSignals():
+	pass
+
 func Turn():
+	ConnectSignals()
 	StatModCountDown()
 	await StatusEffects()
 	CombatGUI.StatusLabels(self)
@@ -163,7 +171,7 @@ func StatusEffects():
 			statres[status_effects.POISON] = statres[status_effects.POISON] * 1.5
 	if status_effects.BURN in status:
 		CombatGUI.BattleLog(charname + " takes " + str(burn) + " burn damage!")
-		await take_damage(burn, damage_type.TRUE)
+		await take_damage(burn, damage_type.INFERNAL)
 		burncount -= 1
 		if burncount == 0:
 			status.erase(status_effects.BURN)
@@ -198,7 +206,7 @@ func StatusEffects():
 			status.erase(status_effects.REGEN)
 
 func Stat(stat):
-	return stats[stat] * statmods[stat] + gear_statmods[stat]
+	return (stats[stat] + gear_statmods[stat]) * statmods[stat] 
 
 func Attack(target):
 	CombatGUI.emit_signal("menuhide")
@@ -218,6 +226,7 @@ func CheckMiss(target):
 	if result >= Globals.BASE_MISS_CHANCE : return true
 	else: 
 		CloseTurn(target.charname + " evades " + charname + "'s attack!")
+		emit_signal("dodged", target, self)
 		return false
 
 func CheckCrit():
@@ -309,8 +318,8 @@ func StatMod(stat, amount, timer):
 func MPCheck(MPcost):
 	if stats[stat.MP] < MPcost: 
 		CombatGUI.BattleLog("Not enough MP!")
-		return "fail"
-	else: return "pass"
+		return false
+	else: return true
 
 func MPCost(MPcost):
 	stats[stat.MP] -= MPcost

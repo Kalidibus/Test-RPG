@@ -43,8 +43,6 @@ func LootRolls():
 	return earned_loot
 
 func DecideTarget():
-	print(stats[stat.CRIT])
-	print(stats[stat.CRITDMG])
 	#checks for the status_effects.MARKED status, which is used by provoke abilities, or can also be used by enemies to designate one target to destroy
 	#markedamount is the variable on the target which shows the chance of skipping the normal aggro calculation. 
 	var rng = Globals.RNG()

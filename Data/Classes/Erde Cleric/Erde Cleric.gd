@@ -51,7 +51,7 @@ func _ready():
 
 #SKILLS
 func Bounty():
-	if MPCheck(10) == "fail": return
+	if MPCheck(10) == false: return
 	else: CombatGUI.AllyTargetList("Bounty2")
 func Bounty2(target):
 	if target.stats[stat.HP] == 0:
@@ -63,7 +63,7 @@ func Bounty2(target):
 	CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
 
 func FullBlessing():
-	if MPCheck(50) == "fail": return
+	if MPCheck(50) == false: return
 	else: CombatGUI.QueueAction(self, "FullBlessing2")
 func FullBlessing2():
 	var partylist = get_party_targets()
@@ -74,7 +74,7 @@ func FullBlessing2():
 	CloseTurn(str(charname) + " Restores the parties health for " + str(Stat(stat.FTH)) + "!")
 
 func DivineBolt():
-	if MPCheck(10) == "fail": return
+	if MPCheck(10) == false: return
 	CombatGUI.TargetList("DivineBolt2")
 func DivineBolt2(target):
 	var damage_dealt = Damage(target, Stat(stat.FTH), damage_type.VIRTUOS)
@@ -82,7 +82,7 @@ func DivineBolt2(target):
 	CloseTurn(str(charname) + " launches an divine bolt of cleansing magic at " + str(target.charname) + ", hitting it for " + str(damage_dealt) + " damage!")
 
 func Resurrect():
-	if MPCheck(50) == "fail": return
+	if MPCheck(50) == false: return
 	else: CombatGUI.AllyTargetList("Raise")
 func Raise(target): #any function that revives needs to be called Raise so it doesn't get canceled by the auto-queue
 	if target.stats[stat.HP] != 0:

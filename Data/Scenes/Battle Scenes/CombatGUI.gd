@@ -37,8 +37,6 @@ func CreateLabels(party, enemy_array):
 		#Tie the label node and party member together for UI updates. 
 		guy["combatlabel"] = pbox
 		#Update Stats on the Label
-		print(guy)
-		print(stat)
 		pbox.SetStats(guy["name"], stat[Entity.stat.HP], stat[Entity.stat.MP], stat[Entity.stat.MAXHP], stat[Entity.stat.MAXMP])
 		#Set the Label Image
 		pbox.get_node("%BG").texture = load(JobDict.JobLabel(party[n]["job_id"]))

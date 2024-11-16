@@ -49,20 +49,20 @@ func _ready():
 		damage_type.TRUE: 0
 		}
 
-func AttackList(target, rng):
-	if rng <= 75: mAttack(target)
-	elif rng <= 90: Bludgeon(target)
+func AttackList(mtarget, rng):
+	if rng <= 75: mAttack(mtarget)
+	elif rng <= 90: Bludgeon(mtarget)
 	elif rng <= 100: mDefend()
 
-func mAttack(target):
-	if not CheckMiss(target): return
-	var damage_dealt = Damage(target, 1.2 * Stat(stat.STR), damage_type.SLASH)
-	CloseTurn("The " + charname + " slashes at " + target.charname + " for " + str(damage_dealt) + " damage!")
+func mAttack(mtarget):
+	if not CheckMiss(mtarget): return
+	var damage_dealt = Damage(mtarget, 1.2 * Stat(stat.STR), damage_type.SLASH)
+	CloseTurn("The " + charname + " slashes at " + mtarget.charname + " for " + str(damage_dealt) + " damage!")
 
-func Bludgeon(target):
-	if not CheckMiss(target): return
-	var damage_dealt = Damage(target, 1.5 * Stat(stat.STR), damage_type.IMPACT)
-	CloseTurn("The " + charname + " emits a bloodcurdling shriek and bludgeons " + target.charname + " fiercly for " + str(damage_dealt) + " damage!!!")
+func Bludgeon(mtarget):
+	if not CheckMiss(mtarget): return
+	var damage_dealt = Damage(mtarget, 1.5 * Stat(stat.STR), damage_type.IMPACT)
+	CloseTurn("The " + charname + " emits a bloodcurdling shriek and bludgeons " + mtarget.charname + " fiercly for " + str(damage_dealt) + " damage!!!")
 	target.AttemptStatusAilment(status_effects.STUN, 0, 0, 0)
 	
 

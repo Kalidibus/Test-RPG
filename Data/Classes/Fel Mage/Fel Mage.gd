@@ -70,7 +70,7 @@ func FelBolt2(target):
 	CloseTurn(str(charname) + " launches an eldritch bolt of ink black Fel at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
 func DeepBolt():
-	if MPCheck(10) == "fail": return
+	if MPCheck(10) == false: return
 	CombatGUI.TargetList("DeepBolt2")
 func DeepBolt2(target):
 	var damage = stats[stat.INT] * statmods[stat.INT]
@@ -79,7 +79,7 @@ func DeepBolt2(target):
 	CloseTurn(str(charname) + " launches a bolt of icey Deep at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
 func LevinBolt():
-	if MPCheck(10) == "fail": return
+	if MPCheck(10) == false: return
 	CombatGUI.TargetList("LevinBolt2")
 func LevinBolt2(target):
 	var damage = stats[stat.INT] * statmods[stat.INT]
@@ -88,7 +88,7 @@ func LevinBolt2(target):
 	CloseTurn(str(charname) + " launches a bolt of electric Levin at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
 func InfernoBolt():
-	if MPCheck(10) == "fail": return
+	if MPCheck(10) == false: return
 	CombatGUI.TargetList("InfernoBolt2")
 func InfernoBolt2(target):
 	var damage = stats[stat.INT] * statmods[stat.INT]
@@ -104,7 +104,7 @@ func FelPact2():
 	CloseTurn(str(charname) + " exchanges blood for power. MP restored!")
 	
 func FelStorm():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "FelStorm2")
 func FelStorm2():
 	var damage = (stats[stat.INT] * statmods[stat.INT])/2
@@ -119,7 +119,7 @@ func FelStorm2():
 	CloseTurn("The storm abates...")
 
 func DeepStorm():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "DeepStorm2")
 func DeepStorm2():
 	var damage = (stats[stat.INT] * statmods[stat.INT])/2
@@ -134,7 +134,7 @@ func DeepStorm2():
 	CloseTurn("The storm abates...")
 
 func LevinStorm():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "LevinStorm2")
 func LevinStorm2():
 	var damage = (stats[stat.INT] * statmods[stat.INT])/2
@@ -149,7 +149,7 @@ func LevinStorm2():
 	CloseTurn("The storm abates...")
 
 func InfernoStorm():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "InfernoStorm2")
 func InfernoStorm2():
 	var damage = (stats[stat.INT] * statmods[stat.INT])/2

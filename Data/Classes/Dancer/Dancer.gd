@@ -43,7 +43,7 @@ func _ready():
 	}
 
 func RaptorSamba():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "RaptorSamba2")
 func RaptorSamba2():
 	var partylist = get_party_targets()
@@ -53,7 +53,7 @@ func RaptorSamba2():
 	CloseTurn(str(charname) + "'s Raptor Samba emboldens the party. Strength increased!")
   
 func SoothingWaltz():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "SoothingWaltz2")
 func SoothingWaltz2():
 	var partylist = get_party_targets()
@@ -63,7 +63,7 @@ func SoothingWaltz2():
 	CloseTurn(str(charname) + "'s Soothing Waltz begins healing the party!")
    
 func InvigoratingGalliard():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "InvigoratingGalliard2")
 func InvigoratingGalliard2():
 	var partylist = get_party_targets()
@@ -73,7 +73,7 @@ func InvigoratingGalliard2():
 	CloseTurn(str(charname) + "'s Invigorating Galliad motivates the party. Speed increased!")
 
 func WhirlingBlades():
-	if MPCheck(30) == "fail": return
+	if MPCheck(30) == false: return
 	else: CombatGUI.QueueAction(self, "WhirlingBlades2")
 func WhirlingBlades2():
 	var damage = (stats[stat.STR] * statmods[stat.STR])*0.6
