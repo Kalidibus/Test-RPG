@@ -1,7 +1,6 @@
 res://Scenes/Battle Scenes/Combat.tscn
 res://Scenes/Battle Scenes/CombatGUI.gd
 res://Scenes/Battle Scenes/EnemyBlock.gd
-res://Scenes/Battle Scenes/Entity.gd
 res://Classes/Illusionist/Illusionist.gd
 res://Scenes/Start.tscn
 res://Classes/Classes.tscn
@@ -19,8 +18,4 @@ res://Scenes/Other/PauseMenu/SkillsMenu.tscn
 res://Scenes/Guild/UnlockGUIBox.tscn
 res://Scenes/Battle Scenes/StatusIcon.tscn
 res://Scenes/Battle Scenes/Party.tscn
-res://Scenes/Battle Scenes/Combat.gd
-res://Enemies/EnemyDict.gd
-res://Scenes/Battle Scenes/Monster.gd
-res://Enemies/Arid/Regular/mon_pylon.gd
-res://Scenes/Battle Scenes/signal_bus.gd
+res://Scenes/Battle Scenes/Entity.gd

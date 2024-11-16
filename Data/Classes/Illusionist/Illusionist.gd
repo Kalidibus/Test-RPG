@@ -1,5 +1,7 @@
 extends Entity
 
+enum skill {ColdMist, FalseForm, UndineAura, TreacherousStrike}
+
 #Passives
 var MISTBORNE_active = false
 var MISTBORNE_active_count = 0
@@ -35,7 +37,9 @@ var stat_scaling = {
 		stat.RES: "B",
 		stat.EVD: "S",
 		stat.ACC: "B",
-		stat.SPD: "S"
+		stat.SPD: "S",
+		stat.CRIT: "F",
+		stat.CRITDMG: "F"
 }
 var job_description = "The Illusionist Vocation channels the art of silver mist to protect the party with high Evasion. \n\nFocusing on a variety of ways to confuse enemies and help the party avoid fatal blows, the Illusionist is an unconventional, but highly effective tank in the right encounter. Evading attacks grants the Illusionist a resource called [b]Deceit[/b] which allows for the execution of potent Confusing abilities. \n\nEnemies that are highly resistant to blind or confusion may have an easier time finding their mark against an Illusionist."
 
@@ -46,12 +50,14 @@ func _ready():
 	weapontype = damage_type.SLASH
 	
 	skill_list = {
-		"skillILLUSIONIST01" = {"skillname" = "Cold Mist",
+		skill.ColdMist: {"skillname" = "Cold Mist",
 			"skilldesc" = "A shimmering shroud of mist engulfs the battlefield, sharply raising Party Evasion."},
-		"skillILLUSIONIST02" = {"skillname" = "False Form",
+		skill.FalseForm: {"skillname" = "False Form",
 			"skilldesc" = "False eyes on the wings of the Illusionist unnerve the enemy, increasing own Evasion and entering the Mistborne state."},		
-		"skillILLUSIONIST03" = {"skillname" = "Undine Aura",
-			"skilldesc" = "Enemies become wary of the shifting shapes in the mist. Reduces enemy Crit Rate substantially. If Mistborne is active, also reduce enemy ACC."}
+		skill.UndineAura: {"skillname" = "Undine Aura",
+			"skilldesc" = "Enemies become wary of the shifting shapes in the mist. Reduces enemy Crit Rate substantially. If Mistborne is active, also reduce enemy ACC."},
+		skill.TreacherousStrike: {"skillname" = "Treacherous Strike",
+			"skilldesc" = "A sinister strike into an enemies weak point. Scales off of accumulated DECEIT and has a high chance to crit."}
 			}
 
 func ConnectSignals():
@@ -71,7 +77,7 @@ func _on_dodge(defender, attacker):
 		DECEIT += 1
 		CombatGUI.BattleLog(charname + " accumulates Deceit! Current Deceit is " + str(DECEIT))
 		if SHAPESINTHEFOG == true:
-			if CheckMiss(attacker): 
+			if CheckMiss(attacker) == true:
 				var damage = Damage(attacker, Stat(stat.INT), damage_type.DEEP)
 				CombatGUI.BattleLog(charname + " counter-attacks " + attacker.charname + " for " + str(damage) + "!" )
 	else: print(defender.charname + " dodged it") #can add a check here to see if passive is enabled to allow countering for whole party.
@@ -107,3 +113,15 @@ func UndineAura2():
 		if MISTBORNE_active == true: n.StatMod(stat.ACC, 0.7, 3)
 	if MISTBORNE_active == true: CloseTurn(str(charname) + "'s exudes an Undine Aura. Enemy Crit and Accuracy decreased!")
 	else: CloseTurn(str(charname) + "'s exudes an Undine Aura. Enemy Crit decreased!")
+
+func TreacherousStrike():
+	if MPCheck(20) == false or DECEIT == 0: return
+	else: CombatGUI.TargetList("TreacherousStrike2")
+func TreacherousStrike2(target):
+	print(stats[stat.CRIT])
+	StatMod(stat.CRIT, 1.5, 1)
+	print(stats[stat.CRIT])
+	var adjusteddamage = Damage(target, stats[stat.INT] * DECEIT, damage_type.DEEP)
+	MPCost(20)
+	DECEIT = 0
+	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")

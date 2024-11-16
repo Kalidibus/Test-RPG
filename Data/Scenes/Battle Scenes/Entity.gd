@@ -230,7 +230,7 @@ func CheckMiss(target):
 		return false
 
 func CheckCrit():
-	if stats[stat.CRIT] >= Globals.RNG(): return true
+	if Stat(stat.CRIT) >= Globals.RNG(): return true
 	else: return false
 
 func take_damage (damage, type):
