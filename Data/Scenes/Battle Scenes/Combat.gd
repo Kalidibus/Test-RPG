@@ -35,14 +35,13 @@ func CreateNodes(party, enemy_array):
 		node.GetSkills()
 		party[n]["combatnode"] = node
 	for enemy in enemy_array:
-		for n in enemy:
-			var enode = EnemyDict.GetNode(n).duplicate()
-			enode.charid = n
-			#enode.stats = EnemyDict.GetAllStats(n) #redundant
-			enode.combatlabel = enemy[n]["combatlabel"]
+			var monid = enemy["id"]
+			var enode = EnemyDict.GetNode(monid).duplicate()
+			enode.charid = enemy
+			enode.combatlabel = enemy["combatlabel"]
 			%Enemies.add_child(enode)
 			%SignalBus.ConnectSignals(enode)
-			enemy[n]["combatnode"] = enode
+			enemy["combatnode"] = enode
 
 func MainBattleLoop():
 	await get_tree().create_timer(0.1).timeout

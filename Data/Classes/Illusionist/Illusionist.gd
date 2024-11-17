@@ -1,6 +1,6 @@
 extends Entity
 
-enum skill {ColdMist, FalseForm, UndineAura, TreacherousStrike}
+enum skill {ColdMist, FalseForm, UndineAura, TreacherousStrike, OcularFlash, BroadFlash}
 
 #Passives
 var MISTBORNE_active = false
@@ -57,12 +57,15 @@ func _ready():
 		skill.UndineAura: {"skillname" = "Undine Aura",
 			"skilldesc" = "Enemies become wary of the shifting shapes in the mist. Reduces enemy Crit Rate substantially. If Mistborne is active, also reduce enemy ACC."},
 		skill.TreacherousStrike: {"skillname" = "Treacherous Strike",
-			"skilldesc" = "A sinister strike into an enemies weak point. Scales off of accumulated DECEIT and has a high chance to crit."}
+			"skilldesc" = "A sinister strike into an enemies weak point. Scales off of accumulated DECEIT and has a high chance to crit."},
+		skill.OcularFlash: {"skillname" = "Ocular Flash",
+			"skilldesc" = "Emits a focused flash of light from eyespots. High chance of inflicting blind on one enemy."},
+		skill.BroadFlash: {"skillname" = "Broad Flash",
+			"skilldesc" = "Emits a broad flash of light from eyespots. Moderate chance of inflicting blind on enemy party."}
 			}
 
 func ConnectSignals():
 	SignalBus.dodged.connect(_on_dodge)
-	print("good")
 func Turn():
 	#Check Mistborne status and decriment if needed
 	if MISTBORNE_active == true: 
@@ -80,7 +83,7 @@ func _on_dodge(defender, attacker):
 			if CheckMiss(attacker) == true:
 				var damage = Damage(attacker, Stat(stat.INT), damage_type.DEEP)
 				CombatGUI.BattleLog(charname + " counter-attacks " + attacker.charname + " for " + str(damage) + "!" )
-	else: print(defender.charname + " dodged it") #can add a check here to see if passive is enabled to allow countering for whole party.
+	else: pass #can add a check here to see if passive is enabled to allow countering for whole party.
 
 func FalseForm():
 	if MPCheck(10) ==false: return
@@ -118,10 +121,27 @@ func TreacherousStrike():
 	if MPCheck(20) == false or DECEIT == 0: return
 	else: CombatGUI.TargetList("TreacherousStrike2")
 func TreacherousStrike2(target):
-	print(stats[stat.CRIT])
-	StatMod(stat.CRIT, 1.5, 1)
-	print(stats[stat.CRIT])
+	StatMod(stat.CRIT, 1.5, 0)
 	var adjusteddamage = Damage(target, stats[stat.INT] * DECEIT, damage_type.DEEP)
 	MPCost(20)
 	DECEIT = 0
 	CloseTurn(str(charname) + " has attacked " + str(target.charname) + " for " + str(adjusteddamage) + " damage!")
+
+func OcularFlash():
+	if MPCheck(10) == false: return
+	else: CombatGUI.TargetList("OcularFlash2")
+func OcularFlash2(target):
+	MPCost(10)
+	CombatGUI.BattleLog(charname + " attempts to blind " + target.charname)
+	target.AttemptStatusAilment(status_effects.BLIND, 0, 3, 25)
+	CloseTurn("")
+
+func BroadFlash():
+	if MPCheck(20) == false: return
+	else: CombatGUI.QueueAction(self, "BroadFlash2")
+func BroadFlash2():
+	MPCost(20)
+	CombatGUI.BattleLog(charname + " attempts to blind the enemy party!")
+	for n in get_enemy_targets():
+		n.AttemptStatusAilment(status_effects.BLIND, 0, 3, 10)
+	CloseTurn("")

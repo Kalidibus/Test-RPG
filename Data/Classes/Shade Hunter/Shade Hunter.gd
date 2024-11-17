@@ -30,7 +30,9 @@ var stat_scaling = {
 		stat.RES: "B",
 		stat.ACC: "S",
 		stat.EVD: "A",
-		stat.SPD: "A"
+		stat.SPD: "A",
+		stat.CRIT: "F",
+		stat.CRITDMG: "F"
 	}
 var job_description = "Striking from the shadows, the Shade Hunter's tainted arrows weaken enemies and leave them vulnerable to ally attacks. \n\nThe Shade Hunter vocation is an excellent addition to parties that need debuffing capabilities to take on stronger foes. In addition, various attacks target the enemy back row effectively, dealing significant damage in groups. A solid unit capable of fitting into most party compositions. \n\nThe Shade Hunter is less effective against units resistant to Burn or Poison."
 

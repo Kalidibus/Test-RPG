@@ -30,7 +30,9 @@ var stat_scaling = {
 		stat.RES: "S",
 		stat.ACC: "B",
 		stat.EVD: "B",
-		stat.SPD: "B"
+		stat.SPD: "B",
+		stat.CRIT: "F",
+		stat.CRITDMG: "F"
 	}
 var job_description = "The Erde Cleric is a healer capable of powerful restorations. \n\nThe party can safely soak massive damage with minimal fear while an Erde Cleric is present, as they are one of the most powerful healing Vocations known. \n\nTheir high focus on healing leaves them unable to contribute much to offense."
 

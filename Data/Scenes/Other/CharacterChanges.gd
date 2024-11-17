@@ -3,10 +3,6 @@ extends Node
 func _ready() -> void:
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 #Function receives the ID of character who's equipping an item, the slot, and the item ID.
 #Equips it and moves anything already in the slot to inventory space.
 func add_equipment(charid, slot, add_eqp, location) -> void:

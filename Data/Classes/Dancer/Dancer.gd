@@ -24,7 +24,10 @@ var stat_scaling = {
 		stat.FTH: "C",
 		stat.RES: "B",
 		stat.EVD: "D",
-		stat.SPD: "D"
+		stat.SPD: "D",
+		stat.ACC: "A",
+		stat.CRIT: "F",
+		stat.CRITDMG: "F"
 }
 
 var job_description = "A whirlwind of blades that bolsters the parties damage. \n\nDancer's are a potent addition to any party, especially those focused on physical damage types. Using a variety of dances, they bolster damage and MP regeneration, or follow up with ally attacks to devestating effect. \n\nThey are less effective at bolstering the abilities of Casters."

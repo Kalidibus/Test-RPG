@@ -61,9 +61,6 @@ func _ready() -> void:
 			"label" = "res://Assets/Classes/TBD-PartyLabel.png"},
 
 }
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func Stats(jobid):
 	return job_dictionary[str(jobid)]["node"].starting_stats

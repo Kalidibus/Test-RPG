@@ -11,9 +11,6 @@ func _ready() -> void:
 	#Disables options that aren't unlocked yet
 	#%OptionButton
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_return_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Start.tscn")

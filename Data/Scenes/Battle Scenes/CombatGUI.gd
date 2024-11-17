@@ -27,10 +27,12 @@ func _process(delta):
 
 func CreateLabels(party, enemy_array):
 	ClearSecondMenu()
+	var prepbox = partylabels.instantiate()
+	var preebox = enemylabels.instantiate()
 	
 	#Create party labels from party dictionary
 	for n in PlayerData.party_order:
-		var pbox = partylabels.instantiate()
+		var pbox = prepbox.duplicate()
 		var guy = party[n]
 		var stat = guy["stats"]
 		
@@ -47,19 +49,20 @@ func CreateLabels(party, enemy_array):
 	
 	#Create enemy labels from enemy dictionary
 	for enemy in enemy_array:
-		for n in enemy:
-			var ebox = enemylabels.instantiate()
-			var name = EnemyDict.GetName(n)
-			var hp = EnemyDict.GetStat(n, Entity.stat.HP)
-			var mp = EnemyDict.GetStat(n, Entity.stat.MP)
-			var hpmax = EnemyDict.GetStat(n, Entity.stat.MAXHP)
-			var mpmax = EnemyDict.GetStat(n, Entity.stat.MAXMP)
-			var image = EnemyDict.GetImage(n)
-			var row = EnemyDict.GetRow(n)
-
-			enemy[n]["combatlabel"] = ebox
-			%EnemyGUI.add_child(ebox)
-			ebox.SetStats(name, hp, mp, hpmax, mpmax, row, image)
+		print(enemy["id"])
+		var monid = enemy["id"]
+		var ebox = preebox.duplicate()
+		print(ebox)
+		var name = EnemyDict.GetName(monid)
+		var hp = EnemyDict.GetStat(monid, Entity.stat.HP)
+		var mp = EnemyDict.GetStat(monid, Entity.stat.MP)
+		var hpmax = EnemyDict.GetStat(monid, Entity.stat.MAXHP)
+		var mpmax = EnemyDict.GetStat(monid, Entity.stat.MAXMP)
+		var image = EnemyDict.GetImage(monid)
+		var row = EnemyDict.GetRow(monid)
+		enemy["combatlabel"] = ebox
+		%EnemyGUI.add_child(ebox)
+		ebox.SetStats(name, hp, mp, hpmax, mpmax, row, image)
 
 func TargetList(function):
 	var active_character = Combat.active_character
@@ -75,6 +78,7 @@ func TargetList(function):
 			button.target = n
 			button.connect("pressed",Callable(self,"QueueAction").bind(active_character, function, n))
 			secondmenu.add_child(button)
+			#secondmenu.move_child(button, 0)
 
 	var label = Label.new()
 	label.text = "TARGET"
@@ -86,13 +90,14 @@ func AllyTargetList(function):
 	ClearSecondMenu()
 	var active_character = Combat.active_character
 	
-	for n in %Party.get_children():
-		var button = TargetButton.new()
-		button.text = n.charname
-		button.target = n
-		button.connect("pressed",Callable(self,"QueueAction").bind(active_character, function, n))
-		secondmenu.add_child(button)
-		secondmenu.move_child(button, 0)	
+	for char in PlayerData.party_order: 
+		for n in %Party.get_children():
+			if char == n.charid:
+				var button = TargetButton.new()
+				button.text = n.charname
+				button.target = n
+				button.connect("pressed",Callable(self,"QueueAction").bind(active_character, function, n))
+				secondmenu.add_child(button)
 	
 	var label = Label.new()
 	label.text = "ALLY TARGET"

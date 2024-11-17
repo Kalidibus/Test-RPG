@@ -14,10 +14,6 @@ func _ready() -> void:
 	$Timer.start()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func ClearScreen() -> void:
 	%MenuContainer.remove_child(%MenuContainer.get_child(1))
 

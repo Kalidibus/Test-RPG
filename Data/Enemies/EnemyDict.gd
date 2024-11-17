@@ -1,18 +1,13 @@
 extends Node
-
+enum enemy {PYLON, BRAINROT}
 var enemydict 
 enum zone {ARID, DEEP}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	enemydict = {
-	"e01" = {"node" = %mon_pylon, "zone" = zone.ARID, "image" = "res://Assets/Enemies/Plyon.png"},
-	"e02" = {"node" = %mon_brainrot, "zone" = zone.ARID, "image" = "res://Assets/Enemies/Brain Rot.png"},
+	enemy.PYLON: {"id" = enemy.PYLON, "node" = %mon_pylon, "zone" = zone.ARID, "image" = "res://Assets/Enemies/Plyon.png"},
+	enemy.BRAINROT: {"id" = enemy.BRAINROT, "node" = %mon_brainrot, "zone" = zone.ARID, "image" = "res://Assets/Enemies/Brain Rot.png"},
 }
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func GetEncounter(area):
 	return get_node(area).Encounters()

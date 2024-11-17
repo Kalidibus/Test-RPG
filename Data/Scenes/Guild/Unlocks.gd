@@ -25,20 +25,16 @@ func _ready() -> void:
 		
 		child.set_unlock_gui(str(count))
 		count += 1
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func _on_return_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Guild/CharacterCreate.tscn")
 
 
 func _on_givestuff_pressed() -> void:
-	CharacterChanges.AddtoInventory("lcom001", 5)
-	CharacterChanges.AddtoInventory("lcom002", 5)
-	CharacterChanges.AddtoInventory("lcom003", 5)
-	CharacterChanges.AddtoInventory("lcom004", 5)
+	CharacterChanges.AddtoInventory("lcom001", 50)
+	CharacterChanges.AddtoInventory("lcom002", 50)
+	CharacterChanges.AddtoInventory("lcom003", 50)
+	CharacterChanges.AddtoInventory("lcom004", 50)
 	get_tree().reload_current_scene()
 
 func _on_takestuff_pressed() -> void:

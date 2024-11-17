@@ -31,7 +31,9 @@ var stat_scaling = {
 		stat.RES: "A",
 		stat.EVD: "B",
 		stat.ACC: "B",
-		stat.SPD: "B"
+		stat.SPD: "B",
+		stat.CRIT: "F",
+		stat.CRITDMG: "F"
 	}
 var job_description = "The Fel Mage is destruction incarnate. \n\nMaster of all elements, and capable of raining massive damage down upon foes regardless of their resistances or position. Their ability to recover MP also makes them excellent sustainers for long journies. \n\nHowever Fel Mage's lack much in the way of defenses, and must be protected. "
 

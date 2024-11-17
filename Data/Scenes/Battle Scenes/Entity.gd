@@ -37,8 +37,8 @@ var sealedskilllist
 #Variables related to status effects. These could probably be rolled up into an ENUM and making the ailments Dictionaries in the status array. 
 var status:Array
 var poison
-var poisoncount
 var burn
+var poisoncount
 var burncount
 var blindcount
 var sealcount
@@ -136,8 +136,12 @@ func GetSkills():
 		current_skills[n] = skill_list[n]
 
 func get_enemy_targets():
-	return enemies.get_children()
-
+	var list = enemies.get_children()
+	var enemy_array = []
+	for n in list:
+		if n.stats[stat.HP] > 0: enemy_array.append(n)
+	return enemy_array
+	
 func SwitchRows():
 	if row == row_line.FRONT:
 		row = row_line.BACK
@@ -178,7 +182,6 @@ func StatusEffects():
 			statres[status_effects.BURN] = statres[status_effects.BURN] * 1.5
 	if status_effects.BLIND in status:
 		CombatGUI.BattleLog(charname + " is blinded!")
-		statmods[stat.ACC] = 0.3
 		blindcount -= 1
 		if blindcount == 0:
 			statmods[stat.ACC] = 1
@@ -283,8 +286,11 @@ func AttemptStatusAilment(type, amount, time, bonus_to_inflict):
 			markedcount = time
 			CombatGUI.BattleLog(charname + " has been marked!")
 		elif type == status_effects.BLIND:
+			blindcount = time
+			StatMod(stat.ACC, 0.3, time)
 			CombatGUI.BattleLog(charname + " has been blinded!")
 		elif type == status_effects.SEAL:
+			sealcount = time
 			CombatGUI.BattleLog(charname + "'s Skills are sealed!")
 
 		CombatGUI.StatusLabels(self)
