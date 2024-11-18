@@ -100,6 +100,6 @@ text = "DEBUG"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/debug" to="." method="_on_debug_pressed"]

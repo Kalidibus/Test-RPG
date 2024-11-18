@@ -1,12 +1,13 @@
 extends Node
 
-var dict = {
-	"aglo01" = {
-		"name" = "Corroded Gloves",
-		"type" = "gloves",
-		"stats" = {Entity.stat.DEF: 2},
-		"desc" = "Was once formidable armour. Broken down and decayed by the Brine, now only tatters remain.",
-		"value" = 5
+@onready var dict = {
+	ItemDict.item.glove1: {
+		ItemDict.v.name: "Corroded Gloves",
+		ItemDict.v.type: ItemDict.item_type.armour,
+		ItemDict.v.subtype: ItemDict.item_subtype.gloves,
+		ItemDict.v.stats: {Entity.stat.DEF: 2},
+		ItemDict.v.desc: "Was once formidable armour. Broken down and decayed by the Brine, now only tatters remain.",
+		ItemDict.v.value: 5
 	}
 }
 

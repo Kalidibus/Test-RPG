@@ -31,15 +31,15 @@ func _on_return_button_pressed() -> void:
 
 
 func _on_givestuff_pressed() -> void:
-	CharacterChanges.AddtoInventory("lcom001", 50)
-	CharacterChanges.AddtoInventory("lcom002", 50)
-	CharacterChanges.AddtoInventory("lcom003", 50)
-	CharacterChanges.AddtoInventory("lcom004", 50)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp1, 50)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp2, 50)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp3, 50)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp4, 50)
 	get_tree().reload_current_scene()
 
 func _on_takestuff_pressed() -> void:
-	CharacterChanges.RemovefromInventory("lcom001", 5)
-	CharacterChanges.RemovefromInventory("lcom002", 5)
-	CharacterChanges.RemovefromInventory("lcom003", 5)
-	CharacterChanges.RemovefromInventory("lcom004", 5)
+	CharacterChanges.RemovefromInventory(ItemDict.item.comp1, 5)
+	CharacterChanges.RemovefromInventory(ItemDict.item.comp2, 5)
+	CharacterChanges.RemovefromInventory(ItemDict.item.comp3, 5)
+	CharacterChanges.RemovefromInventory(ItemDict.item.comp4, 5)
 	get_tree().reload_current_scene()

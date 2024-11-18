@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ktubc2fyxeev"]
+[gd_scene load_steps=31 format=3 uid="uid://ktubc2fyxeev"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/ActionQueue.tscn" id="1"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/CombatGUI.gd" id="2"]
@@ -10,27 +10,15 @@
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/Camera2D.tscn" id="8"]
 [ext_resource type="Texture2D" uid="uid://canh4bvgco7sc" path="res://Assets/Ability Animations/Impact/376.png" id="9_84t2l"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/AttackAnimations.gd" id="9_b46qv"]
+[ext_resource type="Texture2D" uid="uid://84thw11pmhcb" path="res://Assets/Ability Animations/Levin/723.png" id="11_3qnvb"]
+[ext_resource type="Texture2D" uid="uid://l5sgvnitoij7" path="res://Assets/Ability Animations/Erde/396.png" id="12_kd0gp"]
+[ext_resource type="Texture2D" uid="uid://cgbre3he5hoqf" path="res://Assets/Ability Animations/Infernal/123.png" id="12_tmp0h"]
+[ext_resource type="Texture2D" uid="uid://cwskkjxlt6s3h" path="res://Assets/Ability Animations/Deep/528.png" id="12_uahs3"]
 
 [sub_resource type="Environment" id="1"]
 background_mode = 4
 glow_enabled = true
 glow_hdr_threshold = 1.5
-
-[sub_resource type="Animation" id="Animation_tnsvd"]
-resource_name = "Impact"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(7.45058e-09, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [31, 32, 33, 34, 35, 36, 37, 38, 39]
-}
 
 [sub_resource type="Animation" id="Animation_jagfj"]
 length = 0.001
@@ -47,10 +35,173 @@ tracks/0/keys = {
 "values": [33]
 }
 
+[sub_resource type="Animation" id="Animation_tnsvd"]
+resource_name = "Effect"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(7.45058e-09, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [31, 32, 33, 34, 35, 36, 37, 38, 39]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ptqi"]
 _data = {
-"Impact": SubResource("Animation_tnsvd"),
+"Effect": SubResource("Animation_tnsvd"),
 "RESET": SubResource("Animation_jagfj")
+}
+
+[sub_resource type="Animation" id="Animation_3bt07"]
+resource_name = "Effect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45]
+}
+
+[sub_resource type="Animation" id="Animation_me8ux"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [23]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhcr2"]
+_data = {
+"Effect": SubResource("Animation_3bt07"),
+"RESET": SubResource("Animation_me8ux")
+}
+
+[sub_resource type="Animation" id="Animation_srq2i"]
+resource_name = "Effect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
+}
+
+[sub_resource type="Animation" id="Animation_1i3dn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [84]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mtpra"]
+_data = {
+"Effect": SubResource("Animation_srq2i"),
+"RESET": SubResource("Animation_1i3dn")
+}
+
+[sub_resource type="Animation" id="Animation_h6n7c"]
+resource_name = "Effect"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30, 31]
+}
+
+[sub_resource type="Animation" id="Animation_m037w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fvwi8"]
+_data = {
+"Effect": SubResource("Animation_h6n7c"),
+"RESET": SubResource("Animation_m037w")
+}
+
+[sub_resource type="Animation" id="Animation_o80f6"]
+resource_name = "Effect"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38]
+}
+
+[sub_resource type="Animation" id="Animation_wlrq0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [26]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f0f6f"]
+_data = {
+"Effect": SubResource("Animation_o80f6"),
+"RESET": SubResource("Animation_wlrq0")
 }
 
 [node name="Combat" type="Node"]
@@ -230,7 +381,7 @@ environment = SubResource("1")
 [node name="Animations" type="Node" parent="."]
 script = ExtResource("9_b46qv")
 
-[node name="AttackSprite" type="Sprite2D" parent="Animations"]
+[node name="Impact" type="Sprite2D" parent="Animations"]
 visible = false
 texture_filter = 1
 position = Vector2(975, 502)
@@ -240,11 +391,109 @@ hframes = 8
 vframes = 9
 frame = 33
 
-[node name="AttackAnimation" type="AnimationPlayer" parent="Animations/AttackSprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Impact"]
 libraries = {
 "": SubResource("AnimationLibrary_2ptqi")
 }
 speed_scale = 1.2
+
+[node name="Slash" type="Sprite2D" parent="Animations"]
+visible = false
+texture_filter = 1
+position = Vector2(975, 502)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("9_84t2l")
+hframes = 8
+vframes = 9
+frame = 33
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Slash"]
+libraries = {
+"": SubResource("AnimationLibrary_2ptqi")
+}
+speed_scale = 1.2
+
+[node name="Pierce" type="Sprite2D" parent="Animations"]
+visible = false
+texture_filter = 1
+position = Vector2(975, 502)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("9_84t2l")
+hframes = 8
+vframes = 9
+frame = 33
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Pierce"]
+libraries = {
+"": SubResource("AnimationLibrary_2ptqi")
+}
+speed_scale = 1.2
+
+[node name="Levin" type="Sprite2D" parent="Animations"]
+visible = false
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("11_3qnvb")
+hframes = 23
+vframes = 9
+frame = 23
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Levin"]
+libraries = {
+"": SubResource("AnimationLibrary_xhcr2")
+}
+
+[node name="Infernal" type="Sprite2D" parent="Animations"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("12_tmp0h")
+hframes = 12
+vframes = 9
+frame = 84
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Infernal"]
+libraries = {
+"": SubResource("AnimationLibrary_mtpra")
+}
+speed_scale = 0.5
+
+[node name="Erde" type="Sprite2D" parent="Animations"]
+visible = false
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("12_kd0gp")
+hframes = 8
+vframes = 9
+frame = 24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Erde"]
+libraries = {
+"": SubResource("AnimationLibrary_fvwi8")
+}
+
+[node name="Deep" type="Sprite2D" parent="Animations"]
+visible = false
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("12_uahs3")
+hframes = 13
+vframes = 9
+frame = 26
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Deep"]
+libraries = {
+"": SubResource("AnimationLibrary_f0f6f")
+}
+
+[node name="Virtuos" type="Sprite2D" parent="Animations"]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Virtuos"]
+
+[node name="Fel" type="Sprite2D" parent="Animations"]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations/Fel"]
 
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatGUI" method="_on_Attack_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Skills" to="CombatGUI" method="_on_Skills_pressed"]

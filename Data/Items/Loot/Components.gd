@@ -1,33 +1,37 @@
 extends Node
 
-var dict = {	
-	"lcom001" = {
-		"name" = "Dregs",
-		"type" = "components",
-		"stats" = {},
-		"desc" = "Meagre Dregs of a Lamentation that failed to Manifest. It's myriad uses makes it a common currency amongst vendors.",
-		"value" = 5
+@onready var dict = {	
+	ItemDict.item.comp1: {
+		ItemDict.v.name: "Dregs",
+		ItemDict.v.type: ItemDict.item_type.loot,
+		ItemDict.v.subtype: ItemDict.item_subtype.component,
+		ItemDict.v.stats: {},
+		ItemDict.v.desc: "Meagre Dregs of a Lamentation that failed to Manifest. It's myriad uses makes it a common currency amongst vendors.",
+		ItemDict.v.value: 5
 	},
-	"lcom002" = {
-		"name" = "Scrap Metal",
-		"type" = "components",
-		"stats" = {},
-		"desc" = "Various shreds of metal. Barely suitable for melting down. Can be used in crafting, and unlocking new Vocations.",
-		"value" = 5
+	ItemDict.item.comp2: {
+		ItemDict.v.name: "Scrap Metal",
+		ItemDict.v.type: ItemDict.item_type.loot,
+		ItemDict.v.subtype: ItemDict.item_subtype.component,
+		ItemDict.v.stats: {},
+		ItemDict.v.desc: "Various shreds of metal. Barely suitable for melting down. Can be used in crafting, and unlocking new Vocations.",
+		ItemDict.v.value: 5
 	},
-	"lcom003" = {
-		"name" = "Oily Bone Fragments",
-		"type" = "components",
-		"stats" = {},
-		"desc" = "Shards of bone from an unknown creature. Thick black oil drips from them. Can be used in crafting, and unlocking new Vocations.",
-		"value" = 5
+	ItemDict.item.comp3: {
+		ItemDict.v.name: "Oily Bone Fragments",
+		ItemDict.v.type: ItemDict.item_type.loot,
+		ItemDict.v.subtype: ItemDict.item_subtype.component,
+		ItemDict.v.stats: {},
+		ItemDict.v.desc: "Shards of bone from an unknown creature. Thick black oil drips from them. Can be used in crafting, and unlocking new Vocations.",
+		ItemDict.v.value: 5
 	},
-	"lcom004" = {
-		"name" = "Arcane Traces",
-		"type" = "components",
-		"stats" = {},
-		"desc" = "Wisps of magic collected in bottles. Barely any mana remains. Can be used in crafting, and unlocking new Vocations.",
-		"value" = 5
+	ItemDict.item.comp4: {
+		ItemDict.v.name: "Arcane Traces",
+		ItemDict.v.type: ItemDict.item_type.loot,
+		ItemDict.v.subtype: ItemDict.item_subtype.component,
+		ItemDict.v.stats: {},
+		ItemDict.v.desc: "Wisps of magic collected in bottles. Barely any mana remains. Can be used in crafting, and unlocking new Vocations.",
+		ItemDict.v.value: 5
 	}
 }
 

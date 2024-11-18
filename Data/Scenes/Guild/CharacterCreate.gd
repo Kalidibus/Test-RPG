@@ -21,8 +21,8 @@ func _on_create_char_button_pressed() -> void:
 	var user_selected_job = %OptionButton.selected
 	var cost = JobDict.GetHireCost(user_selected_job)
 	
-	if not PlayerData.inventory.has("lcom001") or PlayerData.inventory["lcom001"] < cost:
-		Globals.system_message("Not enough " +ItemDict.GetItemName("lcom001") + " to hire.")
+	if not PlayerData.inventory.has(ItemDict.item.comp1) or PlayerData.inventory[ItemDict.item.comp1] < cost:
+		Globals.system_message("Not enough " +ItemDict.GetItemName(ItemDict.item.comp1) + " to hire.")
 		return
 	
 	if not user_entered_name:
@@ -33,7 +33,7 @@ func _on_create_char_button_pressed() -> void:
 		Globals.system_message("No job selected!")
 		return
 	
-	var choice = await Globals.system_message_choice("Spend " + str(cost) + " " + ItemDict.GetItemName("lcom001") + " to hire " + str(user_entered_name) + "?", "Yes", "No")
+	var choice = await Globals.system_message_choice("Spend " + str(cost) + " " + ItemDict.GetItemName(ItemDict.item.comp1) + " to hire " + str(user_entered_name) + "?", "Yes", "No")
 	if choice == "right": return
 	
 	#look at current roster. Look at the last Character ID created and add +1 for the new character. Checks for empty roster. 
@@ -51,31 +51,31 @@ func _on_create_char_button_pressed() -> void:
 		"row" = Entity.row_line.FRONT,
 		"xp" = 0,
 		"xpneeded" = 100,
-		#"stats" = JobDict.Stats(user_selected_job),
+		"gear_statmods" = {},
 		"stats" = JobDict.Starting_Stats(user_selected_job),
 		"known_skills" = [],
 		"equipment" = {
-			"main_hand" = "",
-			"off_hand" = "",
-			"head" = "",
-			"body" = "",
-			"gloves" = "",
-			"pants" = "",
-			"necklace" = "",
-			"ring_1" = "",
-			"ring_2" = ""
+			"main_hand": "",
+			"off_hand":  "",
+			"head":  "",
+			"body":  "",
+			"gloves": "",
+			"pants": "",
+			"necklace": "",
+			"ring_1": "",
+			"ring_2": ""
 		},
 		"status" = {},
 		"combatlabel" = null,
 		"combatnode" = null
 	}
 	#give starting equipment
-	CharacterChanges.add_equipment(newcharid, "head", "h01", "roster")
-	CharacterChanges.add_equipment(newcharid, "body", "b01", "roster")
-	CharacterChanges.add_equipment(newcharid, "main_hand", "w01", "roster")
+	CharacterChanges.add_equipment(newcharid, "head", ItemDict.item.head1, "roster")
+	CharacterChanges.add_equipment(newcharid, "body", ItemDict.item.body1, "roster")
+	CharacterChanges.add_equipment(newcharid, "main_hand", ItemDict.item.sword1, "roster")
 	
 	#pay hiring price
-	CharacterChanges.RemovefromInventory("lcom001", cost)
+	CharacterChanges.RemovefromInventory(ItemDict.item.comp1, cost)
 	
 	#Create success pop-up dialogue
 	var choice2 = await Globals.system_message_choice("Successfully hired " + user_entered_name + " as a " + JobDict.JobName(user_selected_job) + "!\nWould you like to adjust your current party now?", "Yes", "No")

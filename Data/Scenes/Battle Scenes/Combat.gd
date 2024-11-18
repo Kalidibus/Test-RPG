@@ -27,6 +27,8 @@ func CreateNodes(party, enemy_array):
 		var node = JobDict.JobNode(party[n]["job_id"]).duplicate()
 		node.charid = n
 		node.stats = party[n]["stats"]
+		for gear_stat in party[n]["gear_statmods"]:
+			node.gear_statmods[gear_stat] = party[n]["gear_statmods"][gear_stat]
 		node.charname = party[n]["name"]
 		node.combatlabel = party[n]["combatlabel"]
 		node.row = party[n]["row"]

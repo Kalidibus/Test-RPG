@@ -50,6 +50,8 @@ func _ready():
 			"skilldesc" = "Heals the party."},
 		"skillECLERIC03" = {"skillname" = "Divine Bolt",
 			"skilldesc" = "A modest bolt of light, damages a single enemy."},
+		"skillECLERIC05" = {"skillname" = "Natural Revile",
+			"skilldesc" = "Unleashes a swarm of roots, damaging enemies and reducing their speed."},
 		"skillECLERIC04" = {"skillname" = "Resurrect",
 			"skilldesc" = "Raises one ally from the dead."}
 		}
@@ -97,3 +99,18 @@ func Raise(target): #any function that revives needs to be called Raise so it do
 		Revive(target, heal)
 		MPCost(50)
 		CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
+
+func NaturalRevile():
+	if MPCheck(30) == false: return
+	else: CombatGUI.QueueAction(self, "NaturalRevile2")
+func NaturalRevile2():
+	var enemies = get_enemy_targets()
+	MPCost(30)
+	CombatGUI.BattleLog(str(charname) + " unleashes a swam of roots!")
+	for target in enemies:
+		if target.stats[stat.HP] != 0:
+			var adjusteddamage = Damage(target, stat.FTH / 2, damage_type.ERDE)
+			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
+			target.StatMod(stat.SPD, 0.6, 3)
+			await get_tree().create_timer(0.5).timeout
+	CloseTurn("")

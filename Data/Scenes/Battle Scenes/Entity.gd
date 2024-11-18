@@ -241,11 +241,13 @@ func CheckCrit():
 func take_damage (damage, type):
 	var adjusteddamage
 	if stats[stat.HP] == 0: return #to prevent multi-attacks from triggering die() multiple times
-	
-	if type == damage_type.IMPACT or damage_type.SLASH or damage_type.PIERCE:
+	print(damage)
+	if type == damage_type.IMPACT or type == damage_type.SLASH or type == damage_type.PIERCE:
 		adjusteddamage = max(1, damage * (100 / (100+(float(Stat(stat.DEF))))))
+		print(adjusteddamage)
 		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
-	if type == damage_type.FEL or damage_type.VIRTUOS or damage_type.INFERNAL or damage_type.LEVIN or damage_type.ERDE or damage_type.DEEP:
+		print(adjusteddamage)
+	if type == damage_type.FEL or type == damage_type.VIRTUOS or type == damage_type.INFERNAL or type == damage_type.LEVIN or type == damage_type.ERDE or type == damage_type.DEEP:
 		adjusteddamage = max(1, damage * (100 / (100+(float(Stat(stat.RES))))))
 		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 
@@ -259,6 +261,7 @@ func take_damage (damage, type):
 	
 	if stats[stat.HP] <= 0: 
 		dies()
+	print(int(adjusteddamage))
 	return int(adjusteddamage)
 
 func get_healed (heal_amount:int):

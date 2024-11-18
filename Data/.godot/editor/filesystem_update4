@@ -1,8 +1,7 @@
 res://Scenes/Battle Scenes/Combat.tscn
 res://Scenes/Battle Scenes/CombatGUI.gd
 res://Scenes/Battle Scenes/EnemyBlock.gd
-res://Enemies/Arid/Regular/mon_pylon.gd
-res://Enemies/Arid/Regular/mon_brainrot.gd
+res://Scenes/Battle Scenes/AttackAnimations.gd
 res://Scenes/Start.tscn
 res://Classes/Classes.tscn
 res://Enemies/EnemyDict.tscn
@@ -20,15 +19,24 @@ res://Scenes/Guild/UnlockGUIBox.tscn
 res://Scenes/Battle Scenes/StatusIcon.tscn
 res://Scenes/Battle Scenes/Party.tscn
 res://Scenes/Guild/Unlocks.tscn
-res://Scenes/Battle Scenes/Entity.gd
-res://Classes/Fortress/Fortress.gd
-res://Classes/JobDictionary.gd
-res://Scenes/Guild/CharacterCreate.gd
-res://Scenes/PlayerData/PlayerData.gd
 res://Classes/Fel Mage/Fel Mage.gd
-res://Classes/Bastard Fist/Bastard Fist.gd
 res://Classes/Erde Cleric/Erde Cleric.gd
-res://Classes/Shade Hunter/Shade Hunter.gd
-res://Classes/Illusionist/Illusionist.gd
-res://Scenes/Battle Scenes/signal_bus.gd
-res://Scenes/Battle Scenes/AttackAnimations.gd
+res://Scenes/Other/CharacterChanges.gd
+res://Items/ItemDict.tscn
+res://Items/Weapons/Arcana.gd
+res://Scenes/Battle Scenes/Combat.gd
+res://Items/ItemDict.gd
+res://Items/Item.gd
+res://Scenes/Guild/CharacterCreate.gd
+res://Items/Weapons/Swords.gd
+res://Items/1handw.gd
+res://Items/TwoHandWep.gd
+res://Items/Armour/Head.gd
+res://Items/Loot/Components.gd
+res://Enemies/Arid/Regular/mon_brainrot.gd
+res://Enemies/Arid/Regular/mon_pylon.gd
+res://Classes/unlock_requirements.gd
+res://Items/Armour/Body.gd
+res://Items/Armour/Gloves.gd
+res://Scenes/PlayerData/PlayerData.gd
+res://Scenes/Battle Scenes/Entity.gd

@@ -6,12 +6,20 @@ func _ready() -> void:
 #Function receives the ID of character who's equipping an item, the slot, and the item ID.
 #Equips it and moves anything already in the slot to inventory space.
 func add_equipment(charid, slot, add_eqp, location) -> void:
-	charid = str(charid)
+	var char = PlayerData.get(location)[str(charid)]
 	
-	if PlayerData.get(location)[charid]["equipment"][slot] != null:
-		AddtoInventory(PlayerData.get(location)[charid]["equipment"][slot], 1)
-	PlayerData.get(location)[charid]["equipment"][slot] = add_eqp
-	
+	if char["equipment"][slot] != null:
+		AddtoInventory(char["equipment"][slot], 1)
+	char["equipment"][slot] = add_eqp
+	var stats = ItemDict.GetItemStats(add_eqp)
+	for n in stats:
+		print(add_eqp)
+		print(char)
+		print(stats)
+		print(n)
+		print(stats[n])
+		print(char["gear_statmods"])
+		char["gear_statmods"][n] = stats[n]
 
 func AddtoInventory(itemid, qty) -> void:
 	if not PlayerData.inventory.has(itemid):
@@ -58,7 +66,7 @@ func LevelUp(charid):
 	
 	#increase stats
 	for n in stats:
-		if n == Entity.stat.HP or n == Entity.stat.MP: pass
+		if n == Entity.stat.CRIT or n == Entity.stat.CRITDMG or n == Entity.stat.HATE: pass
 		else: PlayerData.party[charid]["stats"][n] = int(stats[n] * JobDict.StatScaling(jobid, n)) + 1
 	
 	#Fill up HP / MP
