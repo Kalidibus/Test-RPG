@@ -25,21 +25,23 @@ var starting_stats = {
 		stat.CRIT: 10,
 		stat.CRITDMG: 1.5
 		}
-
 var stat_scaling = {
-		stat.MAXHP: "A",
-		stat.MAXMP: "B",
-		stat.STR: "D",
-		stat.DEX: "D",
-		stat.DEF: "B",
-		stat.INT: "A",
-		stat.FTH: "B",
-		stat.RES: "B",
-		stat.EVD: "S",
-		stat.ACC: "B",
-		stat.SPD: "S",
-		stat.CRIT: "F",
-		stat.CRITDMG: "F"
+		stat.HP: stat_scale.A,
+		stat.MP: stat_scale.B,
+		stat.MAXHP: stat_scale.A,
+		stat.MAXMP: stat_scale.B,
+		stat.STR: stat_scale.D,
+		stat.DEX: stat_scale.D,
+		stat.DEF: stat_scale.B,
+		stat.INT: stat_scale.A,
+		stat.FTH: stat_scale.B,
+		stat.RES: stat_scale.B,
+		stat.EVD: stat_scale.S,
+		stat.ACC: stat_scale.B,
+		stat.SPD: stat_scale.S,
+		stat.CRIT: stat_scale.F,
+		stat.CRITDMG: stat_scale.F,
+		stat.HATE: stat_scale.S
 }
 var job_description = "The Illusionist Vocation channels the art of silver mist to protect the party with high Evasion. \n\nFocusing on a variety of ways to confuse enemies and help the party avoid fatal blows, the Illusionist is an unconventional, but highly effective tank in the right encounter. Evading attacks grants the Illusionist a resource called [b]Deceit[/b] which allows for the execution of potent Confusing abilities. \n\nEnemies that are highly resistant to blind or confusion may have an easier time finding their mark against an Illusionist."
 

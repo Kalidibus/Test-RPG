@@ -20,19 +20,22 @@ var starting_stats = {
 		stat.CRITDMG: 1.5
 		}
 var stat_scaling = {
-		stat.MAXHP: "B",
-		stat.MAXMP: "C",
-		stat.STR: "A",
-		stat.DEX: "B",
-		stat.DEF: "B",
-		stat.INT: "D",
-		stat.FTH: "D",
-		stat.RES: "C",
-		stat.ACC: "B",
-		stat.EVD: "B",
-		stat.SPD: "A",
-		stat.CRIT: "F",
-		stat.CRITDMG: "F"
+		stat.HP: stat_scale.B,
+		stat.MP: stat_scale.C,
+		stat.MAXHP: stat_scale.B,
+		stat.MAXMP: stat_scale.C,
+		stat.STR: stat_scale.A,
+		stat.DEX: stat_scale.B,
+		stat.DEF: stat_scale.B,
+		stat.INT: stat_scale.D,
+		stat.FTH: stat_scale.D,
+		stat.RES: stat_scale.C,
+		stat.ACC: stat_scale.B,
+		stat.EVD: stat_scale.B,
+		stat.SPD: stat_scale.A,
+		stat.CRIT: stat_scale.F,
+		stat.CRITDMG: stat_scale.F,
+		stat.HATE: stat_scale.C
 	}
 var job_description = "In a flury of crushing blows, the Bastard Fist Vocation unleashes hell with it's massive gauntlets. \n\nSpecializing in combination attacks, Bastard Fists become stronger with repeated attacks. They also boast impressive self buffing capabilities. \n\nTheir buffs often come at a cost however, granting incredible damage at the cost of Defense or Health."
 

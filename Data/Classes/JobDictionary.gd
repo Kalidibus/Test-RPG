@@ -3,6 +3,14 @@ extends Node
 var job_dictionary
 enum resources {charname, node, resource, splash, splash_pos, profile, label}
 
+const S = 10
+const A = 9
+const B = 8
+const C = 7
+const D = 6
+const E = 5
+const F = 4
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	job_dictionary = {
@@ -75,16 +83,39 @@ func _ready() -> void:
 func Stats(jobid):
 	return job_dictionary[str(jobid)][resources.node].starting_stats
 
+func Starting_Stats(jobid):
+	var stat_dict = {}
+	for stat in Entity.stat.values():
+		var statscale = job_dictionary[str(jobid)][resources.node].stat_scaling[stat]
+		var stat_amount
+		
+		match statscale:
+			Entity.stat_scale.S: stat_amount = S
+			Entity.stat_scale.A: stat_amount = A
+			Entity.stat_scale.B: stat_amount = B
+			Entity.stat_scale.C: stat_amount = C
+			Entity.stat_scale.D: stat_amount = D
+			Entity.stat_scale.E: stat_amount = E
+			Entity.stat_scale.F: stat_amount = F
+			
+		if stat == Entity.stat.MAXHP or stat == Entity.stat.MAXMP or stat == Entity.stat.HP or stat == Entity.stat.MP: stat_amount = stat_amount * 10
+		if stat == Entity.stat.CRIT: stat_amount = 10
+		if stat == Entity.stat.CRITDMG: stat_amount = 1.5
+		
+		stat_dict[stat] = stat_amount
+
+	return stat_dict
+
 func StatScaling(jobid, stat):
 	var statscale = job_dictionary[str(jobid)][resources.node].stat_scaling[stat]
 	match statscale:
-		"S": return 1.1
-		"A": return 1.08
-		"B": return 1.06
-		"C": return 1.05
-		"D": return 1.04
-		"E": return 1.02
-		"F": return 1
+		Entity.stat_scale.S: return 1.1
+		Entity.stat_scale.A: return 1.08
+		Entity.stat_scale.B: return 1.06
+		Entity.stat_scale.C: return 1.05
+		Entity.stat_scale.D: return 1.04
+		Entity.stat_scale.E: return 1.02
+		Entity.stat_scale.F: return 1
 		
 		
 func JobName(jobid):

@@ -51,7 +51,8 @@ func _on_create_char_button_pressed() -> void:
 		"row" = Entity.row_line.FRONT,
 		"xp" = 0,
 		"xpneeded" = 100,
-		"stats" = JobDict.Stats(user_selected_job),
+		#"stats" = JobDict.Stats(user_selected_job),
+		"stats" = JobDict.Starting_Stats(user_selected_job),
 		"known_skills" = [],
 		"equipment" = {
 			"main_hand" = "",

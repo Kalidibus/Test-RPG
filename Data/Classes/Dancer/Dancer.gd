@@ -16,18 +16,18 @@ var starting_stats = {
 		}
 
 var stat_scaling = {
-		stat.MAXHP: "A",
-		stat.MAXMP: "C",
-		stat.STR: "B",
-		stat.DEF: "S",
-		stat.INT: "C",
-		stat.FTH: "C",
-		stat.RES: "B",
-		stat.EVD: "D",
-		stat.SPD: "D",
-		stat.ACC: "A",
-		stat.CRIT: "F",
-		stat.CRITDMG: "F"
+		stat.MAXHP: stat_scale.A,
+		stat.MAXMP: stat_scale.C,
+		stat.STR: stat_scale.B,
+		stat.DEF: stat_scale.S,
+		stat.INT: stat_scale.C,
+		stat.FTH: stat_scale.C,
+		stat.RES: stat_scale.B,
+		stat.EVD: stat_scale.D,
+		stat.SPD: stat_scale.D,
+		stat.ACC: stat_scale.A,
+		stat.CRIT: stat_scale.F,
+		stat.CRITDMG: stat_scale.F
 }
 
 var job_description = "A whirlwind of blades that bolsters the parties damage. \n\nDancer's are a potent addition to any party, especially those focused on physical damage types. Using a variety of dances, they bolster damage and MP regeneration, or follow up with ally attacks to devestating effect. \n\nThey are less effective at bolstering the abilities of Casters."

@@ -13,20 +13,20 @@ func _ready():
 	enemy = true
 	row = row_line.BACK
 	stats = {
-		stat.MAXHP: 50,
-		stat.HP: 50,
+		stat.MAXHP: 30,
+		stat.HP: 30,
 		stat.MAXMP: 5,
 		stat.MP: 5,
-		stat.STR: 15,
-		stat.DEF: 30,
-		stat.DEX: 25,
+		stat.STR: 6,
+		stat.DEF: 6,
+		stat.DEX: 10,
 		stat.FTH: 5,
 		stat.INT: 5,
 		stat.SPD: 8,
-		stat.RES: 30,
-		stat.ACC: 20,
-		stat.EVD: 10,
-		stat.CRIT: 90,
+		stat.RES: 10,
+		stat.ACC: 10,
+		stat.EVD: 7,
+		stat.CRIT: 10,
 		stat.CRITDMG: 1.5
 		}
 	statres = {

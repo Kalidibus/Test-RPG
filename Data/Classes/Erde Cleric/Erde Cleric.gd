@@ -20,19 +20,22 @@ var starting_stats = {
 		stat.CRITDMG: 1.5
 	}
 var stat_scaling = {
-		stat.MAXHP: "B",
-		stat.MAXMP: "A",
-		stat.STR: "A",
-		stat.DEX: "C",
-		stat.DEF: "C",
-		stat.INT: "B",
-		stat.FTH: "S",
-		stat.RES: "S",
-		stat.ACC: "B",
-		stat.EVD: "B",
-		stat.SPD: "B",
-		stat.CRIT: "F",
-		stat.CRITDMG: "F"
+		stat.HP: stat_scale.B,
+		stat.MP: stat_scale.A,
+		stat.MAXHP: stat_scale.B,
+		stat.MAXMP: stat_scale.A,
+		stat.STR: stat_scale.A,
+		stat.DEX: stat_scale.C,
+		stat.DEF: stat_scale.C,
+		stat.INT: stat_scale.B,
+		stat.FTH: stat_scale.S,
+		stat.RES: stat_scale.S,
+		stat.ACC: stat_scale.B,
+		stat.EVD: stat_scale.B,
+		stat.SPD: stat_scale.B,
+		stat.CRIT: stat_scale.F,
+		stat.CRITDMG: stat_scale.F,
+		stat.HATE: stat_scale.D
 	}
 var job_description = "The Erde Cleric is a healer capable of powerful restorations. \n\nThe party can safely soak massive damage with minimal fear while an Erde Cleric is present, as they are one of the most powerful healing Vocations known. \n\nTheir high focus on healing leaves them unable to contribute much to offense."
 

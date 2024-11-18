@@ -16,18 +16,18 @@ var starting_stats = {
 		}
 
 var stat_scaling = {
-		stat.MAXHP: "A",
-		stat.MAXMP: "C",
-		stat.STR: "B",
-		stat.DEF: "S",
-		stat.INT: "C",
-		stat.FTH: "C",
-		stat.RES: "B",
-		stat.EVD: "D",
-		stat.SPD: "D",
-		stat.ACC: "B",
-		stat.CRIT: "F",
-		stat.CRITDMG: "F"
+		stat.MAXHP: stat_scale.A,
+		stat.MAXMP: stat_scale.C,
+		stat.STR: stat_scale.B,
+		stat.DEF: stat_scale.S,
+		stat.INT: stat_scale.C,
+		stat.FTH: stat_scale.C,
+		stat.RES: stat_scale.B,
+		stat.EVD: stat_scale.D,
+		stat.SPD: stat_scale.D,
+		stat.ACC: stat_scale.B,
+		stat.CRIT: stat_scale.F,
+		stat.CRITDMG: stat_scale.F
 }
 
 var job_description = "The War Mage is a frontline caster with explosive capabilities. \n\nSpecializing in close-range Levin and Infernal damage, they are monsters against groups of enemies that fight in the front-line. Hitting enemies with Infernal or Levin damage also accumulates a resource called [b]Overheat[/b] which can be used to fuel explosive attacks that hit the whole enemy party. \n\nThier capabilities against single enemies, or ranged enemies can be found lacking."

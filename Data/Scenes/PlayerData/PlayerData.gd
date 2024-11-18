@@ -27,8 +27,10 @@ func UnlockClass(jobid):
 
 func GetStat(charid, stat):
 	if party.has(charid): 
+		print(party[charid]["stats"])
 		return party[charid]["stats"][stat]
 	else: 
+		print(roster[charid]["stats"])
 		return roster[charid]["stats"][stat]
 		
 func KnownSkills(charid):

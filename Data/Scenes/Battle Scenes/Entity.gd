@@ -9,6 +9,7 @@ class_name Entity
 
 
 enum stat {HP, MAXHP, MP, MAXMP, STR, DEF, DEX, RES, INT, FTH, EVD, ACC, SPD, CRIT, CRITDMG, HATE}
+enum stat_scale {F, E, D, C, B, A, S}
 enum damage_type {PIERCE, IMPACT, SLASH, INFERNAL, LEVIN, DEEP, ERDE, VIRTUOS, FEL, TRUE}
 enum status_effects {POISON, BURN, BLIND, STUN, SEAL, MARKED, REGEN}
 enum row_line {FRONT, BACK}

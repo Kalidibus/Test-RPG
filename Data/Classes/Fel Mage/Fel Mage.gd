@@ -21,19 +21,22 @@ var starting_stats = {
 		stat.CRITDMG: 1.5
 		}
 var stat_scaling = {
-		stat.MAXHP: "B",
-		stat.MAXMP: "S",
-		stat.STR: "D",
-		stat.DEX: "D",
-		stat.DEF: "C",
-		stat.INT: "S",
-		stat.FTH: "A",
-		stat.RES: "A",
-		stat.EVD: "B",
-		stat.ACC: "B",
-		stat.SPD: "B",
-		stat.CRIT: "F",
-		stat.CRITDMG: "F"
+		stat.HP: stat_scale.B,
+		stat.MP: stat_scale.S,
+		stat.MAXHP: stat_scale.B,
+		stat.MAXMP: stat_scale.S,
+		stat.STR: stat_scale.D,
+		stat.DEX: stat_scale.D,
+		stat.DEF: stat_scale.C,
+		stat.INT: stat_scale.S,
+		stat.FTH: stat_scale.A,
+		stat.RES: stat_scale.A,
+		stat.EVD: stat_scale.B,
+		stat.ACC: stat_scale.B,
+		stat.SPD: stat_scale.B,
+		stat.CRIT: stat_scale.F,
+		stat.CRITDMG: stat_scale.F,
+		stat.HATE: stat_scale.C
 	}
 var job_description = "The Fel Mage is destruction incarnate. \n\nMaster of all elements, and capable of raining massive damage down upon foes regardless of their resistances or position. Their ability to recover MP also makes them excellent sustainers for long journies. \n\nHowever Fel Mage's lack much in the way of defenses, and must be protected. "
 

@@ -16,18 +16,18 @@ var starting_stats = {
 		}
 
 var stat_scaling = {
-		stat.MAXHP: "A",
-		stat.MAXMP: "C",
-		stat.STR: "B",
-		stat.DEF: "S",
-		stat.INT: "C",
-		stat.FTH: "C",
-		stat.RES: "B",
-		stat.EVD: "D",
-		stat.SPD: "D",
-		stat.ACC: "B",
-		stat.CRIT: "F",
-		stat.CRITDMG: "F"
+		stat.MAXHP: stat_scale.A,
+		stat.MAXMP: stat_scale.C,
+		stat.STR: stat_scale.B,
+		stat.DEF: stat_scale.S,
+		stat.INT: stat_scale.C,
+		stat.FTH: stat_scale.C,
+		stat.RES: stat_scale.B,
+		stat.EVD: stat_scale.D,
+		stat.SPD: stat_scale.D,
+		stat.ACC: stat_scale.B,
+		stat.CRIT: stat_scale.F,
+		stat.CRITDMG: stat_scale.F
 }
 
 var job_description = "The Samurai Vocation readies a single strike for perfect execution. \n\nBy steadying ones mind through the chaos of battle, the perfect moment to draw your sword and strike arrives. A unique vocation that rewards carefully buffing individual devastating attacks. \n\nVery low ranged utility, and if vulnerable while charging it's strike."
