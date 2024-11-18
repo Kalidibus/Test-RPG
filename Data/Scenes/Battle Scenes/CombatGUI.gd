@@ -49,10 +49,8 @@ func CreateLabels(party, enemy_array):
 	
 	#Create enemy labels from enemy dictionary
 	for enemy in enemy_array:
-		print(enemy["id"])
 		var monid = enemy["id"]
 		var ebox = preebox.duplicate()
-		print(ebox)
 		var name = EnemyDict.GetName(monid)
 		var hp = EnemyDict.GetStat(monid, Entity.stat.HP)
 		var mp = EnemyDict.GetStat(monid, Entity.stat.MP)

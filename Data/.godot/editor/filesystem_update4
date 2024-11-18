@@ -30,3 +30,5 @@ res://Classes/Bastard Fist/Bastard Fist.gd
 res://Classes/Erde Cleric/Erde Cleric.gd
 res://Classes/Shade Hunter/Shade Hunter.gd
 res://Classes/Illusionist/Illusionist.gd
+res://Scenes/Battle Scenes/signal_bus.gd
+res://Scenes/Battle Scenes/AttackAnimations.gd

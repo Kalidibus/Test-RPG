@@ -109,6 +109,7 @@ var damageres = {
 
 signal turn_complete
 signal dodged(defender, attacker)
+signal attacked(defender, attacker)
 signal crit(defender, attacker)
 signal defended(defender, attacker)
 
@@ -299,11 +300,14 @@ func AttemptStatusAilment(type, amount, time, bonus_to_inflict):
 #returns the actual amount of damage that was dealt, and also triggers the damage on the target node.
 func Damage(target, damage_calc, damage_type):
 	var damage_dealt
+
 	if CheckCrit(): 
 		damage_dealt = target.take_damage(damage_calc * stats[stat.CRITDMG], damage_type)
+		emit_signal("attacked", target, self, damage_dealt, damage_type)
 		return str(damage_dealt) + "!!"
 	else: 
 		damage_dealt = target.take_damage(damage_calc, damage_type)
+		emit_signal("attacked", target, self, damage_dealt, damage_type)
 		return str(damage_dealt)
 
 func Revive(target, heal):

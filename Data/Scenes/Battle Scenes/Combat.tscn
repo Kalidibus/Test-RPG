@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ktubc2fyxeev"]
+[gd_scene load_steps=15 format=3 uid="uid://ktubc2fyxeev"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/ActionQueue.tscn" id="1"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/CombatGUI.gd" id="2"]
@@ -8,11 +8,50 @@
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bwkr71clxk32v" path="res://Assets/backgrounds/Screenshot_20230318_165916.png" id="6_hqre3"]
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/Camera2D.tscn" id="8"]
+[ext_resource type="Texture2D" uid="uid://canh4bvgco7sc" path="res://Assets/Ability Animations/Impact/376.png" id="9_84t2l"]
+[ext_resource type="Script" path="res://Scenes/Battle Scenes/AttackAnimations.gd" id="9_b46qv"]
 
 [sub_resource type="Environment" id="1"]
 background_mode = 4
 glow_enabled = true
 glow_hdr_threshold = 1.5
+
+[sub_resource type="Animation" id="Animation_tnsvd"]
+resource_name = "Impact"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(7.45058e-09, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [31, 32, 33, 34, 35, 36, 37, 38, 39]
+}
+
+[sub_resource type="Animation" id="Animation_jagfj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [33]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ptqi"]
+_data = {
+"Impact": SubResource("Animation_tnsvd"),
+"RESET": SubResource("Animation_jagfj")
+}
 
 [node name="Combat" type="Node"]
 script = ExtResource("5")
@@ -187,6 +226,25 @@ texture = ExtResource("6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("1")
+
+[node name="Animations" type="Node" parent="."]
+script = ExtResource("9_b46qv")
+
+[node name="AttackSprite" type="Sprite2D" parent="Animations"]
+visible = false
+texture_filter = 1
+position = Vector2(975, 502)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("9_84t2l")
+hframes = 8
+vframes = 9
+frame = 33
+
+[node name="AttackAnimation" type="AnimationPlayer" parent="Animations/AttackSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_2ptqi")
+}
+speed_scale = 1.2
 
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Attack" to="CombatGUI" method="_on_Attack_pressed"]
 [connection signal="pressed" from="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu/Skills" to="CombatGUI" method="_on_Skills_pressed"]
