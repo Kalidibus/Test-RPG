@@ -13,7 +13,7 @@ func _ready() -> void:
 		var child = %ListBox.get_child(count)
 		
 		#Fills in "Class Name part of block
-		child.get_node("%classname").text = JobDict.job_dictionary[str(count)]["name"]
+		child.get_node("%classname").text = JobDict.JobName(str(count))
 		
 		#Checks if unlocked or not
 		if PlayerData.IsClassUnlocked(count):

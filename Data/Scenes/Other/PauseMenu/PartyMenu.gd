@@ -22,7 +22,7 @@ func AddBlocks():
 		block.get_node("%Class").text = char["job_name"]
 		block.get_node("%XP").text = "XP: " + str(char["xp"]) + "/" + str(char["xpneeded"])
 		block.get_node("%Lv").text = "Lv. " + str(char["level"])
-		block.get_node("%TextureRect").texture = load(JobDict.job_dictionary[char["job_id"]]["profile"]) 
+		block.get_node("%TextureRect").texture = load(JobDict.JobProfile(char["job_id"])) 
 		
 		
 		var HP = PlayerData.GetStat(n, Entity.stat.HP)

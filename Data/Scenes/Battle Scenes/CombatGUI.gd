@@ -194,7 +194,7 @@ func SetCharaSplash(jobid):
 	
 	await get_tree().create_timer(0.2).timeout
 	$CharaSplash.set_texture(load(JobDict.JobSplash(jobid)))
-	create_tween().tween_property($CharaSplash, "position",Vector2(1596, 511), 0.2)
+	create_tween().tween_property($CharaSplash, "position", JobDict.JobSplashPOS(jobid), 0.2)
 	$CharaSplash.visible = true
 
 func ClearCharaSplash():
