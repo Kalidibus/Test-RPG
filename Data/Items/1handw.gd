@@ -5,7 +5,7 @@ extends Node
 		ItemDict.v.name: "Corroded Sword Hilt",
 		ItemDict.v.type: ItemDict.item_type.one_handed_weapon,
 		ItemDict.v.subtype: ItemDict.item_subtype.sword,
-		ItemDict.v.stats: {Entity.stat.STR:200, Entity.stat.DEF:300},
+		ItemDict.v.stats: {Entity.stat.STR:2},
 		ItemDict.v.desc: "Was once a formidable sword. Broken down and decayed by the Brine, now only a hilt remains.",
 		ItemDict.v.value: 5
 		}

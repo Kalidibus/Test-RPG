@@ -1,7 +1,7 @@
 extends Node
 
 var job_dictionary
-enum resources {charname, node, resource, splash, splash_pos, profile, label}
+enum resources {charname, node, resource, splash, splash_pos, profile, label, skill_tree}
 
 const S = 10
 const A = 9
@@ -20,7 +20,8 @@ func _ready() -> void:
 			resources.splash: "res://Assets/Classes/Fortress/Fortress-splash.png",
 			resources.splash_pos: Vector2(1596, 511),
 			resources.profile: "res://Assets/Classes/Fortress/Fortress-profile.png",
-			resources.label: "res://Assets/Classes/Fortress/Fortress-PartyLabel.png"},
+			resources.label: "res://Assets/Classes/Fortress/Fortress-PartyLabel.png",
+			resources.skill_tree: "res://Classes/Fortress/SkillTree-Fortress.tscn"},
 		"1" = {resources.charname: "Fel Mage",
 			resources.node: $"Fel Mage",
 			resources.resource: "res://Classes/Fel Mage/Fel Mage.tscn",
@@ -147,3 +148,6 @@ func JobProfile(jobid):
 	
 func JobSplashPOS(jobid):
 	return job_dictionary[str(jobid)][resources.splash_pos]
+
+func JobSkillTree(jobid):
+	return job_dictionary[str(jobid)][resources.skill_tree]

@@ -65,7 +65,7 @@ func PoisonArrow2(target):
 	var adjusteddamage = target.take_damage(damage, damage_type.PIERCE)
 	MPCost(10)
 	CloseTurn(str(charname) + " fires a poison drenched arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment(status_effects.POISON, 40, 3, 20)
+	target.AttemptStatusAilment(status_effects.POISON, Stat(stat.DEX) * 0.8, 3, 20)
 
 func BurningArrow():
 	if MPCheck(10) == false: return
@@ -75,7 +75,7 @@ func BurningArrow2(target):
 	var adjusteddamage = target.take_damage(damage, damage_type.PIERCE)
 	MPCost(10)
 	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
-	target.AttemptStatusAilment(status_effects.BURN, 40, 3, 20)
+	target.AttemptStatusAilment(status_effects.BURN, Stat(stat.DEX) * 0.8, 3, 20)
 	
 func BladedVolley():
 	if MPCheck(30) == false: return
@@ -96,12 +96,15 @@ func PlateCrusher():
 	if MPCheck(20) == false: return
 	CombatGUI.TargetList("PlateCrusher2")
 func PlateCrusher2(target):
-	var damage = (stats[stat.SPD] * statmods[stat.SPD])
-	var adjusteddamage = target.take_damage(damage, damage_type.IMPACT)
+	var adjusteddamage = Damage(target, Stat(stat.DEX)/2 + Stat(stat.SPD)/2, damage_type.IMPACT)
 	MPCost(20)
-	CloseTurn(str(charname) + " fires a flaming arrow at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 	var rng = Globals.RNG()
-	if rng >= 50: target.StatMod(stat.DEF, 0.6, 2)
+	if rng >= 50: 
+		target.StatMod(stat.DEF, 0.6, 2)
+		CombatGUI.BattleLog(str(charname) + " fires a high impact shot at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
+		CloseTurn(target.charname + "'s Defense is weakened!")
+	else: 
+		CloseTurn(str(charname) + " fires a high impact shot at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
 func IsolatePrey():
 	if MPCheck(20) == false: return

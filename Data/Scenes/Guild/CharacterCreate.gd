@@ -151,3 +151,7 @@ func CheckUnlocked(index):
 
 func _on_adjust_party_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes//Guild/PartyBuild.tscn")
+
+
+func _on_skills_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Guild/SkillVendor/SkillTreeMenu.tscn")

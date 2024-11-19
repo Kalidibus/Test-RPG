@@ -2,7 +2,7 @@ extends Monster
 
 func _ready():
 	charname = "Pylon"
-	reward_xp = Globals.RNG_range(45, 75)
+	reward_xp = Globals.RNG_range(10, 20)
 	loot_table = {
 		ItemDict.item.comp1: 55,
 		ItemDict.item.comp2: 15,
@@ -17,14 +17,14 @@ func _ready():
 		stat.HP: 30,
 		stat.MAXMP: 5,
 		stat.MP: 5,
-		stat.STR: 7,
+		stat.STR: 10,
 		stat.DEF: 10,
 		stat.DEX: 5,
 		stat.FTH: 5,
 		stat.INT: 5,
 		stat.SPD: 8,
 		stat.RES: 10,
-		stat.ACC: 8,
+		stat.ACC: 5,
 		stat.EVD: 5,
 		stat.CRIT: 5,
 		stat.CRITDMG: 1.5
@@ -33,19 +33,19 @@ func _ready():
 		status_effects.POISON: 10,
 		status_effects.STUN: 50,
 		status_effects.BURN: 20,
-		status_effects.BLIND: 80,
+		status_effects.BLIND: 20,
 		status_effects.SEAL: 10
 		}
 	damageres = {
-		damage_type.IMPACT: 20,
-		damage_type.SLASH: 5,
-		damage_type.PIERCE: 20,
-		damage_type.FEL: 10,
-		damage_type.INFERNAL: 10,
+		damage_type.IMPACT: 30,
+		damage_type.SLASH: 30,
+		damage_type.PIERCE: 30,
+		damage_type.FEL: 5,
+		damage_type.INFERNAL: 5,
 		damage_type.LEVIN: -20,
-		damage_type.DEEP: 10,
-		damage_type.ERDE: 50,
-		damage_type.VIRTUOS: -5,
+		damage_type.DEEP: -20,
+		damage_type.ERDE: 5,
+		damage_type.VIRTUOS: -25,
 		damage_type.TRUE: 0
 		}
 

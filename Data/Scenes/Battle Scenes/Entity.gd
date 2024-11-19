@@ -224,9 +224,12 @@ func Defend():
 	CloseTurn(str((charname) + " defends herself!"))
 
 func CheckMiss(target):
-	var ratio = stats[stat.ACC] / target.stats[stat.EVD]
+	var ratio : float = float(stats[stat.ACC]) / float(target.stats[stat.EVD])
 	var rng = Globals.RNG()
 	var result = ratio * rng
+	
+	print("ratio" + str(ratio))
+	print("result" + str(result))
 	
 	if result >= Globals.BASE_MISS_CHANCE : return true
 	else: 
@@ -243,13 +246,14 @@ func take_damage (damage, type):
 	if stats[stat.HP] == 0: return #to prevent multi-attacks from triggering die() multiple times
 	print(damage)
 	if type == damage_type.IMPACT or type == damage_type.SLASH or type == damage_type.PIERCE:
+		print("DEF" + str(Stat(stat.DEF)))
 		adjusteddamage = max(1, damage * (100 / (100+(float(Stat(stat.DEF))))))
 		print(adjusteddamage)
-		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
+		adjusteddamage = max(0, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 		print(adjusteddamage)
 	if type == damage_type.FEL or type == damage_type.VIRTUOS or type == damage_type.INFERNAL or type == damage_type.LEVIN or type == damage_type.ERDE or type == damage_type.DEEP:
 		adjusteddamage = max(1, damage * (100 / (100+(float(Stat(stat.RES))))))
-		adjusteddamage = max(1, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
+		adjusteddamage = max(0, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
 
 	if type == damage_type.TRUE:
 		adjusteddamage = damage

@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4idmo7qcqw7l"]
+
+[ext_resource type="Script" path="res://Scenes/Guild/SkillVendor/SkillTreeMenu.gd" id="1_qvcxk"]
+
+[node name="SkillTreeMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_qvcxk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Previous Party Member"
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Next Party Member"
+
+[node name="CostItem" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Corroded Bone Fragments:"
+
+[node name="CostAmount" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "99"
+
+[node name="spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.02
+
+[node name="ReturnButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Return"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
