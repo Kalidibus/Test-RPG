@@ -45,6 +45,7 @@ func _on_create_char_button_pressed() -> void:
 	#main function to add the new character using the Character ID generated above.
 	PlayerData.roster[str(newcharid)] = {
 		"name" = str(user_entered_name),
+		"char_id" = str(newcharid),
 		"job_id" = str(user_selected_job),
 		"job_name" = JobDict.JobName(user_selected_job),
 		"level" = 1,
@@ -54,6 +55,7 @@ func _on_create_char_button_pressed() -> void:
 		"gear_statmods" = {},
 		"stats" = JobDict.Starting_Stats(user_selected_job),
 		"known_skills" = [],
+		"skill_levels" = {},
 		"equipment" = {
 			"main_hand": "",
 			"off_hand":  "",
@@ -78,13 +80,24 @@ func _on_create_char_button_pressed() -> void:
 	CharacterChanges.RemovefromInventory(ItemDict.item.comp1, cost)
 	
 	#Create success pop-up dialogue
-	var choice2 = await Globals.system_message_choice("Successfully hired " + user_entered_name + " as a " + JobDict.JobName(user_selected_job) + "!\nWould you like to adjust your current party now?", "Yes", "No")
-	if choice2 == "left": get_tree().change_scene_to_file("res://Scenes//Guild/PartyBuild.tscn")
+	if AutoAddtoParty(PlayerData.roster[str(newcharid)]) == false:
+		var choice2 = await Globals.system_message_choice("Successfully hired " + user_entered_name + " as a " + JobDict.JobName(user_selected_job) + "!\nWould you like to adjust your current party now?", "Yes", "No")
+		if choice2 == "left": get_tree().change_scene_to_file("res://Scenes//Guild/PartyBuild.tscn")
 
+
+#If the party isn't full, automatically add the new character. Mostly to stop annoying me during testing. 
+func AutoAddtoParty(new_char):
+	if PlayerData.party.size() < 5: 
+		Globals.system_message("Successfully hired " + new_char["name"] + "!\nAutomatically added to your party!")
+		PlayerData.party[new_char["char_id"]] = PlayerData.roster[new_char["char_id"]]
+		PlayerData.party_order.append(new_char["char_id"])
+		return true
+	else: return false
+
+			
 
 func _on_option_button_item_selected(index: int) -> void:
 	CharaDetails(index)
-
 
 func _on_char_unlock_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes//Guild/Unlocks.tscn")
@@ -109,8 +122,6 @@ func CharaDetails(index: int) -> void:
 	#Set the name
 	%job_name_display.text = JobDict.JobName(index)
 	%job_description_display.text = JobDict.JobDesc(index)
-	
-
 
 func _on_back_button_pressed() -> void:
 	var index = %OptionButton.get_selected_id()

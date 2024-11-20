@@ -2,6 +2,13 @@ extends MarginContainer
 
 func _ready():
 	#SaveandLoad.load_file()
+	
+	#DEBUG SECTION:
+	CharacterChanges.AddtoInventory(ItemDict.item.comp1, 50)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp2, 50)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp3, 50)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp4, 50)
+
 	%Dungeon.grab_focus()
 
 func _on_StartButton_pressed():
@@ -50,6 +57,15 @@ func _on_debug_pressed() -> void:
 	for n in PlayerData.party:
 		CharacterChanges.GainXP(n, 2000)
 
+
+#func _on_button_pressed() -> void:
+	#for n in PlayerData.party:
+		#var jobid = PlayerData.party[n]["job_id"]
+		#var skilllist = JobDict.GetSkills(jobid)
+		#for skill in skilllist:
+			#print(str(skill) + "asdsad")
+			#CharacterChanges.LearnSkill(n, skilllist[skill])
+#
 
 func _on_button_pressed() -> void:
 	for n in PlayerData.party:

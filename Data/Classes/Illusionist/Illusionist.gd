@@ -1,6 +1,6 @@
 extends Entity
 
-enum skill {ColdMist, FalseForm, UndineAura, TreacherousStrike, OcularFlash, BroadFlash}
+enum skillid {Illu01, Illu02, Illu03, Illu04, Illu05, Illu06}
 
 #Passives
 var MISTBORNE_active = false
@@ -52,17 +52,17 @@ func _ready():
 	weapontype = damage_type.SLASH
 	
 	skill_list = {
-		skill.ColdMist: {"skillname" = "Cold Mist",
+		skillid.Illu01: {"skillname" = "Cold Mist",
 			"skilldesc" = "A shimmering shroud of mist engulfs the battlefield, sharply raising Party Evasion."},
-		skill.FalseForm: {"skillname" = "False Form",
+		skillid.Illu02: {"skillname" = "False Form",
 			"skilldesc" = "False eyes on the wings of the Illusionist unnerve the enemy, increasing own Evasion and entering the Mistborne state."},		
-		skill.UndineAura: {"skillname" = "Undine Aura",
+		skillid.Illu03: {"skillname" = "Undine Aura",
 			"skilldesc" = "Enemies become wary of the shifting shapes in the mist. Reduces enemy Crit Rate substantially. If Mistborne is active, also reduce enemy ACC."},
-		skill.TreacherousStrike: {"skillname" = "Treacherous Strike",
+		skillid.Illu04: {"skillname" = "Treacherous Strike",
 			"skilldesc" = "A sinister strike into an enemies weak point. Scales off of accumulated DECEIT and has a high chance to crit."},
-		skill.OcularFlash: {"skillname" = "Ocular Flash",
+		skillid.Illu05: {"skillname" = "Ocular Flash",
 			"skilldesc" = "Emits a focused flash of light from eyespots. High chance of inflicting blind on one enemy."},
-		skill.BroadFlash: {"skillname" = "Broad Flash",
+		skillid.Illu06: {"skillname" = "Broad Flash",
 			"skilldesc" = "Emits a broad flash of light from eyespots. Moderate chance of inflicting blind on enemy party."}
 			}
 

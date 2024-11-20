@@ -136,6 +136,7 @@ func GetSkills():
 	var skill_array = PlayerData.KnownSkills(charid)
 	for n in skill_array:
 		current_skills[n] = skill_list[n]
+		skill_list[n]["current_level"] = PlayerData.party[charid]["skill_levels"][n]
 
 func get_enemy_targets():
 	var list = enemies.get_children()
@@ -228,9 +229,6 @@ func CheckMiss(target):
 	var rng = Globals.RNG()
 	var result = ratio * rng
 	
-	print("ratio" + str(ratio))
-	print("result" + str(result))
-	
 	if result >= Globals.BASE_MISS_CHANCE : return true
 	else: 
 		CloseTurn(target.charname + " evades " + charname + "'s attack!")
@@ -243,14 +241,11 @@ func CheckCrit():
 
 func take_damage (damage, type):
 	var adjusteddamage
+	
 	if stats[stat.HP] == 0: return #to prevent multi-attacks from triggering die() multiple times
-	print(damage)
 	if type == damage_type.IMPACT or type == damage_type.SLASH or type == damage_type.PIERCE:
-		print("DEF" + str(Stat(stat.DEF)))
 		adjusteddamage = max(1, damage * (100 / (100+(float(Stat(stat.DEF))))))
-		print(adjusteddamage)
 		adjusteddamage = max(0, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))
-		print(adjusteddamage)
 	if type == damage_type.FEL or type == damage_type.VIRTUOS or type == damage_type.INFERNAL or type == damage_type.LEVIN or type == damage_type.ERDE or type == damage_type.DEEP:
 		adjusteddamage = max(1, damage * (100 / (100+(float(Stat(stat.RES))))))
 		adjusteddamage = max(0, adjusteddamage * (1 - (float(damageres[type]) / 100.00)))

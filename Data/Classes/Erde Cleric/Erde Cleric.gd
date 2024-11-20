@@ -106,7 +106,7 @@ func NaturalRevile():
 func NaturalRevile2():
 	var enemies = get_enemy_targets()
 	MPCost(30)
-	CombatGUI.BattleLog(str(charname) + " unleashes a swam of roots!")
+	CombatGUI.BattleLog(str(charname) + " unleashes a swarm of roots!")
 	for target in enemies:
 		if target.stats[stat.HP] != 0:
 			var adjusteddamage = Damage(target, stat.FTH / 2, damage_type.ERDE)

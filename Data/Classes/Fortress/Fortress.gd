@@ -1,5 +1,7 @@
 extends Entity
 
+enum skillid {Fort01, Fort02, Fort03, Fort04, Fort05, Fort06, Fort07, Fort08, Fort09, Fort10, Fort11, Fort12, Fort13, Fort14, Fort15, Fort16, Fort17, Fort18, Fort19, Fort20, Fort21, Fort22, Fort23, Fort24, Fort25}
+
 #PASSIVES
 var PASSIVE_accumulate_ire = true
 var ire = 0
@@ -47,28 +49,50 @@ func _ready():
 	weapontype = damage_type.IMPACT
 	
 	skill_list = {
-		"skillFORTRESS01" = {"skillname" = "Taunt",
-			"skilldesc" = "Marks self, increasing odds of enemies targetting Fortress. Also increases base aggro."},
-		"skillFORTRESS02" = {"skillname" = "Vanguard",
-			"skilldesc" = "A savage blow with both shields. Deals high impact damage scaling with DEF."},
-		"skillFORTRESS03" = {"skillname" = "Bastion",
-			"skilldesc" = "Restores HP to target party member. Amount healed scales with DEF."},
-		"skillFORTRESS04" = {"skillname" = "Embolden",
-			"skilldesc" = "Boosts the DEF stat for 3 turns."},
-		"skillFORTRESS05" = {"skillname" = "Shield Tremor",
-			"skilldesc" = "Smashing shields into the ground destablizes the enemy, reducing STR."},
-		"skillFORTRESS06" = {"skillname" = "Full Cover",
-			"skilldesc" = "Increases Defense of the Front Line"},
-		"skillFORTRESS07" = {"skillname" = "Skull Splitter",
-			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy."},
-		"skillFORTRESS08" = {"skillname" = "Vanguard Crush",
-			"skilldesc" = "COST '1 Ire' - A crushing blow from dual shields. Deals heavy damage scaling off of DEF."},
-		"skillFORTRESS09" = {"skillname" = "Shrapnel Burst",
-			"skilldesc" = "COST '2 Ire' - An explosive blast of rubble that damages the entire enemy front line."},
-		"skillFORTRESS10" = {"skillname" = "Debilatio",
-			"skilldesc" = "COST '3 Ire' - The destructive ultimate potential of the Fortress. Massive Impact damage to the entire enemy party. Scales off of DEF."},
-		"skillFORTRESS11" = {"skillname" = "Perfect Shell",
-			"skilldesc" = "Defend and massively increase damage resistance this turn."}
+		skillid.Fort01: {"skillname" = "Taunt",
+			"skilldesc" = "Marks self, increasing odds of enemies targetting Fortress. Also increases base aggro.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort02: {"skillname" = "Vanguard",
+			"skilldesc" = "A savage blow with both shields. Deals high impact damage scaling with DEF.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort03: {"skillname" = "Bastion",
+			"skilldesc" = "Restores HP to target party member. Amount healed scales with DEF.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort04: {"skillname" = "Embolden",
+			"skilldesc" = "Boosts the DEF stat for 3 turns.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort05: {"skillname" = "Shield Tremor",
+			"skilldesc" = "Smashing shields into the ground destablizes the enemy, reducing STR.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort06: {"skillname" = "Full Cover",
+			"skilldesc" = "Increases Defense of the Front Line",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort07: {"skillname" = "Skull Splitter",
+			"skilldesc" = "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort08: {"skillname" = "Vanguard Crush",
+			"skilldesc" = "COST '1 Ire' - A crushing blow from dual shields. Deals heavy damage scaling off of DEF.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort09: {"skillname" = "Shrapnel Burst",
+			"skilldesc" = "COST '2 Ire' - An explosive blast of rubble that damages the entire enemy front line.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort10: {"skillname" = "Debilatio",
+			"skilldesc" = "COST '3 Ire' - The destructive ultimate potential of the Fortress. Massive Impact damage to the entire enemy party. Scales off of DEF.",
+			"max_level" = 5,
+			"current_level" = 0},
+		skillid.Fort11: {"skillname" = "Perfect Shell",
+			"skilldesc" = "Defend and massively increase damage resistance this turn.",
+			"max_level" = 5,
+			"current_level" = 0}
 		}
 
 #SKILLS
@@ -97,9 +121,12 @@ func Taunt2():
 	if not status.has(status_effects.MARKED):
 		AttemptStatusAilment(status_effects.MARKED, 80, 2, 0)
 	statres[status_effects.MARKED] = previousvalue
-	HATE += 50
+	print(str(HATE))
+	print(str(skill_list[skillid.Fort01]["current_level"]))
+	HATE += (25 + (25 * skill_list[skillid.Fort01]["current_level"]))
+	print(str(HATE))
 	MPCost(10)
-	CloseTurn(str(charname) + " draws enemy attention!")
+	CloseTurn(str(charname) + " Taunts the enemy!")
 
 func Vanguard():
 	if MPCheck(40) == false: return

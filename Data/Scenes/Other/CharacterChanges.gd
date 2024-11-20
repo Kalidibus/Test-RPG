@@ -13,12 +13,6 @@ func add_equipment(charid, slot, add_eqp, location) -> void:
 	char["equipment"][slot] = add_eqp
 	var stats = ItemDict.GetItemStats(add_eqp)
 	for n in stats:
-		print(add_eqp)
-		print(char)
-		print(stats)
-		print(n)
-		print(stats[n])
-		print(char["gear_statmods"])
 		char["gear_statmods"][n] = stats[n]
 
 func AddtoInventory(itemid, qty) -> void:
@@ -79,6 +73,19 @@ func LevelUp(charid):
 	
 
 
+#func LearnSkill(charid, skillid):
+	#var known_skills = PlayerData.party[charid]["known_skills"]
+	#if not known_skills.has(skillid):
+		#known_skills[skillid] = skillid
+		#known_skills[skillid]["current_level"] = 1
+	#elif known_skills.has(skillid):
+		#known_skills[skillid]["current_level"] += 1
+	#print(known_skills)
+
 func LearnSkill(charid, skillid):
 	if not PlayerData.party[charid]["known_skills"].has(skillid):
 		PlayerData.party[charid]["known_skills"].append(skillid)
+		PlayerData.party[charid]["skill_levels"][skillid] = 1
+	else:
+		PlayerData.party[charid]["skill_levels"][skillid] += 1
+	print(PlayerData.party[charid])
