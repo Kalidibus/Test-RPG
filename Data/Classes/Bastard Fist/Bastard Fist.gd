@@ -44,18 +44,18 @@ func _ready():
 	weapontype = damage_type.IMPACT
 	
 	skill_list = {
-		"skillBFIST01" = {"skillname" = "Crimson Rush",
-			"skilldesc" = "Strikes an opponent with a flurry of blows. Scales with SPD and STR"},
-		"skillBFIST02" = {"skillname" = "Scarlet Sun",
-			"skilldesc" = "COMBO: Crimson Rush - A powerful single blow"},
-		"skillBFIST03" = {"skillname" = "Vermillion Dance",
-			"skilldesc" = "COMBO: Scarlet Sun - This final formation unleashes the true power of the Bastard Fists"},
-		"skillBFIST04" = {"skillname" = "Bastard Spirit",
-			"skilldesc" = "Raises STR for 3 turns."},
-		"skillBFIST05" = {"skillname" = "Lunatic Spirit",
-			"skilldesc" = "Greatly raises STR and SPD for 3 turns, but reduces DEF."},
-		"skillBFIST06" = {"skillname" = "Shear Grit",
-			"skilldesc" = "Recover a percentage of missing health."}
+		"skillBFIST01" = {skill.name: "Crimson Rush",
+			skill.desc: "Strikes an opponent with a flurry of blows. Scales with SPD and STR"},
+		"skillBFIST02" = {skill.name: "Scarlet Sun",
+			skill.desc: "COMBO: Crimson Rush - A powerful single blow"},
+		"skillBFIST03" = {skill.name: "Vermillion Dance",
+			skill.desc: "COMBO: Scarlet Sun - This final formation unleashes the true power of the Bastard Fists"},
+		"skillBFIST04" = {skill.name: "Bastard Spirit",
+			skill.desc: "Raises STR for 3 turns."},
+		"skillBFIST05" = {skill.name: "Lunatic Spirit",
+			skill.desc: "Greatly raises STR and SPD for 3 turns, but reduces DEF."},
+		"skillBFIST06" = {skill.name: "Shear Grit",
+			skill.desc: "Recover a percentage of missing health."}
 		}
 
 #SKILLS

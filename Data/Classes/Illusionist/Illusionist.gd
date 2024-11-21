@@ -52,18 +52,18 @@ func _ready():
 	weapontype = damage_type.SLASH
 	
 	skill_list = {
-		skillid.Illu01: {"skillname" = "Cold Mist",
-			"skilldesc" = "A shimmering shroud of mist engulfs the battlefield, sharply raising Party Evasion."},
-		skillid.Illu02: {"skillname" = "False Form",
-			"skilldesc" = "False eyes on the wings of the Illusionist unnerve the enemy, increasing own Evasion and entering the Mistborne state."},		
-		skillid.Illu03: {"skillname" = "Undine Aura",
-			"skilldesc" = "Enemies become wary of the shifting shapes in the mist. Reduces enemy Crit Rate substantially. If Mistborne is active, also reduce enemy ACC."},
-		skillid.Illu04: {"skillname" = "Treacherous Strike",
-			"skilldesc" = "A sinister strike into an enemies weak point. Scales off of accumulated DECEIT and has a high chance to crit."},
-		skillid.Illu05: {"skillname" = "Ocular Flash",
-			"skilldesc" = "Emits a focused flash of light from eyespots. High chance of inflicting blind on one enemy."},
-		skillid.Illu06: {"skillname" = "Broad Flash",
-			"skilldesc" = "Emits a broad flash of light from eyespots. Moderate chance of inflicting blind on enemy party."}
+		skillid.Illu01: {skill.name: "Cold Mist",
+			skill.desc: "A shimmering shroud of mist engulfs the battlefield, sharply raising Party Evasion."},
+		skillid.Illu02: {skill.name: "False Form",
+			skill.desc: "False eyes on the wings of the Illusionist unnerve the enemy, increasing own Evasion and entering the Mistborne state."},		
+		skillid.Illu03: {skill.name: "Undine Aura",
+			skill.desc: "Enemies become wary of the shifting shapes in the mist. Reduces enemy Crit Rate substantially. If Mistborne is active, also reduce enemy ACC."},
+		skillid.Illu04: {skill.name: "Treacherous Strike",
+			skill.desc: "A sinister strike into an enemies weak point. Scales off of accumulated DECEIT and has a high chance to crit."},
+		skillid.Illu05: {skill.name: "Ocular Flash",
+			skill.desc: "Emits a focused flash of light from eyespots. High chance of inflicting blind on one enemy."},
+		skillid.Illu06: {skill.name: "Broad Flash",
+			skill.desc: "Emits a broad flash of light from eyespots. Moderate chance of inflicting blind on enemy party."}
 			}
 
 func ConnectSignals():

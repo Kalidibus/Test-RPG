@@ -15,7 +15,7 @@ func GetTree(jobid):
 	#for n in $VBoxContainer.get_children():
 		#n.queue_free()
 	var tree = load(JobDict.JobSkillTree(0)) #TEMPORARY as this only calls Fortress skill tree for now. Update to be changeable. 
-	$VBoxContainer.add_child(tree.instantiate())
+	%ScrollContainer.add_child(tree.instantiate())
 
 func UpdateCount():
 	cost_amount.text = str(PlayerData.GetInvItemQty(ItemDict.item.comp4))

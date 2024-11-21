@@ -13,6 +13,7 @@ enum stat_scale {F, E, D, C, B, A, S}
 enum damage_type {PIERCE, IMPACT, SLASH, INFERNAL, LEVIN, DEEP, ERDE, VIRTUOS, FEL, TRUE}
 enum status_effects {POISON, BURN, BLIND, STUN, SEAL, MARKED, REGEN}
 enum row_line {FRONT, BACK}
+enum skill {name, desc, passive, max_level, current_level, parent_unlock_level}
 
 var hire_cost = 5
 
@@ -136,7 +137,7 @@ func GetSkills():
 	var skill_array = PlayerData.KnownSkills(charid)
 	for n in skill_array:
 		current_skills[n] = skill_list[n]
-		skill_list[n]["current_level"] = PlayerData.party[charid]["skill_levels"][n]
+		skill_list[n][skill.current_level] = PlayerData.party[charid]["skill_levels"][n]
 
 func get_enemy_targets():
 	var list = enemies.get_children()
@@ -260,7 +261,6 @@ func take_damage (damage, type):
 	
 	if stats[stat.HP] <= 0: 
 		dies()
-	print(int(adjusteddamage))
 	return int(adjusteddamage)
 
 func get_healed (heal_amount:int):

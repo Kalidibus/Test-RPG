@@ -123,15 +123,17 @@ func _on_Skills_pressed():
 	
 	
 	for i in Combat.active_character.current_skills:
-		var skillname =  Combat.active_character.current_skills[i]["skillname"]
-		var skillfunc = skillname.replace(" ","")
-		var skilldesc = Combat.active_character.current_skills[i]["skilldesc"]
-		
-		var skillnode = load("res://Scenes/Battle Scenes/SkillNode.tscn").instantiate()
-		secondmenu.add_child(skillnode)
-		skillnode.SetSkill(skillname, skilldesc)
-		skillnode.get_child(0).tooltip_text = skilldesc
-		skillnode.get_child(0).connect("pressed",Callable(Combat.active_character,skillfunc))
+		if Combat.active_character.current_skills[i].has(Entity.skill.passive): pass
+		else:
+			var skillname =  Combat.active_character.current_skills[i][Entity.skill.name]
+			var skillfunc = skillname.replace(" ","")
+			var skilldesc = Combat.active_character.current_skills[i][Entity.skill.desc]
+			
+			var skillnode = load("res://Scenes/Battle Scenes/SkillNode.tscn").instantiate()
+			secondmenu.add_child(skillnode)
+			skillnode.SetSkill(skillname, skilldesc)
+			skillnode.get_child(0).tooltip_text = skilldesc
+			skillnode.get_child(0).connect("pressed",Callable(Combat.active_character,skillfunc))
 	
 	var label = Label.new()
 	label.text = "SKILLS"

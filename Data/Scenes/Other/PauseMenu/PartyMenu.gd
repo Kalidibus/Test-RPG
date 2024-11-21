@@ -74,11 +74,11 @@ func FillCharInfo_Skills(charid):
 		var node = JobDict.JobNode(jobid)
 
 		var label = Label.new()
-		label.text = node.skill_list[n]["skillname"]
+		label.text = node.skill_list[n][Entity.skill.name]
 
 		
 		var label2 = Label.new()
-		label2.text = node.skill_list[n]["skilldesc"]
+		label2.text = node.skill_list[n][Entity.skill.desc]
 		skills_node.add_child(label)
 		skills_node.add_child(label2)
 

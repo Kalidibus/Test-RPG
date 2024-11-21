@@ -72,20 +72,9 @@ func LevelUp(charid):
 	Globals.system_message(PlayerData.party[charid]["name"] + " has reached level " + str(PlayerData.party[charid]["level"]))
 	
 
-
-#func LearnSkill(charid, skillid):
-	#var known_skills = PlayerData.party[charid]["known_skills"]
-	#if not known_skills.has(skillid):
-		#known_skills[skillid] = skillid
-		#known_skills[skillid]["current_level"] = 1
-	#elif known_skills.has(skillid):
-		#known_skills[skillid]["current_level"] += 1
-	#print(known_skills)
-
 func LearnSkill(charid, skillid):
 	if not PlayerData.party[charid]["known_skills"].has(skillid):
 		PlayerData.party[charid]["known_skills"].append(skillid)
 		PlayerData.party[charid]["skill_levels"][skillid] = 1
 	else:
 		PlayerData.party[charid]["skill_levels"][skillid] += 1
-	print(PlayerData.party[charid])

@@ -44,16 +44,16 @@ func _ready():
 	weapontype = damage_type.IMPACT
 	
 	skill_list = {
-		"skillECLERIC01" = {"skillname" = "Bounty",
-			"skilldesc" = "Heals an allied unit."},
-		"skillECLERIC02" = {"skillname" = "Full Blessing",
-			"skilldesc" = "Heals the party."},
-		"skillECLERIC03" = {"skillname" = "Divine Bolt",
-			"skilldesc" = "A modest bolt of light, damages a single enemy."},
-		"skillECLERIC05" = {"skillname" = "Natural Revile",
-			"skilldesc" = "Unleashes a swarm of roots, damaging enemies and reducing their speed."},
-		"skillECLERIC04" = {"skillname" = "Resurrect",
-			"skilldesc" = "Raises one ally from the dead."}
+		"skillECLERIC01" = {skill.name: "Bounty",
+			skill.desc: "Heals an allied unit."},
+		"skillECLERIC02" = {skill.name: "Full Blessing",
+			skill.desc: "Heals the party."},
+		"skillECLERIC03" = {skill.name: "Divine Bolt",
+			skill.desc: "A modest bolt of light, damages a single enemy."},
+		"skillECLERIC05" = {skill.name: "Natural Revile",
+			skill.desc: "Unleashes a swarm of roots, damaging enemies and reducing their speed."},
+		"skillECLERIC04" = {skill.name: "Resurrect",
+			skill.desc: "Raises one ally from the dead."}
 		}
 
 #SKILLS

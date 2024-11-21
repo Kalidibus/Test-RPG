@@ -45,24 +45,24 @@ func _ready():
 	weapontype = damage_type.IMPACT
 	
 	skill_list = {
-		"skillFELMAGE01" = {"skillname" = "Fel Bolt",
-			"skilldesc" = "A Fel aspected attack, dealing moderate damage."},
-		"skillFELMAGE02" = {"skillname" = "Deep Bolt",
-			"skilldesc" = "A Deep aspected attack, dealing moderate damage."},
-		"skillFELMAGE03" = {"skillname" = "Levin Bolt",
-			"skilldesc" = "A Levin aspected attack, dealing moderate damage."},
-		"skillFELMAGE04" = {"skillname" = "Inferno Bolt",
-			"skilldesc" = "An Inferno aspected attack, dealing moderate damage."},
-		"skillFELMAGE05" = {"skillname" = "Fel Storm",
-			"skilldesc" = "A Fel aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE06" = {"skillname" = "Deep Storm",
-			"skilldesc" = "A Deep aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE07" = {"skillname" = "Levin Storm",
-			"skilldesc" = "A Levin aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE08" = {"skillname" = "Inferno Storm",
-			"skilldesc" = "An Inferno aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE09" = {"skillname" = "Fel Pact",
-			"skilldesc" = "Sacrfice HP for an equivilant amount of MP."}
+		"skillFELMAGE01" = {skill.name: "Fel Bolt",
+			skill.desc: "A Fel aspected attack, dealing moderate damage."},
+		"skillFELMAGE02" = {skill.name: "Deep Bolt",
+			skill.desc: "A Deep aspected attack, dealing moderate damage."},
+		"skillFELMAGE03" = {skill.name: "Levin Bolt",
+			skill.desc: "A Levin aspected attack, dealing moderate damage."},
+		"skillFELMAGE04" = {skill.name: "Inferno Bolt",
+			skill.desc: "An Inferno aspected attack, dealing moderate damage."},
+		"skillFELMAGE05" = {skill.name: "Fel Storm",
+			skill.desc: "A Fel aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE06" = {skill.name: "Deep Storm",
+			skill.desc: "A Deep aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE07" = {skill.name: "Levin Storm",
+			skill.desc: "A Levin aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE08" = {skill.name: "Inferno Storm",
+			skill.desc: "An Inferno aspected attack, dealing minor damage to all enemies."},
+		"skillFELMAGE09" = {skill.name: "Fel Pact",
+			skill.desc: "Sacrfice HP for an equivilant amount of MP."}
 		}
 
 #SKILLS

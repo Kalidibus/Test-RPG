@@ -58,15 +58,6 @@ func _on_debug_pressed() -> void:
 		CharacterChanges.GainXP(n, 2000)
 
 
-#func _on_button_pressed() -> void:
-	#for n in PlayerData.party:
-		#var jobid = PlayerData.party[n]["job_id"]
-		#var skilllist = JobDict.GetSkills(jobid)
-		#for skill in skilllist:
-			#print(str(skill) + "asdsad")
-			#CharacterChanges.LearnSkill(n, skilllist[skill])
-#
-
 func _on_button_pressed() -> void:
 	for n in PlayerData.party:
 		var jobid = PlayerData.party[n]["job_id"]

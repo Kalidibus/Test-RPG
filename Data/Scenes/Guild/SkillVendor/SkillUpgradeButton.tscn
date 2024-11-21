@@ -113,8 +113,8 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Line2D" type="Line2D" parent="."]
-top_level = true
 z_index = -1
+position = Vector2(125, 75)
 width = 6.0
 default_color = Color(0.10748, 0.10748, 0.10748, 1)
 

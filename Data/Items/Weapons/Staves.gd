@@ -2,10 +2,10 @@ extends Node
 
 var dict = {
 	"wsta01" = {
-		"name" = "Corroded Staff Fragment",
-		"stats" = {Entity.stat.INT: 2},
-		"desc" = "Was once a formidable staff. Broken down and decayed by the Brine, now only fragments remains.",
-		"value" = 5
+		"name": "Corroded Staff Fragment",
+		"stats": {Entity.stat.INT: 2},
+		"desc": "Was once a formidable staff. Broken down and decayed by the Brine, now only fragments remains.",
+		"value": 5
 	}
 }
 
