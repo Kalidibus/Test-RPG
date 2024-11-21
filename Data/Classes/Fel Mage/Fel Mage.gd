@@ -1,7 +1,9 @@
 extends Entity
 
-#PASSIVES
+enum skillid {FelM00, FelM01, FelM02, FelM03, FelM04, FelM05, FelM06, FelM07, FelM08, FelM09, FelM10, FelM11, FelM12, FelM13, FelM14, FelM15, FelM16, FelM17, FelM18, FelM19, FelM20}
 
+#PASSIVES
+ 
 #STATS
 var starting_stats = {
 		stat.HP: 50,
@@ -45,26 +47,52 @@ func _ready():
 	weapontype = damage_type.IMPACT
 	
 	skill_list = {
-		"skillFELMAGE01" = {skill.name: "Fel Bolt",
-			skill.desc: "A Fel aspected attack, dealing moderate damage."},
-		"skillFELMAGE02" = {skill.name: "Deep Bolt",
-			skill.desc: "A Deep aspected attack, dealing moderate damage."},
-		"skillFELMAGE03" = {skill.name: "Levin Bolt",
-			skill.desc: "A Levin aspected attack, dealing moderate damage."},
-		"skillFELMAGE04" = {skill.name: "Inferno Bolt",
-			skill.desc: "An Inferno aspected attack, dealing moderate damage."},
-		"skillFELMAGE05" = {skill.name: "Fel Storm",
-			skill.desc: "A Fel aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE06" = {skill.name: "Deep Storm",
-			skill.desc: "A Deep aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE07" = {skill.name: "Levin Storm",
-			skill.desc: "A Levin aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE08" = {skill.name: "Inferno Storm",
-			skill.desc: "An Inferno aspected attack, dealing minor damage to all enemies."},
-		"skillFELMAGE09" = {skill.name: "Fel Pact",
-			skill.desc: "Sacrfice HP for an equivilant amount of MP."}
+		skillid.FelM01: {skill.name: "Fel Bolt",
+			skill.desc: "A Fel aspected attack, dealing moderate damage.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.FelM02: {skill.name: "Deep Bolt",
+			skill.desc: "A Deep aspected attack, dealing moderate damage.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.FelM03: {skill.name: "Levin Bolt",
+			skill.desc: "A Levin aspected attack, dealing moderate damage.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.FelM04: {skill.name: "Inferno Bolt",
+			skill.desc: "An Inferno aspected attack, dealing moderate damage.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.FelM05: {skill.name: "Fel Storm",
+			skill.desc: "A Fel aspected attack, dealing minor damage to all enemies.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.FelM06: {skill.name: "Deep Storm",
+			skill.desc: "A Deep aspected attack, dealing minor damage to all enemies.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.FelM07: {skill.name: "Levin Storm",
+			skill.desc: "A Levin aspected attack, dealing minor damage to all enemies.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.FelM08: {skill.name: "Inferno Storm",
+			skill.desc: "An Inferno aspected attack, dealing minor damage to all enemies.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.FelM09: {skill.name: "Fel Pact",
+			skill.desc: "Sacrfice HP for an equivilant amount of MP.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0}
 		}
-
 #SKILLS
 func FelBolt():
 	if MPCheck(10): CombatGUI.TargetList("FelBolt2")
