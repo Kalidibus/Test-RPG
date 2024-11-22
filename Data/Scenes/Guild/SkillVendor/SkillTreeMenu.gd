@@ -26,9 +26,11 @@ func GetTree():
 	
 
 func ClearTree():
-	if get_node_or_null("%ScrollContainer/SkillTree") != null:
-		for n in %ScrollContainer.get_children():
-			n.queue_free()
+	for n in %ScrollContainer.get_children():
+		n.free()
+	#await get_tree().create_timer(0.01).timeout
+
+	return
 
 func FillTree():
 	var skills = JobDict.GetSkills(job_id)
@@ -54,10 +56,11 @@ func _on_return_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	%ForwardButton.disabled = false
-	ClearTree()
+	await ClearTree()
 	party_sequence -= 1
 	GetTree()
 	if party_sequence == 0: %BackButton.disabled = true
+
 	
 func _on_forward_button_button_up() -> void:
 	var size = PlayerData.party_order.size() -1
@@ -65,8 +68,7 @@ func _on_forward_button_button_up() -> void:
 		
 		%BackButton.disabled = false
 
-		ClearTree()
+		await ClearTree()
 		party_sequence += 1
-		#char_id = PlayerData.party_order[party_sequence]
 		GetTree()
 		if party_sequence == size: %ForwardButton.disabled = true

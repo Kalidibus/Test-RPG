@@ -36,6 +36,7 @@ func RefreshInfo():
 	cost_amount_label.text = str(cost_amount)
 	cost_item_label.text = str(ItemDict.GetItemName(cost_item))
 	CheckParentLevel()
+	
 
 func _on_pressed() -> void:
 	if not PlayerData.inventory.has(cost_item) or not PlayerData.inventory[cost_item] >= cost_amount: Globals.system_message("not enough " + ItemDict.GetItemName(cost_item))
@@ -65,7 +66,7 @@ func GetSkillInfo(skillid, skill):
 	
 	skill_id = skillid
 	char_id = skill_tree_menu.char_id
-	
+
 func CheckParentLevel():
 	if get_parent() is SkillUpgradeButton:
 		var parent = get_parent()

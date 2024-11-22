@@ -1,6 +1,6 @@
 extends Entity
 
-enum skillid {Illu01, Illu02, Illu03, Illu04, Illu05, Illu06}
+enum skillid {Illu00, Illu01, Illu02, Illu03, Illu04, Illu05, Illu06, Illu07, Illu08, Illu09, Illu10, Illu11, Illu12, Illu13, Illu14, Illu15, Illu16, Illu17, Illu18, Illu19, Illu20 }
 
 #Passives
 var MISTBORNE_active = false
@@ -53,17 +53,35 @@ func _ready():
 	
 	skill_list = {
 		skillid.Illu01: {skill.name: "Cold Mist",
-			skill.desc: "A shimmering shroud of mist engulfs the battlefield, sharply raising Party Evasion."},
+			skill.desc: "A shimmering shroud of mist engulfs the battlefield, sharply raising Party Evasion.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
 		skillid.Illu02: {skill.name: "False Form",
-			skill.desc: "False eyes on the wings of the Illusionist unnerve the enemy, increasing own Evasion and entering the Mistborne state."},		
+			skill.desc: "False eyes on the wings of the Illusionist unnerve the enemy, increasing own Evasion and entering the Mistborne state.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
 		skillid.Illu03: {skill.name: "Undine Aura",
-			skill.desc: "Enemies become wary of the shifting shapes in the mist. Reduces enemy Crit Rate substantially. If Mistborne is active, also reduce enemy ACC."},
+			skill.desc: "Enemies become wary of the shifting shapes in the mist. Reduces enemy Crit Rate substantially. If Mistborne is active, also reduce enemy ACC.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
 		skillid.Illu04: {skill.name: "Treacherous Strike",
-			skill.desc: "A sinister strike into an enemies weak point. Scales off of accumulated DECEIT and has a high chance to crit."},
+			skill.desc: "A sinister strike into an enemies weak point. Scales off of accumulated DECEIT and has a high chance to crit.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
 		skillid.Illu05: {skill.name: "Ocular Flash",
-			skill.desc: "Emits a focused flash of light from eyespots. High chance of inflicting blind on one enemy."},
+			skill.desc: "Emits a focused flash of light from eyespots. High chance of inflicting blind on one enemy.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
 		skillid.Illu06: {skill.name: "Broad Flash",
-			skill.desc: "Emits a broad flash of light from eyespots. Moderate chance of inflicting blind on enemy party."}
+			skill.desc: "Emits a broad flash of light from eyespots. Moderate chance of inflicting blind on enemy party.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0}
 			}
 
 func ConnectSignals():

@@ -4,10 +4,10 @@ func _ready():
 	#SaveandLoad.load_file()
 	
 	#DEBUG SECTION:
-	CharacterChanges.AddtoInventory(ItemDict.item.comp1, 50)
-	CharacterChanges.AddtoInventory(ItemDict.item.comp2, 50)
-	CharacterChanges.AddtoInventory(ItemDict.item.comp3, 50)
-	CharacterChanges.AddtoInventory(ItemDict.item.comp4, 50)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp1, 15)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp2, 15)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp3, 15)
+	CharacterChanges.AddtoInventory(ItemDict.item.comp4, 15)
 
 	%Dungeon.grab_focus()
 
