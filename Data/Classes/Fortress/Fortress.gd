@@ -61,18 +61,18 @@ func _ready():
 			skill.max_level: 3,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
-		skillid.Fort02: {skill.name: "Vanguard",
+		skillid.Fort02: {skill.name: "Embolden",
+			skill.desc: "Boosts the DEF stat for 3 turns.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Fort03: {skill.name: "Vanguard",
 			skill.desc: "A savage blow with both shields. Deals high impact damage scaling with DEF.",
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
-		skillid.Fort03: {skill.name: "Bastion",
+		skillid.Fort04: {skill.name: "Bastion",
 			skill.desc: "Restores HP to target party member. Amount healed scales with DEF.",
-			skill.max_level: 5,
-			skill.parent_unlock_level: 1,
-			skill.current_level: 0},
-		skillid.Fort04: {skill.name: "Embolden",
-			skill.desc: "Boosts the DEF stat for 3 turns.",
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
@@ -81,32 +81,37 @@ func _ready():
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
-		skillid.Fort06: {skill.name: "Full Cover",
+		skillid.Fort06: {skill.name: "Fortify Front",
 			skill.desc: "Increases Defense of the Front Line",
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
-		skillid.Fort07: {skill.name: "Skull Splitter",
+		skillid.Fort07: {skill.name: "Fortify Rear",
+			skill.desc: "Increases Defense of the Back Line",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Fort08: {skill.name: "Skull Splitter",
 			skill.desc: "COST '1 Ire' - An overhead strike. Has a chance to stun an enemy.",
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
-		skillid.Fort08: {skill.name: "Vanguard Crush",
+		skillid.Fort09: {skill.name: "Vanguard Crush",
 			skill.desc: "COST '1 Ire' - A crushing blow from dual shields. Deals heavy damage scaling off of DEF.",
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
-		skillid.Fort09: {skill.name: "Shrapnel Burst",
+		skillid.Fort10: {skill.name: "Shrapnel Burst",
 			skill.desc: "COST '2 Ire' - An explosive blast of rubble that damages the entire enemy front line.",
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
-		skillid.Fort10: {skill.name: "Debilatio",
+		skillid.Fort11: {skill.name: "Debilatio",
 			skill.desc: "COST '3 Ire' - The destructive ultimate potential of the Fortress. Massive Impact damage to the entire enemy party. Scales off of DEF.",
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
 			skill.current_level: 0},
-		skillid.Fort11: {skill.name: "Perfect Shell",
+		skillid.Fort12: {skill.name: "Perfect Shell",
 			skill.desc: "Defend and massively increase damage resistance this turn.",
 			skill.max_level: 5,
 			skill.parent_unlock_level: 1,
@@ -234,14 +239,23 @@ func ShieldTremor2():
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("")
 
-func FullCover():
+func FortifyFront():
 	if MPCheck(20) == false: return
-	else: CombatGUI.QueueAction(self, "FullCover2")
-func FullCover2():
+	else: CombatGUI.QueueAction(self, "FortifyFront2")
+func FortifyFront2():
 	var party = get_party_targets()
 	for n in party:
 		if n.row ==row_line.FRONT: StatMod(stat.DEF, 1.6, 1)
 	CloseTurn(str(charname) + " guards the front row!")
+
+func FortifyRear():
+	if MPCheck(20) == false: return
+	else: CombatGUI.QueueAction(self, "FortifyRear2")
+func FortifyRear2():
+	var party = get_party_targets()
+	for n in party:
+		if n.row ==row_line.BACK: StatMod(stat.DEF, 1.6, 1)
+	CloseTurn(str(charname) + " guards the back row!")
 
 func Debilatio():
 	if ire < 3:

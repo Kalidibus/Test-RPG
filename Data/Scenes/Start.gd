@@ -8,7 +8,7 @@ func _ready():
 	CharacterChanges.AddtoInventory(ItemDict.item.comp2, 15)
 	CharacterChanges.AddtoInventory(ItemDict.item.comp3, 15)
 	CharacterChanges.AddtoInventory(ItemDict.item.comp4, 15)
-
+	print(PlayerData.roster)
 	%Dungeon.grab_focus()
 
 func _on_StartButton_pressed():

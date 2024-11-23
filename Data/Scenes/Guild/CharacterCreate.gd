@@ -165,4 +165,8 @@ func _on_adjust_party_pressed() -> void:
 
 
 func _on_skills_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Guild/SkillVendor/SkillTreeMenu.tscn")
+	if not PlayerData.party:
+		Globals.system_message("Party has not yet been created")
+		return
+	else:
+		get_tree().change_scene_to_file("res://Scenes/Guild/SkillVendor/SkillTreeMenu.tscn")
