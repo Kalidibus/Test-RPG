@@ -2,9 +2,9 @@ extends Monster
 
 func _ready():
 	charname = "Brain Rot"
-	reward_xp = Globals.RNG_range(10, 20)
+	reward_xp = Globals.RNG_range(20, 35)
 	loot_table = {
-		ItemDict.item.comp1: 55,
+		ItemDict.item.comp1: 15,
 		ItemDict.item.comp2: 15,
 		ItemDict.item.comp3: 15,
 		ItemDict.item.comp4: 15}
@@ -57,4 +57,4 @@ func mAttack(target):
 	if not CheckMiss(target): return
 	var dealt_damage = Damage(target, Stat(stat.DEX), damage_type.PIERCE) 
 	CloseTurn("The " + str(charname) + " pierces " + str(target.charname) + " with venomous needles for " + str(dealt_damage) + " damage!")
-	target.AttemptStatusAilment(status_effects.POISON, 10, 3, 0)
+	target.AttemptStatusAilment(status_effects.POISON, 10, 3, -30)

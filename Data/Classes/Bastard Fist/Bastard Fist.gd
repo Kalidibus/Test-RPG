@@ -1,6 +1,6 @@
 extends Entity
 #PASSIVES
-
+enum skillid {Bast00, Bast01, Bast02, Bast03, Bast04, Bast05, Bast06, Bast07, Bast08, Bast09, Bast10, Bast11, Bast12, Bast13, Bast14, Bast15, Bast16, Bast17, Bast18, Bast19, Bast20 }
 #STATS
 var starting_stats = {
 		stat.HP: 100,
@@ -44,18 +44,36 @@ func _ready():
 	weapontype = damage_type.IMPACT
 	
 	skill_list = {
-		"skillBFIST01" = {skill.name: "Crimson Rush",
-			skill.desc: "Strikes an opponent with a flurry of blows. Scales with SPD and STR"},
-		"skillBFIST02" = {skill.name: "Scarlet Sun",
-			skill.desc: "COMBO: Crimson Rush - A powerful single blow"},
-		"skillBFIST03" = {skill.name: "Vermillion Dance",
-			skill.desc: "COMBO: Scarlet Sun - This final formation unleashes the true power of the Bastard Fists"},
-		"skillBFIST04" = {skill.name: "Bastard Spirit",
-			skill.desc: "Raises STR for 3 turns."},
-		"skillBFIST05" = {skill.name: "Lunatic Spirit",
-			skill.desc: "Greatly raises STR and SPD for 3 turns, but reduces DEF."},
-		"skillBFIST06" = {skill.name: "Shear Grit",
-			skill.desc: "Recover a percentage of missing health."}
+		skillid.Bast01: {skill.name: "Crimson Rush",
+			skill.desc: "Strikes an opponent with a flurry of blows. Scales with SPD and STR",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Bast02: {skill.name: "Scarlet Sun",
+			skill.desc: "COMBO: Crimson Rush - A powerful single blow",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Bast03: {skill.name: "Vermillion Dance",
+			skill.desc: "COMBO: Scarlet Sun - This final formation unleashes the true power of the Bastard Fists",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Bast04: {skill.name: "Bastard Spirit",
+			skill.desc: "Raises STR for 3 turns.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Bast05: {skill.name: "Lunatic Spirit",
+			skill.desc: "Greatly raises STR and SPD for 3 turns, but reduces DEF.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Bast06: {skill.name: "Shear Grit",
+			skill.desc: "Recover a percentage of missing health.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0}
 		}
 
 #SKILLS

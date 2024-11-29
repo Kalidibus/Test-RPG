@@ -1,4 +1,7 @@
 extends Entity
+
+enum skillid {Erde00, Erde01, Erde02, Erde03, Erde04, Erde05, Erde06, Erde07, Erde08, Erde09, Erde10, Erde11, Erde12, Erde13, Erde14, Erde15, Erde16, Erde17, Erde18, Erde19, Erde20 }
+
 #PASSIVES
 
 #STATS
@@ -44,16 +47,31 @@ func _ready():
 	weapontype = damage_type.IMPACT
 	
 	skill_list = {
-		"skillECLERIC01" = {skill.name: "Bounty",
-			skill.desc: "Heals an allied unit."},
-		"skillECLERIC02" = {skill.name: "Full Blessing",
-			skill.desc: "Heals the party."},
-		"skillECLERIC03" = {skill.name: "Divine Bolt",
-			skill.desc: "A modest bolt of light, damages a single enemy."},
-		"skillECLERIC05" = {skill.name: "Natural Revile",
-			skill.desc: "Unleashes a swarm of roots, damaging enemies and reducing their speed."},
-		"skillECLERIC04" = {skill.name: "Resurrect",
-			skill.desc: "Raises one ally from the dead."}
+		skillid.Erde01: {skill.name: "Bounty",
+			skill.desc: "Heals an allied unit.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Erde02: {skill.name: "Full Blessing",
+			skill.desc: "Heals the party.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Erde03: {skill.name: "Divine Bolt",
+			skill.desc: "A modest bolt of light, damages a single enemy.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Erde05: {skill.name: "Natural Revile",
+			skill.desc: "Unleashes a swarm of roots, damaging enemies and reducing their speed.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Erde04: {skill.name: "Resurrect",
+			skill.desc: "Raises one ally from the dead.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0}
 		}
 
 #SKILLS
@@ -64,7 +82,7 @@ func Bounty2(target):
 	if target.stats[stat.HP] == 0:
 		CombatGUI.BattleLog("This target must be raised from the dead first")
 		return
-	var heal = Stat(stat.FTH)
+	var heal = Stat(stat.FTH) * 4 * (1 + (0.1 * skill_list[skillid.Erde01][skill.current_level]))
 	target.get_healed(heal)
 	MPCost(10)
 	CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")
@@ -95,7 +113,7 @@ func Raise(target): #any function that revives needs to be called Raise so it do
 	if target.stats[stat.HP] != 0:
 		CloseTurn(str(target.charname) + " is not dead!")
 	else:
-		var heal = Stat(stat.FTH)
+		var heal =  Stat(stat.FTH) * 4 * (1 + (0.1 *skill_list[skillid.Erde04][skill.current_level]))
 		Revive(target, heal)
 		MPCost(50)
 		CloseTurn(str(charname) + " blesses " + str(target.charname) + " with the bounty of the forest, healing her for " + str(heal) + " HP!")

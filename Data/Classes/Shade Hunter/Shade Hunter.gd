@@ -1,5 +1,6 @@
 extends Entity
 #PASSIVES
+enum skillid {Shad00, Shad01, Shad02, Shad03, Shad04, Shad05, Shad06, Shad07, Shad08, Shad09, Shad10, Shad11, Shad12, Shad13, Shad14, Shad15, Shad16, Shad17, Shad18, Shad19, Shad20 }
 
 #STATS
 var starting_stats = {
@@ -44,16 +45,31 @@ func _ready():
 	weapontype = damage_type.PIERCE
 	
 	skill_list = {
-		"skillSHUNTER01" = {skill.name: "Poison Arrow",
-			skill.desc: "An arrow dipped in potent venoms. Can inflict Poison."},
-		"skillSHUNTER02" = {skill.name: "Burning Arrow",
-			skill.desc: "An arrow dipped in molten inferno. Can inflict Burn."},
-		"skillSHUNTER03" = {skill.name: "Bladed Volley",
-			skill.desc: "Slashing damage to all back line enemies."},
-		"skillSHUNTER04" = {skill.name: "Plate Crusher",
-			skill.desc: "A single target impact based shot with a chance to reduce enemies DEF."},
-		"skillSHUNTER05" = {skill.name: "Isolate Prey",
-			skill.desc: "Target weak links in the enemies lines. Moderate piercing damage that scales with SPD. Deal bonus damage for each status ailment on target."}
+		skillid.Shad01: {skill.name: "Poison Arrow",
+			skill.desc: "An arrow dipped in potent venoms. Can inflict Poison.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Shad02: {skill.name: "Burning Arrow",
+			skill.desc: "An arrow dipped in molten inferno. Can inflict Burn.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Shad03: {skill.name: "Bladed Volley",
+			skill.desc: "Slashing damage to all back line enemies.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Shad04: {skill.name: "Plate Crusher",
+			skill.desc: "A single target impact based shot with a chance to reduce enemies DEF.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0},
+		skillid.Shad05: {skill.name: "Isolate Prey",
+			skill.desc: "Target weak links in the enemies lines. Moderate piercing damage that scales with SPD. Deal bonus damage for each status ailment on target.",
+			skill.max_level: 5,
+			skill.parent_unlock_level: 1,
+			skill.current_level: 0}
 			}
 
 #SKILLS
