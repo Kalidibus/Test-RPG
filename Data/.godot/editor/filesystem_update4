@@ -22,8 +22,4 @@ res://Items/ItemDict.tscn
 res://Scenes/Guild/SkillVendor/SkillUpgradeButton.tscn
 res://Classes/Fortress/SkillTree-Fortress.tscn
 res://Scenes/Guild/SkillVendor/SkillTreeMenu.tscn
-res://Classes/JobDictionary.gd
-res://Scenes/Guild/SkillVendor/SkillTreeMenu.gd
-res://Classes/Fel Mage/Fel Mage.gd
-res://Scenes/Guild/SkillVendor/SkillTree.gd
 res://Classes/Fel Mage/SkillTree-FelMage.tscn
