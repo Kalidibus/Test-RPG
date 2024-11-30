@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://eml63b22l883"]
+[gd_scene load_steps=5 format=3 uid="uid://eml63b22l883"]
 
 [ext_resource type="Script" path="res://Scenes/Guild/Unlocks.gd" id="1_f0qpl"]
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="2_7hd1r"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="3_n1sur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0mqv"]
 bg_color = Color(0.17, 0.158525, 0.1445, 1)
@@ -44,15 +45,18 @@ layout_mode = 2
 
 [node name="Givestuff" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_n1sur")
 text = "Give me stuff!"
 
 [node name="Takestuff" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_n1sur")
 text = "Remove Stuff instead"
 
 [node name="ReturnButton" type="Button" parent="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_n1sur")
 text = "Back"
 
 [node name="Select_and_Stats" type="MarginContainer" parent="HBoxContainer"]

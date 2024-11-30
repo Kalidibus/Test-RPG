@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://8olbtien2c8w"]
+[gd_scene load_steps=3 format=3 uid="uid://8olbtien2c8w"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PauseMenu.gd" id="1_rd3wy"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="2_gqw84"]
 
 [node name="PauseMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -23,34 +24,40 @@ layout_mode = 2
 [node name="PartyButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
+theme = ExtResource("2_gqw84")
 text = "Party"
 
 [node name="SkillsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
+theme = ExtResource("2_gqw84")
 text = "Skills"
 
 [node name="EquipmentButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
+theme = ExtResource("2_gqw84")
 text = "Equipment"
 
 [node name="ItemsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
+theme = ExtResource("2_gqw84")
 text = "Items"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
+theme = ExtResource("2_gqw84")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_horizontal = 10
+theme = ExtResource("2_gqw84")
 text = "Back"
 
 [node name="MenuContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -67,6 +74,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_horizontal = 10
+theme = ExtResource("2_gqw84")
 text = "Exit Game"
 
 [node name="Timer" type="Timer" parent="."]

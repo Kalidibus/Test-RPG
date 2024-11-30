@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0pkcycd8e3lj"]
+[gd_scene load_steps=3 format=3 uid="uid://b0pkcycd8e3lj"]
 
 [ext_resource type="Script" path="res://Scenes/Guild/PartyBuild.gd" id="1_2iht4"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="2_lohpp"]
 
 [node name="PartyBuild" type="MarginContainer"]
 anchors_preset = 5
@@ -17,6 +18,7 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_lohpp")
 text = "Go Back"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
@@ -25,11 +27,13 @@ layout_mode = 2
 [node name="AddtoRoster" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_lohpp")
 text = "Remove from Party"
 
 [node name="AddtoParty" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_lohpp")
 text = "Add to Party"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]

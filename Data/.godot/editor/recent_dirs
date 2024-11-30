@@ -1,5 +1,6 @@
-res://Assets/UI
+res://Assets/UI/Panel
 res://Assets/UI/Button
+res://Assets/UI
 res://Scenes/Guild/SkillVendor
 res://Enemies/Arid/Regular
 res://Scenes/Other/PauseMenu

@@ -1,4 +1,8 @@
+ColorRect
+CanvasLayer
+TextureRect
 Control
+Panel
 NinePatchRect
 Line2D
 ScrollContainer
@@ -9,6 +13,3 @@ MarginContainer
 VBoxContainer
 SkillUpgradeButton
 SkillNode
-Panel
-Node
-AnimationPlayer

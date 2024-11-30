@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpq5uswfsbu22"]
+[gd_scene load_steps=3 format=3 uid="uid://dpq5uswfsbu22"]
 
 [ext_resource type="Script" path="res://SkillUpgradeButton.gd" id="1_n0tbf"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="2_rkjyk"]
 
 [node name="SkillUpgradeButton" type="Button"]
 custom_minimum_size = Vector2(250, 150)
@@ -111,6 +112,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("2_rkjyk")
 
 [node name="Line2D" type="Line2D" parent="."]
 z_index = -1

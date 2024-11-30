@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://csvgfcwhbxsib"]
+[gd_scene load_steps=3 format=3 uid="uid://csvgfcwhbxsib"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/OptionsMenu.gd" id="1_boudc"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="2_juqoe"]
 
 [node name="OptionsMenu" type="MarginContainer"]
 offset_right = 100.0
@@ -16,11 +17,13 @@ layout_mode = 2
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+theme = ExtResource("2_juqoe")
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+theme = ExtResource("2_juqoe")
 text = "Load"
 
 [connection signal="pressed" from="VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

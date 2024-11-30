@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqr6kh7mll6ru"]
+[gd_scene load_steps=3 format=3 uid="uid://dqr6kh7mll6ru"]
 
 [ext_resource type="Script" path="res://Scenes/Other/SystemChoice.gd" id="1_agc0u"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="2_caq5f"]
 
 [node name="SystemChoice" type="Node2D"]
 z_index = 99
@@ -11,15 +12,16 @@ script = ExtResource("1_agc0u")
 initial_position = 2
 size = Vector2i(500, 140)
 visible = true
+theme = ExtResource("2_caq5f")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 496.0
-offset_bottom = 136.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 480.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -47,11 +49,13 @@ theme_override_constants/separation = 20
 [node name="LeftButton" type="Button" parent="PopupPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_caq5f")
 text = "OK"
 
 [node name="RightButton" type="Button" parent="PopupPanel/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_caq5f")
 text = "OK"
 
 [connection signal="pressed" from="PopupPanel/MarginContainer/VBoxContainer/HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]

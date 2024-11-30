@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0vut37vb8e7v"]
+[gd_scene load_steps=3 format=3 uid="uid://d0vut37vb8e7v"]
 
 [ext_resource type="Script" path="res://Scenes/Other/SystemNotification.gd" id="1_aqnk8"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="2_58u1s"]
 
 [node name="SystemNotification" type="Node2D"]
 z_index = 99
@@ -11,6 +12,7 @@ script = ExtResource("1_aqnk8")
 initial_position = 2
 size = Vector2i(500, 140)
 visible = true
+theme = ExtResource("2_58u1s")
 
 [node name="MarginContainer" type="MarginContainer" parent="PopupPanel"]
 anchors_preset = 15
@@ -42,6 +44,7 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="PopupPanel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_58u1s")
 text = "OK"
 
 [connection signal="pressed" from="PopupPanel/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

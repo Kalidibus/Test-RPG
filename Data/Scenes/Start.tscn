@@ -1,9 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://7e6cnxckdu1r"]
+[gd_scene load_steps=9 format=3 uid="uid://7e6cnxckdu1r"]
 
 [ext_resource type="Script" path="res://Scenes/Start.gd" id="2"]
+[ext_resource type="Shader" path="res://Scenes/Pulse.gdshader" id="2_gli6f"]
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="2_mlm8r"]
 [ext_resource type="Texture2D" uid="uid://cns46s3vqu18r" path="res://Assets/UI/Button/panel-029.png" id="3_4b804"]
 [ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="3_4ibb0"]
+[ext_resource type="Shader" path="res://Scenes/Vignette.gdshader" id="5_n5ayi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0o5c"]
+shader = ExtResource("2_gli6f")
+shader_parameter/Frequency = 1.0
+shader_parameter/MaxOpacity = 1.0
+shader_parameter/MinimumOpacity = 0.7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3hbya"]
+shader = ExtResource("5_n5ayi")
+shader_parameter/inner_radius = 0.3
+shader_parameter/outer_radius = 1.0
+shader_parameter/vignette_strength = 3.0
+shader_parameter/dither_strength = 0.03
+shader_parameter/vignette_color = null
 
 [node name="Start" type="MarginContainer"]
 anchors_preset = 8
@@ -20,6 +36,7 @@ grow_vertical = 2
 script = ExtResource("2")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="Control" type="Control" parent="."]
@@ -27,18 +44,18 @@ layout_mode = 2
 
 [node name="StartButton" type="Button" parent="Control"]
 layout_mode = 2
-offset_left = -718.0
-offset_top = 792.0
-offset_right = -594.0
-offset_bottom = 823.0
+offset_left = 467.0
+offset_top = 316.0
+offset_right = 675.0
+offset_bottom = 347.0
 text = "[Dev] Go direct to Combat"
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = -710.0
-offset_top = 750.0
-offset_right = -557.0
-offset_bottom = 781.0
+offset_left = 474.0
+offset_top = 354.0
+offset_right = 627.0
+offset_bottom = 385.0
 text = "DEBUG [learn skill]"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -48,6 +65,7 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+material = SubResource("ShaderMaterial_u0o5c")
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("2_mlm8r")
@@ -125,6 +143,17 @@ text = "DEBUG"
 
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_3hbya")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

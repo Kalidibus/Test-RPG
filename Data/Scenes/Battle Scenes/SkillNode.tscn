@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://crq4bw035ndpf"]
+[gd_scene load_steps=3 format=3 uid="uid://crq4bw035ndpf"]
 
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/SkillNode.gd" id="1"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="2_lbr83"]
 
 [node name="SkillNode" type="MarginContainer"]
 offset_right = 32.0
@@ -11,6 +12,7 @@ script = ExtResource("1")
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 tooltip_text = "TESTING THE TOOLTIP"
+theme = ExtResource("2_lbr83")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Button"]
 layout_mode = 0

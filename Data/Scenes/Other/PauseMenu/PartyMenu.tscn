@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://4ipkrias2f2e"]
+[gd_scene load_steps=3 format=3 uid="uid://4ipkrias2f2e"]
 
 [ext_resource type="Script" path="res://Scenes/Other/PauseMenu/PartyMenu.gd" id="1_q6g5u"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="2_dgqep"]
 
 [node name="PartyMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -41,11 +42,13 @@ size_flags_horizontal = 8
 [node name="SkillsButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
+theme = ExtResource("2_dgqep")
 text = "Skills"
 
 [node name="EquipmentButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
+theme = ExtResource("2_dgqep")
 text = "Equipment"
 
 [node name="Holder" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]

@@ -1,9 +1,23 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dny0ibmsfjqu5"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dny0ibmsfjqu5"]
 
 [ext_resource type="StyleBox" uid="uid://tkw270srurvc" path="res://Assets/UI/Button/Normal_Button.tres" id="1_2sbyt"]
 [ext_resource type="StyleBox" uid="uid://b07nf64syp5nn" path="res://Assets/UI/Button/Focus_Button.tres" id="1_ampot"]
+[ext_resource type="StyleBox" uid="uid://doljl3uclmpau" path="res://Assets/UI/Button/Disabled_Button.tres" id="1_wrpi7"]
+[ext_resource type="Texture2D" uid="uid://byeunqoyl00hi" path="res://Assets/UI/Panel/panel-border-008.png" id="4_tvcl2"]
+[ext_resource type="StyleBox" uid="uid://c5n473klf8oug" path="res://Assets/UI/Panel/System_Panel.tres" id="5_upvra"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1nj5x"]
+texture = ExtResource("4_tvcl2")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+modulate_color = Color(0.28485, 0.28485, 0.28485, 1)
 
 [resource]
+Button/styles/disabled = ExtResource("1_wrpi7")
 Button/styles/focus = ExtResource("1_ampot")
 Button/styles/hover = ExtResource("1_ampot")
 Button/styles/normal = ExtResource("1_2sbyt")
+Panel/styles/panel = SubResource("StyleBoxTexture_1nj5x")
+PopupPanel/styles/panel = ExtResource("5_upvra")
