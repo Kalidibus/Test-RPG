@@ -1,3 +1,5 @@
+res://Assets/UI
+res://Assets/UI/Button
 res://Scenes/Guild/SkillVendor
 res://Enemies/Arid/Regular
 res://Scenes/Other/PauseMenu
@@ -8,7 +10,6 @@ res://Enemies
 res://Scenes/Other
 res://Scenes/PlayerData
 res://Items
-res://Assets/UI
 res://Assets/Classes
 res://Classes/War Mage
 res://Classes

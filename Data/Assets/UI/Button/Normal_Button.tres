@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://tkw270srurvc"]
+
+[ext_resource type="Texture2D" uid="uid://cns46s3vqu18r" path="res://Assets/UI/Button/panel-029.png" id="1_bp1cd"]
+
+[resource]
+texture = ExtResource("1_bp1cd")
+texture_margin_left = 20.0
+texture_margin_top = 10.0
+texture_margin_right = 20.0
+texture_margin_bottom = 10.0
+modulate_color = Color(0, 0, 0, 1)

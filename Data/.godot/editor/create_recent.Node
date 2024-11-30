@@ -1,9 +1,10 @@
+Control
+NinePatchRect
 Line2D
 ScrollContainer
 Button
 Label
 HBoxContainer
-Control
 MarginContainer
 VBoxContainer
 SkillUpgradeButton
@@ -11,4 +12,3 @@ SkillNode
 Panel
 Node
 AnimationPlayer
-Sprite2D

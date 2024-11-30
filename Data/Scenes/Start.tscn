@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://7e6cnxckdu1r"]
+[gd_scene load_steps=5 format=3 uid="uid://7e6cnxckdu1r"]
 
 [ext_resource type="Script" path="res://Scenes/Start.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="2_mlm8r"]
+[ext_resource type="Texture2D" uid="uid://cns46s3vqu18r" path="res://Assets/UI/Button/panel-029.png" id="3_4b804"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="3_4ibb0"]
 
 [node name="Start" type="MarginContainer"]
 anchors_preset = 8
@@ -65,33 +67,64 @@ layout_mode = 2
 [node name="Dungeon" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_4ibb0")
 text = "Enter the Dungeon"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/Dungeon"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -20.0
+offset_right = 75.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4b804")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="HireButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_4ibb0")
 text = "Go to Guild"
 
 [node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_4ibb0")
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_4ibb0")
 text = "Load"
 
 [node name="PauseButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("3_4ibb0")
 text = "[DEBUG] PauseMenu"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_4ibb0")
 text = "Exit"
 
 [node name="debug" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("3_4ibb0")
 text = "DEBUG"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 
 [connection signal="pressed" from="Control/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
