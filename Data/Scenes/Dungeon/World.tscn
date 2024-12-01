@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj6pfgv2p3ofy"]
+[gd_scene load_steps=9 format=3 uid="uid://bj6pfgv2p3ofy"]
 
 [ext_resource type="Script" path="res://Scenes/Dungeon/World.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dgfj21p534fww" path="res://Scenes/Dungeon/Player.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://b1repvm17iei0" path="res://Assets/Classes/Illusionist/Illusionist-profile.png" id="3_pcnpr"]
+[ext_resource type="Texture2D" uid="uid://coaxx58modqde" path="res://Assets/Classes/Fortress/Fortress-profile.png" id="3_qsw01"]
+[ext_resource type="Texture2D" uid="uid://cta7jaj2feuhb" path="res://Assets/Classes/Bastard Fist/Bastard Fist-profile.png" id="4_o03l4"]
+[ext_resource type="Texture2D" uid="uid://cicordl16xkdm" path="res://Assets/Classes/Fel Mage/Fel Mage-profile.png" id="5_a6m47"]
 
 [sub_resource type="Environment" id="Environment_sdslo"]
 background_mode = 1
@@ -24,3 +28,48 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sdslo")
 camera_attributes = SubResource("CameraAttributesPractical_bdle7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1815, 979)
+scale = Vector2(0.427807, 0.427808)
+texture = ExtResource("3_pcnpr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1815, 765)
+scale = Vector2(0.427807, 0.427808)
+texture = ExtResource("4_o03l4")
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1810, 530)
+scale = Vector2(0.427807, 0.427808)
+texture = ExtResource("5_a6m47")
+
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1804, 279)
+scale = Vector2(0.427807, 0.427808)
+texture = ExtResource("3_qsw01")

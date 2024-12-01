@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ktubc2fyxeev"]
+[gd_scene load_steps=32 format=3 uid="uid://ktubc2fyxeev"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/ActionQueue.tscn" id="1"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/CombatGUI.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/Combat.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://f8qvvoa8gywk" path="res://Assets/UI/Selector.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://bwkr71clxk32v" path="res://Assets/backgrounds/Screenshot_20230318_165916.png" id="6_hqre3"]
+[ext_resource type="Theme" uid="uid://dny0ibmsfjqu5" path="res://Assets/UI/Heretic_Theme.tres" id="6_jafx1"]
 [ext_resource type="PackedScene" path="res://Scenes/Battle Scenes/Camera2D.tscn" id="8"]
 [ext_resource type="Texture2D" uid="uid://canh4bvgco7sc" path="res://Assets/Ability Animations/Impact/376.png" id="9_84t2l"]
 [ext_resource type="Script" path="res://Scenes/Battle Scenes/AttackAnimations.gd" id="9_b46qv"]
@@ -255,9 +256,15 @@ script = ExtResource("3_sdkss")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel2" type="Panel" parent="MarginContainer"]
 show_behind_parent = true
 layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+modulate = Color(0.332881, 0.332881, 0.332881, 1)
+show_behind_parent = true
+layout_mode = 2
+theme = ExtResource("6_jafx1")
 
 [node name="CombatGUI" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -300,26 +307,32 @@ alignment = 1
 [node name="Attack" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("6_jafx1")
 text = "Attack"
 
 [node name="Skills" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 layout_mode = 2
+theme = ExtResource("6_jafx1")
 text = "Skills"
 
 [node name="Defend" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 layout_mode = 2
+theme = ExtResource("6_jafx1")
 text = "Defend"
 
 [node name="Items" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 layout_mode = 2
+theme = ExtResource("6_jafx1")
 text = "Items"
 
 [node name="Switch" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 layout_mode = 2
+theme = ExtResource("6_jafx1")
 text = "Switch"
 
 [node name="Flee" type="Button" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/Menu"]
 layout_mode = 2
+theme = ExtResource("6_jafx1")
 text = "Flee"
 
 [node name="MarginContainer" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer"]

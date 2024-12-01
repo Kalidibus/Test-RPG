@@ -115,6 +115,8 @@ func BattleLog(string):
 		var label = Label.new()
 #		label.set_autowrap_mode(2) #This fucks up the text, can't be fucked 
 		label.text = string + "\n"
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD
+		label.custom_minimum_size = Vector2(570, 0)
 		%BattleLog.add_child(label)
 
 func _on_Skills_pressed():
