@@ -105,9 +105,9 @@ popup/item_1/text = "Fel Mage"
 popup/item_1/id = 1
 popup/item_2/text = "Bastard Fist"
 popup/item_2/id = 2
-popup/item_3/text = "Shade Hunter"
+popup/item_3/text = "Strider"
 popup/item_3/id = 3
-popup/item_4/text = "Erde Cleric"
+popup/item_4/text = "Redeemer"
 popup/item_4/id = 4
 popup/item_5/text = "Dancer"
 popup/item_5/id = 5
@@ -303,9 +303,9 @@ expand_mode = 3
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/CharUnlock" to="." method="_on_char_unlock_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/AdjustParty" to="." method="_on_adjust_party_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/SkillsButton" to="." method="_on_skills_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_RETURN_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_ReturnButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainMenu/HBoxContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Select_and_Stats/VBoxContainer2/Job/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="item_selected" from="HBoxContainer/Select_and_Stats/VBoxContainer2/Job/OptionButton" to="." method="_on_option_button_item_selected"]

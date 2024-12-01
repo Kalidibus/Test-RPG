@@ -1,12 +1,14 @@
 res://Scenes/Start.tscn
-res://Assets/UI/Button/Normal_Button.tres
-res://Assets/UI/Button/Focus_Button.tres
-res://Scenes/Guild/Unlocks.tscn
+res://Assets/UI/Heretic_Theme.tres
+res://SkillUpgradeButton.gd
+res://Scenes/Pulse.gdshader
+res://Scenes/Vignette.gdshader
+res://Scenes/Battle Scenes/CombatGUI.gd
+res://Scenes/Battle Scenes/EnemyBlock.gd
 res://Scenes/Guild/CharacterCreate.tscn
 res://Scenes/Guild/PartyBuild.tscn
 res://Scenes/Guild/UnlockGUIBox.tscn
-res://Scenes/Other/PauseMenu/ItemMenu.tscn
-res://Assets/UI/Heretic_Theme.tres
+res://Scenes/Guild/Unlocks.tscn
 res://Scenes/Other/CharacterChanges.tscn
 res://Scenes/Other/SystemChoice.tscn
 res://Scenes/Other/SystemNotification.tscn
@@ -15,12 +17,12 @@ res://Scenes/Other/PauseMenu/SkillsMenu.tscn
 res://Scenes/Other/PauseMenu/PartyMenu.tscn
 res://Scenes/Other/PauseMenu/PartyBlock.tscn
 res://Scenes/Other/PauseMenu/OptionsMenu.tscn
+res://Scenes/Other/PauseMenu/ItemMenu.tscn
 res://Scenes/Battle Scenes/Combat.tscn
-res://Assets/UI/Panel/System_Panel.tres
-res://Scenes/Battle Scenes/CombatGUI.gd
-res://Scenes/Battle Scenes/EnemyBlock.gd
-res://Scenes/Vignette.gdshader
-res://Scenes/Pulse.gdshader
 res://Scenes/Battle Scenes/SkillNode.tscn
 res://Scenes/Guild/SkillVendor/SkillUpgradeButton.tscn
 res://Scenes/Guild/RosterPartyBlock.tscn
+res://Classes/JobDictionary.gd
+res://Classes/Erde Cleric/Erde Cleric.tscn
+res://Classes/Erde Cleric/Erde Cleric.gd
+res://Classes/Shade Hunter/Shade Hunter.gd

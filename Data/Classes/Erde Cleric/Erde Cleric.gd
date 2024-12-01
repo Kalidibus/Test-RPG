@@ -40,7 +40,7 @@ var stat_scaling = {
 		stat.CRITDMG: stat_scale.F,
 		stat.HATE: stat_scale.D
 	}
-var job_description = "The Erde Cleric is a healer capable of powerful restorations. \n\nThe party can safely soak massive damage with minimal fear while an Erde Cleric is present, as they are one of the most powerful healing Vocations known. \n\nTheir high focus on healing leaves them unable to contribute much to offense."
+var job_description = "The Redeemer is a healer capable of powerful restorations. \n\nThe party can safely soak massive damage with minimal fear while a Redeemer is present, as they are one of the most powerful healing Vocations known. \n\nTheir high focus on healing leaves them unable to contribute much to offense."
 
 func _ready():
 	HATE = 50
