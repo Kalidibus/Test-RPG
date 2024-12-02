@@ -34,10 +34,10 @@ func get_direction(direction):
 func _on_timer_timeout():
 	var GO_W := Input.is_action_pressed("ui_up")
 	var GO_S := Input.is_action_pressed("ui_down")
-	var GO_A := Input.is_action_pressed("ui_left")
-	var GO_D := Input.is_action_pressed("ui_right")
-	var TURN_Q := Input.is_action_pressed("Turn_Left")
-	var TURN_E := Input.is_action_pressed("Turn_Right")
+	var TURN_Q := Input.is_action_pressed("ui_left")
+	var TURN_E := Input.is_action_pressed("ui_right")
+	var GO_A := Input.is_action_pressed("Turn_Left")
+	var GO_D := Input.is_action_pressed("Turn_Right")
 	var Escape := Input.is_action_pressed("Escape")
 
 	var ray_dir

@@ -1,4 +1,4 @@
-res://Scenes/Start.tscn
+res://Scenes/Other/QuestManager.tscn
 res://Assets/UI/Button/Normal_Button.tres
 res://Assets/UI/Button/Focus_Button.tres
 res://Assets/UI/Panel/System_Panel.tres
@@ -7,6 +7,7 @@ res://Scenes/Pulse.gdshader
 res://Scenes/Vignette.gdshader
 res://Scenes/Battle Scenes/CombatGUI.gd
 res://Scenes/Battle Scenes/EnemyBlock.gd
+res://Scenes/Start.tscn
 res://Scenes/Guild/CharacterCreate.tscn
 res://Scenes/Guild/PartyBuild.tscn
 res://Scenes/Guild/UnlockGUIBox.tscn
@@ -27,8 +28,8 @@ res://Scenes/Guild/RosterPartyBlock.tscn
 res://Classes/Erde Cleric/Erde Cleric.tscn
 res://Scenes/Dungeon/World.tscn
 res://Enemies/EnemyDict.tscn
-res://Scenes/Other/QuestManager.tscn
-res://Scenes/Other/quest_manager.gd
-res://Scenes/Dungeon/World.gd
-res://Scenes/Battle Scenes/Combat.gd
+res://Scenes/Guild/Unlocks.gd
 res://Scenes/Dungeon/Player.gd
+res://Scenes/Other/PauseMenu/PauseMenu.gd
+res://Scenes/Other/PauseMenu/party_block.gd
+res://Scenes/Other/PauseMenu/PartyMenu.gd

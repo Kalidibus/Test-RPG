@@ -50,7 +50,7 @@ func AddBlocks():
 		if char.row == Entity.row_line.BACK: button.text = "BACK"
 		
 		%PartyBlockHolder.add_child(block)
-
+	return
 
 func _on_skills_button_pressed() -> void:
 	LoadSkillsMenu()
@@ -84,3 +84,11 @@ func FillCharInfo_Skills(charid):
 
 func FillCharInfo_Equip(charid):
 	pass
+
+func GetLastPushed(pushed_charid, button:String):
+	for n in %PartyBlockHolder.get_children():
+		if n.charid == pushed_charid:
+			if button == "up":
+				n.get_node("%UpButton").grab_focus()
+			elif button == "down":
+				n.get_node("%DownButton").grab_focus()

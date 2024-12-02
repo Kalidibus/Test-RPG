@@ -1,7 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1733162453
+::res://::1733167620
 export_presets.cfg::TextFile::-1::1731165418::0::1::::<><>::
-quest_manager.gd::GDScript::-1::1733163296::0::1::::<>Node<>::
 SkillUpgradeButton.gd::GDScript::-1::1732839605::0::1::::SkillUpgradeButton<>Button<>::
 ::res://Assets/::1733073303
 icon.jpg::CompressedTexture2D::180962336089258514::1729909310::1733073303::1::::<><>::
@@ -129,9 +128,9 @@ SkillTree-BastardFist.tscn::PackedScene::5547671321085604408::1732839605::0::1::
 ::res://Classes/Dancer/::1731906330
 Dancer.gd::GDScript::-1::1731906330::0::1::::<>Entity<>::
 Dancer.tscn::PackedScene::2818603530569589958::1731165418::0::1::::<><>::res://Classes/Dancer/Dancer.gd
-::res://Classes/Erde Cleric/::1733162859
+::res://Classes/Erde Cleric/::1733166697
 Erde Cleric.gd::GDScript::-1::1733072987::0::1::::<>Entity<>::
-Erde Cleric.tscn::PackedScene::797712599997372620::1733162859::0::1::::<><>::res://Classes/Erde Cleric/Erde Cleric.gd
+Erde Cleric.tscn::PackedScene::797712599997372620::1733166697::0::1::::<><>::res://Classes/Erde Cleric/Erde Cleric.gd
 SkillTree-ErdeCleric.tscn::PackedScene::4570183870845612914::1732839605::0::1::::<><>::uid://dpq5uswfsbu22::::res://Scenes/Guild/SkillVendor/SkillUpgradeButton.tscn
 ::res://Classes/Fel Mage/::1733155113
 Fel Mage.gd::GDScript::-1::1733155113::0::1::::<>Entity<>::
@@ -161,9 +160,9 @@ scene_firstbattle.gd::GDScript::-1::1731808338::0::1::::<>Node<>::
 scene_opening.gd::GDScript::-1::1731808338::0::1::::<>Node<>::
 ::res://Dialogue/Opening/::1731165418
 scene.gd::GDScript::-1::1731165418::0::1::::<>Node<>::
-::res://Enemies/::1733162860
+::res://Enemies/::1733166697
 EnemyDict.gd::GDScript::-1::1733152275::0::1::::<>Node<>::
-EnemyDict.tscn::PackedScene::7056994694268126539::1733162860::0::1::::<><>::res://Enemies/EnemyDict.gd<>res://Enemies/Arid/Regular/mon_pylon.gd<>res://Enemies/Arid/arid.gd<>res://Enemies/Arid/Regular/mon_brainrot.gd<>res://Enemies/Arid/Regular/mon_misalignment.gd
+EnemyDict.tscn::PackedScene::7056994694268126539::1733166697::0::1::::<><>::res://Enemies/EnemyDict.gd<>res://Enemies/Arid/Regular/mon_pylon.gd<>res://Enemies/Arid/arid.gd<>res://Enemies/Arid/Regular/mon_brainrot.gd<>res://Enemies/Arid/Regular/mon_misalignment.gd
 ::res://Enemies/Arid/::1733154995
 arid.gd::GDScript::-1::1733154995::0::1::::<>Node<>::
 ::res://Enemies/Arid/Regular/::1733154052
@@ -195,22 +194,22 @@ Hammers.gd::GDScript::-1::1732558379::0::1::::<>Node<>::
 Polearms.gd::GDScript::-1::1732558379::0::1::::<>Node<>::
 Staves.gd::GDScript::-1::1732558379::0::1::::<>Node<>::
 Swords.gd::GDScript::-1::1731956687::0::1::::<>Node<>::
-::res://Scenes/::1733162860
+::res://Scenes/::1733166706
 Globals.gd::GDScript::-1::1733152457::0::1::::<>Node<>::
-Pulse.gdshader::Shader::-1::1733163317::0::1::::<><>::
+Pulse.gdshader::Shader::-1::1733166706::0::1::::<><>::
 SaveandLoad.gd::GDScript::-1::1731179869::0::1::::<>Node<>::
 Start.gd::GDScript::-1::1732839605::0::1::::<>MarginContainer<>::
-Start.tscn::PackedScene::2256187024235275149::1733162859::0::1::::<><>::res://Scenes/Start.gd<>res://Scenes/Pulse.gdshader<>uid://f8qvvoa8gywk::::res://Assets/UI/Selector.png<>uid://1s5kagy5rbqi::::res://Assets/Classes/Bastard Fist/Bastard Fist-splash.png<>uid://cns46s3vqu18r::::res://Assets/UI/Button/panel-029.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres<>uid://cuk64eey7amyb::::res://Assets/Classes/Erde Cleric/Cleric-splash.png<>uid://0gp0a602to8y::::res://Assets/Classes/Fel Mage/Fel Mage-splash.png<>uid://dbhb1nc0x28xj::::res://Assets/Classes/Fortress/Fortress-splash.png<>res://Scenes/Vignette.gdshader
-Vignette.gdshader::Shader::-1::1733163317::0::1::::<><>::
-::res://Scenes/Battle Scenes/::1733162859
+Start.tscn::PackedScene::2256187024235275149::1733166697::0::1::::<><>::res://Scenes/Start.gd<>res://Scenes/Pulse.gdshader<>uid://f8qvvoa8gywk::::res://Assets/UI/Selector.png<>uid://1s5kagy5rbqi::::res://Assets/Classes/Bastard Fist/Bastard Fist-splash.png<>uid://cns46s3vqu18r::::res://Assets/UI/Button/panel-029.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres<>uid://cuk64eey7amyb::::res://Assets/Classes/Erde Cleric/Cleric-splash.png<>uid://0gp0a602to8y::::res://Assets/Classes/Fel Mage/Fel Mage-splash.png<>uid://dbhb1nc0x28xj::::res://Assets/Classes/Fortress/Fortress-splash.png<>res://Scenes/Vignette.gdshader
+Vignette.gdshader::Shader::-1::1733166706::0::1::::<><>::
+::res://Scenes/Battle Scenes/::1733166697
 ActionQueue.gd::GDScript::-1::1731625735::0::1::::<>Node<>::
 ActionQueue.tscn::PackedScene::-1::1729909310::0::1::::<><>::res://Scenes/Battle Scenes/ActionQueue.gd
 AttackAnimations.gd::GDScript::-1::1731958177::0::1::::<>Node<>::
 battle_log_scroll_cont.gd::GDScript::-1::1731523192::0::1::::<>ScrollContainer<>::
 Camera2D.gd::GDScript::-1::1729909310::0::1::::<>Camera2D<>::
 Camera2D.tscn::PackedScene::-1::1729909310::0::1::::<><>::res://Scenes/Battle Scenes/Camera2D.gd
-Combat.gd::GDScript::-1::1731958177::0::1::::<>Node<>::
-Combat.tscn::PackedScene::742327886373271237::1733162859::0::1::::<><>::res://Scenes/Battle Scenes/ActionQueue.tscn<>res://Scenes/Battle Scenes/CombatGUI.gd<>res://Scenes/Battle Scenes/signal_bus.gd<>res://Scenes/Battle Scenes/battle_log_scroll_cont.gd<>res://Scenes/Battle Scenes/Combat.gd<>uid://f8qvvoa8gywk::::res://Assets/UI/Selector.png<>uid://bwkr71clxk32v::::res://Assets/backgrounds/Screenshot_20230318_165916.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres<>res://Scenes/Battle Scenes/Camera2D.tscn<>uid://canh4bvgco7sc::::res://Assets/Ability Animations/Impact/376.png<>res://Scenes/Battle Scenes/AttackAnimations.gd<>uid://84thw11pmhcb::::res://Assets/Ability Animations/Levin/723.png<>uid://l5sgvnitoij7::::res://Assets/Ability Animations/Erde/396.png<>uid://cgbre3he5hoqf::::res://Assets/Ability Animations/Infernal/123.png<>uid://cwskkjxlt6s3h::::res://Assets/Ability Animations/Deep/528.png
+Combat.gd::GDScript::-1::1733165122::0::1::::<>Node<>::
+Combat.tscn::PackedScene::742327886373271237::1733166697::0::1::::<><>::res://Scenes/Battle Scenes/ActionQueue.tscn<>res://Scenes/Battle Scenes/CombatGUI.gd<>res://Scenes/Battle Scenes/signal_bus.gd<>res://Scenes/Battle Scenes/battle_log_scroll_cont.gd<>res://Scenes/Battle Scenes/Combat.gd<>uid://f8qvvoa8gywk::::res://Assets/UI/Selector.png<>uid://bwkr71clxk32v::::res://Assets/backgrounds/Screenshot_20230318_165916.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres<>res://Scenes/Battle Scenes/Camera2D.tscn<>uid://canh4bvgco7sc::::res://Assets/Ability Animations/Impact/376.png<>res://Scenes/Battle Scenes/AttackAnimations.gd<>uid://84thw11pmhcb::::res://Assets/Ability Animations/Levin/723.png<>uid://l5sgvnitoij7::::res://Assets/Ability Animations/Erde/396.png<>uid://cgbre3he5hoqf::::res://Assets/Ability Animations/Infernal/123.png<>uid://cwskkjxlt6s3h::::res://Assets/Ability Animations/Deep/528.png
 CombatGUI.gd::GDScript::-1::1733162599::0::1::::<>MarginContainer<>::
 EnemyBlock.gd::GDScript::-1::1733162599::0::1::::<>HBoxContainer<>::
 EnemyLabel.tscn::PackedScene::6523798514985225551::1732558663::0::1::::<><>::res://Scenes/Battle Scenes/EnemyBlock.gd<>uid://b1pcikwd2kr5::::res://Assets/UI/label_HP_bg.png<>uid://drac0yxtmd00b::::res://Assets/UI/bar_under.png<>uid://cnvglr0j77jl6::::res://Assets/UI/HP_bar_progress.png<>uid://cusf4o2au6ajy::::res://Assets/Enemies/Plyon.png
@@ -224,13 +223,13 @@ PlayerBlock.gd::GDScript::-1::1731632026::0::1::::<>Control<>::
 PlayerBlock.tscn::PackedScene::36339397261778912::1732839605::0::1::::<><>::res://Scenes/Battle Scenes/PlayerBlock.gd<>uid://diwcq2vq3fbux::::res://Assets/Classes/Fortress/Fortress-PartyLabel.png<>uid://drac0yxtmd00b::::res://Assets/UI/bar_under.png<>uid://cnvglr0j77jl6::::res://Assets/UI/HP_bar_progress.png<>uid://daiq7i2a0xvoq::::res://Assets/UI/MP_bar_progress.png<>uid://bt6h2tc03pfo7::::res://Assets/UI/Vanguard-label.png<>uid://snrt3cxg6j71::::res://Assets/UI/Rearguard-label.png
 signal_bus.gd::GDScript::-1::1731911081::0::1::::<>Node<>::
 SkillNode.gd::GDScript::-1::1729909310::0::1::::SkillNode<>MarginContainer<>::
-SkillNode.tscn::PackedScene::6000845527328451863::1733162859::0::1::::<><>::res://Scenes/Battle Scenes/SkillNode.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+SkillNode.tscn::PackedScene::6000845527328451863::1733166697::0::1::::<><>::res://Scenes/Battle Scenes/SkillNode.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
 Stats.gd::GDScript::-1::1731623022::0::1::::Stats<>Node<>::
 StatusIcon.gd::GDScript::-1::1731626086::0::1::::<>Control<>::
 StatusIcon.tscn::PackedScene::5895643986440412172::1732558664::0::1::::<><>::res://Scenes/Battle Scenes/StatusIcon.gd<>uid://4velul5v51li::::res://Assets/StatusIcons/icon_small.png
 TargetButton.gd::GDScript::-1::1731165418::0::1::::TargetButton<>Button<>::
 TargetButton.tscn::PackedScene::8925041566517917973::1731165418::0::1::::<><>::res://Scenes/Battle Scenes/TargetButton.gd
-::res://Scenes/Dungeon/::1733162860
+::res://Scenes/Dungeon/::1733166697
 Cell.gd::GDScript::-1::1729909310::0::1::::Cells<>Node3D<>::
 Cell.tscn::PackedScene::5741255431879990377::1729909310::0::1::::<><>::res://Scenes/Dungeon/Cell.gd<>uid://b5fkspr4e3sr::::res://Scenes/Dungeon/Floor.obj<>uid://ctj2b4ckf00l4::::res://Scenes/Dungeon/Floor.png<>uid://dymp4mnqcrqkt::::res://Scenes/Dungeon/FloorNormals.png<>uid://bs6335gcykt40::::res://Scenes/Dungeon/Wall.obj<>uid://bddvuqvm6iyxs::::res://Scenes/Dungeon/Wall.png<>uid://ncn14uex701l::::res://Scenes/Dungeon/WallNormals.png
 default_env.tres::Environment::272524988220824824::1729909310::0::1::::<><>::
@@ -244,7 +243,7 @@ MapCreator.tscn::PackedScene::-1::1729909310::0::1::::<><>::res://Textures/Light
 NormalMapTest.tscn::PackedScene::-1::1729909310::0::1::::<><>::res://Wall.tres
 Pillar.obj::Mesh::3127802657274318984::1729909310::1733073304::1::::<><>::
 Pillar.tscn::PackedScene::2466922473447412124::1729909310::0::1::::<><>::res://Scenes/Dungeon/Cell.gd<>uid://b5fkspr4e3sr::::res://Scenes/Dungeon/Floor.obj<>uid://ctj2b4ckf00l4::::res://Scenes/Dungeon/Floor.png<>uid://dymp4mnqcrqkt::::res://Scenes/Dungeon/FloorNormals.png<>uid://bktepnomnsamq::::res://Scenes/Dungeon/Pillar.obj<>uid://bddvuqvm6iyxs::::res://Scenes/Dungeon/Wall.png<>uid://bs6335gcykt40::::res://Scenes/Dungeon/Wall.obj<>uid://ncn14uex701l::::res://Scenes/Dungeon/WallNormals.png
-Player.gd::GDScript::-1::1731167730::0::1::::<>Node3D<>::
+Player.gd::GDScript::-1::1733166611::0::1::::<>Node3D<>::
 Player.tscn::PackedScene::7591313061228923198::1731176990::0::1::::<><>::res://Scenes/Dungeon/Player.gd
 ResourceStash.gd::GDScript::-1::1729909310::0::1::::<>Node<>::
 tilemap.png::CompressedTexture2D::5226239090252189824::1729909310::1733073303::1::::<><>::
@@ -253,8 +252,8 @@ Wall.obj::Mesh::3715567242673024847::1729909310::1733073304::1::::<><>::
 Wall.png::CompressedTexture2D::2604491993997060720::1729909310::1733073303::1::::<><>::
 Wall.tres::StandardMaterial3D::-1::1729909310::0::1::::<><>::res://Wall.png<>res://WallNormals.png
 WallNormals.png::CompressedTexture2D::917421028637039315::1729909310::1733073303::1::::<><>::
-World.gd::GDScript::-1::1729909310::0::1::::<>Node3D<>::
-World.tscn::PackedScene::3083036019501178986::1733162860::0::1::::<><>::res://Scenes/Dungeon/World.gd<>uid://dgfj21p534fww::::res://Scenes/Dungeon/Player.tscn<>uid://dhy1bjfiiqt5n::::res://Assets/UI/PartyLabel.png
+World.gd::GDScript::-1::1733166214::0::1::::<>Node3D<>::
+World.tscn::PackedScene::3083036019501178986::1733166697::0::1::::<><>::res://Scenes/Dungeon/World.gd<>uid://dgfj21p534fww::::res://Scenes/Dungeon/Player.tscn<>uid://dhy1bjfiiqt5n::::res://Assets/UI/PartyLabel.png
 ::res://Scenes/Dungeon/Fortress/::1729909310
 ::res://Scenes/Dungeon/Fortress/Dark/::1733073303
 texture_01.png::CompressedTexture2D::2619254925065947589::1729909310::1733073303::1::::<><>::
@@ -270,43 +269,44 @@ texture_10.png::CompressedTexture2D::4889499201380196474::1729909310::1733073303
 texture_11.png::CompressedTexture2D::1628644655325668904::1729909310::1733073303::1::::<><>::
 texture_12.png::CompressedTexture2D::676934115085019370::1729909310::1733073303::1::::<><>::
 texture_13.png::CompressedTexture2D::7541418617700512585::1729909310::1733073303::1::::<><>::
-::res://Scenes/Guild/::1733162859
+::res://Scenes/Guild/::1733166697
 CharacterCreate.gd::GDScript::-1::1732839605::0::1::::<>Node<>::
-CharacterCreate.tscn::PackedScene::6399059010881365525::1733162859::0::1::::<><>::res://Scenes/Guild/CharacterCreate.gd<>uid://f8qvvoa8gywk::::res://Assets/UI/Selector.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres<>uid://c5n473klf8oug::::res://Assets/UI/Panel/System_Panel.tres
+CharacterCreate.tscn::PackedScene::6399059010881365525::1733166697::0::1::::<><>::res://Scenes/Guild/CharacterCreate.gd<>uid://f8qvvoa8gywk::::res://Assets/UI/Selector.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres<>uid://c5n473klf8oug::::res://Assets/UI/Panel/System_Panel.tres
 PartyBuild.gd::GDScript::-1::1732839605::0::1::::<>MarginContainer<>::
-PartyBuild.tscn::PackedScene::4172719446300889343::1733162859::0::1::::<><>::res://Scenes/Guild/PartyBuild.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
-RosterPartyBlock.tscn::PackedScene::7792999223989767985::1733162859::0::1::::<><>::res://Scenes/Guild/roster_party_block.gd<>uid://coaxx58modqde::::res://Assets/Classes/Fortress/Fortress-profile.png<>uid://drac0yxtmd00b::::res://Assets/UI/bar_under.png<>uid://cnvglr0j77jl6::::res://Assets/UI/HP_bar_progress.png<>uid://daiq7i2a0xvoq::::res://Assets/UI/MP_bar_progress.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+PartyBuild.tscn::PackedScene::4172719446300889343::1733166697::0::1::::<><>::res://Scenes/Guild/PartyBuild.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+RosterPartyBlock.tscn::PackedScene::7792999223989767985::1733166697::0::1::::<><>::res://Scenes/Guild/roster_party_block.gd<>uid://coaxx58modqde::::res://Assets/Classes/Fortress/Fortress-profile.png<>uid://drac0yxtmd00b::::res://Assets/UI/bar_under.png<>uid://cnvglr0j77jl6::::res://Assets/UI/HP_bar_progress.png<>uid://daiq7i2a0xvoq::::res://Assets/UI/MP_bar_progress.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
 roster_party_block.gd::GDScript::-1::1731811988::0::1::::<>MarginContainer<>::
 UnlockGuiBox.gd::GDScript::-1::1731896330::0::1::::<>MarginContainer<>::
-UnlockGUIBox.tscn::PackedScene::3610845776288062400::1733162859::0::1::::<><>::uid://4velul5v51li::::res://Assets/StatusIcons/icon_small.png<>res://Scenes/Guild/UnlockGuiBox.gd<>uid://4081ifol8kv5::::res://Assets/Classes/Dancer/Dancer-profile.png
+UnlockGUIBox.tscn::PackedScene::3610845776288062400::1733166697::0::1::::<><>::uid://4velul5v51li::::res://Assets/StatusIcons/icon_small.png<>res://Scenes/Guild/UnlockGuiBox.gd<>uid://4081ifol8kv5::::res://Assets/Classes/Dancer/Dancer-profile.png
 Unlocks.gd::GDScript::-1::1731958110::0::1::::<>MarginContainer<>::
-Unlocks.tscn::PackedScene::306252627594247338::1733162859::0::1::::<><>::res://Scenes/Guild/Unlocks.gd<>uid://f8qvvoa8gywk::::res://Assets/UI/Selector.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
-::res://Scenes/Guild/SkillVendor/::1733162859
+Unlocks.tscn::PackedScene::306252627594247338::1733166697::0::1::::<><>::res://Scenes/Guild/Unlocks.gd<>uid://f8qvvoa8gywk::::res://Assets/UI/Selector.png<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+::res://Scenes/Guild/SkillVendor/::1733166697
 SkillTreeMenu.gd::GDScript::-1::1732839605::0::1::::<>MarginContainer<>::
 SkillTreeMenu.tscn::PackedScene::6825037220917715779::1732558664::0::1::::<><>::res://Scenes/Guild/SkillVendor/SkillTreeMenu.gd
-SkillUpgradeButton.tscn::PackedScene::8246982955033131465::1733162859::0::1::::<><>::res://SkillUpgradeButton.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
-::res://Scenes/Other/::1733162859
+SkillUpgradeButton.tscn::PackedScene::8246982955033131465::1733166697::0::1::::<><>::res://SkillUpgradeButton.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+::res://Scenes/Other/::1733166698
 CharacterChanges.gd::GDScript::-1::1732558379::0::1::::<>Node<>::
-CharacterChanges.tscn::PackedScene::8601785976855921::1733162859::0::1::::<><>::res://Scenes/Other/CharacterChanges.gd
-QuestManager.tscn::PackedScene::8340554090229875690::1733163317::0::1::::<><>::res://quest_manager.gd
+CharacterChanges.tscn::PackedScene::8601785976855921::1733166697::0::1::::<><>::res://Scenes/Other/CharacterChanges.gd
+QuestManager.tscn::PackedScene::8340554090229875690::1733166698::0::1::::<><>::res://Scenes/Other/quest_manager.gd
+quest_manager.gd::GDScript::-1::1733166695::0::1::::<>Node<>::
 SystemChoice.gd::GDScript::-1::1731811988::0::1::::<>Node2D<>::
-SystemChoice.tscn::PackedScene::8319278473479232730::1733162859::0::1::::<><>::res://Scenes/Other/SystemChoice.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+SystemChoice.tscn::PackedScene::8319278473479232730::1733166697::0::1::::<><>::res://Scenes/Other/SystemChoice.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
 SystemNotification.gd::GDScript::-1::1731811988::0::1::::<>Node2D<>::
-SystemNotification.tscn::PackedScene::8958584865849218717::1733162859::0::1::::<><>::res://Scenes/Other/SystemNotification.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
-::res://Scenes/Other/PauseMenu/::1733162859
+SystemNotification.tscn::PackedScene::8958584865849218717::1733166697::0::1::::<><>::res://Scenes/Other/SystemNotification.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+::res://Scenes/Other/PauseMenu/::1733166697
 ItemBlock.tscn::PackedScene::5207745087975440993::1731165418::0::1::::<><>::uid://4velul5v51li::::res://Assets/StatusIcons/icon_small.png
 ItemMenu.gd::GDScript::-1::1731952093::0::1::::<>MarginContainer<>::
-ItemMenu.tscn::PackedScene::7077009564161434847::1733162859::0::1::::<><>::res://Scenes/Other/PauseMenu/ItemMenu.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+ItemMenu.tscn::PackedScene::7077009564161434847::1733166697::0::1::::<><>::res://Scenes/Other/PauseMenu/ItemMenu.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
 OptionsMenu.gd::GDScript::-1::1731811988::0::1::::<>MarginContainer<>::
-OptionsMenu.tscn::PackedScene::6079965855984870401::1733162859::0::1::::<><>::res://Scenes/Other/PauseMenu/OptionsMenu.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
-PartyBlock.tscn::PackedScene::2364076582111304256::1733162859::0::1::::<><>::res://Scenes/Other/PauseMenu/party_block.gd<>uid://coaxx58modqde::::res://Assets/Classes/Fortress/Fortress-profile.png<>uid://drac0yxtmd00b::::res://Assets/UI/bar_under.png<>uid://cnvglr0j77jl6::::res://Assets/UI/HP_bar_progress.png<>uid://daiq7i2a0xvoq::::res://Assets/UI/MP_bar_progress.png
+OptionsMenu.tscn::PackedScene::6079965855984870401::1733166697::0::1::::<><>::res://Scenes/Other/PauseMenu/OptionsMenu.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+PartyBlock.tscn::PackedScene::2364076582111304256::1733166697::0::1::::<><>::res://Scenes/Other/PauseMenu/party_block.gd<>uid://coaxx58modqde::::res://Assets/Classes/Fortress/Fortress-profile.png<>uid://drac0yxtmd00b::::res://Assets/UI/bar_under.png<>uid://cnvglr0j77jl6::::res://Assets/UI/HP_bar_progress.png<>uid://daiq7i2a0xvoq::::res://Assets/UI/MP_bar_progress.png
 PartyMenu.gd::GDScript::-1::1732558379::0::1::::<>MarginContainer<>::
-PartyMenu.tscn::PackedScene::2052921005646472998::1733162859::0::1::::<><>::res://Scenes/Other/PauseMenu/PartyMenu.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+PartyMenu.tscn::PackedScene::2052921005646472998::1733166697::0::1::::<><>::res://Scenes/Other/PauseMenu/PartyMenu.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
 party_block.gd::GDScript::-1::1731811988::0::1::::<>MarginContainer<>::
 PauseMenu.gd::GDScript::-1::1731811988::0::1::::<>MarginContainer<>::
-PauseMenu.tscn::PackedScene::2345803811828508328::1733162859::0::1::::<><>::res://Scenes/Other/PauseMenu/PauseMenu.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
+PauseMenu.tscn::PackedScene::2345803811828508328::1733166697::0::1::::<><>::res://Scenes/Other/PauseMenu/PauseMenu.gd<>uid://dny0ibmsfjqu5::::res://Assets/UI/Heretic_Theme.tres
 SkillsMenu.gd::GDScript::-1::1731187923::0::1::::<>Control<>::
-SkillsMenu.tscn::PackedScene::7588031634863140746::1733162859::0::1::::<><>::res://Scenes/Other/PauseMenu/SkillsMenu.gd
+SkillsMenu.tscn::PackedScene::7588031634863140746::1733166697::0::1::::<><>::res://Scenes/Other/PauseMenu/SkillsMenu.gd
 ::res://Scenes/PlayerData/::1731958177
 PlayerData.gd::GDScript::-1::1731958177::0::1::::<>Node<>::
 PlayerData.tscn::PackedScene::2402421893744705659::1731165418::0::1::::<><>::res://Scenes/PlayerData/PlayerData.gd

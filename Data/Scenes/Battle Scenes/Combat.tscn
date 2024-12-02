@@ -343,6 +343,7 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(400, 350)
 layout_mode = 2
 size_flags_vertical = 4
+follow_focus = true
 
 [node name="SecondMenu" type="VBoxContainer" parent="CombatGUI/VBoxContainer/CenterContainer/HBoxContainer/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true

@@ -4,7 +4,7 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	%ReturnButton.grab_focus()
 	var count = 0 
 	
 	while count < JobDict.job_dictionary.size():
@@ -14,6 +14,8 @@ func _ready() -> void:
 		
 		#Fills in "Class Name part of block
 		child.get_node("%classname").text = JobDict.JobName(str(count))
+		
+		
 		
 		#Checks if unlocked or not
 		if PlayerData.IsClassUnlocked(count):

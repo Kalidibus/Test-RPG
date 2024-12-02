@@ -8,10 +8,12 @@ func _ready() -> void:
 	ClearScreen()
 	%MenuContainer.add_child(menu.instantiate())
 	currentscreen = "party"
+	$VBoxContainer/HBoxContainer/QuitButton.grab_focus()
 	
 	#This prevents the escape key from getting read too early and closing the pause menu immediately 
 	await get_tree().create_timer(0.2).timeout
 	$Timer.start()
+	
 
 
 func ClearScreen() -> void:
