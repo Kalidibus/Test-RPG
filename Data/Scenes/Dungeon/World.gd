@@ -11,9 +11,13 @@ var mapobj_pillar = Vector2i(0, 3)
 
 func _ready():
 	generate_map()
+	
 	if Globals.mappos != null:
 		$Player.position = Globals.mappos
 		$Player.rotation = Globals.maprotation
+	
+	FillQuestGUI()
+
 
 
 func generate_map():
@@ -36,3 +40,12 @@ func generate_map():
 		cells.append(cell)
 	for cell in cells:
 		cell.update_faces(used_tiles)
+
+func FillQuestGUI():
+	var quest = QuestManager.ReturnQuestInfo()
+	%QuestTitle.text = quest[QuestManager.quest.TITLE]
+	%QuestDesc.text = quest[QuestManager.quest.DESC]
+	if QuestManager.active_quest == QuestManager.quest_type.COMPLETE: %QuestProgress.visible = false
+	else: 
+		%QuestProgress.visible = true
+		%QuestProgress.text = str(QuestManager.quest_progress) + QuestManager.ReturnQuestInfo()[QuestManager.quest.NEEDED_TEXT]

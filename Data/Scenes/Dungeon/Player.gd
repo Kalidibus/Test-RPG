@@ -72,7 +72,7 @@ func tween_translation(change):
 	var tween = create_tween()
 	tween.tween_property(self, "position", position + change,spd)
 	await tween.finished
-	encounter_check()
+	if not QuestManager.active_quest == QuestManager.quest_type.COMPLETE: encounter_check()
 
 #rotates camera
 func tween_rotation(change):

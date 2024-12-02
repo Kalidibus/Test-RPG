@@ -1,7 +1,10 @@
+Label
+HBoxContainer
 MarginContainer
+VBoxContainer
+Node
 PanelContainer
 Container
-VBoxContainer
 Panel
 Sprite2D
 CanvasLayer
@@ -9,6 +12,3 @@ ColorRect
 TextureRect
 Control
 NinePatchRect
-Line2D
-ScrollContainer
-Button

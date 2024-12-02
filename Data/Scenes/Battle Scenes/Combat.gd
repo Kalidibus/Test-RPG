@@ -12,6 +12,7 @@ signal AttackList
 signal update_players
 signal player_turns_selected
 signal all_turns_selected
+signal combat_won
 
 #this should change depending on the level entered. Can have this as an input.
 var currentzone = "arid"
@@ -21,6 +22,7 @@ func _ready():
 	$CombatGUI.CreateLabels(party, enemies)
 	CreateNodes(party, enemies)
 	MainBattleLoop()
+	
 
 func CreateNodes(party, enemy_array):
 	for n in party:
@@ -115,6 +117,7 @@ func CheckWin(): #checked each turn by the ActionQueue
 func win():
 	Globals.system_message("MANIFESTATIONS SLAIN")
 	%Menu.visible = false
+	QuestManager.BattleWon()
 	
 	#Get Loot
 	for n in %Enemies.get_children():

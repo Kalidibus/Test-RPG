@@ -1,4 +1,4 @@
-res://Enemies/EnemyDict.tscn
+res://Scenes/Start.tscn
 res://Assets/UI/Button/Normal_Button.tres
 res://Assets/UI/Button/Focus_Button.tres
 res://Assets/UI/Panel/System_Panel.tres
@@ -7,14 +7,6 @@ res://Scenes/Pulse.gdshader
 res://Scenes/Vignette.gdshader
 res://Scenes/Battle Scenes/CombatGUI.gd
 res://Scenes/Battle Scenes/EnemyBlock.gd
-res://Enemies/EnemyDict.gd
-res://Enemies/Arid/Regular/mon_meatshield.gd
-res://Enemies/Arid/Regular/mon_pylon.gd
-res://Enemies/Arid/Regular/mon_brainrot.gd
-res://Scenes/Globals.gd
-res://Enemies/Arid/Regular/mon_misalignment.gd
-res://Scenes/Start.tscn
-res://Enemies/Arid/arid.gd
 res://Scenes/Guild/CharacterCreate.tscn
 res://Scenes/Guild/PartyBuild.tscn
 res://Scenes/Guild/UnlockGUIBox.tscn
@@ -34,4 +26,9 @@ res://Scenes/Guild/SkillVendor/SkillUpgradeButton.tscn
 res://Scenes/Guild/RosterPartyBlock.tscn
 res://Classes/Erde Cleric/Erde Cleric.tscn
 res://Scenes/Dungeon/World.tscn
-res://Classes/Fel Mage/Fel Mage.gd
+res://Enemies/EnemyDict.tscn
+res://Scenes/Other/QuestManager.tscn
+res://Scenes/Other/quest_manager.gd
+res://Scenes/Dungeon/World.gd
+res://Scenes/Battle Scenes/Combat.gd
+res://Scenes/Dungeon/Player.gd

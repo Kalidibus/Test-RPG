@@ -358,8 +358,9 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
-size_flags_horizontal = 5
+size_flags_horizontal = 4
 size_flags_vertical = 5
+theme_override_constants/separation = 260
 alignment = 1
 
 [node name="CharaSplash" type="Sprite2D" parent="CombatGUI"]

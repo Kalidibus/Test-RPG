@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bj6pfgv2p3ofy"]
+[gd_scene load_steps=6 format=3 uid="uid://bj6pfgv2p3ofy"]
 
 [ext_resource type="Script" path="res://Scenes/Dungeon/World.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dgfj21p534fww" path="res://Scenes/Dungeon/Player.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://b1repvm17iei0" path="res://Assets/Classes/Illusionist/Illusionist-profile.png" id="3_pcnpr"]
-[ext_resource type="Texture2D" uid="uid://coaxx58modqde" path="res://Assets/Classes/Fortress/Fortress-profile.png" id="3_qsw01"]
-[ext_resource type="Texture2D" uid="uid://cta7jaj2feuhb" path="res://Assets/Classes/Bastard Fist/Bastard Fist-profile.png" id="4_o03l4"]
-[ext_resource type="Texture2D" uid="uid://cicordl16xkdm" path="res://Assets/Classes/Fel Mage/Fel Mage-profile.png" id="5_a6m47"]
+[ext_resource type="Texture2D" uid="uid://dhy1bjfiiqt5n" path="res://Assets/UI/PartyLabel.png" id="3_bwd65"]
 
 [sub_resource type="Environment" id="Environment_sdslo"]
 background_mode = 1
@@ -45,6 +42,39 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="QuestTitle" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Quest Title"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuestDesc" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Quest Description"
+
+[node name="QuestProgress" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "(Current progress: 0/3)"
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -55,21 +85,26 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(1815, 979)
-scale = Vector2(0.427807, 0.427808)
-texture = ExtResource("3_pcnpr")
+position = Vector2(387, 1003)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_bwd65")
 
 [node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(1815, 765)
-scale = Vector2(0.427807, 0.427808)
-texture = ExtResource("4_o03l4")
+position = Vector2(674.422, 1005.94)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_bwd65")
 
 [node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(1810, 530)
-scale = Vector2(0.427807, 0.427808)
-texture = ExtResource("5_a6m47")
+position = Vector2(1561, 1001)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_bwd65")
 
 [node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(1804, 279)
-scale = Vector2(0.427807, 0.427808)
-texture = ExtResource("3_qsw01")
+position = Vector2(1272, 999)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_bwd65")
+
+[node name="Sprite2D5" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(972, 1001)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_bwd65")

@@ -29,6 +29,7 @@ ItemDict="*res://Items/ItemDict.tscn"
 PlayerData="*res://Scenes/PlayerData/PlayerData.tscn"
 EnemyDict="*res://Enemies/EnemyDict.tscn"
 TransitionScreen="*res://Scenes/Transition/TransitionScreen.tscn"
+QuestManager="*res://Scenes/Other/quest_manager.gd"
 
 [display]
 
