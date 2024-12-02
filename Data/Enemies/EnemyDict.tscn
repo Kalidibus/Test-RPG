@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7spw3ltsk5b8"]
+[gd_scene load_steps=6 format=3 uid="uid://c7spw3ltsk5b8"]
 
 [ext_resource type="Script" path="res://Enemies/EnemyDict.gd" id="1_pmhbi"]
 [ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_pylon.gd" id="1_ppid3"]
 [ext_resource type="Script" path="res://Enemies/Arid/arid.gd" id="2_b3n7h"]
-[ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_cutter.gd" id="3_7meg8"]
 [ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_brainrot.gd" id="4_2bs73"]
-[ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_meatshield.gd" id="4_jkq3d"]
+[ext_resource type="Script" path="res://Enemies/Arid/Regular/mon_misalignment.gd" id="4_jkq3d"]
 
 [node name="EnemyDict" type="Node"]
 script = ExtResource("1_pmhbi")
@@ -25,10 +24,6 @@ script = ExtResource("1_ppid3")
 unique_name_in_owner = true
 script = ExtResource("4_2bs73")
 
-[node name="mon_cutter" type="Node" parent="arid/Regular"]
-unique_name_in_owner = true
-script = ExtResource("3_7meg8")
-
-[node name="mon_meatshield" type="Node" parent="arid/Regular"]
+[node name="mon_misalignment" type="Node" parent="arid/Regular"]
 unique_name_in_owner = true
 script = ExtResource("4_jkq3d")

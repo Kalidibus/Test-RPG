@@ -1,5 +1,5 @@
 extends Node
-enum enemy {PYLON, BRAINROT}
+enum enemy {PYLON, BRAINROT, MISALIGNMENT}
 var enemydict 
 enum zone {ARID, DEEP}
 # Called when the node enters the scene tree for the first time.
@@ -7,6 +7,7 @@ func _ready() -> void:
 	enemydict = {
 	enemy.PYLON: {"id" = enemy.PYLON, "node" = %mon_pylon, "zone" = zone.ARID, "image" = "res://Assets/Enemies/Plyon.png"},
 	enemy.BRAINROT: {"id" = enemy.BRAINROT, "node" = %mon_brainrot, "zone" = zone.ARID, "image" = "res://Assets/Enemies/Brain Rot.png"},
+	enemy.MISALIGNMENT: {"id" = enemy.MISALIGNMENT, "node" = %mon_misalignment, "zone" = zone.ARID, "image" = "res://Assets/Enemies/Misalignment.png"},
 }
 
 func GetEncounter(area):

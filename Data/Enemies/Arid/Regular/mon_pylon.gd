@@ -8,7 +8,7 @@ func _ready():
 		ItemDict.item.comp2: 15,
 		ItemDict.item.comp3: 15,
 		ItemDict.item.comp4: 15}
-	roll_count = 7
+	roll_count = Globals.ROLL_COUNT
 	
 	enemy = true
 	row = row_line.FRONT

@@ -8,7 +8,10 @@ var camera = null
 const GRID_SIZE = 2
 const PLAY_SPEED = 0.3 #lower is faster
 const ENCOUNTER_RATE = 5 #higher is more encounters
+
 const BASE_MISS_CHANCE = 10 #higher is fighters miss more often.
+const ROLL_COUNT = 4 #the base number of times the enemy loot table is rolled on.
+
 var mappos
 var maprotation
 

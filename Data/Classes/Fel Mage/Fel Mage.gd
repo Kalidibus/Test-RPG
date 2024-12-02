@@ -2,6 +2,9 @@ extends Entity
 
 enum skillid {FelM00, FelM01, FelM02, FelM03, FelM04, FelM05, FelM06, FelM07, FelM08, FelM09, FelM10, FelM11, FelM12, FelM13, FelM14, FelM15, FelM16, FelM17, FelM18, FelM19, FelM20}
 
+const BOLT_MODIFIER = 1.4
+const STORM_MODIFIER = 0.7
+
 #PASSIVES
  
 #STATS
@@ -97,7 +100,7 @@ func _ready():
 func FelBolt():
 	if MPCheck(10): CombatGUI.TargetList("FelBolt2")
 func FelBolt2(target):
-	var adjusteddamage = Damage(target, stat.INT, damage_type.FEL)
+	var adjusteddamage = Damage(target, stat.INT * BOLT_MODIFIER, damage_type.FEL)
 	MPCost(10)
 	CloseTurn(str(charname) + " launches an eldritch bolt of ink black Fel at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
@@ -105,7 +108,7 @@ func DeepBolt():
 	if MPCheck(10) == false: return
 	CombatGUI.TargetList("DeepBolt2")
 func DeepBolt2(target):
-	var adjusteddamage = Damage(target, stat.INT, damage_type.DEEP)
+	var adjusteddamage = Damage(target, stat.INT * BOLT_MODIFIER, damage_type.DEEP)
 	MPCost(10)
 	CloseTurn(str(charname) + " launches a bolt of icey Deep at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
@@ -113,7 +116,7 @@ func LevinBolt():
 	if MPCheck(10) == false: return
 	CombatGUI.TargetList("LevinBolt2")
 func LevinBolt2(target):
-	var adjusteddamage = Damage(target, stat.INT, damage_type.LEVIN)
+	var adjusteddamage = Damage(target, stat.INT * BOLT_MODIFIER, damage_type.LEVIN)
 	MPCost(10)
 	CloseTurn(str(charname) + " launches a bolt of electric Levin at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
@@ -121,7 +124,7 @@ func InfernoBolt():
 	if MPCheck(10) == false: return
 	CombatGUI.TargetList("InfernoBolt2")
 func InfernoBolt2(target):
-	var adjusteddamage = Damage(target, stat.INT, damage_type.INFERNAL)
+	var adjusteddamage = Damage(target, stat.INT * BOLT_MODIFIER, damage_type.INFERNAL)
 	MPCost(10)
 	CloseTurn(str(charname) + " launches a bolt of molten Inferno at " + str(target.charname) + ", hitting it for " + str(adjusteddamage) + " damage!")
 
@@ -141,7 +144,7 @@ func FelStorm2():
 	CombatGUI.BattleLog(str(charname) + " unleashes a Fel Storm!")
 	for target in enemies:
 		if target.stats[stat.HP] != 0:
-			var adjusteddamage = Damage(target, stat.INT / 2, damage_type.FEL)
+			var adjusteddamage = Damage(target, stat.INT * STORM_MODIFIER, damage_type.FEL)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("The storm abates...")
@@ -155,7 +158,7 @@ func DeepStorm2():
 	CombatGUI.BattleLog(str(charname) + " unleashes a Deep Storm!")
 	for target in enemies:
 		if target.stats[stat.HP] != 0:
-			var adjusteddamage = Damage(target, stat.INT / 2, damage_type.DEEP)
+			var adjusteddamage = Damage(target, stat.INT * STORM_MODIFIER, damage_type.DEEP)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("The storm abates...")
@@ -169,7 +172,7 @@ func LevinStorm2():
 	CombatGUI.BattleLog(str(charname) + " unleashes a Levin Storm!")
 	for target in enemies:
 		if target.stats[stat.HP] != 0:
-			var adjusteddamage = Damage(target, stat.INT / 2, damage_type.LEVIN)
+			var adjusteddamage = Damage(target, stat.INT * STORM_MODIFIER, damage_type.LEVIN)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("The storm abates...")
@@ -183,7 +186,7 @@ func InfernoStorm2():
 	CombatGUI.BattleLog(str(charname) + " unleashes an Inferno Storm!")
 	for target in enemies:
 		if target.stats[stat.HP] != 0:
-			var adjusteddamage = Damage(target, stat.INT / 2, damage_type.INFERNAL)
+			var adjusteddamage = Damage(target, stat.INT * STORM_MODIFIER, damage_type.INFERNAL)
 			CombatGUI.BattleLog(str(target.charname) + " is hit for " + str(adjusteddamage) + " damage!")
 			await get_tree().create_timer(0.5).timeout
 	CloseTurn("The storm abates...")

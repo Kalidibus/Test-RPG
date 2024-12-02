@@ -16,7 +16,7 @@ func Encounters():
 	
 	var mon1 = en[EnemyDict.enemy.PYLON]
 	var mon2 = en[EnemyDict.enemy.BRAINROT]
-	
+	var mon3 = en[EnemyDict.enemy.MISALIGNMENT]
 	match rng:
 		1: for i in range(2): 
 			spawn.append(mon1.duplicate())
@@ -31,6 +31,6 @@ func Encounters():
 			spawn.append(mon2.duplicate())
 		5:
 			spawn.append(mon1.duplicate())
-			spawn.append(mon2.duplicate())
+			spawn.append(mon3.duplicate())
 			spawn.append(mon1.duplicate())
 	return spawn
